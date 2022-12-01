@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2022-12-02T02:28:32+08:00</updated>
+  <updated>2022-12-02T02:31:37+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -18,12 +18,11 @@
     <updated>2022-12-02T00:38:33+08:00</updated>
     <id>https://hyter.me/Internet-proxy-to-lan.html</id>
     <content type="html"><![CDATA[
+<p><img src="media/16699127136063/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="网络架构图" /></p>
+<span id="more"></span><!-- more -->
+<p>以上是网络拓扑图</p>
 <p>因为在家庭中布置了服务器虚拟化、nas等服务，想要被公网访问，但是申请宽带公网ip限制了ipv4的80、443、8080等端口，不想<code>域名:端口</code>的方式访问，所以利用了一台公网的阿里云服务器，使用双重反向代理的方式实现公网域名的80访问。</p>
 <p>虽然有ipv6公网ip，但是考虑很多单位工作网络只支持ipv4访问，ipv6很多情况下并不能被访问到。</p>
-<h2><a id="%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络拓扑图</h2>
-<p>下面是我家现在的网络拓扑图<br />
-<img src="media/16699127136063/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="网络架构图" /></p>
-<span id="more"></span><!-- more -->
 <h2><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h2>
 <ol>
 <li>将所有的域名的解析到具有公网ip的<code>阿里云服务器</code>上。</li>
