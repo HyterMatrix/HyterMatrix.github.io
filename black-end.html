@@ -1,0 +1,1079 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  后端技术 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
+</script>
+<div class="row">
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="go-build.html">
+                
+                  <h1>Go 跨平台编译</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>默认我们<code>go build</code>的可执行文件都是当前操作系统可执行的文件，如果我想在windows下编译一个linux下可执行文件，那需要怎么做呢？</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="go-build.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/09/05 12:51 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Go.html'>Go</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="re-chinese-name.html">
+                
+                  <h1>匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="re-chinese-name.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/06/11 10:50 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="python-mac-uninstall.html">
+                
+                  <h1>MAC 如何卸载 Python</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Mac 自带的 Python 已经能够满足我们的需要了，因此很多同学在安装完 Python 之后，又想要将其删除，或者称之为卸载。对于删除 Python，我们首先要知道其具体都安装了什么，实际上，在安装 Python 时，其自动生成：</p>
+<ul>
+<li>Python framework，即 Python 框架；</li>
+<li>Python 应用目录；</li>
+<li>指向 Python 的连接。</li>
+</ul>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="python-mac-uninstall.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/05/11 15:17 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='python.html'>Python</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="mac-mamp-install-libsodium-php.html">
+                
+                  <h1>Mac MAMP安装libsodium扩展</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>微信支付新的v3版本的接口中加密方式改用了<code>AES-GCM</code>加密算法，在php7.1以上是默认自带的，php7.1以下的就需要安装libsodium-php扩展，这里我们来讲libsodium-php扩展的安装。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="mac-mamp-install-libsodium-php.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/08/28 09:55 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="mac-django-mysqlclient-error.html">
+                
+                  <h1>Mac上Django2安装mysqlclient失败 解决方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>今天安装了一下午的mysqlclient一直失败，直到晚上，现在把处理的流程记录一下。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="mac-django-mysqlclient-error.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/07/18 22:28 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='python.html'>Python</a></span>
+          				  
+          					    <span class="posted-in"><a href='django.html'>Django</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="php-iconv-qa.html">
+                
+                  <h1>调用iconv和mb_convert_encoding会显示乱码或空白</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>比如“珺”字在单纯的调用iconv 和mb_convert_encoding会显示乱码或空白，解决办法：</p>
+<pre class="line-numbers"><code class="language-php">$name = iconv(&quot;utf-8&quot;,&quot;gbk//IGNORE&quot;,$str);
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/07/16 15:11 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
+          				  
+          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="php-sftp.html">
+                
+                  <h1>PHP关于SSH和SFTP相关方法</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>php支持ssh和sftp推送，原生不支持，需要装pecl的ssh2扩展。</p>
+<ol>
+<li>扩展安装：</li>
+<li>SSH使用：</li>
+</ol>
+<pre class="line-numbers"><code class="language-php">extension_loaded('ssh2') #检查是否安装ssh2扩展模块
+$conn = ssh2_connect(IP, PORT) #连接远程服务器，看是否网络通，返回连接资源
+ssh2_auth_password($conn, $username, $password) #通过账号密码认证登陆远程远程服务
+$ssh2_sft = ssh2_sftp($conn);# 获取sftp连接资源
+ssh2_sftp_mkdir($ssh2_sftp, $path, 0777, true)#创建远程目录
+ssh2_scp_send($conn, $localfile, $filename, 0777)#上传文件
+</code></pre>
+<p>在一些特殊情况下，比如在内网，外网主机被映射为内网一个内网ip时，ssh2_scp_send可能推送不出文件，并且还会一直发送，长时间不会返回上传状态，这个时候需要用使用sftp方式推送</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/07/16 15:08 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="php-ping-code.html">
+                
+                  <h1>PHP代码 ping 域名</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在PHP代码中做ping</p>
+<pre class="line-numbers"><code class="language-php">// ping 域名
+function pingAddress($address,$proxy=false) {
+    $status = -1;
+        if (strcasecmp(PHP_OS, 'WINNT') === 0) {
+            // Windows 服务器下
+            $pingresult = exec(&quot;ping -n 1 {$address}&quot;, $outcome, $status);
+        } elseif (strcasecmp(PHP_OS, 'Linux') === 0) {
+            // Linux 服务器下
+            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
+        }elseif (strcasecmp(PHP_OS, 'Darwin') === 0){
+            // MacOS 下
+            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
+        }
+        if (0 == $status) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+    return $status;
+}
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/06/19 15:58 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
+          				  
+          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="python-pip-freeze.html">
+                
+                  <h1>命令迁移模块</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>生成requirements.txt文件 保存当前环境所依赖的类库</p>
+<pre class="line-numbers"><code class="language-plain_text">pip freeze &gt;requirements.txt
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/02/15 08:15 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='python-extend.html'>Python</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="update-anaconde-pkgs.html.html">
+                
+                  <h1>更新anaconda及所有包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre class="line-numbers"><code class="language-plain_text">##################################
+更新conda
+conda update -n base -c defaults conda
+
+更新 anaconda
+conda update anaconda
+
+更新所有包：注意是两个横线“-”
+conda update --all
+##################################
+
+# 添加清华源
+# 执行以下命令
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+
+##################################
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/02/14 09:03 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='python-extend.html'>Python</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-13.html">
+                
+                  <h1>Swift编程入门（13）枚举</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>你已经见过Swift提供的所有内建类型了，比如整数、字符串、数组和字典等。下面几章会展示这门语言创建自定义类型的能力。本章关注的重点是枚举（enumeration或者enum）。枚举能让你创建属于明确定义的几种情形之一的实例。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-13.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/01/17 12:28 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-12.html">
+                
+                  <h1>Swift编程入门（12）闭包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><code>闭包（closure）</code>是在应用中完成特定任务的互相分离的功能组。上一章学习的函数是闭包的<br />
+特殊情况，可以把函数理解为有名字的闭包。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-12.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2019/01/09 21:00 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-11.html">
+                
+                  <h1>Swift编程入门（11）函数</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><code>函数（function）</code>是一组有名字的代码，用来完成某个特定的任务。函数的名字描述了其执行的任务。前面已经用过一些函数，比如Swift提供的<code>print()</code>，以及我们所写代码创建的其他函数。<br />
+函数会执行代码。有些函数会定义参数，用来传递数据以帮助函数完成工作。有些函数在完成工作后会返回一些信息。可以把函数理解为一部小机器，打开后，它就开始运转并完成自己的工作。如果它的工作方式需要数据的话，就要给它传入数据，然后它会返回一块新数据作为工作成果。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-11.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/26 09:08 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-10.html">
+                
+                  <h1>Swift编程入门（10）集合</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Swift提供的第三种容器类型是集合（set）。集合是一组互不相同的实例的无序组合。这个定义将其与数组区别开来，后者是有序的，并且可以容纳重复的值。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-10.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/20 21:18 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-9.html">
+                
+                  <h1>Swift编程入门（9）字典</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>当容器中的元素顺序很重要时，<code>Array</code>类型很有用。<br />
+然而顺序不总是很重要。有时候我们只是想在容器中持有一组数据，并在需要时获取信息。这就是<code>字典（dictionary）</code>的使用场景。<br />
+Dictionary使用键值对（key-value pair）组织其内容的容器类型。字典的键映射到值。<br />
+Dictionary中的键必须是唯一的。这个要求意味着每个键都唯一地映射到对应的值。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-9.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/20 21:07 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-8.html">
+                
+                  <h1>Swift编程入门（8）数组</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>编程中的一个重要任务是把逻辑相关的一组值放在一起。比如，想象你的应用要保存用户的好友列表、最爱的图书、旅行地点等。通常有必要具备将这些值放在一起并在代码中传递的能力。容器类型让这些操作变得方便。<br />
+Swift有一组容器类型，首先介绍的是数组（array）。<br />
+数组是值的有序集合。数组的每个位置都用索引标记，任何值都可以在数组中出现多次。数组通常用于值的顺序很重要或者很有用的场合，但是值的顺序是否有意义并不是先决条件。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-8.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/19 23:13 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-7.html">
+                
+                  <h1>Swift编程入门（7）可空类型</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><code>可空类型（optional）</code>是Swift的独特特性，用来指定某个实例可能没有值。看到可空类型时，你会知道该实例一定：要么有值并且已经可用，要么没有值。如果一个实例没有值，就称其为nil。<br />
+任何类型都可以用可空类型来说明一个实例可能是nil。这个特性将Swift和Objective-C区分开来，后者只允许对象是nil。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-7.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/15 15:39 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-6.html">
+                
+                  <h1>Swift编程入门（6）字符串</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在编程过程中，文本内容是用字符串表示的。你已经见到并用过字符串。比如，&quot;Hello, playground&quot;是一个字符串。跟所有字符串一样，可以认为它是字符的有序集合。实际上，Swift字符串本身并不是集合，但是其底层内容确实以集合形式存在，而字符串类型提供了多种视角来一窥究竟。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-6.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/13 19:53 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-5.html">
+                
+                  <h1>Swift编程入门（5）循环</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>循环对于重复性的任务比较有用。它能重复执行一段代码，可以是重复指定的次数，也可以<br />
+是在满足指定条件的情况下重复运行。使用循环可以避免出现冗长、重复的代码。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-5.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/11 23:20 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-4.html">
+                
+                  <h1>Swift编程入门（4）switch语句</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>之前见识了一种条件语句：if/else。在学习过程中曾提到，if/else对于不止一个条件的场景来说不太够用。本章就要来看看switch语句了。与if/else不同，switch非常适于处理多重条件。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-4.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/09 20:36 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
+
+
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			 <a href="black-end_1.html">&raquo; Next Page</a> 
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Internet-proxy-to-lan.html">关于将家庭内网服务映射到公网网络访问问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-store-update-snap-store.html">Ubuntu应用商店无法更新snap-store的情况</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="git-fetch-reset-pull.html">Git远程仓库强制覆盖本地代码</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="count-code-lines.html">如何统计项目代码行数</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="nvm-use-command.html">nvm 操作命令</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,525 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  ES6入门（5）函数的扩展 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>ES6入门（5）函数的扩展</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/03/04 11:14 上午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='se6.html'>ES6</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>ES6中函数的扩展</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数参数</h2>
+<pre class="line-numbers"><code class="language-javascript">// 参数默认值
+    function fn(x=&quot;matrix&quot;, y=&quot;ES6&quot;) {
+        console.log(x,y)
+    }
+    fn(0);
+
+    // 参数使用结构赋值
+    function fn1({name=&quot;matrix&quot;,age=100}={}) {
+        console.log(name,age)
+    }
+    fn1();
+    function fn1({name,age}={name:&quot;matrix&quot;,age:100}) {
+        console.log(name,age)
+    }
+    fn1();
+
+
+    // length 属性,当前形参的个数,如果形参有默认值的情况length就是失真， length 是没有默认值的个数
+    function fn2(x,y) {
+
+    }
+    fn2(1,2);
+    console.log(fn2.length);
+    
+    
+    // 参数默认值的位置：一般参数的默认值放在最后面
+    function fn3(x=10, y=20) {
+        
+    }
+    // fn3(,1) 会报错
+
+    // arguments 类数组
+    function fn4(...arg) {
+        console.log(arguments);
+        console.log(arg);
+    }
+    fn4(1,2,3,4,5);
+
+    // 参数作用域的问题
+    // 函数执行时候先给形参赋值，形参也是私有变量，如果给形参的默认值是 一个变量，先看是不是自己的私有变量，不是自己的在找全局中是否有这个变量，没有就报错
+    // let x=10, y=100;
+    // function fn5(x=x,y=y) {
+    //     console.log(x);
+    //     console.log(y);
+    //     let x=&quot;matrix&quot;;
+    //     let y=&quot;ES6&quot;;
+    // }
+    // fn5(1); //Identifier 'x' has already been declared
+
+    let m=10, n=100;
+    function fn5(x=m,y=n) {
+        // 私有作用域：私有变量x,y,m,n
+        console.log(x);
+        console.log(y);
+        let m=&quot;matrix&quot;;
+        let n=&quot;ES6&quot;;
+    }
+    fn5(1); // 1 100
+
+    let x=100;
+    function fn6(x, y = x) {
+        // x=1,y=x=1
+        console.log(y);
+    }
+    fn6(1);
+</code></pre>
+<h2><a id="%E5%87%BD%E6%95%B0name%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数name问题</h2>
+<pre class="line-numbers"><code class="language-JavaScript">    function fn() {}
+    console.log(fn.name); // fn
+    console.log((function () {}).name); //  &quot;&quot;
+
+    // 特殊情况
+    // 1.通过bind方法得到一个新的额函数 name是 “bound 原来函数的名字”
+    let fn1 = fn.bind(null);
+    console.log(fn1.name);// bound fn
+
+    // 2.通过构造函数创建一个函数 名字都叫做 &quot;anonymous&quot;
+
+    // new Function(&quot;形参&quot;,&quot;函数体&quot;);
+    // new Function(&quot;函数体&quot;);
+    // function fn(形参) {函数体}
+    let fn2 = new Function(&quot;x,y&quot;,&quot;console.log(x,y); return x+y&quot;);
+    console.log(fn2(10,100));
+    console.log(fn2.name); // anonymous
+
+    // 面试题
+    let str = '[{&quot;name&quot;:&quot;matrix&quot;},{&quot;age&quot;:100}]';
+    // let arr = (new Function())();
+    // 需要最后arr =&gt;[{&quot;name&quot;:&quot;matrix&quot;},{&quot;age&quot;:100}]
+
+    let arr = (new Function(&quot;return &quot;+str))();
+    console.log(arr);
+</code></pre>
+<h2><a id="%E6%89%A9%E5%B1%95%E8%BF%90%E7%AE%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>扩展运算符</h2>
+<pre class="line-numbers"><code class="language-javascript">    // 扩展数组运算符 ...
+    // 将非数组编程数组
+
+    let str = &quot;123&quot;;
+    console.log([...str]);
+    function fn() {
+        console.log(...arguments);
+    }
+    fn(1,23,445);
+
+    // 合并数组
+    let arr1 = [1,2,3,4];
+    let arr2 = [10,20,30,40];
+    console.log(arr1.concat(arr2));
+    console.log([...arr1, ...arr2]);
+
+    // 求数组的最大值
+    let ary = [10,20,30,40,1221];
+    console.log(Math.max.apply(null, ary));
+    console.log(Math.max(...ary));
+</code></pre>
+<h2><a id="%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>箭头函数</h2>
+<p>箭头函数是匿名函数</p>
+<pre class="line-numbers"><code class="language-javascript">    // let fn=(形参)=&gt;{函数体}
+
+    // 形参只有一个时候 可以省略()
+    // 函数体只有一行代码 return  可以省略{}和return
+    let fn = x =&gt; x+1;
+    // let fn = x =&gt; {return x+1;};
+    // 通常函数当做参数的时候使用箭头函数
+    let ary = [&quot;matrix&quot;,1,2,3];
+    console.log(ary.filter(item =&gt; typeof item == &quot;number&quot;)); // [1, 2, 3]
+    // 注意箭头函数的几个特点
+    // 1.箭头函数没有this指向，里面的this是上一级作用域下的this
+    // 2.箭头函数没有arguments
+
+    let f1=(...arg)=&gt;{
+        // console.log(arguments); // arguments is not defined
+        console.log(arg); // [1, 2, 3, 4]
+    };
+    f1(1,2,3,4);
+
+    // 3.箭头函数不可以用作构造函数 因为不可以使用new执行
+    function FF() {}
+    new FF;
+    let F=()=&gt;{};
+    console.log(new F); //  F is not a constructor
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="ES6-Learning-6.html" 
+          title="Previous Post: ES6入门（6）对象的扩展">&laquo; ES6入门（6）对象的扩展</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="ES6-Learning-4.html" 
+          title="Next Post: ES6入门（4）数组的扩展">ES6入门（4）数组的扩展 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Internet-proxy-to-lan.html">关于将家庭内网服务映射到公网网络访问问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-store-update-snap-store.html">Ubuntu应用商店无法更新snap-store的情况</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="git-fetch-reset-pull.html">Git远程仓库强制覆盖本地代码</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="count-code-lines.html">如何统计项目代码行数</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="nvm-use-command.html">nvm 操作命令</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

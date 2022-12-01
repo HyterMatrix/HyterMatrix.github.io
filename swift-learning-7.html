@@ -1,0 +1,491 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（7）可空类型 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（7）可空类型</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/15 15:39 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><code>可空类型（optional）</code>是Swift的独特特性，用来指定某个实例可能没有值。看到可空类型时，你会知道该实例一定：要么有值并且已经可用，要么没有值。如果一个实例没有值，就称其为nil。<br />
+任何类型都可以用可空类型来说明一个实例可能是nil。这个特性将Swift和Objective-C区分开来，后者只允许对象是nil。</p>
+<span id="more"></span><!-- more --> 
+<div class="mweb_toc"><ul>
+<li><a href="#%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B">可空类型</a></li>
+<li><a href="#%E5%8F%AF%E7%A9%BA%E5%AE%9E%E4%BE%8B%E7%BB%91%E5%AE%9A">可空实例绑定</a></li>
+<li><a href="#%E9%9A%90%E5%BC%8F%E5%B1%95%E5%BC%80%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B">隐式展开可空类型</a></li>
+<li><a href="#%E5%8F%AF%E7%A9%BA%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8">可空链式调用</a></li>
+<li><a href="#%E5%8E%9F%E5%9C%B0%E4%BF%AE%E6%94%B9%E5%8F%AF%E7%A9%BA%E5%AE%9E%E4%BE%8B">原地修改可空实例</a></li>
+<li><a href="#nil%E5%90%88%E5%B9%B6%E8%BF%90%E7%AE%97%E7%AC%A6">nil 合并运算符</a></li>
+</ul>
+</div>
+<h2><a id="%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可空类型</h2>
+<p>声明一个可空类型</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var errorCodeString: String?
+errorCodeString = &quot;404&quot;
+</code></pre>
+<p>首先声明一个名为errorCodeString的变量，以字符串的形式来持有错误码信息。接着，显式声明errorCodeString的类型是String；跟之前的形式略有不同，这次在String后面加上了?。?使得errorCodeString成为了可空的String类型。</p>
+<p>打印到控制台</p>
+<pre class="line-numbers"><code class="language-Swift">print(errorCodeString) 
+</code></pre>
+<p>查看控制台，你会看到打印的值是nil。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var errorCodeString: String?
+if errorCodeString != nil {
+    let theError = errorCodeString!
+    print(theError)
+}
+</code></pre>
+<p>这段代码增加了一个条件语句，如果errorCodeString不是nil就会执行相应的代码（回忆一下，!=就是“不等于”的意思）。</p>
+<h2><a id="%E5%8F%AF%E7%A9%BA%E5%AE%9E%E4%BE%8B%E7%BB%91%E5%AE%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可空实例绑定</h2>
+<p>可空实例绑定（optional binding）是一种固定模式，对于判断可空实例是否有值很有用。如果有值，就将其赋给一个临时常量或变量，并且使这个常量或变量在条件语句的第一个分支代码中可用。这样可以让代码更简洁，同时保持表达力。下面是基本的语法：</p>
+<pre class="line-numbers"><code class="language-Swift">if let temporaryConstant = anOptional { 
+    // 用temporaryConstant做一些事情
+} else { 
+    // anOptional没有值，也就是说anOptional为nil 
+} 
+</code></pre>
+<p>如果<code>anOptional</code>不是<code>nil</code>,那么就把<code>anOptional</code>的值赋值给<code>temporaryConstant</code>然后执行第一个分支。否则执行第二个分支。</p>
+<p>还可以嵌套</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var errorCodeString: String? 
+errorCodeString = &quot;404&quot; 
+if let theError = errorCodeString { 
+    if let errorCodeInteger = Int(theError) {
+        print(&quot;\(theError): \(errorCodeInteger)&quot;)
+    }
+} 
+</code></pre>
+<p>展开多个可空实例</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var errorCodeString: String? 
+errorCodeString = &quot;404&quot; 
+if let theError = errorCodeString, let errorCodeInteger = Int(theError) { 
+    print(&quot;\(theError): \(errorCodeInteger)&quot;) 
+} 
+</code></pre>
+<p>可空实例绑定和额外的检查</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var errorCodeString: String? 
+errorCodeString = &quot;404&quot; 
+if let theError = errorCodeString, let errorCodeInteger = Int(theError) ,
+errorCodeInteger == 404 { 
+print(&quot;\(theError): \(errorCodeInteger)&quot;) 
+} 
+</code></pre>
+<p>（不要漏掉这段代码所添加的逗号。）</p>
+<h2><a id="%E9%9A%90%E5%BC%8F%E5%B1%95%E5%BC%80%E5%8F%AF%E7%A9%BA%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>隐式展开可空类型</h2>
+<p>现在值得讲一下<code>隐式展开可空类型（implicitly unwrapped optional）</code>，不过在后面讨论类和类初始化之后才会正式用到它。隐式展开可空类型与普通可空类型类似，只是有一个重要的区别：它们不需要展开。</p>
+<pre class="line-numbers"><code class="language-plain_text">import Cocoa 
+var errorCodeString: String! 
+errorCodeString = &quot;404&quot; 
+print(errorCodeString) 
+</code></pre>
+<p>这里的可空类型是用<code>!</code>声明的，表示这是一个隐式展开可空类型。条件语句被删除了，因为<br />
+使用隐式展开可空类型意味着我们对于其有值要比使用普通可空类型更有信心。确实，隐式展开<br />
+可空类型的强大和灵活性跟不必展开就能访问其值有关。<br />
+不过要注意，这种强大和灵活性也伴随着一定的危险性：如果隐式展开可空实例没有值的话，访问其值会导致运行时错误。为此，我们建议只要某个实例有可能是nil，就别用隐式展开可空类型。实际上，因为隐式展开可空类型安全性较差，所以如果你不是明确指出想要使用隐式展开可空类型，Swift就会给你普通的可空类型。</p>
+<h2><a id="%E5%8F%AF%E7%A9%BA%E9%93%BE%E5%BC%8F%E8%B0%83%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可空链式调用</h2>
+<p>与可空实例绑定类似，<code>可空链式调用（optional chaining）</code>提供了一种对可空实例进行查询以判断其是否包含值的机制。两者的一个重要区别是，可空链式调用允许程序员把多个查询串联为一个可空实例的值。如果链式调用中的每个可空实例都包含值，那么每个调用都会成功，整个查询链会返回期望类型的可空实例。如果查询链中的任意可空实例是nil，那么整个链式调用会返回nil。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+
+var errorCodeString: String?
+errorCodeString = &quot;404&quot;
+var errorDescription: String?
+if let theError = errorCodeString, let errorCodeInteger = Int(theError),
+    errorCodeInteger == 404 {
+    errorDescription = &quot;\(errorCodeInteger + 200): resource was not found.&quot;
+}
+var upCaseErrorDescription = errorDescription?.uppercased()
+errorDescription
+</code></pre>
+<h2><a id="%E5%8E%9F%E5%9C%B0%E4%BF%AE%E6%94%B9%E5%8F%AF%E7%A9%BA%E5%AE%9E%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>原地修改可空实例</h2>
+<p>可空实例可以被“原地”修改，从而免去创建新变量或常量的麻烦。upCaseErrorDescription增加一个append(_:)调用</p>
+<pre class="line-numbers"><code class="language-Swift">upCaseErrorDescription?.append(&quot; PLEASE TRY AGAIN.&quot;)
+upCaseErrorDescription
+</code></pre>
+<h2><a id="nil%E5%90%88%E5%B9%B6%E8%BF%90%E7%AE%97%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>nil 合并运算符</h2>
+<p>要么获取其值（如果可空实例有值），要么使用某个默认值（如果可空实例是nil）。</p>
+<pre class="line-numbers"><code class="language-Swift">let description: String
+if let errorDescription = errorDescription {
+description = errorDescription
+} else {
+description = &quot;No error&quot;
+}
+</code></pre>
+<p>这样写有个问题，那就是需要写很多代码来完成一个本应该很简单的操作：从可空实例中获取值或者使用&quot;No error&quot;（如果可空实例为nil的话）。可以用<code>nil合并运算符（nil coalescing operator）``??</code>来达到这个目的。</p>
+<pre class="line-numbers"><code class="language-Swift">let description = errorDescription ?? &quot;No error&quot;
+</code></pre>
+<p><code>??</code>的左边必须为可空实例；在本例中是<code>errorDescription</code>，一个可空的String。右边必须是非可空的同类型实例；在本例中是&quot;No error&quot;，就是String类型。如果左边的可空实例是<code>nil</code>，那么<code>??</code>会返回右边的值。如果左边的可空实例不是<code>nil</code>，那么<code>??</code>会返回可空实例中包含的值。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-8.html" 
+          title="Previous Post: Swift编程入门（8）数组">&laquo; Swift编程入门（8）数组</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-6.html" 
+          title="Next Post: Swift编程入门（6）字符串">Swift编程入门（6）字符串 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Internet-proxy-to-lan.html">关于将家庭内网服务映射到公网网络访问问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-store-update-snap-store.html">Ubuntu应用商店无法更新snap-store的情况</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="git-fetch-reset-pull.html">Git远程仓库强制覆盖本地代码</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="count-code-lines.html">如何统计项目代码行数</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="nvm-use-command.html">nvm 操作命令</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

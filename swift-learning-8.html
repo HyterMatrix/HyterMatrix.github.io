@@ -1,0 +1,558 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（8）数组 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（8）数组</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/19 23:13 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>编程中的一个重要任务是把逻辑相关的一组值放在一起。比如，想象你的应用要保存用户的好友列表、最爱的图书、旅行地点等。通常有必要具备将这些值放在一起并在代码中传递的能力。容器类型让这些操作变得方便。<br />
+Swift有一组容器类型，首先介绍的是数组（array）。<br />
+数组是值的有序集合。数组的每个位置都用索引标记，任何值都可以在数组中出现多次。数组通常用于值的顺序很重要或者很有用的场合，但是值的顺序是否有意义并不是先决条件。</p>
+<span id="more"></span><!-- more -->
+<p>[TOC]<br />
+##创建数组<br />
+创建数组有两种形式</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var bucketList: Array&lt;String&gt;
+</code></pre>
+<p>这里创建了一个名为bucketList的变量，类型是Array。大部分语法看起来应该都挺熟悉。比如，关键字var表示bucketList是变量。这意味着bucketList可变，所以我们可以修改这个数组。不可变数组同样存在，我们会在本章稍后讨论。<br />
+语法中的新东西是<String>。这句代码告诉bucketList它应该接受什么样的实例。在这里，数组会接受String类型的实例。数组可以持有任何类型的实例。因为这个数组会持有与未来目标相关的信息，所以用String实例是合理的。</p>
+<p>还有另外一种语法</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList: [String]
+</code></pre>
+<p>方括号表示bucketList是Array实例，而String表示bucketList接受什么类型的值。<br />
+现在只是声明了bucketList，还没有初始化。这意味着它还没有准备好接受String类型的实例。如果你现在试着添加目标到bucketList中，会得到一个错误，说你在数组还未初始化bucketList时就添加实例。</p>
+<p>初始化</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList: [String] = [&quot;Climb Mt. Everest&quot;]
+</code></pre>
+<p>这里用到了赋值运算符=和数组字面量语法[&quot;Climb Mt. Everest&quot;]。数组字面量是用任意其包含的实例初始化数组的快捷语法。</p>
+<p>类型推断</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList= [&quot;Climb Mt. Everest&quot;] 
+</code></pre>
+<h2><a id="%E8%AE%BF%E9%97%AE%E5%92%8C%E4%BF%AE%E6%94%B9%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>访问和修改数组</h2>
+<h3><a id="%E6%B7%BB%E5%8A%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>添加</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;) 
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;) 
+bucketList.append(&quot;Go on a walkabout&quot;) 
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;) 
+bucketList.append(&quot;Find a triple rainbow&quot;) 
+</code></pre>
+<p>这里用到<code>append(_:)</code>给bucketList添加值。<code>append(_:)</code>方法接受一个参数，类型可以是数组接受的任何类型，并将其变为数组的新元素。</p>
+<h3><a id="%E5%88%A0%E9%99%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>删除</h3>
+<p>用函数<code>remove(at:)</code>来删除，通过索引来删除。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;) 
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;) 
+bucketList.append(&quot;Go on a walkabout&quot;) 
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;) 
+bucketList.append(&quot;Find a triple rainbow&quot;) 
+bucketList.remove(at: 2)
+bucketList
+</code></pre>
+<h3><a id="%E8%8E%B7%E5%8F%96%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取数组元素个数</h3>
+<p>用数组的<code>count</code>的属性查看</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;) 
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;) 
+bucketList.append(&quot;Go on a walkabout&quot;) 
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;) 
+bucketList.append(&quot;Find a triple rainbow&quot;) 
+print(bucketList.count)
+</code></pre>
+<h3><a id="%E7%94%A8%E4%B8%8B%E6%A0%87%E8%8E%B7%E5%8F%96%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用下标获取值</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var bucketList = [&quot;Climb Mt. Everest&quot;]
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;)
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;)
+bucketList.append(&quot;Go on a walkabout&quot;)
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;)
+bucketList.append(&quot;Find a triple rainbow&quot;)
+print(bucketList[0...2])
+</code></pre>
+<p>获取索引0到2三个值</p>
+<h3><a id="%E7%94%A8%E4%B8%8B%E6%A0%87%E6%B7%BB%E5%8A%A0%E4%BF%A1%E6%81%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用下标添加信息</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;) 
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;) 
+bucketList.append(&quot;Go on a walkabout&quot;) 
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;) 
+bucketList.append(&quot;Find a triple rainbow&quot;) 
+bucketList[2] += &quot; in Australia&quot;
+</code></pre>
+<p>这里使用加法和赋值运算符+=来给索引2的元素增加文本</p>
+<h3><a id="%E6%9B%BF%E6%8D%A2%E6%95%B0%E7%BB%84%E5%85%83%E7%B4%A0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>替换数组元素</h3>
+<pre class="line-numbers"><code class="language-plain_text">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+bucketList.append(&quot;Fly hot air balloon to Fiji&quot;) 
+bucketList.append(&quot;Watch the Lord of the Rings trilogy in one day&quot;) 
+bucketList.append(&quot;Go on a walkabout&quot;) 
+bucketList.append(&quot;Scuba dive in the Great Blue Hole&quot;) 
+bucketList.append(&quot;Find a triple rainbow&quot;) 
+bucketList[0] = &quot;Climb Mt. Kilimanjaro&quot;
+</code></pre>
+<h3><a id="%E7%94%A8%E5%BE%AA%E7%8E%AF%E4%BB%8E%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E6%B7%BB%E5%8A%A0%E5%85%83%E7%B4%A0%E5%88%B0%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用循环从一个数组添加元素到另一个数组</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var bucketList = [&quot;Climb Mt. Everest&quot;]
+var newItems = [
+    &quot;Fly hot air balloon to Fiji&quot;,
+    &quot;Watch the Lord of the Rings trilogy in one day&quot;,
+    &quot;Go on a walkabout&quot;,
+    &quot;Scuba dive in the Great Blue Hole&quot;,
+    &quot;Find a triple rainbow&quot;
+]
+for item in newItems {
+    bucketList.append(item)
+}
+bucketList
+</code></pre>
+<h3><a id="%E7%94%A8%E5%8A%A0%E6%B3%95%E5%92%8C%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E6%9E%84%E4%BB%A3%E7%A0%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用加法和赋值运算符重构代码</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+var newItems = [ 
+    &quot;Fly hot air balloon to Fiji&quot;, 
+    &quot;Watch the Lord of the Rings trilogy in one day&quot;, 
+    &quot;Go on a walkabout&quot;, 
+    &quot;Scuba dive in the Great Blue Hole&quot;, 
+    &quot;Find a triple rainbow&quot; 
+] 
+bucketList += newItems
+bucketList
+</code></pre>
+<h3><a id="%E6%8F%92%E5%85%A5%E6%96%B0%E7%9B%AE%E6%A0%87" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>插入新目标</h3>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+var newItems = [ 
+    &quot;Fly hot air balloon to Fiji&quot;, 
+    &quot;Watch the Lord of the Rings trilogy in one day&quot;, 
+    &quot;Go on a walkabout&quot;, 
+    &quot;Scuba dive in the Great Blue Hole&quot;, 
+    &quot;Find a triple rainbow&quot; 
+] 
+bucketList += newItems
+bucketList.insert(&quot;Toboggan across Alaska&quot;, at: 2)
+</code></pre>
+<p><code>insert(_:at:)</code>函数有两个参数。第一个参数接受要添加到数组的实例。（回忆一下，这个数组接受String实例。）第二个参数接受你想添加的元素在数组中位置的索引。</p>
+<h2><a id="%E6%95%B0%E7%BB%84%E7%9B%B8%E7%AD%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数组相等</h2>
+<p>用<code>==</code>检查是否相等</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa 
+var bucketList = [&quot;Climb Mt. Everest&quot;] 
+var newItems = [ 
+&quot;Fly hot air balloon to Fiji&quot;, 
+&quot;Watch the Lord of the Rings trilogy in one day&quot;, 
+&quot;Go on a walkabout&quot;, 
+&quot;Scuba dive in the Great Blue Hole&quot;, 
+&quot;Find a triple rainbow&quot; 
+] 
+bucketList += newItems 
+bucketList 
+bucketList.remove(at: 2) 
+print(bucketList.count) 
+print(bucketList[0...2]) 
+bucketList[2] += &quot; in Australia&quot; 
+bucketList[0] = &quot;Climb Mt. Kilimanjaro&quot; 
+bucketList.insert(&quot;Toboggan across Alaska&quot;, at: 2) 
+bucketList 
+var myronsList = [
+&quot;Climb Mt. Kilimanjaro&quot;,
+&quot;Fly hot air balloon to Fiji&quot;,
+&quot;Toboggan across Alaska&quot;,
+&quot;Go on a walkabout in Australia&quot;,
+&quot;Find a triple rainbow&quot;,
+&quot;Scuba dive in the Great Blue Hole&quot;
+] 
+let equal = (bucketList == myronsList)
+</code></pre>
+<p>equal却被判定为假。为什么？<br />
+记住，数组是有序的。这意味着两个内容一样的数组如果顺序不同也会被认为是不相等的。在这个例子中，myronsList给&quot;Find a triple rainbow&quot;顺序不一样。</p>
+<h2><a id="%E4%B8%8D%E5%8F%AF%E5%8F%98%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>不可变数组</h2>
+<p>你花了很多精力来对目标清单数组进行小修小补，但是也可以创建一个不能修改的数组，也就是<code>不可变数组（immutable array）</code>。</p>
+<pre class="line-numbers"><code class="language-Swift">let lunches = [
+&quot;Cheeseburger&quot;,
+&quot;Veggie Pizza&quot;,
+&quot;Chicken Caesar Salad&quot;,
+&quot;Black Bean Burrito&quot;,
+&quot;Falafel Wrap&quot;
+]
+</code></pre>
+<p>使用<code>let</code>关键字创建不可变数组。如果试图以任何方式修改数组，编译器会报错，提示你不能修改不可变数组。如果试图重新赋一个新数组给<code>lunches</code>，编译器会报错，提示无法给一个用<code>let</code>关键字创建的常量重新赋值。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-9.html" 
+          title="Previous Post: Swift编程入门（9）字典">&laquo; Swift编程入门（9）字典</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-7.html" 
+          title="Next Post: Swift编程入门（7）可空类型">Swift编程入门（7）可空类型 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Internet-proxy-to-lan.html">关于将家庭内网服务映射到公网网络访问问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-store-update-snap-store.html">Ubuntu应用商店无法更新snap-store的情况</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="git-fetch-reset-pull.html">Git远程仓库强制覆盖本地代码</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="count-code-lines.html">如何统计项目代码行数</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="nvm-use-command.html">nvm 操作命令</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[HyterMatrix]]></title>
+  <link href="https://hyter.me/atom.xml" rel="self"/>
+  <link href="https://hyter.me/"/>
+  <updated>2022-12-02T02:27:47+08:00</updated>
+  <id>https://hyter.me/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[关于将家庭内网服务映射到公网网络访问问题]]></title>
+    <link href="https://hyter.me/Internet-proxy-to-lan.html"/>
+    <updated>2022-12-02T00:38:33+08:00</updated>
+    <id>https://hyter.me/Internet-proxy-to-lan.html</id>
+    <content type="html"><![CDATA[
+<p>因为在家庭中布置了服务器虚拟化、nas等服务，想要被公网访问，但是申请宽带公网ip限制了ipv4的80、443、8080等端口，不想<code>域名:端口</code>的方式访问，所以利用了一台公网的阿里云服务器，使用双重反向代理的方式实现公网域名的80访问。</p>
+<p>虽然有ipv6公网ip，但是考虑很多单位工作网络只支持ipv4访问，ipv6很多情况下并不能被访问到。</p>
+<h2><a id="%E7%BD%91%E7%BB%9C%E6%8B%93%E6%89%91%E5%9B%BE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络拓扑图</h2>
+<p>下面是我家现在的网络拓扑图<br />
+<img src="media/16699127136063/%E7%BD%91%E7%BB%9C%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="网络架构图" /></p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%B5%81%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>流程</h2>
+<ol>
+<li>将所有的域名的解析到具有公网ip的<code>阿里云服务器</code>上。</li>
+<li>在<code>阿里云服务器</code>部署反向代理服务,比如<code>nginx</code>。</li>
+<li>家庭网络申请公网ip，由于家庭网络的公网ip是有有效期的，每隔一段时间（一般是48小时，不一定），所以，家庭网络部署ddns服务将<code>home.com</code>域名解析到家庭的ip地址上，一般路由器，和软路由都会自带ddns服务。</li>
+<li>在<code>阿里云服务器</code>上，配置方向代理，将域名<code>a.com</code>转发<code>http://home.com:20080</code>上，host:<code>a.com</code>。</li>
+<li>在家庭路由路由器上，将端口<code>20080</code>转发给家庭网络内的<code>nginx</code>服务。</li>
+<li>家庭网络内的<code>nginx</code>服务上，将域名<code>a.com</code>转发<code>10.0.0.100:8080</code>的目标端口即可。</li>
+</ol>
+<p>这样，访问 <code>a.com</code> 就能访问到家庭内网里的<code>服务1（10.0.0.100:8080）</code>部署的服务了。</p>
+<h2><a id="%E6%B3%A8%E6%84%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>注意</h2>
+<p>这里会有一些问题</p>
+<ol>
+<li>由于使用的阿里云的国内服务器，所以<code>a.com</code>域名需要进行备案的。</li>
+<li>如果域名没有备案，可以使用国外服务器，可能会有网络慢的，不介意的话无所谓。</li>
+<li>由于通过了云上服务器代理，经过了2次代理，所以理论最大下载网速，是云服务器带宽和家庭上行带宽之间取小的那个。（比如云服务器带宽1M,家庭下行1000M/上行25M，那么这个网络拓扑最大也就是1M）</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu应用商店无法更新snap-store的情况]]></title>
+    <link href="https://hyter.me/ubuntu-store-update-snap-store.html"/>
+    <updated>2022-09-20T21:52:21+08:00</updated>
+    <id>https://hyter.me/ubuntu-store-update-snap-store.html</id>
+    <content type="html"><![CDATA[
+<p>报错信息：</p>
+<pre class="line-numbers"><code class="language-plain_text">Unable to update &quot;Snap Store&quot;: (null): cannot refresh &quot;snap-store&quot;: snap &quot;snap-store&quot; has running apps (ubuntu-software) in Ubuntu 22.04 LTS [duplicate]
+</code></pre>
+<p>解决方法是</p>
+<pre class="line-numbers"><code class="language-plain_text">killall snap-store
+sudo snap refresh snap-store
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git远程仓库强制覆盖本地代码]]></title>
+    <link href="https://hyter.me/git-fetch-reset-pull.html"/>
+    <updated>2022-07-13T14:34:00+08:00</updated>
+    <id>https://hyter.me/git-fetch-reset-pull.html</id>
+    <content type="html"><![CDATA[
+<p>git强制覆盖：</p>
+<pre class="line-numbers"><code class="language-plain_text">git fetch --all
+
+git reset --hard origin/master
+
+git pull
+</code></pre>
+<p>git强制覆盖本地命令（单条执行）：</p>
+<pre class="line-numbers"><code class="language-plain_text">git fetch --all &amp;&amp; git reset --hard origin/master &amp;&amp; git pull
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何统计项目代码行数]]></title>
+    <link href="https://hyter.me/count-code-lines.html"/>
+    <updated>2022-05-09T14:36:45+08:00</updated>
+    <id>https://hyter.me/count-code-lines.html</id>
+    <content type="html"><![CDATA[
+<pre class="line-numbers"><code class="language-plain_text">find . &quot;(&quot; -name &quot;*&quot; &quot;)&quot; -print | xargs wc -l
+</code></pre>
+<p>1、打开终端，用cd命令 定位到工程所在的目录。</p>
+<p>2、调用以下命令即可把每个源代码文件行数及总数统计出来</p>
+<pre class="line-numbers"><code class="language-plain_text">（1）包括空行（会列出每个文件的代码行数）：
+
+find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs wc -l
+
+（2）不包括空行（只会出现总行数）：
+
+find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs grep -v &quot;^$&quot;|wc -l
+
+//如果有其它.后缀文件可以继续添加如-or -name &quot;*.java&quot;
+</code></pre>
+<p>3、回车</p>
+<p>／*</p>
+<p>grep -v &quot;^$&quot;去掉空行</p>
+<p>注释也在代码行数统计之内</p>
+<p>*／</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[nvm 操作命令]]></title>
+    <link href="https://hyter.me/nvm-use-command.html"/>
+    <updated>2022-05-05T19:57:57+08:00</updated>
+    <id>https://hyter.me/nvm-use-command.html</id>
+    <content type="html"><![CDATA[
+<pre class="line-numbers"><code class="language-plain_text">
+nvm version ：查看nvm版本，version可简化为v。
+ 
+nvm arch ：显示node是运行在32位还是64位。
+ 
+nvm install &lt;version&gt; [arch] ：安装node， version是版本号也可以是latest（最新稳定版本）。可选参数arch指系统位数64/32，默认是当前系统位数。
+ 
+nvm uninstall &lt;version&gt; ：卸载指定版本node。
+ 
+nvm list [available] ：显示已安装的列表，可选参数available，显示可安装的所有版本。list可简化为ls
+ 
+nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32/64位。这个是全局的。
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PHP下读取pfx中的私钥证书]]></title>
+    <link href="https://hyter.me/php-read-pfx.html"/>
+    <updated>2022-02-15T21:49:54+08:00</updated>
+    <id>https://hyter.me/php-read-pfx.html</id>
+    <content type="html"><![CDATA[
+<pre class="line-numbers"><code class="language-php">    $filePath = 'at2.pfx';
+    pkcs12 = file_get_contents($filePath);
+    openssl_pkcs12_read($pkcs12, $certs, 'pfx证书的密码');
+    $certs; // 中存放就是私钥和证书
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[第1章 信息化和信息系统]]></title>
+    <link href="https://hyter.me/xxxtxmgls-1.html"/>
+    <updated>2022-02-08T23:31:05+08:00</updated>
+    <id>https://hyter.me/xxxtxmgls-1.html</id>
+    <content type="html"><![CDATA[
+<span id="more"></span><!-- more -->
+<h2><a id="%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E4%B8%8E%E4%BF%A1%E6%81%AF%E5%8C%96" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息系统与信息化</h2>
+<h3><a id="%E4%BF%A1%E6%81%AF%E8%B4%A8%E9%87%8F%E5%B1%9E%E6%80%A7%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息质量属性（掌握）</h3>
+<ol>
+<li><strong>准确性</strong>：对事物状态描述的<strong>精准</strong>程度。</li>
+<li><strong>完整性</strong>：对事物状态描述的全面程度，完整信息应包括所有重要事实。</li>
+<li><strong>可靠性</strong>：指信息的来源、采集方法、传输过程是<strong>可信的</strong>，符合预期。</li>
+<li><strong>及时性</strong>：指获得信息的时刻与实践发生时刻的<strong>间隔长短</strong>。</li>
+<li><strong>经济性</strong>：指信息获取、传输带来的<strong>成本</strong>在可以接收的范围之类。</li>
+<li><strong>可验证性</strong>：指信息的主要质量属性可以被证实或者证伪的程度。</li>
+<li><strong>安全性</strong>：指在信息的生命周期中，信息可以被非授权访问的可能性，可能性越低，安全性越高。</li>
+</ol>
+<h3><a id="%E4%BF%A1%E6%81%AF%E4%BC%A0%E8%BE%93%E6%A8%A1%E5%9E%8B%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息传输模型（了解）</h3>
+<p>信息是有价值的一种客观存在。信息技术主要是为了解决信息的采集、加工、存储、传输、计算、转换、表现等问题而不断的繁荣发展。信息只有流动起来，才能体现其价值。<br />
+<strong>信息的传输技术</strong>（通常指通信、网络等）是信息技术的<strong>核心</strong>。<br />
+信息的传输模型如图所示：<br />
+<img src="media/16443342650962/16443364091125.jpg" alt="" /></p>
+<ol>
+<li>信源：产生信息的实体，信息产生后，由这个实体向外传播。如QQ使用者</li>
+<li>信宿：信息的归宿或者接收者。</li>
+<li>信道：传输信息的通道，如<strong>TCP/IP网络</strong>。</li>
+<li>编码器：对编码信息进行加密再编码，如量化器，压缩编码器，调制器等。</li>
+<li>译码器：把信道上送来的信号（原始信息与噪声的叠加）转换成信宿能接受的信号，可包括解调器、译码器数模转换器等。</li>
+<li>噪声：可以理解为干扰，干扰可以来自于信息系统分层结构的任何一层，当噪声携带的信息大到一定程度的时候，在信道中传输的信息可以被噪声掩盖导致传输失败。</li>
+</ol>
+<h3><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%E7%9A%84%E4%BA%94%E4%B8%AA%E5%B1%82%E6%AC%A1%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化的五个层次（掌握）</h3>
+<p>信息化从“小”到“大”分为五个层次：</p>
+<ol>
+<li>产品信息化：是信息化的基础</li>
+<li>企业信息化：是指企业在产品设计、开发、生产、管理、经营等多个环境中广泛应用信息技术。如：生产制造信息、ERP、CRM、SCM等</li>
+<li>产业信息化</li>
+<li>国民经济信息化</li>
+<li>社会生活信息化：如智慧城市、互联网金融</li>
+</ol>
+<h3><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化（了解）</h3>
+<p>信息化的：<br />
+-- <strong>主体</strong>：<strong>全体社会成员</strong>，包括政府、企业事业、团体和个人<br />
+-- <strong>手段</strong>：基于现代信息技术的先进社会生产工具<br />
+-- <strong>途经</strong>：创建信息时代的社会生产力，推动社会生产关系及社会上层建筑的改革<br />
+-- <strong>目标</strong>：是国家的综合实力，社会的文明素质和人民的生活质量全面提升</p>
+<h3><a id="%E4%B8%A4%E7%BD%91%E3%80%81%E4%B8%80%E7%AB%99%E3%80%81%E5%9B%9B%E5%BA%93%E3%80%81%E5%8D%81%E4%BA%8C%E9%87%91%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>两网、一站、四库、十二金（了解）</h3>
+<ul>
+<li>两站：政务内网和政务外网</li>
+<li>一站：政府门户网站</li>
+<li>四库：建立人口、法人单位、空间地理和自然资源、宏观经济等四个技术数据库</li>
+<li>十二金：则是要重点推进办公业务资源系统等十二个业务系统。金宏工程、金税工程、金关工程、金财工程、金融监管工程、金卡工程、金审工程、金盾工程、金保工程、金农工程、金水工程、金质工程</li>
+</ul>
+<h3><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%E4%BD%93%E7%B3%BB%E5%85%AD%E8%A6%81%E7%B4%A0%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化体系六要素（掌握）</h3>
+<p>上应下技左人右规 核心任务 基础设施<br />
+<img src="media/16443342650962/16443418161670.jpg" alt="" /></p>
+<ol>
+<li><strong>信息资源</strong>，信息资源的开发和利用是国家信息化的<strong>核心任务</strong></li>
+<li><strong>信息网络</strong>，信息网络是信息资源开发和利用的<strong>基础设施</strong></li>
+<li><strong>信息应用技术</strong>，信息技术应用是信息化体系六要素中的<strong>龙头</strong>，是国家信息化建设的<strong>主阵地</strong></li>
+<li><strong>信息技术与产业</strong>，是信息化的<strong>物质基础</strong></li>
+<li><strong>信息化人才</strong>，人才是信息化的<strong>成功之本</strong></li>
+<li><strong>信息化政策法规和标准规范</strong>，信息化政策和法规、标准、规范用于规范和协调信息化体系要素之间的关系，是国家信息化快速，有序，健康和持续发展的<strong>保障</strong></li>
+</ol>
+<h3><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化系统的生命周期（掌握）</h3>
+<p>四大：立项、开发、运维、消亡<br />
+五小：系统规划、系统分析、系统设计、系统实施、运行和维护</p>
+<ol>
+<li>立项（系统规划）：确定信息系统的发展战略，对建立新系统的要求做出分析和预测，写成可行性报告。</li>
+<li>开发<br />
+--系统分析：确定新系统的基本目标和逻辑功能要求，即提出新系统的<strong>逻辑模型</strong><br />
+--系统设计：具体设计实现逻辑模型的技术方案，也就是设计新系统的<strong>物理模型</strong><br />
+--系统实施：将设计的系统付诸实施的阶段</li>
+<li>系统运行和维护阶段：需要经常进行维护和评价，记录系统运行的情况</li>
+<li>消亡阶段<br />
+<img src="media/16443342650962/16443430593122.jpg" alt="" /></li>
+</ol>
+<h2><a id="%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息系统开发方法</h2>
+<h3><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化系统的开发方法（掌握）</h3>
+<ul>
+<li>结构化开发方法</li>
+<li>面向对象方法</li>
+<li>原型化方法</li>
+<li>面向服务的开发方法</li>
+</ul>
+<h3><a id="%E7%BB%93%E6%9E%84%E5%8C%96%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>结构化开发方法（掌握）</h3>
+<p>精髓：自顶而下，逐步求精和模块化设计<br />
+特点：</p>
+<ul>
+<li>开发目标清晰化</li>
+<li>开发工作阶段化</li>
+<li>开发文档规范化</li>
+<li>设计方法机构化</li>
+</ul>
+<p>局限</p>
+<ul>
+<li>开发周期较长</li>
+<li>难以适应需求变化</li>
+<li>很少考虑数据结构</li>
+</ul>
+<h3><a id="%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>面向对象方法（掌握）</h3>
+<p>面向对象(OO)方法认为，客观世界是由各种对象组成的(一切皆对象)。与结构化方法类似，OO方法也划分阶段，但其中的系统分析、系统设计和系统实现三个阶段之间已经没有&quot;缝隙”，也就是说，这三个阶段的界限变得不明确。</p>
+<p>当前， 一些些大型信息系统的开发，通常是将结构化方法和OO方法结合起来，<strong>首先，使用结构化方法进行自顶向下的整体划分; 然后，自底向上地采用OO方法进行开发。</strong></p>
+<h3><a id="%E5%8E%9F%E5%9E%8B%E5%8C%96%E6%96%B9%E6%B3%95%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>原型化方法（了解）</h3>
+<p>原型化方法也称为快速原型法，或者简称原型法。它是一种根据用户初步需求，利用系统开发工具，快速地建立一个系统模型展示给用户，在此基础上与用户交流，最终实现用户需求的信息系统快速的开发方法。<br />
+<img src="media/16443342650962/16445061735776.jpg" alt="" /></p>
+<h3><a id="%E5%8E%9F%E5%9E%8B%E6%B3%95%E7%89%B9%E7%82%B9%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>原型法特点（掌握）</h3>
+<p>1、原型法可以使系统开发的周期缩短，成本和风险降低，速度加快，获得较高的综合开发效益。<br />
+2、原型法是以用户为中心来开发系统，用户参与的程度大大提高，开发的系统符合用户的需求，因而增加用户的满意度，提高了系统开发的成功率。<br />
+3、由于用户参与了系统开发的全过程，对系统的功能和结构容易理解和接受，有利于系统的移交，有利于系统的运行与维护。</p>
+<p>但是，作为一个种开发方法，原型法也不是万能的，它有不足之处，主要体现在以下两个方面:<br />
+1、开发环境要求高<br />
+2、管理水平要求高<br />
+原型法的优点主要在于能更有效地确认用户需求。从直观上来看，<strong>原型法适用于那些需求不明确的系统开发</strong>。事实上，对于分析层面难度大，技术层面难度不大的系统，适合于原型法开发;而对于技术层面的困难远大于其分析层面的系统，则不宜用原型法。</p>
+<h3><a id="%E9%9D%A2%E5%90%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>面向服务的开发方法（掌握）</h3>
+<p>进一步将接口的定义与实现进行解耦，则催生了服务和面向服务( Service-Oriented，SO)的开发方法<br />
+提高系统可复用性、信息资源共享和系统之间的互操作性，成为影响信息化建设效率的关键问题，而SO的思维方式恰好满足了这种需求。</p>
+<h2><a id="%E5%B8%B8%E8%A7%84%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E9%9B%86%E6%88%90%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>常规信息系统集成技术</h2>
+<h3><a id="osi%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>OSI七层网络模型（掌握）</h3>
+<p><img src="media/16443342650962/16445070433565.jpg" alt="" /><br />
+<img src="media/16443342650962/16445070556769.jpg" alt="" /></p>
+<h3><a id="ieee802%E8%A7%84%E8%8C%83%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>IEEE802规范（掌握）</h3>
+<p><img src="media/16443342650962/16445072397875.jpg" alt="" /></p>
+<ul>
+<li>IEEE 802.3以太网的CSMA/CD载波监听多路访问/冲突检测协议 有线局域网协议</li>
+<li>IEEE 802.11无线局域网协议</li>
+</ul>
+<h3><a id="%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>应用层协议（掌握）</h3>
+<p>应用层协议，这些协议主要有FTP、TFTP、HTTP、 SMTP、DHCP、 Telnet、 DNS和SNMP等。<br />
+① FTP (文件传输协议)运行在TCP之上。FTP在客户机和服务器之间建立两条TCP连接-条用于传送控制信息(使用21号端口)，另- -条用于传送文件.内容(使用20号端口)<br />
+② TFTP (简单文件传输协议)， 建立在UDP之上，提供不可靠的数据传输服，务使用场景:局域网内向嵌入式设备上传文件<br />
+③ HTTP (超文本传输协议)用于从WWW服务器传输超文本到本地浏览器的传输协议。<br />
+④ SMTP (简单邮件传输协议)建立在TCP之上，是一种提供可靠且有效的电子邮件传输的<br />
+⑤ DHCP (动态主机配置协议)建立在UDP之上，实现自动分配IP地址<br />
+⑥ Telnet (远程登录协议)是登录和仿真程序，建立在TCP之上，他的基础功能是允许用户登录进入远程计算机系统<br />
+⑦ DNS (域名系统)，是实现域名解析，建立在UDP之上。<br />
+⑧ SNMP (简单网络管理协议)， 由一组网络管理的标准组成，包含一个应用层协议( application layer protocol )、数据库模型( database schema )和一组资源对象。 该协议能够支持网络管理系统，用以监测连接到网络上的设备是否有任何弓|起管理上关注的情况。</p>
+<h3><a id="%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>传输层协议（掌握）</h3>
+<p>传输层主要有两个传输协议，分别是<strong>TCP</strong>和<strong>UDP</strong>，这两个协议负责提供流量控制，错误校验和排序服务。<br />
+① TCP提供了一个<strong>可靠的， 面向连接的</strong>，全双工的数据传输服务。TCP一般用于传输数据量比较少，且对可靠性要求高的场合。<br />
+② UDP是一种<strong>不可靠的，无连接的协议</strong>，可以保证应用程序进程间的通信，与TCP相比， UDP是一种无连接，它的错误检测功能要弱得多， UDP协议一般用于传输数据量大，对可靠性要求不是很高，但要求速度快的场合。</p>
+<h3><a id="%E7%BD%91%E7%BB%9C%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络层协议（掌握）</h3>
+<p>网络层中的协议主要有IP、ICMP、 IGMP、 ARP、和RARP等<br />
+① IP，所提供的服务是无连接和不可靠的。<br />
+② ICMP ( Internet Control Message Protocol，网络控制报文协议)， 一种专门用于发送错报文的协议，即传送的数据可能丢失、重复、 延迟、或乱序传递，所以需要- -种尽量避免差错并能发生差错时报告的机制，这就是ICMP的功能。<br />
+③ IGMP ( Internet Group Managerment Protocol，网际组管理协议)允许Internet中的计算机参加多播，是计算机用做向相邻多路由器报告多目组成员的协议。<br />
+④ ARP ( Address Resolution Protocol，地址解析协议)用于动态地完成IP到物理地址的转换。<br />
+⑤ RARP ( Reverse Address Resolution Protocol，反向地址解析协议)用于动态完成物理地址向IP地址的转换。</p>
+<h3><a id="%E7%BD%91%E7%BB%9C%E8%AE%BE%E5%A4%87%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络设备（了解）</h3>
+<p>按照交换层次的不同，网络交互可以分为物理层交互(如电话网)、链路层交互(二次交换、对MAC地址进行变更)、网络层交换(三层交换，对IP地址进行变更)、传输层交换(四层交换，对端口进行变更，比较少见)和应用层交换。</p>
+<p>网络互联设备中有中继器(实现物理层协议转换，在电缆间转换二进制信号)，网桥(实现物理层和数据链路层协议转换)，路由器(实现网络层协和以下各层协议的转换)、网关(提供从最底层到传输层或以上各层的协议转换)和交换机。</p>
+<p><img src="media/16443342650962/16445081884112.jpg" alt="" /></p>
+<h3><a id="%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络存储技术（掌握）</h3>
+<p>主流的网络存储技术主要有三种，分别是:</p>
+<p><strong>直接DAS(Direct Attached Storage，DAS)存储</strong><br />
+设备通过SCSI电缆连接到服务器。</p>
+<p><strong>网络附加存储(Network Attached Storage，NAS)存储</strong><br />
+通过网络接口与网络直接相连，用户通过网络访问，支持<strong>即插即用</strong><br />
+NAS技术支持多种<strong>TCP/IP</strong>网络协议，主要是<strong>NFS(网络文件存储系统)</strong> 和 <strong>CIFS(通用Internet文件)</strong> 来进行文件访问。</p>
+<p><strong>存储区域网络(Storage Area Network，SAN)</strong><br />
+SAN是通过专用交换机将磁盘阵列与服务器连接起来的高速专用子网，它没有采用文件共享存取方式，而是<strong>采用块( block )级别</strong>存储根据数据传输过程采用的协议，其技术划分为FC SAN、IP SAN、IB SAN</p>
+<p>SAN根据数据传输过程采用的协议，其技术划分为FC SAN、IP SAN、IB SAN</p>
+<ul>
+<li>FC SAN，光纤通道的主要特性有:热插拔性、高速带宽、远程连接、连接数量大。</li>
+<li>IP SAN，基于IP网络实现数据块级别存储方式的的存储网络。</li>
+<li>IB SAN，是一种交换结构I/O技术，其设计思路是通过一套中心机构在远程存储器、网络以及服务器等设备之间建立一个单一的连接链路，并由IB交换机来指挥流量。</li>
+</ul>
+<h3><a id="%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%85%A5%E6%8A%80%E6%9C%AF%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网络接入技术（了解）</h3>
+<p>目前，接入Internet的主要方式有两大类别，即有线接入与无线接入。</p>
+<ul>
+<li>有线的接入方式PSTN、ISDN、ADSL、FTTX+LAN、 HFC等</li>
+<li>无线接入GPRS、3G和4 G接入等</li>
+<li>无线网络是指以无线电波作为信息传输媒介。目前最常用的无线网络接入技术主要有WIFI和4G。</li>
+<li><strong>5G速率10Gbps</strong></li>
+</ul>
+<h3><a id="%E7%BD%91%E8%B7%AF%E7%9A%84%E8%A7%84%E5%88%92%E4%B8%8E%E8%AE%BE%E8%AE%A1%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>网路的规划与设计（掌握）</h3>
+<p>核心层主要目的通过<strong>高速的转发通信</strong>，提供优化，可靠的骨干传输结构，因此核心层交换机应拥有更高的可靠性，性能和吞吐量。</p>
+<p>汇聚层是核心层与接入层的分界面，完成网络<strong>访问策略控制</strong>，<strong>数据包处理</strong>、<strong>过滤</strong>、<strong>寻址</strong>、以及其他的数据处理任务。</p>
+<p>网络中直接面向用户连接或访问网络的部分成为接入层，接入层的目的是允许终端用户连接到网络，因此，接入层交换机(或路由器)具有低成本和高密度特性。</p>
+<p><img src="media/16443342650962/16445091957391.jpg" alt="" /></p>
+<p>网络安全设计:信息安全的基本要素如下:<br />
+① <strong>机密性</strong>:确保信息不暴露给<strong>未授权</strong>的实体或进程。<br />
+② <strong>完整性</strong>:只有得到允许的人才能修改数据，并且能够判别出数据是否己被篡改。<br />
+③ <strong>可用性</strong>:得到授权的实体在需要时<strong>可访问</strong>数据，即攻击者不能占用所有资源而阻碍授权者工作。<br />
+④ <strong>可控性</strong>:可以控制授权范围内的信息流向及行为方式。<br />
+⑤ <strong>可审查性</strong>:对出现的网络安全问题提供调查的依据和手段。</p>
+<h3><a id="%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数据库（了解）</h3>
+<p><img src="media/16443342650962/16445095051573.jpg" alt="" /></p>
+<h3><a id="%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>数据仓库（掌握）</h3>
+<p>数据仓库是一个面向主题的，集成的，非易失的，且随时间变化的数据集合，用于支持管理决策。<br />
+<img src="media/16443342650962/16445096067218.jpg" alt="" /></p>
+<ul>
+<li>数据源:是数据仓库系统的基础，是整个系统数据源泉。</li>
+<li>数据的存储与管理:是整个系统数据仓库系统的核心。</li>
+<li>OLAP(联机分析处理)服务器:对分析需要的数据进行有效集成，按多维模型予以组织，以便进行多角度、多层次的分析，并发现趋势。</li>
+<li>前端工具:主要包括各种查询工具，报表工具，分析工具，数据挖掘工具以及各种基于数据仓库或数据集的应用开发I具。其中数据分析工具主要针对OLAP ，报表工具，数据挖掘工具主要针对数据仓库。</li>
+</ul>
+<h3><a id="%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%9A%E4%B9%89%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>中间件定义（了解）</h3>
+<p>一个分布式系统环境中处于操作系统与应用之间的软件。</p>
+<p>中间件是一个独立的系统软件或服务程序，分布式应用软件借助这种软件在不同的技术之间共享资源。中间件位于客户机服务的操作系统之上，管理计算机资源和网络通信。</p>
+<p>中间件分类有很多方式和很多种类型。从底向.上从中间件的层次来划分可分为底层型中间件、通用型中间件和集成型中间件三个大的层次。<br />
+1、底层型中间件的主流技术有JVM(Java虚拟机)、CLR(公共语言运行库)、ACE(自适配通信环境)、JDBC(Java 数据库连接)和ODBC(开发数据库互连)等，代表产品主要有SUN JVM和Microsoft CLR等。<br />
+2、通用型中间件的主流技术有CORBA(公共对象请求代理体系结构)、J2EE、MOM(面向消 息的中间件)和COM等，代表产品主要有IONAOrbk、BEAWebLogic和IBM MQSeries等。<br />
+3、集成型中间件的主流技术有WorkFlow和EAI(企业应用集成)等，代表作品主要有BEA WebLogic和IBM WebSphere等。</p>
+<h3><a id="%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%BA%94%E7%94%A8%EF%BC%88%E6%8E%8C%E6%8F%A1%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>中间件应用（掌握）</h3>
+<p>为了完成不同层次的集成,可以采用不同的技术、产品<br />
+1、为了完成系统底层传输层集成,可采用CORBA技术。<br />
+2、为了完成不同系统的信息传递,可以采用消息中间件产品。<br />
+3、为了完成不同硬件和操作系统的集成;可以采用J2EE中间件产品。</p>
+<h3><a id="%E5%8F%AF%E7%94%A8%E6%80%A7%E5%92%8C%E5%8F%AF%E9%9D%A0%E6%80%A7%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可用性和可靠性（了解）</h3>
+<p><strong>可用性</strong>:系统能够正常运行的时间比例,经常用两次故障之间的时间长度或在出现故障时系统能够恢复正常的速度来表示。<br />
+<strong>可靠性</strong>:软件系统在应用或系统错误面前,在意外或错误使用的情况下维持软件系统的功能特性的基本能力。</p>
+<p>可用性度量:无故障时间/ (无故障时间+故障恢复时间) * 100%。所以,提高一个系统的可用性,要么提升系统的单次正常工作时长,要么减少故障修复时间,常用的可用性战术如下:<br />
+1、<strong>错误检测</strong>:用于错误检测的战术包括<strong>命令/响应、心跳和异常</strong>。<br />
+2、<strong>错误恢复</strong>:用于错误恢复的战术包括<strong>表决、主动冗余、被动冗余</strong>。<br />
+3、<strong>错误预防</strong>:用于错误防范的战术把<strong>可能出错的组件从服务中删除,弓|入进程监控器</strong>。</p>
+<h2><a id="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>软件工程</h2>
+<h2><a id="%E6%96%B0%E4%B8%80%E4%BB%A3%E4%BF%A1%E6%81%AF%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>新一代信息技术</h2>
+<h2><a id="%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%AE%89%E5%85%A8%E6%8A%80%E6%9C%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息系统安全技术</h2>
+<h2><a id="%E4%BF%A1%E6%81%AF%E5%8C%96%E5%8F%91%E5%B1%95%E4%B8%8E%E5%BA%94%E7%94%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息化发展与应用</h2>
+<h2><a id="%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息系统服务管理</h2>
+<h2><a id="%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>信息系统规划</h2>
+<h2><a id="%E4%BC%81%E4%B8%9A%E9%A6%96%E5%B8%AD%E4%BF%A1%E6%81%AF%E5%AE%98%E5%8F%8A%E5%85%B6%E8%81%8C%E8%B4%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>企业首席信息官及其职责</h2>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[国际加密VS国产加密]]></title>
+    <link href="https://hyter.me/international-vs-sm-encrypt.html"/>
+    <updated>2022-02-08T14:48:57+08:00</updated>
+    <id>https://hyter.me/international-vs-sm-encrypt.html</id>
+    <content type="html"><![CDATA[
+<table>
+<thead>
+<tr>
+<th style="text-align: center"></th>
+<th style="text-align: center">对应国际算法</th>
+<th style="text-align: center">国密算法</th>
+<th style="text-align: center">应用范围及描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">对称加密</td>
+<td style="text-align: center">AES(128),AES192,AES256,DES,3DES,</td>
+<td style="text-align: center">SM4，SM1(硬件专用)</td>
+<td style="text-align: center">128位数据加密</td>
+</tr>
+<tr>
+<td style="text-align: center">非对称加密</td>
+<td style="text-align: center">RAS，RSA4096</td>
+<td style="text-align: center">SM2</td>
+<td style="text-align: center">身份认证，数据签名，密码交换，256位椭圆曲线</td>
+</tr>
+<tr>
+<td style="text-align: center">摘要</td>
+<td style="text-align: center">SHA1，SHA-256，SHA-384,SHA-512</td>
+<td style="text-align: center">SM3</td>
+<td style="text-align: center">256位数据摘要计算，相当于SHA256</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于CFCA的一个说明]]></title>
+    <link href="https://hyter.me/cfca-info.html"/>
+    <updated>2022-01-14T02:19:25+08:00</updated>
+    <id>https://hyter.me/cfca-info.html</id>
+    <content type="html"><![CDATA[
+<p>CFCA的域名证书 只支持ios 10.1  和 安卓6.1以上，低于这个版本的 可能就是白屏打不开</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Go 跨平台编译]]></title>
+    <link href="https://hyter.me/go-build.html"/>
+    <updated>2020-09-05T12:51:44+08:00</updated>
+    <id>https://hyter.me/go-build.html</id>
+    <content type="html"><![CDATA[
+<p>默认我们<code>go build</code>的可执行文件都是当前操作系统可执行的文件，如果我想在windows下编译一个linux下可执行文件，那需要怎么做呢？</p>
+<span id="more"></span><!-- more -->
+<p>只需要指定目标操作系统的平台和处理器架构即可：</p>
+<pre class="line-numbers"><code class="language-bash">SET CGO_ENABLED=0  // 禁用CGO
+SET GOOS=linux  // 目标平台是linux
+SET GOARCH=amd64  // 目标处理器架构是amd64
+</code></pre>
+<p><em>使用了cgo的代码是不支持跨平台编译的</em></p>
+<p>然后再执行<code>go build</code>命令，得到的就是能够在Linux平台运行的可执行文件了。</p>
+<h2><a id="mac%E4%B8%8B%E7%BC%96%E8%AF%91-linux%E5%92%8C-windows%E5%B9%B3%E5%8F%B0-64%E4%BD%8D%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mac 下编译 Linux 和 Windows平台 64位 可执行程序：</h2>
+<pre class="line-numbers"><code class="language-bash">CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build
+</code></pre>
+<h2><a id="linux%E4%B8%8B%E7%BC%96%E8%AF%91-mac%E5%92%8C-windows%E5%B9%B3%E5%8F%B0-64%E4%BD%8D%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux 下编译 Mac 和 Windows 平台64位可执行程序：</h2>
+<pre class="line-numbers"><code class="language-bash">CGO_ENABLED=0 GOOS=darwin GOARCH=amd64 go build
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build
+</code></pre>
+<h2><a id="windows%E4%B8%8B%E7%BC%96%E8%AF%91mac%E5%B9%B3%E5%8F%B064%E4%BD%8D%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows下编译Mac平台64位可执行程序：</h2>
+<pre class="line-numbers"><code class="language-bash">SET CGO_ENABLED=0
+SET GOOS=darwin
+SET GOARCH=amd64
+go build
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[如何修改运行中的docker容器的端口映射和挂载目录]]></title>
+    <link href="https://hyter.me/docker-run-edit-config.html"/>
+    <updated>2020-07-20T13:14:52+08:00</updated>
+    <id>https://hyter.me/docker-run-edit-config.html</id>
+    <content type="html"><![CDATA[
+<p>在docker run创建并运行容器的时候，可以通过-p指定端口映射规则。但是，我们经常会遇到刚开始忘记设置端口映射或者设置错了需要修改。当docker start运行容器后并没有提供一个-p选项或设置，让你修改指定端口映射规则。那么这种情况我们该怎么处理呢？今天Docker君教你如何修改运行中的docker容器的端口映射？</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%88%A0%E9%99%A4%E5%8E%9F%E6%9C%89%E5%AE%B9%E5%99%A8%EF%BC%8C%E9%87%8D%E6%96%B0%E5%BB%BA%E6%96%B0%E5%AE%B9%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方法一：删除原有容器，重新建新容器</h2>
+<p>这个解决方案最为简单，把原来的容器删掉，重新建一个。当然这次不要忘记加上端口映射。</p>
+<p>优缺点：优点是简单快捷，在测试环境使用较多。缺点是如果是数据库镜像，那重新建一个又要重新配置一次，就比较麻烦了。</p>
+<h2><a id="%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E9%87%8D%E5%90%AFdocker%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方法二：修改容器配置文件，重启docker服务</h2>
+<p>容器的配置文件路径：</p>
+<pre class="line-numbers"><code class="language-shell">/var/lib/docker/containers/[hash_of_the_container]/hostconfig.json
+</code></pre>
+<p>其中的hashofthecontainer是docker镜像的hash值，可以通过docker ps或者docker inspect containername查看。（CONTAINER ID就可以看出来）</p>
+<pre class="line-numbers"><code class="language-shell">[root@ecs-5286 ~]# docker ps
+CONTAINER ID        IMAGE                     COMMAND             CREATED             STATUS                  PORTS                                                                  NAMES
+f8511e56585f        gitlab/gitlab-ce:latest   &quot;/assets/wrapper&quot;   8 months ago        Up 16 hours (healthy)   0.0.0.0:10022-&gt;22/tcp, 0.0.0.0:8080-&gt;80/tcp, 0.0.0.0:10443-&gt;443/tcp   gitlab-ce
+[root@ecs-5286 ~]# 
+[root@ecs-5286 ~]# 
+[root@ecs-5286 ~]# cat /var/lib/docker/containers/f8511e56585fdd68d4bb5ad57250d829bac52626d722305a43dec1e5cf18406c/hostconfig.json 
+{&quot;Binds&quot;:[&quot;/srv/gitlab/logs:/var/log/gitlab&quot;,&quot;/srv/gitlab/data:/var/opt/gitlab&quot;,&quot;/srv/gitlab/config:/etc/gitlab&quot;],&quot;ContainerIDFile&quot;:&quot;&quot;,&quot;LogConfig&quot;:{&quot;Type&quot;:&quot;journald&quot;,&quot;Config&quot;:{}},&quot;NetworkMode&quot;:&quot;default&quot;,&quot;PortBindings&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10022&quot;}],&quot;443/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10443&quot;}],&quot;80/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10080&quot;}]},&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;always&quot;,&quot;MaximumRetryCount&quot;:0},&quot;AutoRemove&quot;:false,&quot;VolumeDriver&quot;:&quot;&quot;,&quot;VolumesFrom&quot;:null,&quot;CapAdd&quot;:null,&quot;CapDrop&quot;:null,&quot;Dns&quot;:[],&quot;DnsOptions&quot;:[],&quot;DnsSearch&quot;:[],&quot;ExtraHosts&quot;:null,&quot;GroupAdd&quot;:null,&quot;IpcMode&quot;:&quot;&quot;,&quot;Cgroup&quot;:&quot;&quot;,&quot;Links&quot;:[],&quot;OomScoreAdj&quot;:0,&quot;PidMode&quot;:&quot;&quot;,&quot;Privileged&quot;:false,&quot;PublishAllPorts&quot;:false,&quot;ReadonlyRootfs&quot;:false,&quot;SecurityOpt&quot;:null,&quot;UTSMode&quot;:&quot;&quot;,&quot;UsernsMode&quot;:&quot;&quot;,&quot;ShmSize&quot;:67108864,&quot;Runtime&quot;:&quot;docker-runc&quot;,&quot;ConsoleSize&quot;:[0,0],&quot;Isolation&quot;:&quot;&quot;,&quot;CpuShares&quot;:0,&quot;Memory&quot;:0,&quot;NanoCpus&quot;:0,&quot;CgroupParent&quot;:&quot;&quot;,&quot;BlkioWeight&quot;:0,&quot;BlkioWeightDevice&quot;:null,&quot;BlkioDeviceReadBps&quot;:null,&quot;BlkioDeviceWriteBps&quot;:null,&quot;BlkioDeviceReadIOps&quot;:null,&quot;BlkioDeviceWriteIOps&quot;:null,&quot;CpuPeriod&quot;:0,&quot;CpuQuota&quot;:0,&quot;CpuRealtimePeriod&quot;:0,&quot;CpuRealtimeRuntime&quot;:0,&quot;CpusetCpus&quot;:&quot;&quot;,&quot;CpusetMems&quot;:&quot;&quot;,&quot;Devices&quot;:[],&quot;DiskQuota&quot;:0,&quot;KernelMemory&quot;:0,&quot;MemoryReservation&quot;:0,&quot;MemorySwap&quot;:0,&quot;MemorySwappiness&quot;:-1,&quot;OomKillDisable&quot;:false,&quot;PidsLimit&quot;:0,&quot;Ulimits&quot;:null,&quot;CpuCount&quot;:0,&quot;CpuPercent&quot;:0,&quot;IOMaximumIOps&quot;:0,&quot;IOMaximumBandwidth&quot;:0}
+[root@ecs-5286 ~]# 
+</code></pre>
+<p>按需修改端口, 按需修改挂载目录(权限和属主属组要相同)，然后重启docker服务，再启动容器服务就可以了。</p>
+<pre class="line-numbers"><code class="language-plain_text">systemctl restart docker
+</code></pre>
+<p>优缺点：这个方法的优点是没有副作用，操作简单。缺点是需要重启整个docker服务，如果在同一个宿主机上运行着多个容器服务的话，就会影响其他容器服务。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)]]></title>
+    <link href="https://hyter.me/re-chinese-name.html"/>
+    <updated>2020-06-11T10:50:20+08:00</updated>
+    <id>https://hyter.me/re-chinese-name.html</id>
+    <content type="html"><![CDATA[
+<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
+<span id="more"></span><!-- more -->
+<p>PHP的代码</p>
+<pre class="line-numbers"><code class="language-php">function checkChineseName($name)
+{
+    if(!$name){
+        return false;
+    }
+   //有名字长度超过20算我输
+    if(mb_strlen($name) &lt; 2 || mb_strlen($name) &gt; 20){
+        return false;
+    }
+    if(preg_match('/^[\x{4e00}-\x{9fa5}]+[·?]?[\x{4e00}-\x{9fa5}]+$/u', $name,$matchers)){
+        return true;
+    }else{
+        return false;
+    }
+}
+</code></pre>
+<p>js的正则</p>
+<pre class="line-numbers"><code class="language-js">/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Git下创建一个空分支]]></title>
+    <link href="https://hyter.me/git-create-empty-branch.html"/>
+    <updated>2020-05-28T11:58:54+08:00</updated>
+    <id>https://hyter.me/git-create-empty-branch.html</id>
+    <content type="html"><![CDATA[
+<p>有时候我们需要在Git下创建一个空分支，从头开始Coding —— 这大概是那些重构帝最喜欢的事情。参考了github，才找到一个合适的方法。</p>
+<p>怎样安全的进行这项操作<br />
+我们需要建一个“孤立”的空分支，为了尽可能的保证数据安全，最好还是重新clone一份代码。</p>
+<span id="more"></span><!-- more -->
+<pre class="line-numbers"><code class="language-shell">$git clone https://github.com/user/repo.git
+# Clone our repo
+# Cloning into \'repo\'...
+# remote: Counting objects: 2791, done.
+# remote: Compressing objects: 100% (1225/1225), done.
+# remote: Total 2791 (delta 1722), reused 2513 (delta 1493)
+# Receiving objects: 100% (2791/2791), 3.77 MiB | 969 KiB/s, done.
+# Resolving deltas: 100% (1722/1722), done.
+</code></pre>
+<p>开工<br />
+这里以github的操作为例，下面试图创建一个名为gh-pages的空分支</p>
+<pre class="line-numbers"><code class="language-shell">$cd repo
+
+$ git checkout --orphan gh-pages
+# 创建一个orphan的分支，这个分支是独立的
+Switched to a new branch \'gh-pages\'
+
+git rm -rf .
+# 删除原来代码树下的所有文件
+rm \'.gitignore\'
+</code></pre>
+<p>注意这个时候你用git branch命令是看不见当前分支的名字的，除非你进行了第一次commit。</p>
+<p>下面我们开始添加一些代码文件，例如这里新增了一个index.html</p>
+<pre class="line-numbers"><code class="language-shell">$ echo \&quot;My GitHub Page\&quot; &gt; index.html
+$ git add .
+$ git commit -a -m \&quot;First pages commit\&quot;
+$ git push origin gh-pages
+在commit操作之后，你就可以用git branch命令看到新分支的名字了，然后push到远程仓库。
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记n次修改的gitlab配置仓库存储位置]]></title>
+    <link href="https://hyter.me/change-gitlab-repository-path.html"/>
+    <updated>2020-05-26T14:57:07+08:00</updated>
+    <id>https://hyter.me/change-gitlab-repository-path.html</id>
+    <content type="html"><![CDATA[
+<p>gitlab通过rpm包安装后，默认存储位置在<code>/var/opt/gitlab/git-data/repositories</code>，通常需要更改此路径到单独的一个分区来存储仓库的数据。</p>
+<span id="more"></span><!-- more -->
+<p>例如我这里把数据存放到<code>/data/gitlab</code>目录下</p>
+<p>创建<code>/data/gitlab</code>目录</p>
+<pre class="line-numbers"><code class="language-shell">mkdir -p /data/gitlab
+</code></pre>
+<p>修改gitlab配置文件，找到<code>git_data_dir</code></p>
+<pre class="line-numbers"><code class="language-shell">vim /etc/gitlab/gitlab.rb
+</code></pre>
+<pre class="line-numbers"><code class="language-shell">git_data_dirs({
+   &quot;default&quot; =&gt; {
+     &quot;path&quot; =&gt; &quot;/data/gitlab&quot;
+    }
+})
+
+</code></pre>
+<p>删除注释# 并把<code>/data/gitlab</code>写入<code>path</code>的值</p>
+<p>停止当前gitlab，重新加载配置</p>
+<pre class="line-numbers"><code class="language-shell">gitlab-ctl stop
+gitlab-ctl reconfigure
+</code></pre>
+<p>重新加载后，会发现在<code>/data/gitlab</code>目录下多出一个<code>repositories</code>目录</p>
+<p>最后启动gitlab即可</p>
+<pre class="line-numbers"><code class="language-shell">gitlab-ctl start
+</code></pre>
+<h2><a id="%E8%A7%A3%E5%86%B3%E5%AE%9D%E5%A1%94%E5%AE%89%E8%A3%85%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8nginx%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决宝塔安装修改配置无法启动nginx问题</h2>
+<p>一般来说这里就完成了，但是 在宝塔面板安装gitlab修改后，会出现nginx不能启动的现象, 原因应该宝塔是为了防止nginx冲突, 把gitlab的nginx启动文件名改成了gitlab-web, 但有个配置文件没改造成的。</p>
+<p>修改nginx启动文件</p>
+<pre class="line-numbers"><code class="language-shell">vi /opt/gitlab/sv/nginx/run
+</code></pre>
+<p>把</p>
+<pre class="line-numbers"><code class="language-shell">exec chpst -P /opt/gitlab/embedded/sbin/nginx -p /var/opt/gitlab/nginx
+</code></pre>
+<p>改为</p>
+<pre class="line-numbers"><code class="language-shell">exec chpst -P /opt/gitlab/embedded/sbin/gitlab-web -p /var/opt/gitlab/nginx
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MAC 如何卸载 Python]]></title>
+    <link href="https://hyter.me/python-mac-uninstall.html"/>
+    <updated>2020-05-11T15:17:55+08:00</updated>
+    <id>https://hyter.me/python-mac-uninstall.html</id>
+    <content type="html"><![CDATA[
+<p>Mac 自带的 Python 已经能够满足我们的需要了，因此很多同学在安装完 Python 之后，又想要将其删除，或者称之为卸载。对于删除 Python，我们首先要知道其具体都安装了什么，实际上，在安装 Python 时，其自动生成：</p>
+<ul>
+<li>Python framework，即 Python 框架；</li>
+<li>Python 应用目录；</li>
+<li>指向 Python 的连接。</li>
+</ul>
+<span id="more"></span><!-- more -->
+<p>对于 Mac 自带的 Python，其框架目录为：</p>
+<pre class="line-numbers"><code class="language-shell">System/Library/Frameworks/Python.framework
+</code></pre>
+<p>而我们安装的 Python，其（默认）框架目录为：</p>
+<pre class="line-numbers"><code class="language-shell">/Library/Frameworks/Python.framework
+</code></pre>
+<p>接下来，我们就分别（在 Mac 终端进行）删除上面所提到的三部分。</p>
+<p>第 1 步，删除框架：</p>
+<pre class="line-numbers"><code class="language-shell">sudo rm -rf /Library/Frameworks/Python.framework/Versions/x.x
+</code></pre>
+<p>第 2步，删除应用目录：</p>
+<pre class="line-numbers"><code class="language-shell">sudo rm -rf &quot;/Applications/Python x.x&quot;
+</code></pre>
+<p>第 3 步，删除指向 Python 的连接：</p>
+<pre class="line-numbers"><code class="language-shell">cd /usr/local/bin/
+ls -l /usr/local/bin | grep '../Library/Frameworks/Python.framework/Versions/x.x' | awk '{print $9}' | tr -d @ | xargs rm
+</code></pre>
+<p>至此，我们已经成功删除 Python 的相关文件，其中x.x为 Python 的版本号。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[解决npm安装electron很慢的问题]]></title>
+    <link href="https://hyter.me/electron-npm-install-yuan.html"/>
+    <updated>2020-04-13T15:42:06+08:00</updated>
+    <id>https://hyter.me/electron-npm-install-yuan.html</id>
+    <content type="html"><![CDATA[
+<blockquote>
+<p>2022.06.30：淘宝修改了镜像地址为 <code>https://npmmirror.com/mirrors/electron/</code><br />
+公告地址：<a href="https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um">https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um</a></p>
+</blockquote>
+<p>无论是选择 <code>electron-builder</code>还是 <code>electron-packager</code>，甚至其它的各种流行 <code>electron</code>打包工具，总是会绕不开一个问题：脚本会下载特定版本的 <code>electron</code>的 <code>prebuild</code>版本。</p>
+<p>而对于国内的广大 <code>electron</code>开发者来说，这个过程往往是非常漫长并且痛苦的。如何解决速度慢的这个问题呢？欢迎仔细阅</p>
+<p>本文的主要测试环境是 <code>window</code>和 <code>mac</code>， <code>npm</code>的版本号均为 <code>5.6.0</code>。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E9%80%82%E7%94%A8%E7%97%87%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>适用症状</h2>
+<p><code>electron</code>打包的时候，下载慢下载慢！有&quot;下载龟速&quot;的类似问题的同学，适合查看本篇内容。如果下载过程很快的话，就不需要查看本篇内容了。</p>
+<p>特征就是下载这些特定版本的 <code>electron</code>的时候，速度是几K到几十K每秒的速度，甚至是直接下载失败。而通过本文的办法，这个速度可以提高到几M每秒，瞬间下载完毕。</p>
+<h2><a id="%E9%A2%84%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88%EF%BC%9A%E6%B7%98%E5%AE%9Delectron%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>预处理方案：淘宝 <code>electron</code> 源</h2>
+<p>淘宝的这个 <code>electron</code>镜像，真心是国内广大猿类的救星。本文中的主角也是这个 <code>electron</code>的淘宝镜像，地址如下：</p>
+<ul>
+<li><a href="http://npm.taobao.org/mirrors/electron/">http://npm.taobao.org/mirrors/electron/</a></li>
+</ul>
+<p>简而言之，需要执行的前置命令是：</p>
+<pre class="line-numbers"><code class="language-plain_text">npm config set registry https://registry.npm.taobao.org/
+npm config set ELECTRON_MIRROR http://npm.taobao.org/mirrors/electron/
+</code></pre>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%88win%E7%B3%BB%E7%BB%9F%E6%8E%A8%E8%8D%90%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案一（win系统推荐）</h2>
+<p>对于win系统，可以修改全局变量，很简单。新建用户全局变量即可。如下所示：<br />
+名称为 <code>ELECTRON_MIRROR</code>，值为： <code>http://npm.taobao.org/mirrors/electron/ </code>。</p>
+<p>注意，保存之后，要重新打开一个命令行窗体，这些全局变量才会生效！马上体验一下刷刷下载的感觉吧~ 对于国内用户来说，加速效果是非常的明显，效果特别好。</p>
+<p>ps一下：这些下载好的文件，位于： <code>%LOCALAPPDATA%/electron/Cache</code>目录下面。</p>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%88maccentos%E7%B3%BB%E7%BB%9F%E6%8E%A8%E8%8D%90%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案二（mac/centos系统推荐）</h2>
+<p><code>mac</code>系统下，需要修改 <code>/etc/bashrc</code> 文件。见下图，在 <code>/etc/bashrc</code> 文件中，增加一条内容。当然，如果涉及到权限问题，下面的语句可以参考。</p>
+<pre class="line-numbers"><code class="language-plain_text">sudo vi /etc/bashrc
+wq!
+</code></pre>
+<p>在 <code>/etc/bashrc</code> 文件中，要增加的设置：</p>
+<pre class="line-numbers"><code class="language-plain_text">export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
+</code></pre>
+<p>修改保存之后，记得执行一下 <code>source</code>命令使变量及时生效。</p>
+<pre class="line-numbers"><code class="language-plain_text">source /etc/bashrc
+</code></pre>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%89%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案三（通用）</h2>
+<p>这个方案不论系统，统一有效，就是在相关的命令之前都增加下面的命令。<br />
+比如运行 <code>electron-packager ./</code>的时候，增加 <code>ELECTRON_MIRROR=</code>类似字样：</p>
+<pre class="line-numbers"><code class="language-plain_text">ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-packager ./
+</code></pre>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%9B%9B%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案四（通用）</h2>
+<p>如果您不想修改环境变量的话，这里还有个比较适合小白的方式。就是使用迅雷下载好对应的安装 <code>zip</code>包和 <code>SHASUM256.txt</code>文件，然后复制到 <code>electron</code>的临时目录，然后再执行对应的命令，也是可以快速安装的。下载的地址是：</p>
+<ul>
+<li><a href="https://segmentfault.com/go/4658L_o3chLyTgNe32JaMklm74xkFhFc9JQmVmGoUaySs3VHvqwMlsP0JocyK2mvb1ziLNFSXLpHsIHATlnxmwaV548">http://npm.taobao.org/mirrors/electron/</a></li>
+</ul>
+<p>注意：这里的 <code>SHASUM256.txt</code>文件需要重命名一下，加上版本号的字样。例如: <code>SHASUM256.txt-1.7.9</code>。</p>
+<h2><a id="%E6%80%BB%E7%BB%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>总结</h2>
+<p>手工安装特定版本的 <code>electron</code>的姿势如下，历史上曾经有过 <code>electron-prebuild</code>的表述，目前是过期的表述，目前两者已经统一为 <code>electron</code>字样了。</p>
+<pre class="line-numbers"><code class="language-plain_text">sudo npm install electron@5.7.0 -g
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Could not create temporary directory: 权限被拒绝]]></title>
+    <link href="https://hyter.me/could-not-create-temporary-directory.html"/>
+    <updated>2019-11-15T17:43:49+08:00</updated>
+    <id>https://hyter.me/could-not-create-temporary-directory.html</id>
+    <content type="html"><![CDATA[
+<p>解决方式</p>
+<pre class="line-numbers"><code class="language-shell">sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/  
+</code></pre>
+<p>重启之后，再更新就好了。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)]]></title>
+    <link href="https://hyter.me/speed-up-time-machine.html"/>
+    <updated>2019-11-12T01:02:39+08:00</updated>
+    <id>https://hyter.me/speed-up-time-machine.html</id>
+    <content type="html"><![CDATA[
+<p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器</h2>
+<p>macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决 时间机器备份速度太慢的问题</h2>
+<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。</p>
+<p>其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
+<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器备份加速命令</h2>
+<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
+<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
+</code></pre>
+<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
+<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
+</code></pre>
+<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac MAMP安装libsodium扩展]]></title>
+    <link href="https://hyter.me/mac-mamp-install-libsodium-php.html"/>
+    <updated>2019-08-28T09:55:55+08:00</updated>
+    <id>https://hyter.me/mac-mamp-install-libsodium-php.html</id>
+    <content type="html"><![CDATA[
+<p>微信支付新的v3版本的接口中加密方式改用了<code>AES-GCM</code>加密算法，在php7.1以上是默认自带的，php7.1以下的就需要安装libsodium-php扩展，这里我们来讲libsodium-php扩展的安装。</p>
+<span id="more"></span><!-- more -->
+<p>1.在官网下载对应版本的libsodium-php包</p>
+<pre class="line-numbers"><code class="language-plain_text">http://pecl.php.net/get/libsodium-1.0.7.tgz
+</code></pre>
+<p>2.解压 找到需要的扩展目录 例如我要的是OpenSource</p>
+<pre class="line-numbers"><code class="language-shell">cd ~/Desktop/OpenSource/libsodium-1.0.7
+</code></pre>
+<p>3.执行你所用php版本的phpize 而不是默认的</p>
+<pre class="line-numbers"><code class="language-plain_text">/Applications/MAMP/bin/php/php5.6.40/bin/phpize
+</code></pre>
+<p>4.编译 <code>注意版本</code></p>
+<pre class="line-numbers"><code class="language-plain_text">./configure --with-php-config=/Applications/MAMP/bin/php/php5.6.40/bin/php-config 
+make
+make install
+</code></pre>
+<p>5.修改MAMP 中php 的扩展加上</p>
+<pre class="line-numbers"><code class="language-plain_text">extension=libsodium.so
+</code></pre>
+<p>如果你和我一样没有./configure 折腾半天，注意看错误提示，<br />
+例如：autoconf 和 m4 没有安装 或者版本 太老</p>
+<pre class="line-numbers"><code class="language-plain_text">brew install autoconf
+brew install m4
+</code></pre>
+<p>m4安装之后 记得让MAMP 下面 使用新安装的m4</p>
+<pre class="line-numbers"><code class="language-plain_text">cd /Applications/MAMP/Library/bin
+mv m4 m4.old
+ln -s /usr/local/opt/m4/bin/m4 ./m4
+</code></pre>
+<p>还有可能 你是没有安装libsodium</p>
+<pre class="line-numbers"><code class="language-plain_text">brew install libsodium
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Beyond Compare在Mac OS系统下永久试用]]></title>
+    <link href="https://hyter.me/beyond-compare-mac-pojie.html"/>
+    <updated>2019-08-23T09:11:41+08:00</updated>
+    <id>https://hyter.me/beyond-compare-mac-pojie.html</id>
+    <content type="html"><![CDATA[
+<p>Beyond Compare 是一个非常好用的一个文件对比软件，但是，免费就30天策略。（资金允许请支持正版授权）</p>
+<span id="more"></span><!-- more -->
+<p>如果已经安装了的，直接执行 第四步 ，亲测可用<br />
+一、原理<br />
+Beyond Compare每次启动后会先检查注册信息，试用期到期后就不能继续使用。解决方法是在启动前，先删除注册信息，然后再启动，这样就可以永久免费试用了。</p>
+<p>二、下载<br />
+首先下载Beyond Compare最新版本，链接如下：<a href="https://www.scootersoftware.com/download.php">https://www.scootersoftware.com/download.php</a></p>
+<p>三、安装<br />
+下载完成后，直接安装。</p>
+<p>四、创建BCompare文件<br />
+1.进入Mac应用程序目录下，找到刚刚安装好的Beyond Compare，路径如下/Applications/Beyond Compare.app/Contents/MacOS。<br />
+2.修改启动程序文件BCompare为BCompare.real。<br />
+3.在当前目录下新建一个文件BCompare，文件内容如下：</p>
+<pre class="line-numbers"><code class="language-bash">#!/bin/bash
+rm &quot;/Users/$(whoami)/Library/Application Support/Beyond Compare/registry.dat&quot;
+&quot;`dirname &quot;$0&quot;`&quot;/BCompare.real $@
+</code></pre>
+<p>4.保存BCompare文件。<br />
+5.修改文件的权限：</p>
+<pre class="line-numbers"><code class="language-bash">chmod a+x /Applications/Beyond\ Compare.app/Contents/MacOS/BCompare
+</code></pre>
+<p>以上步骤完成后，再次打开Beyond Compare就可以正常使用了，enjoy it。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

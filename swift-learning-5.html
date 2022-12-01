@@ -1,0 +1,490 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（5）循环 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（5）循环</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/11 23:20 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>循环对于重复性的任务比较有用。它能重复执行一段代码，可以是重复指定的次数，也可以<br />
+是在满足指定条件的情况下重复运行。使用循环可以避免出现冗长、重复的代码。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#for-in%E5%BE%AA%E7%8E%AF">for-in 循环</a></li>
+<li><a href="#while%E5%BE%AA%E7%8E%AF">while 循环</a></li>
+<li><a href="#repeat-while%E5%BE%AA%E7%8E%AF">repeat-while 循环</a></li>
+<li><a href="#%E6%8E%A7%E5%88%B6%E8%BD%AC%E7%A7%BB%E8%AF%AD%E5%8F%A5">控制转移语句</a>
+<ul>
+<li><a href="#continue">continue</a></li>
+<li><a href="#break">break</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><a id="for-in%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>for-in 循环</h2>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var myFirstInt: Int = 0
+for i in 1...5 {
+    myFirstInt += 1
+    myFirstInt
+    print(myFirstInt)
+}
+</code></pre>
+<p>首先声明一个为Int类型的myFirstInt变量，初始化为0，然后创建了一个<code>for-in</code>循环<br />
+<code>for</code> 关键字就表示这是个循环，接着声明了一个<code>迭代器(interator)</code>i, <code>1...5</code>表示是区间[1,5],循环的次数就是区间的个数，第一次循环i的值为1，第二次循环i的值为2以此类推。<br />
+<code>{}</code>内的代码就是每次循环都会被执行的。每一次循环myFirstInt都会增加1，然后被打印出来。<br />
+当你声明了i但是没有使用它的时候，编译器会给你一个警告⚠️<br />
+<img src="media/15445416363981/15446958041308.jpg" alt="" style="width:652px;" /></p>
+<p>通过使用_可以忽略迭代器，这样可以不用显式地使用它。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var myFirstInt: Int = 0
+for _ in 1...5 {
+    myFirstInt += 1
+    myFirstInt
+    print(myFirstInt)
+}
+</code></pre>
+<p><em>for-in循环中也可以使用where子句</em><br />
+比如输出1到100内能被3整除的数，一般情况下我们会这么写</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+for i in 1...100{
+    if i % 3 == 0{
+        print(i)
+    }
+}
+</code></pre>
+<p>Swift的where子句还可以这样写</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+for i in 1...100 where i % 3==0{
+        print(i)
+}
+</code></pre>
+<p>另外上面的代码中，i并没有显式的声明为Int类型，但是它可以根据上下文来推断i是Int类型。</p>
+<h2><a id="while%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>while 循环</h2>
+<p>只要条件为真，while循环会一直执行循环体内的代码。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var myFirstInt: Int = 0
+var i = 1
+while i &lt; 6 {
+    myFirstInt += 1
+    print(myFirstInt)
+    i += 1
+}
+</code></pre>
+<p>这个就不需要过多解释吧</p>
+<h2><a id="repeat-while%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>repeat-while 循环</h2>
+<p>Swift还支持一种叫作repeat-while循环的while循环。repeat-while循环在其他语言中被称作do-while循环。while循环和repeat-while循环的区别在于何时计算条件。while循环在进入循环之前计算条件，这意味着while循环可能永远不会执行，因为其条件可能在第一次计算的时候就为假。repeat-while循环则至少执行一次，然后才计算条件。repeat-while循环的语法说明了这个区别。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+var myFirstInt: Int = 0
+var i = 1
+repeat{
+    // 至少执行一次
+    myFirstInt += 1
+    print(myFirstInt)
+    i += 1
+}while i &lt; 6 
+</code></pre>
+<h2><a id="%E6%8E%A7%E5%88%B6%E8%BD%AC%E7%A7%BB%E8%AF%AD%E5%8F%A5" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>控制转移语句</h2>
+<p>在循环语境中，你可以控制执行回到循环开头还是离开循环。</p>
+<h3><a id="continue" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>continue</h3>
+<p>跳出本次循环<br />
+以上面的1到100能被3整除数举个类似的例子，输出1到100中不输出能被3整除的。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+
+for i in 1...100{
+    if i % 3 == 0{
+        continue
+    }
+    print(i)
+}
+</code></pre>
+<p>结果是输出不包含能被3整除的数，在代码中，for循环的时候先会if判断i是否能被3整除，如果不能整除，那么就会输出i，如果能被整除，则执行<code>continue</code>跳出本次循环，进行下一次循环，i被赋值为新值再一次做循环操作。</p>
+<h3><a id="break" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>break</h3>
+<p>退出循环<br />
+继续上面的代码，我们改为遇到能被3整除的数就不再输出。</p>
+<pre class="line-numbers"><code class="language-Swift">import Cocoa
+
+for i in 1...100{
+    if i % 3 == 0{
+        break
+    }
+    print(i)
+}
+</code></pre>
+<p>结果输出</p>
+<pre class="line-numbers"><code class="language-Swift">1
+2
+</code></pre>
+<p>和上面对比 就是<code>continue</code>变成<code>break</code>，当循环中遇到了break，那么就会退出最近的一个循环。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-6.html" 
+          title="Previous Post: Swift编程入门（6）字符串">&laquo; Swift编程入门（6）字符串</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-4.html" 
+          title="Next Post: Swift编程入门（4）switch语句">Swift编程入门（4）switch语句 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="Internet-proxy-to-lan.html">关于将家庭内网服务映射到公网网络访问问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-store-update-snap-store.html">Ubuntu应用商店无法更新snap-store的情况</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="git-fetch-reset-pull.html">Git远程仓库强制覆盖本地代码</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="count-code-lines.html">如何统计项目代码行数</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="nvm-use-command.html">nvm 操作命令</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
+
+  </body>
+</html>
