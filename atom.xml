@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2022-12-02T02:27:47+08:00</updated>
+  <updated>2022-12-02T02:28:32+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,7 +13,7 @@
   <generator uri="http://www.mweb.im/">MWeb</generator>
   
   <entry>
-    <title type="html"><![CDATA[关于将家庭内网服务映射到公网网络访问问题]]></title>
+    <title type="html"><![CDATA[如何将家庭内网服务映射到公网网络访问]]></title>
     <link href="https://hyter.me/Internet-proxy-to-lan.html"/>
     <updated>2022-12-02T00:38:33+08:00</updated>
     <id>https://hyter.me/Internet-proxy-to-lan.html</id>
