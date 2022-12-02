@@ -8,7 +8,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  color: #333;
+  color: rgb(0, 0, 0);
   background: #f8f8f8;
   -webkit-text-size-adjust: none;
 }
@@ -27,7 +27,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-subst,
 .hljs-request,
 .hljs-status {
-  color: #333;
+  color: #d63200;
   font-weight: bold;
 }
 
