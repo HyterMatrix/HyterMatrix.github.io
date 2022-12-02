@@ -611,9 +611,11 @@ font-family: "PT Sans", "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haa
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   margin: 0;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
   font-size: 85%;
-  background-color: rgba(0,0,0,0.04);
-  border-radius: 3px;
+  background-color: rgba(215, 215, 215, 0.035);
+  border-radius: 2px;
 }
 
 .markdown-body code:before,
