@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  NPM - HyterMatrix
+  Mac上Beyond Compare “这个授权密钥已被吊销”解决方案 - HyterMatrix
   
   </title>
   
@@ -142,70 +142,87 @@
        
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="electron-npm-install-yuan.html">
-                
-                  <h1>解决npm安装electron很慢的问题</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<blockquote>
-<p>2022.06.30：淘宝修改了镜像地址为 <code>https://npmmirror.com/mirrors/electron/</code><br />
-公告地址：<a href="https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um">https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um</a></p>
-</blockquote>
-<p>无论是选择 <code>electron-builder</code>还是 <code>electron-packager</code>，甚至其它的各种流行 <code>electron</code>打包工具，总是会绕不开一个问题：脚本会下载特定版本的 <code>electron</code>的 <code>prebuild</code>版本。</p>
-<p>而对于国内的广大 <code>electron</code>开发者来说，这个过程往往是非常漫长并且痛苦的。如何解决速度慢的这个问题呢？欢迎仔细阅</p>
-<p>本文的主要测试环境是 <code>window</code>和 <code>mac</code>， <code>npm</code>的版本号均为 <code>5.6.0</code>。</p>
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Mac上Beyond Compare “这个授权密钥已被吊销”解决方案</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2022/12/28 15:42 下午</span>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="electron-npm-install-yuan.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/04/13 15:42 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='NPM.html'>NPM</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+           
+         
+          <span class="comments">
+            
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
+<p>mac下进入应用文件夹</p>
+<pre class="line-numbers"><code class="language-plain_text">~/Library/Application Support/Beyond Compare
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
+<p>替换TCheckForUpdatesState标签</p>
+<pre class="line-numbers"><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
+    &lt;Build Value=&quot;24545&quot;/&gt;
+&lt;/TCheckForUpdatesState&gt;
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
+<p>替换BCSessions标签</p>
+<pre class="line-numbers"><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
+&lt;/BCSessions&gt;
+</code></pre>
+<span id="more"></span><!-- more -->
+<p>参考：<a href="https://www.jianshu.com/p/c69639f15231">有效解决Beyond Compare “这个授权密钥已被吊销”的办法</a></p>
 
 
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
-		</div>
-	</div><!-- large 8 -->
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="Internet-proxy-to-lan.html" 
+          title="Next Post: 如何将家庭内网服务映射到公网网络访问">如何将家庭内网服务映射到公网网络访问 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

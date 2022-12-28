@@ -4,13 +4,40 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2022-12-04T03:36:08+08:00</updated>
+  <updated>2022-12-28T16:03:08+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac上Beyond Compare “这个授权密钥已被吊销”解决方案]]></title>
+    <link href="https://hyter.me/beyond-compare-pojie.html"/>
+    <updated>2022-12-28T15:42:26+08:00</updated>
+    <id>https://hyter.me/beyond-compare-pojie.html</id>
+    <content type="html"><![CDATA[
+<p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
+<p>mac下进入应用文件夹</p>
+<pre class="line-numbers"><code class="language-plain_text">~/Library/Application Support/Beyond Compare
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
+<p>替换TCheckForUpdatesState标签</p>
+<pre class="line-numbers"><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
+    &lt;Build Value=&quot;24545&quot;/&gt;
+&lt;/TCheckForUpdatesState&gt;
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
+<p>替换BCSessions标签</p>
+<pre class="line-numbers"><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
+&lt;/BCSessions&gt;
+</code></pre>
+<span id="more"></span><!-- more -->
+<p>参考：<a href="https://www.jianshu.com/p/c69639f15231">有效解决Beyond Compare “这个授权密钥已被吊销”的办法</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何将家庭内网服务映射到公网网络访问]]></title>
@@ -791,38 +818,6 @@ ln -s /usr/local/opt/m4/bin/m4 ./m4
 <p>还有可能 你是没有安装libsodium</p>
 <pre class="line-numbers"><code class="language-plain_text">brew install libsodium
 </code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Beyond Compare在Mac OS系统下永久试用]]></title>
-    <link href="https://hyter.me/beyond-compare-mac-pojie.html"/>
-    <updated>2019-08-23T09:11:41+08:00</updated>
-    <id>https://hyter.me/beyond-compare-mac-pojie.html</id>
-    <content type="html"><![CDATA[
-<p>Beyond Compare 是一个非常好用的一个文件对比软件，但是，免费就30天策略。（资金允许请支持正版授权）</p>
-<span id="more"></span><!-- more -->
-<p>如果已经安装了的，直接执行 第四步 ，亲测可用<br />
-一、原理<br />
-Beyond Compare每次启动后会先检查注册信息，试用期到期后就不能继续使用。解决方法是在启动前，先删除注册信息，然后再启动，这样就可以永久免费试用了。</p>
-<p>二、下载<br />
-首先下载Beyond Compare最新版本，链接如下：<a href="https://www.scootersoftware.com/download.php">https://www.scootersoftware.com/download.php</a></p>
-<p>三、安装<br />
-下载完成后，直接安装。</p>
-<p>四、创建BCompare文件<br />
-1.进入Mac应用程序目录下，找到刚刚安装好的Beyond Compare，路径如下/Applications/Beyond Compare.app/Contents/MacOS。<br />
-2.修改启动程序文件BCompare为BCompare.real。<br />
-3.在当前目录下新建一个文件BCompare，文件内容如下：</p>
-<pre class="line-numbers"><code class="language-bash">#!/bin/bash
-rm &quot;/Users/$(whoami)/Library/Application Support/Beyond Compare/registry.dat&quot;
-&quot;`dirname &quot;$0&quot;`&quot;/BCompare.real $@
-</code></pre>
-<p>4.保存BCompare文件。<br />
-5.修改文件的权限：</p>
-<pre class="line-numbers"><code class="language-bash">chmod a+x /Applications/Beyond\ Compare.app/Contents/MacOS/BCompare
-</code></pre>
-<p>以上步骤完成后，再次打开Beyond Compare就可以正常使用了，enjoy it。</p>
 
 ]]></content>
   </entry>
