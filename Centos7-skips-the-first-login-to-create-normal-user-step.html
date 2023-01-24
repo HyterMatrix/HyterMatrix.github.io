@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  Go - HyterMatrix
+  Centos7跳过首次登陆创建普通用户步骤 - HyterMatrix
   
   </title>
   
@@ -142,64 +142,80 @@
        
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="go-build.html">
-                
-                  <h1>Go 跨平台编译</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>默认我们<code>go build</code>的可执行文件都是当前操作系统可执行的文件，如果我想在windows下编译一个linux下可执行文件，那需要怎么做呢？</p>
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Centos7跳过首次登陆创建普通用户步骤</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2023/01/24 03:37 上午</span>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="go-build.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/09/05 12:51 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='Go.html'>Go</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
+           
+         
+          <span class="comments">
+            
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>安装完成Centos7之后总会提示新增普通用户，如何跳过：</p>
+<p>首先<code>ctrl+alt+f2</code>进入命令行界面</p>
+<pre class="line-numbers"><code class="language-plain_text">yum remove gnome-initial-setup.x86_64
+
+init 3
+
+init 5
+</code></pre>
+<p>执行完成后</p>
+<p>再<code>ctrl+alt+f1</code>进入图形化界面就会跳过此步骤</p>
 
 
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
-		</div>
-	</div><!-- large 8 -->
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="beyond-compare-pojie.html" 
+          title="Next Post: Mac上Beyond Compare “这个授权密钥已被吊销”解决方案">Mac上Beyond Compare “这个授权密钥已被吊销”解决方案 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

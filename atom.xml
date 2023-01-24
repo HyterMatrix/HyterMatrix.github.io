@@ -4,13 +4,33 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-04T21:51:12+08:00</updated>
+  <updated>2023-01-25T02:54:51+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Centos7跳过首次登陆创建普通用户步骤]]></title>
+    <link href="https://hyter.me/Centos7-skips-the-first-login-to-create-normal-user-step.html"/>
+    <updated>2023-01-24T03:37:19+08:00</updated>
+    <id>https://hyter.me/Centos7-skips-the-first-login-to-create-normal-user-step.html</id>
+    <content type="html"><![CDATA[
+<p>安装完成Centos7之后总会提示新增普通用户，如何跳过：</p>
+<p>首先<code>ctrl+alt+f2</code>进入命令行界面</p>
+<pre class="line-numbers"><code class="language-plain_text">yum remove gnome-initial-setup.x86_64
+
+init 3
+
+init 5
+</code></pre>
+<p>执行完成后</p>
+<p>再<code>ctrl+alt+f1</code>进入图形化界面就会跳过此步骤</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mac上Beyond Compare “这个授权密钥已被吊销”解决方案]]></title>
@@ -777,48 +797,6 @@ wq!
 <pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
 </code></pre>
 <p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mac MAMP安装libsodium扩展]]></title>
-    <link href="https://hyter.me/mac-mamp-install-libsodium-php.html"/>
-    <updated>2019-08-28T09:55:55+08:00</updated>
-    <id>https://hyter.me/mac-mamp-install-libsodium-php.html</id>
-    <content type="html"><![CDATA[
-<p>微信支付新的v3版本的接口中加密方式改用了<code>AES-GCM</code>加密算法，在php7.1以上是默认自带的，php7.1以下的就需要安装libsodium-php扩展，这里我们来讲libsodium-php扩展的安装。</p>
-<span id="more"></span><!-- more -->
-<p>1.在官网下载对应版本的libsodium-php包</p>
-<pre class="line-numbers"><code class="language-plain_text">http://pecl.php.net/get/libsodium-1.0.7.tgz
-</code></pre>
-<p>2.解压 找到需要的扩展目录 例如我要的是OpenSource</p>
-<pre class="line-numbers"><code class="language-shell">cd ~/Desktop/OpenSource/libsodium-1.0.7
-</code></pre>
-<p>3.执行你所用php版本的phpize 而不是默认的</p>
-<pre class="line-numbers"><code class="language-plain_text">/Applications/MAMP/bin/php/php5.6.40/bin/phpize
-</code></pre>
-<p>4.编译 <code>注意版本</code></p>
-<pre class="line-numbers"><code class="language-plain_text">./configure --with-php-config=/Applications/MAMP/bin/php/php5.6.40/bin/php-config 
-make
-make install
-</code></pre>
-<p>5.修改MAMP 中php 的扩展加上</p>
-<pre class="line-numbers"><code class="language-plain_text">extension=libsodium.so
-</code></pre>
-<p>如果你和我一样没有./configure 折腾半天，注意看错误提示，<br />
-例如：autoconf 和 m4 没有安装 或者版本 太老</p>
-<pre class="line-numbers"><code class="language-plain_text">brew install autoconf
-brew install m4
-</code></pre>
-<p>m4安装之后 记得让MAMP 下面 使用新安装的m4</p>
-<pre class="line-numbers"><code class="language-plain_text">cd /Applications/MAMP/Library/bin
-mv m4 m4.old
-ln -s /usr/local/opt/m4/bin/m4 ./m4
-</code></pre>
-<p>还有可能 你是没有安装libsodium</p>
-<pre class="line-numbers"><code class="language-plain_text">brew install libsodium
-</code></pre>
 
 ]]></content>
   </entry>
