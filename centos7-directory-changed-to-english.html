@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  Swift编程入门目录 - HyterMatrix
+  Linux 修改home目录中文文件夹为英文 - HyterMatrix
   
   </title>
   
@@ -151,14 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Swift编程入门目录</h1>
+          <h1>Linux 修改home目录中文文件夹为英文</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2018/12/01 09:40 上午</span>
+          <span class="date">2023/01/28 17:04 下午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -171,19 +171,36 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <blockquote>
-<p>Swift编程入门文章目录</p>
-</blockquote>
+      <p>安装Linxu系统的时候，选择的中文语言，在<code>home</code>目录下就会存在中文的<code>桌面</code>,<code>公共</code>,<code>文档</code>,<code>下载</code>等目录。<br />
+<img src="media/16748966603599/16748968572838.jpg" alt="" /><br />
+想要将这些目录修改为英文，防止以免对后续中文目录对执行程序造成不必要的BUG。<br />
+centos7-directory-changed-to-english</p>
 <span id="more"></span><!-- more -->
-<p><a href="swift-learning-1.html">Swift编程入门（1）类型、常量和变量</a><br />
-<a href="swift-learning-2.html">Swift编程入门（2）条件语句 </a><br />
-<a href="swift-learning-3.html">Swift编程入门（3）数</a><br />
-<a href="swift-learning-4.html">Swift编程入门（4）switch语句</a><br />
-<a href="swift-learning-5.html">Swift编程入门（5）循环</a><br />
-<a href="swift-learning-6.html">Swift编程入门（6）字符串</a><br />
-<a href="swift-learning-7.html">Swift编程入门（7）可空类型</a><br />
-<a href="swift-learning-8.html">Swift编程入门（8）数组</a><br />
-<a href="swift-learning-9.html">Swift编程入门（9）字典</a></p>
+<h2><a id="%E6%93%8D%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操作</h2>
+<p>操作环境：<code>Centos7</code></p>
+<ol>
+<li>右击桌面打开终端命令行<br />
+<img src="media/16748966603599/16748971522266.jpg" alt="" /></li>
+<li>先把系统语言改为英文，在终端中输入命令</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">export LANG=en_US
+</code></pre>
+<ol start="3">
+<li>然后输入</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">xdg-user-dirs-gtk-update
+</code></pre>
+<ol start="4">
+<li>跳出对话框询问是否将目录更新为英文路径，选择更新名称（<code>Update Names</code>）<br />
+<img src="media/16748966603599/16748973995347.jpg" alt="" /></li>
+<li>再将系统语言改为中文，在终端中输入命令:</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">export LANG=zh_CN
+</code></pre>
+<ol start="6">
+<li>重启系统，下次进入系统,系统会提示是否更新目录为中文.选择<code>不要再次询问我</code>,并选择<code>保留旧的名称</code>.<br />
+<img src="media/16748966603599/16748976551478.jpg" alt="" /></li>
+</ol>
 
 
     
@@ -194,16 +211,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="swift-learning-1.html" 
-          title="Previous Post: Swift编程入门（1）类型、常量和变量">&laquo; Swift编程入门（1）类型、常量和变量</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="python-regular-expression.html" 
-          title="Next Post: Python 正则表达式">Python 正则表达式 &raquo;</a>
+          <a  href="Centos7-skips-the-first-login-to-create-normal-user-step.html" 
+          title="Next Post: Centos7跳过首次登陆创建普通用户步骤">Centos7跳过首次登陆创建普通用户步骤 &raquo;</a>
       
       </p>
         </div>

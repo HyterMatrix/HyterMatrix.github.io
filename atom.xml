@@ -4,13 +4,53 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-25T02:54:51+08:00</updated>
+  <updated>2023-01-28T17:24:50+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux 修改home目录中文文件夹为英文]]></title>
+    <link href="https://hyter.me/centos7-directory-changed-to-english.html"/>
+    <updated>2023-01-28T17:04:20+08:00</updated>
+    <id>https://hyter.me/centos7-directory-changed-to-english.html</id>
+    <content type="html"><![CDATA[
+<p>安装Linxu系统的时候，选择的中文语言，在<code>home</code>目录下就会存在中文的<code>桌面</code>,<code>公共</code>,<code>文档</code>,<code>下载</code>等目录。<br />
+<img src="media/16748966603599/16748968572838.jpg" alt="" /><br />
+想要将这些目录修改为英文，防止以免对后续中文目录对执行程序造成不必要的BUG。<br />
+centos7-directory-changed-to-english</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%93%8D%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操作</h2>
+<p>操作环境：<code>Centos7</code></p>
+<ol>
+<li>右击桌面打开终端命令行<br />
+<img src="media/16748966603599/16748971522266.jpg" alt="" /></li>
+<li>先把系统语言改为英文，在终端中输入命令</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">export LANG=en_US
+</code></pre>
+<ol start="3">
+<li>然后输入</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">xdg-user-dirs-gtk-update
+</code></pre>
+<ol start="4">
+<li>跳出对话框询问是否将目录更新为英文路径，选择更新名称（<code>Update Names</code>）<br />
+<img src="media/16748966603599/16748973995347.jpg" alt="" /></li>
+<li>再将系统语言改为中文，在终端中输入命令:</li>
+</ol>
+<pre class="line-numbers"><code class="language-shell">export LANG=zh_CN
+</code></pre>
+<ol start="6">
+<li>重启系统，下次进入系统,系统会提示是否更新目录为中文.选择<code>不要再次询问我</code>,并选择<code>保留旧的名称</code>.<br />
+<img src="media/16748966603599/16748976551478.jpg" alt="" /></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Centos7跳过首次登陆创建普通用户步骤]]></title>
@@ -772,31 +812,6 @@ wq!
 <pre class="line-numbers"><code class="language-shell">sudo chown $USER ~/Library/Caches/com.microsoft.VSCode.ShipIt/  
 </code></pre>
 <p>重启之后，再更新就好了。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)]]></title>
-    <link href="https://hyter.me/speed-up-time-machine.html"/>
-    <updated>2019-11-12T01:02:39+08:00</updated>
-    <id>https://hyter.me/speed-up-time-machine.html</id>
-    <content type="html"><![CDATA[
-<p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。</p>
-<span id="more"></span><!-- more -->
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器</h2>
-<p>macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决 时间机器备份速度太慢的问题</h2>
-<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。</p>
-<p>其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器备份加速命令</h2>
-<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
-</code></pre>
-<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
-</code></pre>
-<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
 
 ]]></content>
   </entry>
