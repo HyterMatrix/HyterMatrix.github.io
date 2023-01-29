@@ -4,13 +4,64 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-30T02:17:43+08:00</updated>
+  <updated>2023-01-30T02:27:24+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[常见的NTP授时服务器地址]]></title>
+    <link href="https://hyter.me/cn-npt-server-url.html"/>
+    <updated>2023-01-30T02:23:17+08:00</updated>
+    <id>https://hyter.me/cn-npt-server-url.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E4%B8%80%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%E5%9B%BD%E5%AE%B6%E6%8E%88%E6%97%B6%E4%B8%AD%E5%BF%83ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、中国科学院国家授时中心NTP授时服务器地址：</h2>
+<pre class="line-numbers"><code class="language-plain_text">ntp.ntsc.ac.cn
+</code></pre>
+<p>具体使用方法可以参见中国科学院《关于“网络授时域名”全面试运行测试的公告》<br />
+<a href="http://www.cas.cn/tz/201809/t20180921_4664344.shtml">http://www.cas.cn/tz/201809/t20180921_4664344.shtml</a></p>
+<h2><a id="%E4%BA%8C%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-03-03%E6%9B%B4%E6%96%B0%EF%BC%89%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、腾讯云NTP授时服务器地址（2022.03.03更新）：</h2>
+<p>对于非腾讯云设备，可以使用腾讯云提供的公网 NTP 服务器（即：外网 NTP 服务器）</p>
+<pre class="line-numbers"><code class="language-plain_text">ntp.tencent.com
+ntp1.tencent.com
+ntp2.tencent.com
+ntp3.tencent.com
+ntp4.tencent.com
+ntp5.tencent.com
+</code></pre>
+<h2><a id="%E4%B8%89%E3%80%81%E9%98%BF%E9%87%8Cntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-07-22%E6%9B%B4%E6%96%B0%EF%BC%89%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、阿里NTP授时服务器地址（2022.07.22更新）：</h2>
+<p>阿里云 提供的 NTP 服务器：</p>
+<pre class="line-numbers"><code class="language-plain_text">ntp.aliyun.com
+ntp1.aliyun.com
+ntp2.aliyun.com
+ntp3.aliyun.com
+ntp4.aliyun.com
+ntp5.aliyun.com
+ntp6.aliyun.com
+ntp7.aliyun.com
+</code></pre>
+<h2><a id="%E5%9B%9B%E3%80%81%E6%95%99%E8%82%B2%E7%BD%91%E5%86%85%E7%9A%84%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、教育网内的授时服务器</h2>
+<pre class="line-numbers"><code class="language-plain_text">time.edu.cn
+s2c.time.edu.cn
+s2f.time.edu.cn
+s2k.time.edu.cn
+</code></pre>
+<p>各大学提供的NTP不建议大家使用了，直接用教育网官方的吧。</p>
+<p>参考文献：<br />
+1、《关于“网络授时域名”全面试运行测试的公告》<br />
+<a href="http://www.cas.cn/tz/201809/t20180921_4664344.shtml">http://www.cas.cn/tz/201809/t20180921_4664344.shtml</a><br />
+2、腾讯云《NTP服务概述》<br />
+<a href="https://cloud.tencent.com/document/product/213/30392">https://cloud.tencent.com/document/product/213/30392</a><br />
+3、阿里云官方镜像站<br />
+<a href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a><br />
+4、阿里云NTP服务器<br />
+<a href="https://help.aliyun.com/document_detail/92704.html">https://help.aliyun.com/document_detail/92704.html</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CentOS 7 更新内核版本]]></title>
@@ -829,67 +880,6 @@ gitlab-ctl reconfigure
 ls -l /usr/local/bin | grep '../Library/Frameworks/Python.framework/Versions/x.x' | awk '{print $9}' | tr -d @ | xargs rm
 </code></pre>
 <p>至此，我们已经成功删除 Python 的相关文件，其中x.x为 Python 的版本号。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[解决npm安装electron很慢的问题]]></title>
-    <link href="https://hyter.me/electron-npm-install-yuan.html"/>
-    <updated>2020-04-13T15:42:06+08:00</updated>
-    <id>https://hyter.me/electron-npm-install-yuan.html</id>
-    <content type="html"><![CDATA[
-<blockquote>
-<p>2022.06.30：淘宝修改了镜像地址为 <code>https://npmmirror.com/mirrors/electron/</code><br />
-公告地址：<a href="https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um">https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um</a></p>
-</blockquote>
-<p>无论是选择 <code>electron-builder</code>还是 <code>electron-packager</code>，甚至其它的各种流行 <code>electron</code>打包工具，总是会绕不开一个问题：脚本会下载特定版本的 <code>electron</code>的 <code>prebuild</code>版本。</p>
-<p>而对于国内的广大 <code>electron</code>开发者来说，这个过程往往是非常漫长并且痛苦的。如何解决速度慢的这个问题呢？欢迎仔细阅</p>
-<p>本文的主要测试环境是 <code>window</code>和 <code>mac</code>， <code>npm</code>的版本号均为 <code>5.6.0</code>。</p>
-<span id="more"></span><!-- more -->
-<h2><a id="%E9%80%82%E7%94%A8%E7%97%87%E7%8A%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>适用症状</h2>
-<p><code>electron</code>打包的时候，下载慢下载慢！有&quot;下载龟速&quot;的类似问题的同学，适合查看本篇内容。如果下载过程很快的话，就不需要查看本篇内容了。</p>
-<p>特征就是下载这些特定版本的 <code>electron</code>的时候，速度是几K到几十K每秒的速度，甚至是直接下载失败。而通过本文的办法，这个速度可以提高到几M每秒，瞬间下载完毕。</p>
-<h2><a id="%E9%A2%84%E5%A4%84%E7%90%86%E6%96%B9%E6%A1%88%EF%BC%9A%E6%B7%98%E5%AE%9Delectron%E6%BA%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>预处理方案：淘宝 <code>electron</code> 源</h2>
-<p>淘宝的这个 <code>electron</code>镜像，真心是国内广大猿类的救星。本文中的主角也是这个 <code>electron</code>的淘宝镜像，地址如下：</p>
-<ul>
-<li><a href="http://npm.taobao.org/mirrors/electron/">http://npm.taobao.org/mirrors/electron/</a></li>
-</ul>
-<p>简而言之，需要执行的前置命令是：</p>
-<pre class="line-numbers"><code class="language-plain_text">npm config set registry https://registry.npm.taobao.org/
-npm config set ELECTRON_MIRROR http://npm.taobao.org/mirrors/electron/
-</code></pre>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%80%EF%BC%88win%E7%B3%BB%E7%BB%9F%E6%8E%A8%E8%8D%90%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案一（win系统推荐）</h2>
-<p>对于win系统，可以修改全局变量，很简单。新建用户全局变量即可。如下所示：<br />
-名称为 <code>ELECTRON_MIRROR</code>，值为： <code>http://npm.taobao.org/mirrors/electron/ </code>。</p>
-<p>注意，保存之后，要重新打开一个命令行窗体，这些全局变量才会生效！马上体验一下刷刷下载的感觉吧~ 对于国内用户来说，加速效果是非常的明显，效果特别好。</p>
-<p>ps一下：这些下载好的文件，位于： <code>%LOCALAPPDATA%/electron/Cache</code>目录下面。</p>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%BA%8C%EF%BC%88maccentos%E7%B3%BB%E7%BB%9F%E6%8E%A8%E8%8D%90%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案二（mac/centos系统推荐）</h2>
-<p><code>mac</code>系统下，需要修改 <code>/etc/bashrc</code> 文件。见下图，在 <code>/etc/bashrc</code> 文件中，增加一条内容。当然，如果涉及到权限问题，下面的语句可以参考。</p>
-<pre class="line-numbers"><code class="language-plain_text">sudo vi /etc/bashrc
-wq!
-</code></pre>
-<p>在 <code>/etc/bashrc</code> 文件中，要增加的设置：</p>
-<pre class="line-numbers"><code class="language-plain_text">export ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/
-</code></pre>
-<p>修改保存之后，记得执行一下 <code>source</code>命令使变量及时生效。</p>
-<pre class="line-numbers"><code class="language-plain_text">source /etc/bashrc
-</code></pre>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E4%B8%89%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案三（通用）</h2>
-<p>这个方案不论系统，统一有效，就是在相关的命令之前都增加下面的命令。<br />
-比如运行 <code>electron-packager ./</code>的时候，增加 <code>ELECTRON_MIRROR=</code>类似字样：</p>
-<pre class="line-numbers"><code class="language-plain_text">ELECTRON_MIRROR=http://npm.taobao.org/mirrors/electron/ electron-packager ./
-</code></pre>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%9B%9B%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决方案四（通用）</h2>
-<p>如果您不想修改环境变量的话，这里还有个比较适合小白的方式。就是使用迅雷下载好对应的安装 <code>zip</code>包和 <code>SHASUM256.txt</code>文件，然后复制到 <code>electron</code>的临时目录，然后再执行对应的命令，也是可以快速安装的。下载的地址是：</p>
-<ul>
-<li><a href="https://segmentfault.com/go/4658L_o3chLyTgNe32JaMklm74xkFhFc9JQmVmGoUaySs3VHvqwMlsP0JocyK2mvb1ziLNFSXLpHsIHATlnxmwaV548">http://npm.taobao.org/mirrors/electron/</a></li>
-</ul>
-<p>注意：这里的 <code>SHASUM256.txt</code>文件需要重命名一下，加上版本号的字样。例如: <code>SHASUM256.txt-1.7.9</code>。</p>
-<h2><a id="%E6%80%BB%E7%BB%93" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>总结</h2>
-<p>手工安装特定版本的 <code>electron</code>的姿势如下，历史上曾经有过 <code>electron-prebuild</code>的表述，目前是过期的表述，目前两者已经统一为 <code>electron</code>字样了。</p>
-<pre class="line-numbers"><code class="language-plain_text">sudo npm install electron@5.7.0 -g
-</code></pre>
 
 ]]></content>
   </entry>
