@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  国际加密VS国产加密 - HyterMatrix
+  CentOS 7 更新内核版本 - HyterMatrix
   
   </title>
   
@@ -151,14 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>国际加密VS国产加密</h1>
+          <h1>CentOS 7 更新内核版本</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2022/02/08 14:48 下午</span>
+          <span class="date">2023/01/28 17:32 下午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -171,36 +171,88 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <table>
-<thead>
-<tr>
-<th style="text-align: center"></th>
-<th style="text-align: center">对应国际算法</th>
-<th style="text-align: center">国密算法</th>
-<th style="text-align: center">应用范围及描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center">对称加密</td>
-<td style="text-align: center">AES(128),AES192,AES256,DES,3DES,</td>
-<td style="text-align: center">SM4，SM1(硬件专用)</td>
-<td style="text-align: center">128位数据加密</td>
-</tr>
-<tr>
-<td style="text-align: center">非对称加密</td>
-<td style="text-align: center">RAS，RSA4096</td>
-<td style="text-align: center">SM2</td>
-<td style="text-align: center">身份认证，数据签名，密码交换，256位椭圆曲线</td>
-</tr>
-<tr>
-<td style="text-align: center">摘要</td>
-<td style="text-align: center">SHA1，SHA-256，SHA-384,SHA-512</td>
-<td style="text-align: center">SM3</td>
-<td style="text-align: center">256位数据摘要计算，相当于SHA256</td>
-</tr>
-</tbody>
-</table>
+      <p>新安装的CentOS系统内核版本为3.10，系统是需要提高内核版本的，从而提高安全性，稳定性，并增加更多的功能</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%85%B3%E4%BA%8E%E5%86%85%E6%A0%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于内核</h2>
+<p>Linux 内核分两种：官方内核（通常是内核开发人员用）和各大 Linux 发行版内核（一般用户常用）。</p>
+<h2><a id="%E5%85%B3%E4%BA%8Elinux%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于Linux内核版本号：</h2>
+<p>例如：</p>
+<pre class="line-numbers"><code class="language-plain_text">[root@centos7 ~]# uname -r
+3.10.0-1127.19.1.el7.x86_64
+</code></pre>
+<p>查询得到的版本号为：3.10.0-1127.19.1.el7.x86_64</p>
+<p>第一个组数字：3, 主版本号</p>
+<p>第二个组数字：10, 次版本号，当前为稳定版本，一般这个数字为偶数表示稳定，奇数表示在开发版本，通常这样的不做生产使用。</p>
+<p>第三个组数字：0, 修订版本号</p>
+<p>第四个组数字：1127.19.1，表示发型版本的补丁版本</p>
+<p>el7：则表示我正在使用的内核是 RedHat / CentOS 系列发行版专用内核 ，centos7</p>
+<p>x86_64：采用的是适用64位的CPU的操作系统。</p>
+<h2><a id="%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>内核版本的分类：</h2>
+<p>查看内核的种类在 官网：<a href="https://www.kernel.org/">The Linux Kernel Archives</a></p>
+<p><code>Prepatch</code>：Prepatch 或 “RC” 内核是主要的内核预发行版本，主要针对内核开发人员和 Linux 爱好者。必须从源代码进行编译，并且通常包含必须在可以放入稳定版本之前进行测试的新功能。Prepatch 内核由 Linus Torvalds 维护和发布。</p>
+<p><code>Mainline</code>：Mainline 主线树由 Linus Torvalds 维护。这个版本的内核会引入所有新功能。新的 Mainline 内核每 2-3 个月发布一次。</p>
+<p><code>Stable</code>：每个主线内核被发布后，即被认为是“stable”。任何对 stable 内核的 BUG 修复都会从 Mainline 主线树中回溯并由指定的 stable 内核维护人员使用。 在下一个主线内核可用之前，通常只有几个 BUG 修复内核版本 - 除非它被指定为“longterm maintenance kernel（长期维护内核）”。stable 内核更新按需发布，通常每月 2-3 次。</p>
+<p><code>Longterm</code>：通常会提供几个“longterm maintenance”内核版本，用于修复旧版内核的 BUG。这些内核只会修复重大 BUG，并且不会频繁发布版本。</p>
+<h2><a id="%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7%EF%BC%88yum%E6%96%B9%E6%B3%95%E5%AE%89%E8%A3%85%E5%8D%87%E7%BA%A7%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>内核升级（yum方法安装升级）</h2>
+<h3><a id="%E6%A3%80%E6%9F%A5%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>检查已安装的内核版本</h3>
+<pre class="line-numbers"><code class="language-shell">[root@centos7 ~]# uname -r
+3.10.0-1160.83.1.el7.x86_64
+</code></pre>
+<h3><a id="%E5%9C%A8centos-7%E4%B8%AD%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 CentOS 7 中升级内核</h3>
+<p>CentOS 允许使用 ELRepo，这是一个第三方仓库，可以将内核升级到最新版本。</p>
+<p>在 CentOS 7 上启用 ELRepo 仓库，运行如下命令：</p>
+<pre class="line-numbers"><code class="language-shell">#导入该源的秘钥
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+#启用该源仓库
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+#查看有哪些内核版本可供安装
+yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+</code></pre>
+<p>输出如下：</p>
+<pre class="line-numbers"><code class="language-shell">[root@centos7 ~]# yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+已加载插件：fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+可安装的软件包
+elrepo-release.noarch               7.0-6.el7.elrepo        elrepo-kernel
+kernel-lt.x86_64                    5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-devel.x86_64              5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-doc.noarch                5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-headers.x86_64            5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools.x86_64              5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools-libs.x86_64         5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools-libs-devel.x86_64   5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-ml.x86_64                    6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-devel.x86_64              6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-doc.noarch                6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-headers.x86_64            6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools.x86_64              6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools-libs.x86_64         6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools-libs-devel.x86_64   6.1.8-1.el7.elrepo      elrepo-kernel
+perf.x86_64                         5.4.230-1.el7.elrepo    elrepo-kernel
+python-perf.x86_64                  5.4.230-1.el7.elrepo    elrepo-kernel
+</code></pre>
+<p>开始安装</p>
+<pre class="line-numbers"><code class="language-shell">#安装的是主线版本，该版本比较激进，慎重选择。
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+#安装的长期稳定版本，稳定可靠
+yum --enablerepo=elrepo-kernel install kernel-lt -y 
+</code></pre>
+<p>两个yum命令选择一个安装。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AEgrub%E9%BB%98%E8%AE%A4%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置 GRUB 默认的内核版本</h3>
+<p>为了让新安装的内核成为默认启动选项，你需要如下修改 GRUB 配置：</p>
+<p>打开并编辑 <code>/etc/default/grub</code> 并设置 <code>GRUB_DEFAULT=0</code>。意思是 GRUB 初始化页面的第一个内核将作为默认内核。</p>
+<pre class="line-numbers"><code class="language-shell">GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
+GRUB_DEFAULT=saved  #这里的saved改为0即可，重启后，默认就是你上次所选的版本了。
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT=&quot;console&quot;
+GRUB_CMDLINE_LINUX=&quot;rhgb quiet&quot;
+GRUB_DISABLE_RECOVERY=&quot;true&quot;
+</code></pre>
+<p>执行命令：</p>
+<pre class="line-numbers"><code class="language-shell">grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
 
 
     
@@ -211,16 +263,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="xxxtxmgls-1.html" 
-          title="Previous Post: 第1章 信息化和信息系统">&laquo; 第1章 信息化和信息系统</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="cfca-info.html" 
-          title="Next Post: 关于CFCA的一个说明">关于CFCA的一个说明 &raquo;</a>
+          <a  href="centos7-directory-changed-to-english.html" 
+          title="Next Post: CentOS 7 修改home目录中文文件夹为英文">CentOS 7 修改home目录中文文件夹为英文 &raquo;</a>
       
       </p>
         </div>
