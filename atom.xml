@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-30T02:15:36+08:00</updated>
+  <updated>2023-01-30T02:17:39+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -100,6 +100,7 @@ GRUB_DISABLE_RECOVERY=&quot;true&quot;
 <p>执行命令：</p>
 <pre class="line-numbers"><code class="language-shell">grub2-mkconfig -o /boot/grub2/grub.cfg
 </code></pre>
+<p>重启系统</p>
 
 ]]></content>
   </entry>
