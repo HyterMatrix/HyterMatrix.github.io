@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-31T01:18:14+08:00</updated>
+  <updated>2023-01-31T01:52:42+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -21,13 +21,13 @@
 <p>一些常见的国内NTP授时服务器地址</p>
 <span id="more"></span><!-- more -->
 <h2><a id="%E4%B8%80%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%E5%9B%BD%E5%AE%B6%E6%8E%88%E6%97%B6%E4%B8%AD%E5%BF%83ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、中国科学院国家授时中心NTP授时服务器地址：</h2>
-<pre class="line-numbers"><code class="language-plain_text">ntp.ntsc.ac.cn
+<pre class="line-numbers"><code class="language-bash">ntp.ntsc.ac.cn
 </code></pre>
 <p>具体使用方法可以参见中国科学院《关于“网络授时域名”全面试运行测试的公告》<br />
 <a href="http://www.cas.cn/tz/201809/t20180921_4664344.shtml">http://www.cas.cn/tz/201809/t20180921_4664344.shtml</a></p>
 <h2><a id="%E4%BA%8C%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-03-03%E6%9B%B4%E6%96%B0%EF%BC%89%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、腾讯云NTP授时服务器地址（2022.03.03更新）：</h2>
 <p>对于非腾讯云设备，可以使用腾讯云提供的公网 NTP 服务器（即：外网 NTP 服务器）</p>
-<pre class="line-numbers"><code class="language-plain_text">ntp.tencent.com
+<pre class="line-numbers"><code class="language-bash">ntp.tencent.com
 ntp1.tencent.com
 ntp2.tencent.com
 ntp3.tencent.com
@@ -36,7 +36,7 @@ ntp5.tencent.com
 </code></pre>
 <h2><a id="%E4%B8%89%E3%80%81%E9%98%BF%E9%87%8Cntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-07-22%E6%9B%B4%E6%96%B0%EF%BC%89%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、阿里NTP授时服务器地址（2022.07.22更新）：</h2>
 <p>阿里云 提供的 NTP 服务器：</p>
-<pre class="line-numbers"><code class="language-plain_text">ntp.aliyun.com
+<pre class="line-numbers"><code class="language-bash">ntp.aliyun.com
 ntp1.aliyun.com
 ntp2.aliyun.com
 ntp3.aliyun.com
@@ -46,7 +46,7 @@ ntp6.aliyun.com
 ntp7.aliyun.com
 </code></pre>
 <h2><a id="%E5%9B%9B%E3%80%81%E6%95%99%E8%82%B2%E7%BD%91%E5%86%85%E7%9A%84%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、教育网内的授时服务器</h2>
-<pre class="line-numbers"><code class="language-plain_text">time.edu.cn
+<pre class="line-numbers"><code class="language-bash">time.edu.cn
 s2c.time.edu.cn
 s2f.time.edu.cn
 s2k.time.edu.cn
@@ -81,74 +81,74 @@ OceanBase 集群中的服务器时间必须保持一致，否则会导致 OceanB
 <p>NTP公网地址：<a href="/cn-npt-server-url.html">常见的NTP授时服务器地址</a></p>
 <h2><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置服务器</h2>
 <p>1、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
-<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+<pre class="line-numbers"><code class="language-bash">yum install ntp* -y
 </code></pre>
 <p>2、配置ntpd服务</p>
-<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+<pre class="line-numbers"><code class="language-bash">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
 vi /etc/ntp.conf
 </code></pre>
 <p>配置文件中一般有restrict default语句，注释掉第二种或选择第一种</p>
-<pre class="line-numbers"><code class="language-shell">restrict default nomodify notrap noquery    #  默认允许所有可连接客户端ntpdate到本机  
+<pre class="line-numbers"><code class="language-bash">restrict default nomodify notrap noquery    #  默认允许所有可连接客户端ntpdate到本机  
 </code></pre>
-<pre class="line-numbers"><code class="language-shell">restrict default ignore         #  默认所有客户端禁止ntpdate到本机
+<pre class="line-numbers"><code class="language-bash">restrict default ignore         #  默认所有客户端禁止ntpdate到本机
 </code></pre>
 <p>配置与上级互联网服务端连续性同步时间，prefer表示优先，如无可不设置</p>
-<pre class="line-numbers"><code class="language-shell">server 上级ntp服务器IP或者域名 [prefer] 
+<pre class="line-numbers"><code class="language-bash">server 上级ntp服务器IP或者域名 [prefer] 
 </code></pre>
 <p>如果之前设置了restrict default ignore的情况下，可以设置哪些客户可以ntpdate到本机</p>
-<pre class="line-numbers"><code class="language-shell">restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+<pre class="line-numbers"><code class="language-bash">restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
 </code></pre>
 <p>其余为可选设置，以默认值即可</p>
 <p>3、开启ntpd服务</p>
-<pre class="line-numbers"><code class="language-shell">service ntpd start
+<pre class="line-numbers"><code class="language-bash">service ntpd start
 chkconfig ntpd on   #设置为默认启动，关掉使用off
 </code></pre>
 <p>4、在防火墙开放对应端口<br />
 服务器和客户端均需开放123/udp端口</p>
-<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+<pre class="line-numbers"><code class="language-bash">firewall-cmd --zone=public --add-port=123/udp --permanent
 firewall-cmd --reload
 </code></pre>
 <p>5、关闭chronyd服务<br />
 因为centos7默认使用chronyd来进行时间同步服务，所以使用ntp服务需要关闭chronyd服务</p>
-<pre class="line-numbers"><code class="language-shell">service chronyd stop
+<pre class="line-numbers"><code class="language-bash">service chronyd stop
 chkconfig chronyd off   #设置为默认启动，关掉使用off
 </code></pre>
 <h2><a id="%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、配置客户端</h2>
 <p>1、先确保到NTP服务器网络可达</p>
-<pre class="line-numbers"><code class="language-shell">ping 10.168.2.100
+<pre class="line-numbers"><code class="language-bash">ping 10.168.2.100
 </code></pre>
 <p>2、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
-<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+<pre class="line-numbers"><code class="language-bash">yum install ntp* -y
 </code></pre>
 <p>3、使用ntpdate同步一次时间，查看是否有正确回显<br />
 ntpd进程进行同步时，只能同步较小的时间差，为防止时间差别太大，提前使用ntpdate进行一次时间同步</p>
-<pre class="line-numbers"><code class="language-shell">ntpdate 10.168.2.100
+<pre class="line-numbers"><code class="language-bash">ntpdate 10.168.2.100
 </code></pre>
 <p>4、设置ntpd服务</p>
-<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+<pre class="line-numbers"><code class="language-bash">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
 vi /etc/ntp.conf
 </code></pre>
 <p>方法同上，但注意将设置的上级ntp server端需要设置为</p>
-<pre class="line-numbers"><code class="language-shell">server 10.168.2.100 prefer
+<pre class="line-numbers"><code class="language-bash">server 10.168.2.100 prefer
 </code></pre>
 <p>设置开启服务后自动同步上级ntp server时间</p>
-<pre class="line-numbers"><code class="language-shell">vi /etc/ntp/step-tickers
+<pre class="line-numbers"><code class="language-bash">vi /etc/ntp/step-tickers
 </code></pre>
-<pre class="line-numbers"><code class="language-shell">加入10.168.2.100
+<pre class="line-numbers"><code class="language-bash">加入10.168.2.100
 </code></pre>
 <p>5、开启ntpd服务和关闭chronyd服务</p>
-<pre class="line-numbers"><code class="language-shell">service ntpd start
+<pre class="line-numbers"><code class="language-bash">service ntpd start
 chkconfig ntpd on   #设置为默认启动，关掉使用off
 service chronyd stop
 chkconfig chronyd off   #设置为默认启动，关掉使用off
 </code></pre>
 <p>6、在防火墙开放对应端口<br />
 服务器和客户端均需开放123/udp端口</p>
-<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+<pre class="line-numbers"><code class="language-bash">firewall-cmd --zone=public --add-port=123/udp --permanent
 firewall-cmd --reload
 </code></pre>
 <p>7、检查状态  每2秒刷新一次</p>
-<pre class="line-numbers"><code class="language-shell">watch ntpq -p
+<pre class="line-numbers"><code class="language-bash">watch ntpq -p
 </code></pre>
 
 ]]></content>
@@ -184,13 +184,13 @@ firewall-cmd --reload
 <p><code>Longterm</code>：通常会提供几个“longterm maintenance”内核版本，用于修复旧版内核的 BUG。这些内核只会修复重大 BUG，并且不会频繁发布版本。</p>
 <h2><a id="%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7%EF%BC%88yum%E6%96%B9%E6%B3%95%E5%AE%89%E8%A3%85%E5%8D%87%E7%BA%A7%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>内核升级（yum方法安装升级）</h2>
 <h3><a id="%E6%A3%80%E6%9F%A5%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>检查已安装的内核版本</h3>
-<pre class="line-numbers"><code class="language-shell">[root@centos7 ~]# uname -r
+<pre class="line-numbers"><code class="language-bash">[root@centos7 ~]# uname -r
 3.10.0-1160.83.1.el7.x86_64
 </code></pre>
 <h3><a id="%E5%9C%A8centos-7%E4%B8%AD%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 CentOS 7 中升级内核</h3>
 <p>CentOS 允许使用 ELRepo，这是一个第三方仓库，可以将内核升级到最新版本。</p>
 <p>在 CentOS 7 上启用 ELRepo 仓库，运行如下命令：</p>
-<pre class="line-numbers"><code class="language-shell">#导入该源的秘钥
+<pre class="line-numbers"><code class="language-bash">#导入该源的秘钥
 rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
 #启用该源仓库
 rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
@@ -198,7 +198,7 @@ rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
 yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
 </code></pre>
 <p>输出如下：</p>
-<pre class="line-numbers"><code class="language-shell">[root@centos7 ~]# yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+<pre class="line-numbers"><code class="language-bash">[root@centos7 ~]# yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
 已加载插件：fastestmirror, langpacks
 Loading mirror speeds from cached hostfile
  * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
@@ -222,7 +222,7 @@ perf.x86_64                         5.4.230-1.el7.elrepo    elrepo-kernel
 python-perf.x86_64                  5.4.230-1.el7.elrepo    elrepo-kernel
 </code></pre>
 <p>开始安装</p>
-<pre class="line-numbers"><code class="language-shell">#安装的是主线版本，该版本比较激进，慎重选择。
+<pre class="line-numbers"><code class="language-bash">#安装的是主线版本，该版本比较激进，慎重选择。
 yum --enablerepo=elrepo-kernel install kernel-ml -y
 #安装的长期稳定版本，稳定可靠
 yum --enablerepo=elrepo-kernel install kernel-lt -y 
@@ -231,7 +231,7 @@ yum --enablerepo=elrepo-kernel install kernel-lt -y
 <h3><a id="%E8%AE%BE%E7%BD%AEgrub%E9%BB%98%E8%AE%A4%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置 GRUB 默认的内核版本</h3>
 <p>为了让新安装的内核成为默认启动选项，你需要如下修改 GRUB 配置：</p>
 <p>打开并编辑 <code>/etc/default/grub</code> 并设置 <code>GRUB_DEFAULT=0</code>。意思是 GRUB 初始化页面的第一个内核将作为默认内核。</p>
-<pre class="line-numbers"><code class="language-shell">GRUB_TIMEOUT=5
+<pre class="line-numbers"><code class="language-bash">GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
 GRUB_DEFAULT=saved  #这里的saved改为0即可，重启后，默认就是你上次所选的版本了。
 GRUB_DISABLE_SUBMENU=true
@@ -240,9 +240,9 @@ GRUB_CMDLINE_LINUX=&quot;rhgb quiet&quot;
 GRUB_DISABLE_RECOVERY=&quot;true&quot;
 </code></pre>
 <p>执行命令：</p>
-<pre class="line-numbers"><code class="language-shell">grub2-mkconfig -o /boot/grub2/grub.cfg
+<pre class="line-numbers"><code class="language-bash">grub2-mkconfig -o /boot/grub2/grub.cfg
 </code></pre>
-<p>重启系统</p>
+<p>重启系统```bash</p>
 
 ]]></content>
   </entry>
@@ -264,19 +264,19 @@ GRUB_DISABLE_RECOVERY=&quot;true&quot;
 <img src="media/16748966603599/16748971522266.jpg" alt="" /></li>
 <li>先把系统语言改为英文，在终端中输入命令</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">export LANG=en_US
+<pre class="line-numbers"><code class="language-bash">export LANG=en_US
 </code></pre>
 <ol start="3">
 <li>然后输入</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">xdg-user-dirs-gtk-update
+<pre class="line-numbers"><code class="language-bash">xdg-user-dirs-gtk-update
 </code></pre>
 <ol start="4">
 <li>跳出对话框询问是否将目录更新为英文路径，选择更新名称（<code>Update Names</code>）<br />
 <img src="media/16748966603599/16748973995347.jpg" alt="" /></li>
 <li>再将系统语言改为中文，在终端中输入命令:</li>
 </ol>
-<pre class="line-numbers"><code class="language-shell">export LANG=zh_CN
+<pre class="line-numbers"><code class="language-bash">export LANG=zh_CN
 </code></pre>
 <ol start="6">
 <li>重启系统，下次进入系统,系统会提示是否更新目录为中文.选择<code>不要再次询问我</code>,并选择<code>保留旧的名称</code>.<br />
@@ -294,7 +294,7 @@ GRUB_DISABLE_RECOVERY=&quot;true&quot;
     <content type="html"><![CDATA[
 <p>安装完成Centos7之后总会提示新增普通用户，如何跳过：</p>
 <p>首先<code>ctrl+alt+f2</code>进入命令行界面</p>
-<pre class="line-numbers"><code class="language-plain_text">yum remove gnome-initial-setup.x86_64
+<pre class="line-numbers"><code class="language-bash">yum remove gnome-initial-setup.x86_64
 
 init 3
 
