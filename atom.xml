@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-30T02:28:36+08:00</updated>
+  <updated>2023-01-31T01:18:14+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -61,6 +61,95 @@ s2k.time.edu.cn
 <a href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a><br />
 4、阿里云NTP服务器<br />
 <a href="https://help.aliyun.com/document_detail/92704.html">https://help.aliyun.com/document_detail/92704.html</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 配置NTP服务端和客户端]]></title>
+    <link href="https://hyter.me/centos-7-set-ntp-server-client.html"/>
+    <updated>2023-01-30T02:21:42+08:00</updated>
+    <id>https://hyter.me/centos-7-set-ntp-server-client.html</id>
+    <content type="html"><![CDATA[
+<p>在使用集群安装 OceanBase，需要保证集群内各机器的时间同步。<br />
+OceanBase 集群中的服务器时间必须保持一致，否则会导致 OceanBase 集群无法启动，运行时也会出现故障。物理机与时钟服务器的误差在 50ms 以下可认为时钟是同步状态，OceanBase 集群最大容忍误差不能超过 100ms。当超过 100ms 时，会出现无主情况。恢复时钟同步后。重启 OceanBase 集群, 可以恢复正常。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境</h2>
+<p>系统：CentOS 7<br />
+服务器：10.168.2.100<br />
+客户端：10.168.2.101</p>
+<p>NTP公网地址：<a href="/cn-npt-server-url.html">常见的NTP授时服务器地址</a></p>
+<h2><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置服务器</h2>
+<p>1、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+</code></pre>
+<p>2、配置ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>配置文件中一般有restrict default语句，注释掉第二种或选择第一种</p>
+<pre class="line-numbers"><code class="language-shell">restrict default nomodify notrap noquery    #  默认允许所有可连接客户端ntpdate到本机  
+</code></pre>
+<pre class="line-numbers"><code class="language-shell">restrict default ignore         #  默认所有客户端禁止ntpdate到本机
+</code></pre>
+<p>配置与上级互联网服务端连续性同步时间，prefer表示优先，如无可不设置</p>
+<pre class="line-numbers"><code class="language-shell">server 上级ntp服务器IP或者域名 [prefer] 
+</code></pre>
+<p>如果之前设置了restrict default ignore的情况下，可以设置哪些客户可以ntpdate到本机</p>
+<pre class="line-numbers"><code class="language-shell">restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+</code></pre>
+<p>其余为可选设置，以默认值即可</p>
+<p>3、开启ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+</code></pre>
+<p>4、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>5、关闭chronyd服务<br />
+因为centos7默认使用chronyd来进行时间同步服务，所以使用ntp服务需要关闭chronyd服务</p>
+<pre class="line-numbers"><code class="language-shell">service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<h2><a id="%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、配置客户端</h2>
+<p>1、先确保到NTP服务器网络可达</p>
+<pre class="line-numbers"><code class="language-shell">ping 10.168.2.100
+</code></pre>
+<p>2、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+</code></pre>
+<p>3、使用ntpdate同步一次时间，查看是否有正确回显<br />
+ntpd进程进行同步时，只能同步较小的时间差，为防止时间差别太大，提前使用ntpdate进行一次时间同步</p>
+<pre class="line-numbers"><code class="language-shell">ntpdate 10.168.2.100
+</code></pre>
+<p>4、设置ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>方法同上，但注意将设置的上级ntp server端需要设置为</p>
+<pre class="line-numbers"><code class="language-shell">server 10.168.2.100 prefer
+</code></pre>
+<p>设置开启服务后自动同步上级ntp server时间</p>
+<pre class="line-numbers"><code class="language-shell">vi /etc/ntp/step-tickers
+</code></pre>
+<pre class="line-numbers"><code class="language-shell">加入10.168.2.100
+</code></pre>
+<p>5、开启ntpd服务和关闭chronyd服务</p>
+<pre class="line-numbers"><code class="language-shell">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<p>6、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>7、检查状态  每2秒刷新一次</p>
+<pre class="line-numbers"><code class="language-shell">watch ntpq -p
+</code></pre>
 
 ]]></content>
   </entry>
@@ -847,41 +936,6 @@ gitlab-ctl reconfigure
 <p>改为</p>
 <pre class="line-numbers"><code class="language-shell">exec chpst -P /opt/gitlab/embedded/sbin/gitlab-web -p /var/opt/gitlab/nginx
 </code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MAC 如何卸载 Python]]></title>
-    <link href="https://hyter.me/python-mac-uninstall.html"/>
-    <updated>2020-05-11T15:17:55+08:00</updated>
-    <id>https://hyter.me/python-mac-uninstall.html</id>
-    <content type="html"><![CDATA[
-<p>Mac 自带的 Python 已经能够满足我们的需要了，因此很多同学在安装完 Python 之后，又想要将其删除，或者称之为卸载。对于删除 Python，我们首先要知道其具体都安装了什么，实际上，在安装 Python 时，其自动生成：</p>
-<ul>
-<li>Python framework，即 Python 框架；</li>
-<li>Python 应用目录；</li>
-<li>指向 Python 的连接。</li>
-</ul>
-<span id="more"></span><!-- more -->
-<p>对于 Mac 自带的 Python，其框架目录为：</p>
-<pre class="line-numbers"><code class="language-shell">System/Library/Frameworks/Python.framework
-</code></pre>
-<p>而我们安装的 Python，其（默认）框架目录为：</p>
-<pre class="line-numbers"><code class="language-shell">/Library/Frameworks/Python.framework
-</code></pre>
-<p>接下来，我们就分别（在 Mac 终端进行）删除上面所提到的三部分。</p>
-<p>第 1 步，删除框架：</p>
-<pre class="line-numbers"><code class="language-shell">sudo rm -rf /Library/Frameworks/Python.framework/Versions/x.x
-</code></pre>
-<p>第 2步，删除应用目录：</p>
-<pre class="line-numbers"><code class="language-shell">sudo rm -rf &quot;/Applications/Python x.x&quot;
-</code></pre>
-<p>第 3 步，删除指向 Python 的连接：</p>
-<pre class="line-numbers"><code class="language-shell">cd /usr/local/bin/
-ls -l /usr/local/bin | grep '../Library/Frameworks/Python.framework/Versions/x.x' | awk '{print $9}' | tr -d @ | xargs rm
-</code></pre>
-<p>至此，我们已经成功删除 Python 的相关文件，其中x.x为 Python 的版本号。</p>
 
 ]]></content>
   </entry>

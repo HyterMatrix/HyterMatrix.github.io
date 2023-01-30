@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  PHP - HyterMatrix
+  CentOS 7 配置NTP服务端和客户端 - HyterMatrix
   
   </title>
   
@@ -142,241 +142,152 @@
        
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="re-chinese-name.html">
-                
-                  <h1>匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>CentOS 7 配置NTP服务端和客户端</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2023/01/30 02:21 上午</span>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="re-chinese-name.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/06/11 10:50 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
+           
+         
+          <span class="comments">
+            
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="mac-mamp-install-libsodium-php.html">
-                
-                  <h1>Mac MAMP安装libsodium扩展</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>微信支付新的v3版本的接口中加密方式改用了<code>AES-GCM</code>加密算法，在php7.1以上是默认自带的，php7.1以下的就需要安装libsodium-php扩展，这里我们来讲libsodium-php扩展的安装。</p>
+            
+          </span>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="mac-mamp-install-libsodium-php.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2019/08/28 09:55 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+        </div>
+      </div><!-- article -->
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-iconv-qa.html">
-                
-                  <h1>调用iconv和mb_convert_encoding会显示乱码或空白</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>比如“珺”字在单纯的调用iconv 和mb_convert_encoding会显示乱码或空白，解决办法：</p>
-<pre class="line-numbers"><code class="language-php">$name = iconv(&quot;utf-8&quot;,&quot;gbk//IGNORE&quot;,$str);
+      <div class="article-content">
+      <p>在使用集群安装 OceanBase，需要保证集群内各机器的时间同步。<br />
+OceanBase 集群中的服务器时间必须保持一致，否则会导致 OceanBase 集群无法启动，运行时也会出现故障。物理机与时钟服务器的误差在 50ms 以下可认为时钟是同步状态，OceanBase 集群最大容忍误差不能超过 100ms。当超过 100ms 时，会出现无主情况。恢复时钟同步后。重启 OceanBase 集群, 可以恢复正常。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境</h2>
+<p>系统：CentOS 7<br />
+服务器：10.168.2.100<br />
+客户端：10.168.2.101</p>
+<p>NTP公网地址：<a href="/cn-npt-server-url.html">常见的NTP授时服务器地址</a></p>
+<h2><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置服务器</h2>
+<p>1、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+</code></pre>
+<p>2、配置ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>配置文件中一般有restrict default语句，注释掉第二种或选择第一种</p>
+<pre class="line-numbers"><code class="language-shell">restrict default nomodify notrap noquery    #  默认允许所有可连接客户端ntpdate到本机  
+</code></pre>
+<pre class="line-numbers"><code class="language-shell">restrict default ignore         #  默认所有客户端禁止ntpdate到本机
+</code></pre>
+<p>配置与上级互联网服务端连续性同步时间，prefer表示优先，如无可不设置</p>
+<pre class="line-numbers"><code class="language-shell">server 上级ntp服务器IP或者域名 [prefer] 
+</code></pre>
+<p>如果之前设置了restrict default ignore的情况下，可以设置哪些客户可以ntpdate到本机</p>
+<pre class="line-numbers"><code class="language-shell">restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+</code></pre>
+<p>其余为可选设置，以默认值即可</p>
+<p>3、开启ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+</code></pre>
+<p>4、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>5、关闭chronyd服务<br />
+因为centos7默认使用chronyd来进行时间同步服务，所以使用ntp服务需要关闭chronyd服务</p>
+<pre class="line-numbers"><code class="language-shell">service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<h2><a id="%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、配置客户端</h2>
+<p>1、先确保到NTP服务器网络可达</p>
+<pre class="line-numbers"><code class="language-shell">ping 10.168.2.100
+</code></pre>
+<p>2、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre class="line-numbers"><code class="language-shell">yum install ntp* -y
+</code></pre>
+<p>3、使用ntpdate同步一次时间，查看是否有正确回显<br />
+ntpd进程进行同步时，只能同步较小的时间差，为防止时间差别太大，提前使用ntpdate进行一次时间同步</p>
+<pre class="line-numbers"><code class="language-shell">ntpdate 10.168.2.100
+</code></pre>
+<p>4、设置ntpd服务</p>
+<pre class="line-numbers"><code class="language-shell">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>方法同上，但注意将设置的上级ntp server端需要设置为</p>
+<pre class="line-numbers"><code class="language-shell">server 10.168.2.100 prefer
+</code></pre>
+<p>设置开启服务后自动同步上级ntp server时间</p>
+<pre class="line-numbers"><code class="language-shell">vi /etc/ntp/step-tickers
+</code></pre>
+<pre class="line-numbers"><code class="language-shell">加入10.168.2.100
+</code></pre>
+<p>5、开启ntpd服务和关闭chronyd服务</p>
+<pre class="line-numbers"><code class="language-shell">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<p>6、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre class="line-numbers"><code class="language-shell">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>7、检查状态  每2秒刷新一次</p>
+<pre class="line-numbers"><code class="language-shell">watch ntpq -p
 </code></pre>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:11 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-sftp.html">
-                
-                  <h1>PHP关于SSH和SFTP相关方法</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>php支持ssh和sftp推送，原生不支持，需要装pecl的ssh2扩展。</p>
-<ol>
-<li>扩展安装：</li>
-<li>SSH使用：</li>
-</ol>
-<pre class="line-numbers"><code class="language-php">extension_loaded('ssh2') #检查是否安装ssh2扩展模块
-$conn = ssh2_connect(IP, PORT) #连接远程服务器，看是否网络通，返回连接资源
-ssh2_auth_password($conn, $username, $password) #通过账号密码认证登陆远程远程服务
-$ssh2_sft = ssh2_sftp($conn);# 获取sftp连接资源
-ssh2_sftp_mkdir($ssh2_sftp, $path, 0777, true)#创建远程目录
-ssh2_scp_send($conn, $localfile, $filename, 0777)#上传文件
-</code></pre>
-<p>在一些特殊情况下，比如在内网，外网主机被映射为内网一个内网ip时，ssh2_scp_send可能推送不出文件，并且还会一直发送，长时间不会返回上传状态，这个时候需要用使用sftp方式推送</p>
+    
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:08 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+      </div>
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-ping-code.html">
-                
-                  <h1>PHP代码 ping 域名</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>在PHP代码中做ping</p>
-<pre class="line-numbers"><code class="language-php">// ping 域名
-function pingAddress($address,$proxy=false) {
-    $status = -1;
-        if (strcasecmp(PHP_OS, 'WINNT') === 0) {
-            // Windows 服务器下
-            $pingresult = exec(&quot;ping -n 1 {$address}&quot;, $outcome, $status);
-        } elseif (strcasecmp(PHP_OS, 'Linux') === 0) {
-            // Linux 服务器下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }elseif (strcasecmp(PHP_OS, 'Darwin') === 0){
-            // MacOS 下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }
-        if (0 == $status) {
-            $status = true;
-        } else {
-            $status = false;
-        }
-    return $status;
-}
-</code></pre>
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="cn-npt-server-url.html" 
+          title="Previous Post: 常见的NTP授时服务器地址">&laquo; 常见的NTP授时服务器地址</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="centos7-update-kernel.html" 
+          title="Next Post: CentOS 7 更新内核版本">CentOS 7 更新内核版本 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/06/19 15:58 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+          
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
 
 
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
-		</div>
-	</div><!-- large 8 -->
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">
