@@ -4,13 +4,43 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-01-31T02:14:34+08:00</updated>
+  <updated>2023-02-05T02:11:16+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Docker启动、关闭、停止、删除 所有容器]]></title>
+    <link href="https://hyter.me/16755341758894.html"/>
+    <updated>2023-02-05T02:09:35+08:00</updated>
+    <id>https://hyter.me/16755341758894.html</id>
+    <content type="html"><![CDATA[
+<pre class="line-numbers"><code class="language-bash">docker中 启动所有的容器命令
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+ 
+docker中 关闭所有的容器命令
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的容器命令
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的镜像
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+ 
+ 
+docker start $(docker ps -aq) # 启动所有容器
+ 
+docker start $(docker ps -aq -f status=exited) # 启动所有状态为exited 的容器，和上面的命令效果一致
+ 
+dockerrm$(docker ps-q --filter “status=exited”) 
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[常见的NTP授时服务器地址]]></title>
@@ -889,52 +919,6 @@ $ git add .
 $ git commit -a -m \&quot;First pages commit\&quot;
 $ git push origin gh-pages
 在commit操作之后，你就可以用git branch命令看到新分支的名字了，然后push到远程仓库。
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[记n次修改的gitlab配置仓库存储位置]]></title>
-    <link href="https://hyter.me/change-gitlab-repository-path.html"/>
-    <updated>2020-05-26T14:57:07+08:00</updated>
-    <id>https://hyter.me/change-gitlab-repository-path.html</id>
-    <content type="html"><![CDATA[
-<p>gitlab通过rpm包安装后，默认存储位置在<code>/var/opt/gitlab/git-data/repositories</code>，通常需要更改此路径到单独的一个分区来存储仓库的数据。</p>
-<span id="more"></span><!-- more -->
-<p>例如我这里把数据存放到<code>/data/gitlab</code>目录下</p>
-<p>创建<code>/data/gitlab</code>目录</p>
-<pre class="line-numbers"><code class="language-shell">mkdir -p /data/gitlab
-</code></pre>
-<p>修改gitlab配置文件，找到<code>git_data_dir</code></p>
-<pre class="line-numbers"><code class="language-shell">vim /etc/gitlab/gitlab.rb
-</code></pre>
-<pre class="line-numbers"><code class="language-shell">git_data_dirs({
-   &quot;default&quot; =&gt; {
-     &quot;path&quot; =&gt; &quot;/data/gitlab&quot;
-    }
-})
-
-</code></pre>
-<p>删除注释# 并把<code>/data/gitlab</code>写入<code>path</code>的值</p>
-<p>停止当前gitlab，重新加载配置</p>
-<pre class="line-numbers"><code class="language-shell">gitlab-ctl stop
-gitlab-ctl reconfigure
-</code></pre>
-<p>重新加载后，会发现在<code>/data/gitlab</code>目录下多出一个<code>repositories</code>目录</p>
-<p>最后启动gitlab即可</p>
-<pre class="line-numbers"><code class="language-shell">gitlab-ctl start
-</code></pre>
-<h2><a id="%E8%A7%A3%E5%86%B3%E5%AE%9D%E5%A1%94%E5%AE%89%E8%A3%85%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8nginx%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决宝塔安装修改配置无法启动nginx问题</h2>
-<p>一般来说这里就完成了，但是 在宝塔面板安装gitlab修改后，会出现nginx不能启动的现象, 原因应该宝塔是为了防止nginx冲突, 把gitlab的nginx启动文件名改成了gitlab-web, 但有个配置文件没改造成的。</p>
-<p>修改nginx启动文件</p>
-<pre class="line-numbers"><code class="language-shell">vi /opt/gitlab/sv/nginx/run
-</code></pre>
-<p>把</p>
-<pre class="line-numbers"><code class="language-shell">exec chpst -P /opt/gitlab/embedded/sbin/nginx -p /var/opt/gitlab/nginx
-</code></pre>
-<p>改为</p>
-<pre class="line-numbers"><code class="language-shell">exec chpst -P /opt/gitlab/embedded/sbin/gitlab-web -p /var/opt/gitlab/nginx
 </code></pre>
 
 ]]></content>

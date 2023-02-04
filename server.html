@@ -151,6 +151,58 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="16755341758894.html">
+                
+                  <h1>Docker启动、关闭、停止、删除 所有容器</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre class="line-numbers"><code class="language-bash">docker中 启动所有的容器命令
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+ 
+docker中 关闭所有的容器命令
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的容器命令
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的镜像
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+ 
+ 
+docker start $(docker ps -aq) # 启动所有容器
+ 
+docker start $(docker ps -aq -f status=exited) # 启动所有状态为exited 的容器，和上面的命令效果一致
+ 
+dockerrm$(docker ps-q --filter “status=exited”) 
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2023/02/05 02:09 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="cn-npt-server-url.html">
                 
                   <h1>常见的NTP授时服务器地址</h1>
@@ -737,6 +789,12 @@ For compilers to find node@8 you may need to set:
 	      
 		      
 			      <li class="post">
+			        <a href="16755341758894.html">Docker启动、关闭、停止、删除 所有容器</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="cn-npt-server-url.html">常见的NTP授时服务器地址</a>
 			      </li>
 		     
@@ -756,12 +814,6 @@ For compilers to find node@8 you may need to set:
 		      
 			      <li class="post">
 			        <a href="centos7-directory-changed-to-english.html">CentOS 7 修改home目录中文文件夹为英文</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="Centos7-skips-the-first-login-to-create-normal-user-step.html">CentOS 7 跳过首次登陆创建普通用户步骤</a>
 			      </li>
 		     
 		  

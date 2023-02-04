@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  自定义小尖角 - HyterMatrix
+  Docker启动、关闭、停止、删除 所有容器 - HyterMatrix
   
   </title>
   
@@ -151,16 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>自定义小尖角</h1>
+          <h1>Docker启动、关闭、停止、删除 所有容器</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2019/07/16 15:16 下午</span>
+          <span class="date">2023/02/05 02:09 上午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='fore-end.html'>前端技术</a></span>
-          
-              <span class="posted-in"><a href='css.html'>CSS</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -173,15 +171,25 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <pre class="line-numbers"><code class="language-html">.icon{
-     display:inline-block;
-     border-top:15px solid red;
-     border-right:15px solid transparent;
-     border-bottom:15px solid transparent;
-     border-left:15px solid transparent;
-}
-
-&lt;div class=&quot;icon&quot;&gt;&lt;/div&gt;
+      <pre class="line-numbers"><code class="language-bash">docker中 启动所有的容器命令
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+ 
+docker中 关闭所有的容器命令
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的容器命令
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的镜像
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+ 
+ 
+docker start $(docker ps -aq) # 启动所有容器
+ 
+docker start $(docker ps -aq -f status=exited) # 启动所有状态为exited 的容器，和上面的命令效果一致
+ 
+dockerrm$(docker ps-q --filter “status=exited”) 
 </code></pre>
 
 
@@ -193,16 +201,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="mac-pip-source.html" 
-          title="Previous Post: Mac 设置阿里pip源">&laquo; Mac 设置阿里pip源</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="php-iconv-qa.html" 
-          title="Next Post: 调用iconv和mb_convert_encoding会显示乱码或空白">调用iconv和mb_convert_encoding会显示乱码或空白 &raquo;</a>
+          <a  href="cn-npt-server-url.html" 
+          title="Next Post: 常见的NTP授时服务器地址">常见的NTP授时服务器地址 &raquo;</a>
       
       </p>
         </div>
