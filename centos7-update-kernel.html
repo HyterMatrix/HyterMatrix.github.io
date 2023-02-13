@@ -242,6 +242,8 @@ yum --enablerepo=elrepo-kernel install kernel-lt -y
 <h3><a id="%E8%AE%BE%E7%BD%AEgrub%E9%BB%98%E8%AE%A4%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置 GRUB 默认的内核版本</h3>
 <p>为了让新安装的内核成为默认启动选项，你需要如下修改 GRUB 配置：</p>
 <p>打开并编辑 <code>/etc/default/grub</code> 并设置 <code>GRUB_DEFAULT=0</code>。意思是 GRUB 初始化页面的第一个内核将作为默认内核。</p>
+<pre class="line-numbers"><code class="language-bash">[root@centos7 ~] vi /etc/default/grub
+</code></pre>
 <pre class="line-numbers"><code class="language-bash">GRUB_TIMEOUT=5
 GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
 GRUB_DEFAULT=saved  #这里的saved改为0即可，重启后，默认就是你上次所选的版本了。
@@ -251,9 +253,11 @@ GRUB_CMDLINE_LINUX=&quot;rhgb quiet&quot;
 GRUB_DISABLE_RECOVERY=&quot;true&quot;
 </code></pre>
 <p>执行命令：</p>
-<pre class="line-numbers"><code class="language-bash">grub2-mkconfig -o /boot/grub2/grub.cfg
+<pre class="line-numbers"><code class="language-bash">[root@centos7 ~] grub2-mkconfig -o /boot/grub2/grub.cfg
 </code></pre>
-<p>重启系统```bash</p>
+<p>重启系统</p>
+<pre class="line-numbers"><code class="language-bash">[root@centos7 ~] reboot
+</code></pre>
 
 
     
