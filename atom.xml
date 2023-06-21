@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-06-21T18:02:59+08:00</updated>
+  <updated>2023-06-21T18:14:15+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -24,6 +24,7 @@
 <p>Netplan配置文件位于/etc/netplan/下。使用以下命令打开对应目录：</p>
 <pre class="line-numbers"><code class="language-bash">cd /etc/netplan/
 </code></pre>
+<span id="more"></span><!-- more -->
 <p>编辑Netplan 配置文件</p>
 <pre class="line-numbers"><code class="language-bash">sudo vi 00-installer-config.yaml
 </code></pre>
