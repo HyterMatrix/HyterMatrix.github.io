@@ -4,13 +4,59 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-02-13T14:37:54+08:00</updated>
+  <updated>2023-06-21T18:02:59+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu 22.04 修改ip地址]]></title>
+    <link href="https://hyter.me/ubuntu-2204-edit-ip-config.html"/>
+    <updated>2023-06-21T18:01:53+08:00</updated>
+    <id>https://hyter.me/ubuntu-2204-edit-ip-config.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFnetplan" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Netplan</h2>
+<p>从Ubuntu 17.10开始，Canonical引入了一个名为Netplan的新工具，用于网络设置管理。 这里是从命令行在Ubuntu系统上配置静态IP的步骤。Netplan是用于在Linux系统上轻松配置网络的实用程序。 您只需为所需的网络接口以及每个接口应配置的功能创建一个YAML描述。 Netplan将根据此描述为您选择的渲染器工具生成所有必要的配置。</p>
+<h2><a id="%E6%9B%B4%E6%96%B0ip%E5%9C%B0%E5%9D%80%E7%9A%84%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新IP地址的步骤</h2>
+<p>Netplan配置文件位于/etc/netplan/下。使用以下命令打开对应目录：</p>
+<pre class="line-numbers"><code class="language-bash">cd /etc/netplan/
+</code></pre>
+<p>编辑Netplan 配置文件</p>
+<pre class="line-numbers"><code class="language-bash">sudo vi 00-installer-config.yaml
+</code></pre>
+<p>默认情况下，Ubuntu 22.04使用YAML格式编写Netplan配置文件，例如<code>00-installer-config.yaml</code>。</p>
+<p>配置样例</p>
+<pre class="line-numbers"><code class="language-bash"># This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens160:
+      addresses:
+      - 10.168.2.101/16
+      nameservers:
+        addresses:
+        - 10.168.1.1
+        - 223.5.5.5
+        search: []
+      routes:
+      - to: default
+        via: 10.168.1.1
+  version: 2             
+</code></pre>
+<p>如果您找不到 00-installer-config.yaml 文件，可以尝试查看 /etc/netplan/ 目录中是否存在其他 YAML 格式的 Netplan 配置文件。在某些情况下，系统管理员可能会使用不同的命名方案或将所有配置存储在单个文件中。</p>
+<p>您还可以通过运行以下命令来检查当前的 Netplan 配置：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan try
+</code></pre>
+<p>此命令将临时应用新的配置并验证其语法和正确性。如果有任何错误或问题，它将显示错误消息并恢复先前的配置。</p>
+<p>应用更改。使用以下命令应用更改：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan apply
+</code></pre>
+<p>文本借鉴/转载至<a href="https://blog.csdn.net/inthat/article/details/106738225">CSDN博主「西京刀客」</a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Docker启动、关闭、停止、删除 所有容器]]></title>
@@ -880,49 +926,6 @@ f8511e56585f        gitlab/gitlab-ce:latest   &quot;/assets/wrapper&quot;   8 mo
 </code></pre>
 <p>js的正则</p>
 <pre class="line-numbers"><code class="language-js">/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在Git下创建一个空分支]]></title>
-    <link href="https://hyter.me/git-create-empty-branch.html"/>
-    <updated>2020-05-28T11:58:54+08:00</updated>
-    <id>https://hyter.me/git-create-empty-branch.html</id>
-    <content type="html"><![CDATA[
-<p>有时候我们需要在Git下创建一个空分支，从头开始Coding —— 这大概是那些重构帝最喜欢的事情。参考了github，才找到一个合适的方法。</p>
-<p>怎样安全的进行这项操作<br />
-我们需要建一个“孤立”的空分支，为了尽可能的保证数据安全，最好还是重新clone一份代码。</p>
-<span id="more"></span><!-- more -->
-<pre class="line-numbers"><code class="language-shell">$git clone https://github.com/user/repo.git
-# Clone our repo
-# Cloning into \'repo\'...
-# remote: Counting objects: 2791, done.
-# remote: Compressing objects: 100% (1225/1225), done.
-# remote: Total 2791 (delta 1722), reused 2513 (delta 1493)
-# Receiving objects: 100% (2791/2791), 3.77 MiB | 969 KiB/s, done.
-# Resolving deltas: 100% (1722/1722), done.
-</code></pre>
-<p>开工<br />
-这里以github的操作为例，下面试图创建一个名为gh-pages的空分支</p>
-<pre class="line-numbers"><code class="language-shell">$cd repo
-
-$ git checkout --orphan gh-pages
-# 创建一个orphan的分支，这个分支是独立的
-Switched to a new branch \'gh-pages\'
-
-git rm -rf .
-# 删除原来代码树下的所有文件
-rm \'.gitignore\'
-</code></pre>
-<p>注意这个时候你用git branch命令是看不见当前分支的名字的，除非你进行了第一次commit。</p>
-<p>下面我们开始添加一些代码文件，例如这里新增了一个index.html</p>
-<pre class="line-numbers"><code class="language-shell">$ echo \&quot;My GitHub Page\&quot; &gt; index.html
-$ git add .
-$ git commit -a -m \&quot;First pages commit\&quot;
-$ git push origin gh-pages
-在commit操作之后，你就可以用git branch命令看到新分支的名字了，然后push到远程仓库。
 </code></pre>
 
 ]]></content>

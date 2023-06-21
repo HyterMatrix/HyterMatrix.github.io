@@ -151,6 +151,74 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="ubuntu-2204-edit-ip-config.html">
+                
+                  <h1>Ubuntu 22.04 修改ip地址</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFnetplan" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Netplan</h2>
+<p>从Ubuntu 17.10开始，Canonical引入了一个名为Netplan的新工具，用于网络设置管理。 这里是从命令行在Ubuntu系统上配置静态IP的步骤。Netplan是用于在Linux系统上轻松配置网络的实用程序。 您只需为所需的网络接口以及每个接口应配置的功能创建一个YAML描述。 Netplan将根据此描述为您选择的渲染器工具生成所有必要的配置。</p>
+<h2><a id="%E6%9B%B4%E6%96%B0ip%E5%9C%B0%E5%9D%80%E7%9A%84%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新IP地址的步骤</h2>
+<p>Netplan配置文件位于/etc/netplan/下。使用以下命令打开对应目录：</p>
+<pre class="line-numbers"><code class="language-bash">cd /etc/netplan/
+</code></pre>
+<p>编辑Netplan 配置文件</p>
+<pre class="line-numbers"><code class="language-bash">sudo vi 00-installer-config.yaml
+</code></pre>
+<p>默认情况下，Ubuntu 22.04使用YAML格式编写Netplan配置文件，例如<code>00-installer-config.yaml</code>。</p>
+<p>配置样例</p>
+<pre class="line-numbers"><code class="language-bash"># This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens160:
+      addresses:
+      - 10.168.2.101/16
+      nameservers:
+        addresses:
+        - 10.168.1.1
+        - 223.5.5.5
+        search: []
+      routes:
+      - to: default
+        via: 10.168.1.1
+  version: 2             
+</code></pre>
+<p>如果您找不到 00-installer-config.yaml 文件，可以尝试查看 /etc/netplan/ 目录中是否存在其他 YAML 格式的 Netplan 配置文件。在某些情况下，系统管理员可能会使用不同的命名方案或将所有配置存储在单个文件中。</p>
+<p>您还可以通过运行以下命令来检查当前的 Netplan 配置：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan try
+</code></pre>
+<p>此命令将临时应用新的配置并验证其语法和正确性。如果有任何错误或问题，它将显示错误消息并恢复先前的配置。</p>
+<p>应用更改。使用以下命令应用更改：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan apply
+</code></pre>
+<p>文本借鉴/转载至<a href="https://blog.csdn.net/inthat/article/details/106738225">CSDN博主「西京刀客」</a></p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2023/06/21 18:01 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="16755341758894.html">
                 
                   <h1>Docker启动、关闭、停止、删除 所有容器</h1>
@@ -789,6 +857,12 @@ For compilers to find node@8 you may need to set:
 	      
 		      
 			      <li class="post">
+			        <a href="ubuntu-2204-edit-ip-config.html">Ubuntu 22.04 修改ip地址</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="16755341758894.html">Docker启动、关闭、停止、删除 所有容器</a>
 			      </li>
 		     
@@ -808,12 +882,6 @@ For compilers to find node@8 you may need to set:
 		      
 			      <li class="post">
 			        <a href="centos7-update-kernel.html">CentOS 7 更新内核版本</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos7-directory-changed-to-english.html">CentOS 7 修改home目录中文文件夹为英文</a>
 			      </li>
 		     
 		  

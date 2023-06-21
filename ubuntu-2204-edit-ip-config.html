@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  nvm 操作命令 - HyterMatrix
+  Ubuntu 22.04 修改ip地址 - HyterMatrix
   
   </title>
   
@@ -151,14 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>nvm 操作命令</h1>
+          <h1>Ubuntu 22.04 修改ip地址</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2022/05/05 19:57 下午</span>
+          <span class="date">2023/06/21 18:01 下午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='fore-end.html'>前端技术</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -171,19 +171,42 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <pre class="line-numbers"><code class="language-plain_text">
-nvm version ：查看nvm版本，version可简化为v。
- 
-nvm arch ：显示node是运行在32位还是64位。
- 
-nvm install &lt;version&gt; [arch] ：安装node， version是版本号也可以是latest（最新稳定版本）。可选参数arch指系统位数64/32，默认是当前系统位数。
- 
-nvm uninstall &lt;version&gt; ：卸载指定版本node。
- 
-nvm list [available] ：显示已安装的列表，可选参数available，显示可安装的所有版本。list可简化为ls
- 
-nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32/64位。这个是全局的。
+      <h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFnetplan" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Netplan</h2>
+<p>从Ubuntu 17.10开始，Canonical引入了一个名为Netplan的新工具，用于网络设置管理。 这里是从命令行在Ubuntu系统上配置静态IP的步骤。Netplan是用于在Linux系统上轻松配置网络的实用程序。 您只需为所需的网络接口以及每个接口应配置的功能创建一个YAML描述。 Netplan将根据此描述为您选择的渲染器工具生成所有必要的配置。</p>
+<h2><a id="%E6%9B%B4%E6%96%B0ip%E5%9C%B0%E5%9D%80%E7%9A%84%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新IP地址的步骤</h2>
+<p>Netplan配置文件位于/etc/netplan/下。使用以下命令打开对应目录：</p>
+<pre class="line-numbers"><code class="language-bash">cd /etc/netplan/
 </code></pre>
+<p>编辑Netplan 配置文件</p>
+<pre class="line-numbers"><code class="language-bash">sudo vi 00-installer-config.yaml
+</code></pre>
+<p>默认情况下，Ubuntu 22.04使用YAML格式编写Netplan配置文件，例如<code>00-installer-config.yaml</code>。</p>
+<p>配置样例</p>
+<pre class="line-numbers"><code class="language-bash"># This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens160:
+      addresses:
+      - 10.168.2.101/16
+      nameservers:
+        addresses:
+        - 10.168.1.1
+        - 223.5.5.5
+        search: []
+      routes:
+      - to: default
+        via: 10.168.1.1
+  version: 2             
+</code></pre>
+<p>如果您找不到 00-installer-config.yaml 文件，可以尝试查看 /etc/netplan/ 目录中是否存在其他 YAML 格式的 Netplan 配置文件。在某些情况下，系统管理员可能会使用不同的命名方案或将所有配置存储在单个文件中。</p>
+<p>您还可以通过运行以下命令来检查当前的 Netplan 配置：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan try
+</code></pre>
+<p>此命令将临时应用新的配置并验证其语法和正确性。如果有任何错误或问题，它将显示错误消息并恢复先前的配置。</p>
+<p>应用更改。使用以下命令应用更改：</p>
+<pre class="line-numbers"><code class="language-bash">sudo netplan apply
+</code></pre>
+<p>文本借鉴/转载至<a href="https://blog.csdn.net/inthat/article/details/106738225">CSDN博主「西京刀客」</a></p>
 
 
     
@@ -194,16 +217,13 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="count-code-lines.html" 
-          title="Previous Post: 如何统计项目代码行数">&laquo; 如何统计项目代码行数</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="php-read-pfx.html" 
-          title="Next Post: PHP下读取pfx中的私钥证书">PHP下读取pfx中的私钥证书 &raquo;</a>
+          <a  href="16755341758894.html" 
+          title="Next Post: Docker启动、关闭、停止、删除 所有容器">Docker启动、关闭、停止、删除 所有容器 &raquo;</a>
       
       </p>
         </div>
