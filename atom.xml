@@ -4,13 +4,39 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-06-21T18:14:15+08:00</updated>
+  <updated>2023-11-01T14:48:53+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7终端模式下，要配置自动获取IP地址]]></title>
+    <link href="https://hyter.me/centos-7-edit-auto-ip.html"/>
+    <updated>2023-11-01T14:42:04+08:00</updated>
+    <id>https://hyter.me/centos-7-edit-auto-ip.html</id>
+    <content type="html"><![CDATA[
+<p>在CentOS 7终端模式下，要配置自动获取IP地址，请按照以下步骤操作：</p>
+<ol>
+<li>使用命令<code>nmcli d</code>列出网络设备。</li>
+<li>记下你想配置为DHCP的网络设备名称。</li>
+<li>使用命令<code>vi /etc/sysconfig/network-scripts/ifcfg-[网络设备名]</code>打开相应的配置文件。</li>
+<li>修改文件中的<code>BOOTPROTO</code>行为<code>dhcp</code>，并将<code>ONBOOT</code>行改为<code>yes</code>。</li>
+<li>保存文件并退出文本编辑器。</li>
+<li>最后，使用命令<code>systemctl restart network</code>重启网络服务。</li>
+</ol>
+<p>关闭IPv6的步骤如下：</p>
+<ul>
+<li>通过修改内核参数：使用命令<code>sysctl -w net.ipv6.conf.all.disable_ipv6=1</code>来禁用所有网络接口上的IPv6。</li>
+<li>或者编辑GRUB配置文件：在<code>/etc/default/grub</code>文件中添加<code>ipv6.disable=1</code>参数到<code>GRUB_CMDLINE_LINUX</code>中，然后重新生成GRUB配置文件。</li>
+<li>另外一种方法是编辑<code>/etc/sysctl.conf</code>文件，添加禁用IPv6的参数。</li>
+</ul>
+<p>务必记得在做任何变更后，重启相关服务以使配置生效。</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ubuntu 22.04 修改ip地址]]></title>
@@ -896,38 +922,6 @@ f8511e56585f        gitlab/gitlab-ce:latest   &quot;/assets/wrapper&quot;   8 mo
 <pre class="line-numbers"><code class="language-plain_text">systemctl restart docker
 </code></pre>
 <p>优缺点：这个方法的优点是没有副作用，操作简单。缺点是需要重启整个docker服务，如果在同一个宿主机上运行着多个容器服务的话，就会影响其他容器服务。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)]]></title>
-    <link href="https://hyter.me/re-chinese-name.html"/>
-    <updated>2020-06-11T10:50:20+08:00</updated>
-    <id>https://hyter.me/re-chinese-name.html</id>
-    <content type="html"><![CDATA[
-<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
-<span id="more"></span><!-- more -->
-<p>PHP的代码</p>
-<pre class="line-numbers"><code class="language-php">function checkChineseName($name)
-{
-    if(!$name){
-        return false;
-    }
-   //有名字长度超过20算我输
-    if(mb_strlen($name) &lt; 2 || mb_strlen($name) &gt; 20){
-        return false;
-    }
-    if(preg_match('/^[\x{4e00}-\x{9fa5}]+[·?]?[\x{4e00}-\x{9fa5}]+$/u', $name,$matchers)){
-        return true;
-    }else{
-        return false;
-    }
-}
-</code></pre>
-<p>js的正则</p>
-<pre class="line-numbers"><code class="language-js">/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
-</code></pre>
 
 ]]></content>
   </entry>

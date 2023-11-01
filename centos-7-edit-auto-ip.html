@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  信息系统项目管理师 - HyterMatrix
+  CentOS 7终端模式下，要配置自动获取IP地址 - HyterMatrix
   
   </title>
   
@@ -142,65 +142,86 @@
        
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="xxxtxmgls-1.html">
-                
-                  <h1>第1章 信息化和信息系统</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="xxxtxmgls-1.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2022/02/08 23:31 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B8%88.html'>信息系统项目管理师</a></span>
-          				  
-          					    <span class="posted-in"><a href='learning.html'>学习</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>CentOS 7终端模式下，要配置自动获取IP地址</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2023/11/01 14:42 下午</span>
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>在CentOS 7终端模式下，要配置自动获取IP地址，请按照以下步骤操作：</p>
+<ol>
+<li>使用命令<code>nmcli d</code>列出网络设备。</li>
+<li>记下你想配置为DHCP的网络设备名称。</li>
+<li>使用命令<code>vi /etc/sysconfig/network-scripts/ifcfg-[网络设备名]</code>打开相应的配置文件。</li>
+<li>修改文件中的<code>BOOTPROTO</code>行为<code>dhcp</code>，并将<code>ONBOOT</code>行改为<code>yes</code>。</li>
+<li>保存文件并退出文本编辑器。</li>
+<li>最后，使用命令<code>systemctl restart network</code>重启网络服务。</li>
+</ol>
+<p>关闭IPv6的步骤如下：</p>
+<ul>
+<li>通过修改内核参数：使用命令<code>sysctl -w net.ipv6.conf.all.disable_ipv6=1</code>来禁用所有网络接口上的IPv6。</li>
+<li>或者编辑GRUB配置文件：在<code>/etc/default/grub</code>文件中添加<code>ipv6.disable=1</code>参数到<code>GRUB_CMDLINE_LINUX</code>中，然后重新生成GRUB配置文件。</li>
+<li>另外一种方法是编辑<code>/etc/sysctl.conf</code>文件，添加禁用IPv6的参数。</li>
+</ul>
+<p>务必记得在做任何变更后，重启相关服务以使配置生效。</p>
 
 
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
-		</div>
-	</div><!-- large 8 -->
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="ubuntu-2204-edit-ip-config.html" 
+          title="Next Post: Ubuntu 22.04 修改ip地址">Ubuntu 22.04 修改ip地址 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

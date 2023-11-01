@@ -226,7 +226,7 @@ let volunteersSorted = volunteerCounts.sorted(by: { i, j in i &lt; j })
 <p>这段代码改动了三处。首先，移除了两个参数和返回值的类型信息。返回值类型可以移除是因为编译器知道检查i &lt; j是否成立会返回布尔值true或false。其次，把整个闭包表达式放到了一行。<br />
 最后，移除了关键字return。不是所有的闭包语句都可以省略return关键字，这里可以是因为只有一个表达式（i &lt; j）。如果存在更多表达式，那么显式的return就是必需的。<br />
 这个闭包现在变得很紧凑，但是还可以继续优化。Swift提供了快捷参数名，可以在内联闭包表达式中引用。这些快捷参数名和显式声明的参数类似：类型和值都一样。编译器的类型推断能力让它知道闭包接受的参数个数和类型，这意味着不需要给参数命名。<br />
-举个例子，编译器知道sorted(by:)接受一个闭包。这个闭包本身又接受两个参数，它们的类型和sorted(by:)方法的数组参数中的元素类型一样。因为闭包有两个参数，我们能比较其值来判断顺序，所以可以用``0引用第一个参数的值，用``1引用第二个参数的值。</p>
+举个例子，编译器知道sorted(by:)接受一个闭包。这个闭包本身又接受两个参数，它们的类型和sorted(by:)方法的数组参数中的元素类型一样。因为闭包有两个参数，我们能比较其值来判断顺序，所以可以用$0引用第一个参数的值，用$1引用第二个参数的值。</p>
 <pre class="line-numbers"><code class="language-Swift">import Cocoa 
 let volunteerCounts = [1,3,40,32,2,53,77,13] 
 let volunteersSorted = volunteerCounts.sorted(by: { $0 &lt; $1 })
@@ -339,6 +339,12 @@ let volunteersSorted = volunteerCounts.sorted(by: { $0 &lt; $1 })
 	      
 		      
 			      <li class="post">
+			        <a href="centos-7-edit-auto-ip.html">CentOS 7终端模式下，要配置自动获取IP地址</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-2204-edit-ip-config.html">Ubuntu 22.04 修改ip地址</a>
 			      </li>
 		     
@@ -358,12 +364,6 @@ let volunteersSorted = volunteerCounts.sorted(by: { $0 &lt; $1 })
 		      
 			      <li class="post">
 			        <a href="centos-7-set-ntp-server-client.html">CentOS 7 配置NTP服务端和客户端</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos7-update-kernel.html">CentOS 7 更新内核版本</a>
 			      </li>
 		     
 		  
