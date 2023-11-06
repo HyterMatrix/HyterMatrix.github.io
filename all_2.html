@@ -151,6 +151,54 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="git-diff-file-tar.html">
+                
+                  <h1>如何使用Git把某一次commit修改过的文件打包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>把新增加的文件使用git add添加进改动</p>
+<p>使用git commit提交改动</p>
+<p>使用<code>git log</code>查看提交的commit id</p>
+<p>使用命令</p>
+<pre class="line-numbers"><code class="language-git">git diff-tree -r --no-commit-id --name-only [commit id] | xargs tar -rf mytarfile.tar
+
+# or
+
+git diff [old commit id] [commit id]  --name-only | xargs tar -czvf update.tar.gz
+
+# 单次提交打包
+git diff HEAD HEAD^ --name-only | xargs tar -rf update.tar
+
+# 不同的分支
+git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/06/04 09:38 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="ES6-Learning-6.html">
                 
                   <h1>ES6入门（6）对象的扩展</h1>
@@ -821,39 +869,6 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="swift-learning-4.html">
-                
-                  <h1>Swift编程入门（4）switch语句</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>之前见识了一种条件语句：if/else。在学习过程中曾提到，if/else对于不止一个条件的场景来说不太够用。本章就要来看看switch语句了。与if/else不同，switch非常适于处理多重条件。</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="swift-learning-4.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2018/12/09 20:36 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -935,6 +950,12 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 	      
 		      
 			      <li class="post">
+			        <a href="centos7-install-squid.html">在Centos7 上安装 Squid</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="centos7-edit-hostname.html">在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</a>
 			      </li>
 		     
@@ -954,12 +975,6 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 		      
 			      <li class="post">
 			        <a href="16755341758894.html">Docker启动、关闭、停止、删除 所有容器</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="cn-npt-server-url.html">常见的NTP授时服务器地址</a>
 			      </li>
 		     
 		  

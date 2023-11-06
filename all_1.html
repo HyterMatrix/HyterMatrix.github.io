@@ -151,6 +151,39 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="go-build.html">
+                
+                  <h1>Go 跨平台编译</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>默认我们<code>go build</code>的可执行文件都是当前操作系统可执行的文件，如果我想在windows下编译一个linux下可执行文件，那需要怎么做呢？</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="go-build.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2020/09/05 12:51 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='Go.html'>Go</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="docker-run-edit-config.html">
                 
                   <h1>如何修改运行中的docker容器的端口映射和挂载目录</h1>
@@ -873,54 +906,6 @@ function pingAddress($address,$proxy=false) {
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="git-diff-file-tar.html">
-                
-                  <h1>如何使用Git把某一次commit修改过的文件打包</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>把新增加的文件使用git add添加进改动</p>
-<p>使用git commit提交改动</p>
-<p>使用<code>git log</code>查看提交的commit id</p>
-<p>使用命令</p>
-<pre class="line-numbers"><code class="language-git">git diff-tree -r --no-commit-id --name-only [commit id] | xargs tar -rf mytarfile.tar
-
-# or
-
-git diff [old commit id] [commit id]  --name-only | xargs tar -czvf update.tar.gz
-
-# 单次提交打包
-git diff HEAD HEAD^ --name-only | xargs tar -rf update.tar
-
-# 不同的分支
-git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/06/04 09:38 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -1002,6 +987,12 @@ git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
 	      
 		      
 			      <li class="post">
+			        <a href="centos7-install-squid.html">在Centos7 上安装 Squid</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="centos7-edit-hostname.html">在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</a>
 			      </li>
 		     
@@ -1021,12 +1012,6 @@ git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
 		      
 			      <li class="post">
 			        <a href="16755341758894.html">Docker启动、关闭、停止、删除 所有容器</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="cn-npt-server-url.html">常见的NTP授时服务器地址</a>
 			      </li>
 		     
 		  
