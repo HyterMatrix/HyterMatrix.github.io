@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-11-06T14:11:46+08:00</updated>
+  <updated>2023-11-06T14:14:35+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -18,8 +18,8 @@
     <updated>2023-11-06T14:10:26+08:00</updated>
     <id>https://hyter.me/centos7-edit-hostname.html</id>
     <content type="html"><![CDATA[
-<!--- more ------>
 <p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
+<span id="more"></span><!-- more -->
 <ol>
 <li>
 <p><strong>使用 <code>hostnamectl</code> 命令</strong>（推荐的方法）:</p>

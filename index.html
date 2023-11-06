@@ -158,50 +158,7 @@
                       
                       <div class="a-content-text">
                         
-                        	<!--- more ------>
-<p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
-<ol>
-<li>
-<p><strong>使用 <code>hostnamectl</code> 命令</strong>（推荐的方法）:</p>
-<pre class="line-numbers"><code class="language-sh">sudo hostnamectl set-hostname new-hostname
-</code></pre>
-<p>将 <code>new-hostname</code> 替换为您希望设置的新主机名。这种方法的好处是它会同时更改静态主机名、漂移主机名和暂态主机名。</p>
-</li>
-<li>
-<p><strong>编辑 <code>/etc/hostname</code> 文件</strong>:</p>
-<p>通过编辑包含主机名的文件来手动更改主机名：</p>
-<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hostname
-</code></pre>
-<p>然后将里面的内容替换为您的新主机名，保存并退出编辑器。</p>
-</li>
-<li>
-<p><strong>编辑 <code>/etc/hosts</code> 文件</strong>:</p>
-<p>除了更改主机名，您还应该更新 <code>/etc/hosts</code> 文件，以反映新的主机名：</p>
-<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hosts
-</code></pre>
-<p>找到引用旧主机名的行，并将其替换为新主机名。</p>
-</li>
-<li>
-<p><strong>使用 <code>nmtui</code> 命令</strong>:</p>
-<p><code>nmtui</code> 是一个文本用户界面的网络管理工具，它也可以用来设置主机名。</p>
-<pre class="line-numbers"><code class="language-sh">sudo nmtui
-</code></pre>
-<p>在界面中选择 &quot;Set system hostname&quot;，然后输入新的主机名，并选择 &quot;OK&quot;。</p>
-</li>
-</ol>
-<p>无论您使用哪种方法，都需要重启您的系统，以确保所有的服务都能够识别新的主机名。您可以使用以下命令来重启：</p>
-<pre class="line-numbers"><code class="language-sh">sudo reboot
-</code></pre>
-<p>或者，如果您不想重启，您可以尝试重新启动网络服务，以便立即应用新的主机名：</p>
-<pre class="line-numbers"><code class="language-sh">sudo systemctl restart network
-</code></pre>
-<p>更改主机名后，您可以使用 <code>hostnamectl</code> 命令确认新的主机名是否已正确设置：</p>
-<pre class="line-numbers"><code class="language-sh">hostnamectl
-</code></pre>
-<p>或者简单地使用 <code>hostname</code> 命令也可以：</p>
-<pre class="line-numbers"><code class="language-sh">hostname
-</code></pre>
-<p>这将显示当前的系统主机名。</p>
+                        	<p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
 
                         
                       </div>
@@ -209,7 +166,7 @@
                 </a>
                 <div class="read-more clearfix">
                   <div class="more-left left">
-                  
+                   <a href="centos7-edit-hostname.html">Read more</a>&nbsp;&nbsp; 
                     <span class="date">2023/11/06 14:10 下午</span>
                     <span>posted in&nbsp;</span> 
           				  
