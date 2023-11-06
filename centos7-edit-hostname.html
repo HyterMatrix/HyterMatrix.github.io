@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  NPM - HyterMatrix
+  在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。 - HyterMatrix
   
   </title>
   
@@ -142,70 +142,114 @@
        
 
  <script type="text/javascript">
-	$(function(){
-		$('#menu_item_index').addClass('is_active');
-	});
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
 </script>
 <div class="row">
-	<div class="large-8 medium-8 columns">
-		<div class="markdown-body home-categories">
-		
-			<div class="article">
-                <a class="clearlink" href="electron-npm-install-yuan.html">
-                
-                  <h1>解决npm安装electron很慢的问题</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<blockquote>
-<p>2022.06.30：淘宝修改了镜像地址为 <code>https://npmmirror.com/mirrors/electron/</code><br />
-公告地址：<a href="https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um">https://developer.aliyun.com/mirror/NPM?spm=a2c6h.13651102.J_4121707010.1.3e221b11ums2um</a></p>
-</blockquote>
-<p>无论是选择 <code>electron-builder</code>还是 <code>electron-packager</code>，甚至其它的各种流行 <code>electron</code>打包工具，总是会绕不开一个问题：脚本会下载特定版本的 <code>electron</code>的 <code>prebuild</code>版本。</p>
-<p>而对于国内的广大 <code>electron</code>开发者来说，这个过程往往是非常漫长并且痛苦的。如何解决速度慢的这个问题呢？欢迎仔细阅</p>
-<p>本文的主要测试环境是 <code>window</code>和 <code>mac</code>， <code>npm</code>的版本号均为 <code>5.6.0</code>。</p>
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2023/11/06 14:10 下午</span>
 
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="electron-npm-install-yuan.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/04/13 15:42 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='NPM.html'>NPM</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
+           
+         
+          <span class="comments">
+            
 
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-              
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <!--- more ------>
+<p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
+<ol>
+<li>
+<p><strong>使用 <code>hostnamectl</code> 命令</strong>（推荐的方法）:</p>
+<pre class="line-numbers"><code class="language-sh">sudo hostnamectl set-hostname new-hostname
+</code></pre>
+<p>将 <code>new-hostname</code> 替换为您希望设置的新主机名。这种方法的好处是它会同时更改静态主机名、漂移主机名和暂态主机名。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hostname</code> 文件</strong>:</p>
+<p>通过编辑包含主机名的文件来手动更改主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hostname
+</code></pre>
+<p>然后将里面的内容替换为您的新主机名，保存并退出编辑器。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hosts</code> 文件</strong>:</p>
+<p>除了更改主机名，您还应该更新 <code>/etc/hosts</code> 文件，以反映新的主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hosts
+</code></pre>
+<p>找到引用旧主机名的行，并将其替换为新主机名。</p>
+</li>
+<li>
+<p><strong>使用 <code>nmtui</code> 命令</strong>:</p>
+<p><code>nmtui</code> 是一个文本用户界面的网络管理工具，它也可以用来设置主机名。</p>
+<pre class="line-numbers"><code class="language-sh">sudo nmtui
+</code></pre>
+<p>在界面中选择 &quot;Set system hostname&quot;，然后输入新的主机名，并选择 &quot;OK&quot;。</p>
+</li>
+</ol>
+<p>无论您使用哪种方法，都需要重启您的系统，以确保所有的服务都能够识别新的主机名。您可以使用以下命令来重启：</p>
+<pre class="line-numbers"><code class="language-sh">sudo reboot
+</code></pre>
+<p>或者，如果您不想重启，您可以尝试重新启动网络服务，以便立即应用新的主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo systemctl restart network
+</code></pre>
+<p>更改主机名后，您可以使用 <code>hostnamectl</code> 命令确认新的主机名是否已正确设置：</p>
+<pre class="line-numbers"><code class="language-sh">hostnamectl
+</code></pre>
+<p>或者简单地使用 <code>hostname</code> 命令也可以：</p>
+<pre class="line-numbers"><code class="language-sh">hostname
+</code></pre>
+<p>这将显示当前的系统主机名。</p>
 
 
-			<div class="row">
-			  <div class="large-6 columns">
-			  <p class="text-left" style="padding-top:25px;">
-			   
-			  </p>
-			  </div>
-			  <div class="large-6 columns">
-			<p class="text-right" style="padding-top:25px;">
-			
-			</p>
-			  </div>
-			</div>
-		</div>
-	</div><!-- large 8 -->
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="centos-7-edit-auto-ip.html" 
+          title="Next Post: CentOS 7终端模式下，要配置自动获取IP地址">CentOS 7终端模式下，要配置自动获取IP地址 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

@@ -4,13 +4,67 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-11-01T14:48:53+08:00</updated>
+  <updated>2023-11-06T14:11:46+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。]]></title>
+    <link href="https://hyter.me/centos7-edit-hostname.html"/>
+    <updated>2023-11-06T14:10:26+08:00</updated>
+    <id>https://hyter.me/centos7-edit-hostname.html</id>
+    <content type="html"><![CDATA[
+<!--- more ------>
+<p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
+<ol>
+<li>
+<p><strong>使用 <code>hostnamectl</code> 命令</strong>（推荐的方法）:</p>
+<pre class="line-numbers"><code class="language-sh">sudo hostnamectl set-hostname new-hostname
+</code></pre>
+<p>将 <code>new-hostname</code> 替换为您希望设置的新主机名。这种方法的好处是它会同时更改静态主机名、漂移主机名和暂态主机名。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hostname</code> 文件</strong>:</p>
+<p>通过编辑包含主机名的文件来手动更改主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hostname
+</code></pre>
+<p>然后将里面的内容替换为您的新主机名，保存并退出编辑器。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hosts</code> 文件</strong>:</p>
+<p>除了更改主机名，您还应该更新 <code>/etc/hosts</code> 文件，以反映新的主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo vi /etc/hosts
+</code></pre>
+<p>找到引用旧主机名的行，并将其替换为新主机名。</p>
+</li>
+<li>
+<p><strong>使用 <code>nmtui</code> 命令</strong>:</p>
+<p><code>nmtui</code> 是一个文本用户界面的网络管理工具，它也可以用来设置主机名。</p>
+<pre class="line-numbers"><code class="language-sh">sudo nmtui
+</code></pre>
+<p>在界面中选择 &quot;Set system hostname&quot;，然后输入新的主机名，并选择 &quot;OK&quot;。</p>
+</li>
+</ol>
+<p>无论您使用哪种方法，都需要重启您的系统，以确保所有的服务都能够识别新的主机名。您可以使用以下命令来重启：</p>
+<pre class="line-numbers"><code class="language-sh">sudo reboot
+</code></pre>
+<p>或者，如果您不想重启，您可以尝试重新启动网络服务，以便立即应用新的主机名：</p>
+<pre class="line-numbers"><code class="language-sh">sudo systemctl restart network
+</code></pre>
+<p>更改主机名后，您可以使用 <code>hostnamectl</code> 命令确认新的主机名是否已正确设置：</p>
+<pre class="line-numbers"><code class="language-sh">hostnamectl
+</code></pre>
+<p>或者简单地使用 <code>hostname</code> 命令也可以：</p>
+<pre class="line-numbers"><code class="language-sh">hostname
+</code></pre>
+<p>这将显示当前的系统主机名。</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CentOS 7终端模式下，要配置自动获取IP地址]]></title>
@@ -889,39 +943,6 @@ SET GOOS=darwin
 SET GOARCH=amd64
 go build
 </code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何修改运行中的docker容器的端口映射和挂载目录]]></title>
-    <link href="https://hyter.me/docker-run-edit-config.html"/>
-    <updated>2020-07-20T13:14:52+08:00</updated>
-    <id>https://hyter.me/docker-run-edit-config.html</id>
-    <content type="html"><![CDATA[
-<p>在docker run创建并运行容器的时候，可以通过-p指定端口映射规则。但是，我们经常会遇到刚开始忘记设置端口映射或者设置错了需要修改。当docker start运行容器后并没有提供一个-p选项或设置，让你修改指定端口映射规则。那么这种情况我们该怎么处理呢？今天Docker君教你如何修改运行中的docker容器的端口映射？</p>
-<span id="more"></span><!-- more -->
-<h2><a id="%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%88%A0%E9%99%A4%E5%8E%9F%E6%9C%89%E5%AE%B9%E5%99%A8%EF%BC%8C%E9%87%8D%E6%96%B0%E5%BB%BA%E6%96%B0%E5%AE%B9%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方法一：删除原有容器，重新建新容器</h2>
-<p>这个解决方案最为简单，把原来的容器删掉，重新建一个。当然这次不要忘记加上端口映射。</p>
-<p>优缺点：优点是简单快捷，在测试环境使用较多。缺点是如果是数据库镜像，那重新建一个又要重新配置一次，就比较麻烦了。</p>
-<h2><a id="%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E9%87%8D%E5%90%AFdocker%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>方法二：修改容器配置文件，重启docker服务</h2>
-<p>容器的配置文件路径：</p>
-<pre class="line-numbers"><code class="language-shell">/var/lib/docker/containers/[hash_of_the_container]/hostconfig.json
-</code></pre>
-<p>其中的hashofthecontainer是docker镜像的hash值，可以通过docker ps或者docker inspect containername查看。（CONTAINER ID就可以看出来）</p>
-<pre class="line-numbers"><code class="language-shell">[root@ecs-5286 ~]# docker ps
-CONTAINER ID        IMAGE                     COMMAND             CREATED             STATUS                  PORTS                                                                  NAMES
-f8511e56585f        gitlab/gitlab-ce:latest   &quot;/assets/wrapper&quot;   8 months ago        Up 16 hours (healthy)   0.0.0.0:10022-&gt;22/tcp, 0.0.0.0:8080-&gt;80/tcp, 0.0.0.0:10443-&gt;443/tcp   gitlab-ce
-[root@ecs-5286 ~]# 
-[root@ecs-5286 ~]# 
-[root@ecs-5286 ~]# cat /var/lib/docker/containers/f8511e56585fdd68d4bb5ad57250d829bac52626d722305a43dec1e5cf18406c/hostconfig.json 
-{&quot;Binds&quot;:[&quot;/srv/gitlab/logs:/var/log/gitlab&quot;,&quot;/srv/gitlab/data:/var/opt/gitlab&quot;,&quot;/srv/gitlab/config:/etc/gitlab&quot;],&quot;ContainerIDFile&quot;:&quot;&quot;,&quot;LogConfig&quot;:{&quot;Type&quot;:&quot;journald&quot;,&quot;Config&quot;:{}},&quot;NetworkMode&quot;:&quot;default&quot;,&quot;PortBindings&quot;:{&quot;22/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10022&quot;}],&quot;443/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10443&quot;}],&quot;80/tcp&quot;:[{&quot;HostIp&quot;:&quot;&quot;,&quot;HostPort&quot;:&quot;10080&quot;}]},&quot;RestartPolicy&quot;:{&quot;Name&quot;:&quot;always&quot;,&quot;MaximumRetryCount&quot;:0},&quot;AutoRemove&quot;:false,&quot;VolumeDriver&quot;:&quot;&quot;,&quot;VolumesFrom&quot;:null,&quot;CapAdd&quot;:null,&quot;CapDrop&quot;:null,&quot;Dns&quot;:[],&quot;DnsOptions&quot;:[],&quot;DnsSearch&quot;:[],&quot;ExtraHosts&quot;:null,&quot;GroupAdd&quot;:null,&quot;IpcMode&quot;:&quot;&quot;,&quot;Cgroup&quot;:&quot;&quot;,&quot;Links&quot;:[],&quot;OomScoreAdj&quot;:0,&quot;PidMode&quot;:&quot;&quot;,&quot;Privileged&quot;:false,&quot;PublishAllPorts&quot;:false,&quot;ReadonlyRootfs&quot;:false,&quot;SecurityOpt&quot;:null,&quot;UTSMode&quot;:&quot;&quot;,&quot;UsernsMode&quot;:&quot;&quot;,&quot;ShmSize&quot;:67108864,&quot;Runtime&quot;:&quot;docker-runc&quot;,&quot;ConsoleSize&quot;:[0,0],&quot;Isolation&quot;:&quot;&quot;,&quot;CpuShares&quot;:0,&quot;Memory&quot;:0,&quot;NanoCpus&quot;:0,&quot;CgroupParent&quot;:&quot;&quot;,&quot;BlkioWeight&quot;:0,&quot;BlkioWeightDevice&quot;:null,&quot;BlkioDeviceReadBps&quot;:null,&quot;BlkioDeviceWriteBps&quot;:null,&quot;BlkioDeviceReadIOps&quot;:null,&quot;BlkioDeviceWriteIOps&quot;:null,&quot;CpuPeriod&quot;:0,&quot;CpuQuota&quot;:0,&quot;CpuRealtimePeriod&quot;:0,&quot;CpuRealtimeRuntime&quot;:0,&quot;CpusetCpus&quot;:&quot;&quot;,&quot;CpusetMems&quot;:&quot;&quot;,&quot;Devices&quot;:[],&quot;DiskQuota&quot;:0,&quot;KernelMemory&quot;:0,&quot;MemoryReservation&quot;:0,&quot;MemorySwap&quot;:0,&quot;MemorySwappiness&quot;:-1,&quot;OomKillDisable&quot;:false,&quot;PidsLimit&quot;:0,&quot;Ulimits&quot;:null,&quot;CpuCount&quot;:0,&quot;CpuPercent&quot;:0,&quot;IOMaximumIOps&quot;:0,&quot;IOMaximumBandwidth&quot;:0}
-[root@ecs-5286 ~]# 
-</code></pre>
-<p>按需修改端口, 按需修改挂载目录(权限和属主属组要相同)，然后重启docker服务，再启动容器服务就可以了。</p>
-<pre class="line-numbers"><code class="language-plain_text">systemctl restart docker
-</code></pre>
-<p>优缺点：这个方法的优点是没有副作用，操作简单。缺点是需要重启整个docker服务，如果在同一个宿主机上运行着多个容器服务的话，就会影响其他容器服务。</p>
 
 ]]></content>
   </entry>
