@@ -151,6 +151,39 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="ubuntu-install-docker-and-docker-compose.html">
+                
+                  <h1>Ubuntu上安装Docker和Docker Compose</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>要在Ubuntu上安装Docker和Docker Compose，你可以按照以下步骤操作：</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="ubuntu-install-docker-and-docker-compose.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2023/11/07 20:14 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="ubuntu-install-squid.html">
                 
                   <h1>Ubuntu上安装Squid</h1>
@@ -320,6 +353,97 @@
                   <div class="more-left left">
                    <a href="ubuntu-2204-edit-ip-config.html">Read more</a>&nbsp;&nbsp; 
                     <span class="date">2023/06/21 18:01 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="centos-7-install-docker-and-docker-compose.html">
+                
+                  <h1>CentOS 7 上安装 Docker 和 Docker Compose</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>在 CentOS 7 上安装 Docker 和 Docker Compose 需要一系列的步骤。以下是安装 Docker 的步骤：</p>
+<ol>
+<li><strong>更新软件包索引</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo yum update -y
+</code></pre>
+<ol start="2">
+<li><strong>安装依赖包</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+</code></pre>
+<ol start="3">
+<li><strong>设置 Docker 仓库</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre>
+<ol start="4">
+<li><strong>安装 Docker CE</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo yum install -y docker-ce docker-ce-cli containerd.io
+</code></pre>
+<ol start="5">
+<li><strong>启动 Docker 服务</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo systemctl start docker
+</code></pre>
+<ol start="6">
+<li><strong>设置 Docker 开机自启</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo systemctl enable docker
+</code></pre>
+<ol start="7">
+<li><strong>检查 Docker 版本</strong>（可选）：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">docker --version
+</code></pre>
+<p>安装 Docker Compose 通常需要下载其二进制文件并将其放在系统的可执行路径下，如下所示：</p>
+<ol>
+<li><strong>下载 Docker Compose</strong>（首先需要确定需要的版本号，可以在 Docker Compose 的 GitHub 发布页面找到）：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<ol start="2">
+<li><strong>给予可执行权限</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<ol start="3">
+<li><strong>创建软链接</strong>（可选，如果 <code>/usr/bin</code> 不在您的 PATH 中）：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre>
+<ol start="4">
+<li><strong>检查 Docker Compose 版本</strong>：</li>
+</ol>
+<pre class="line-numbers"><code class="language-sh">docker-compose --version
+</code></pre>
+<p>以上步骤安装的是 Docker 和 Docker Compose 的特定版本，如需其他版本请替换相应的版本号。你可以通过访问 Docker Compose 的 GitHub 仓库了解最新的版本号。</p>
+<p>请记住，由于网络原因，在中国大陆访问 GitHub 或 Docker 官方站点可能需要一些额外的步骤，比如设置代理或使用镜像源。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2023/05/09 20:32 下午</span>
                     <span>posted in&nbsp;</span> 
           				  
           					    <span class="posted-in"><a href='server.html'>服务器</a></span>
@@ -846,53 +970,6 @@ git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="nodejs-install.html">
-                
-                  <h1>node.js安装</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre class="line-numbers"><code class="language-shell">brew install node@8 
-node@8 is keg-only, which means it was not symlinked into /usr/local,
-because this is an alternate version of another formula.
-
-If you need to have node@8 first in your PATH run:
-  echo 'export PATH=&quot;/usr/local/opt/node@8/bin:$PATH&quot;' &gt;&gt; ~/.bash_profile
-
-For compilers to find node@8 you may need to set:
-  export LDFLAGS=&quot;-L/usr/local/opt/node@8/lib&quot;
-  export CPPFLAGS=&quot;-I/usr/local/opt/node@8/include&quot;
-</code></pre>
-<h2><a id="nvm" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>nvm</h2>
-<pre class="line-numbers"><code class="language-plain_text">export NVM_DIR=&quot;/usr/local/Cellar/nvm/0.33.11/&quot;
-[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2018/12/27 08:16 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -904,7 +981,7 @@ For compilers to find node@8 you may need to set:
 			  </div>
 			  <div class="large-6 columns">
 			<p class="text-right" style="padding-top:25px;">
-			
+			 <a href="server_1.html">&raquo; Next Page</a> 
 			</p>
 			  </div>
 			</div>
@@ -974,6 +1051,12 @@ For compilers to find node@8 you may need to set:
 	      
 		      
 			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-squid.html">Ubuntu上安装Squid</a>
 			      </li>
 		     
@@ -993,12 +1076,6 @@ For compilers to find node@8 you may need to set:
 		      
 			      <li class="post">
 			        <a href="centos-7-edit-auto-ip.html">CentOS 7终端模式下，要配置自动获取IP地址</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="ubuntu-2204-edit-ip-config.html">Ubuntu 22.04 修改ip地址</a>
 			      </li>
 		     
 		  

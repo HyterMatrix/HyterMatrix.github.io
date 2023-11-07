@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令) - HyterMatrix
+  Ubuntu上安装Docker和Docker Compose - HyterMatrix
   
   </title>
   
@@ -151,14 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)</h1>
+          <h1>Ubuntu上安装Docker和Docker Compose</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2019/11/12 01:02 上午</span>
+          <span class="date">2023/11/07 20:14 下午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -171,21 +171,47 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。</p>
+      <p>要在Ubuntu上安装Docker和Docker Compose，你可以按照以下步骤操作：</p>
 <span id="more"></span><!-- more -->
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器</h2>
-<p>macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决 时间机器备份速度太慢的问题</h2>
-<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。</p>
-<p>其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器备份加速命令</h2>
-<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
+<h3><a id="%E5%AE%89%E8%A3%85docker" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Docker</h3>
+<p>首先，更新现有的包列表：</p>
+<pre class="line-numbers"><code class="language-bash">sudo apt update
 </code></pre>
-<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
+<p>接着，安装一些允许<code>apt</code>通过HTTPS使用仓库的包：</p>
+<pre class="line-numbers"><code class="language-bash">sudo apt install apt-transport-https ca-certificates curl software-properties-common
 </code></pre>
-<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
+<p>然后，添加Docker的官方GPG密钥：</p>
+<pre class="line-numbers"><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre>
+<p>添加Docker仓库到APT源：</p>
+<pre class="line-numbers"><code class="language-bash">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
+</code></pre>
+<p>再次更新包数据库：</p>
+<pre class="line-numbers"><code class="language-bash">sudo apt update
+</code></pre>
+<p>最后，安装Docker CE（社区版）：</p>
+<pre class="line-numbers"><code class="language-bash">sudo apt install docker-ce
+</code></pre>
+<p>将你的用户加入到docker组中，以便可以不使用<code>sudo</code>来运行docker命令：</p>
+<pre class="line-numbers"><code class="language-bash">sudo usermod -aG docker ${USER}
+</code></pre>
+<p>为了使这个改变生效，你可能需要注销并重新登录，或者重启你的系统。</p>
+<p>为了测试Docker是否正确安装，可以运行：</p>
+<pre class="line-numbers"><code class="language-bash">docker --version
+</code></pre>
+<h3><a id="%E5%AE%89%E8%A3%85docker-compose" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Docker Compose</h3>
+<p>从Docker Compose的GitHub仓库中获取最新版本的Docker Compose（请确保访问<a href="https://github.com/docker/compose">官方GitHub仓库</a>以获取最新版本号）：</p>
+<pre class="line-numbers"><code class="language-bash">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<p>请注意，上述命令中的版本号<code>v2.5.0</code>需要替换为最新的Docker Compose版本号。</p>
+<p>接下来，给予可执行权限到Docker Compose的二进制文件：</p>
+<pre class="line-numbers"><code class="language-bash">sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>检查Docker Compose是否正确安装：</p>
+<pre class="line-numbers"><code class="language-bash">docker-compose --version
+</code></pre>
+<p>这样你就完成了Docker和Docker Compose的安装过程。</p>
+<p>请记得在执行这些步骤之前，先确认你使用的Ubuntu版本支持当前的Docker版本，以及你是否有足够的权限来执行上述命令。如果你是作为普通用户执行的，可能需要在每个命令前面加上<code>sudo</code>。如果你刚刚将用户添加到docker组，你需要注销并重新登录或重启，这样组改变才能生效。</p>
 
 
     
@@ -196,16 +222,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="could-not-create-temporary-directory.html" 
-          title="Previous Post: Could not create temporary directory: 权限被拒绝">&laquo; Could not create temporary directory: 权限被拒绝</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="mac-mamp-install-libsodium-php.html" 
-          title="Next Post: Mac MAMP安装libsodium扩展">Mac MAMP安装libsodium扩展 &raquo;</a>
+          <a  href="ubuntu-install-squid.html" 
+          title="Next Post: Ubuntu上安装Squid">Ubuntu上安装Squid &raquo;</a>
       
       </p>
         </div>

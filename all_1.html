@@ -151,6 +151,102 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="xxxtxmgls-1.html">
+                
+                  <h1>第1章 信息化和信息系统</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="xxxtxmgls-1.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2022/02/08 23:31 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E5%B8%88.html'>信息系统项目管理师</a></span>
+          				  
+          					    <span class="posted-in"><a href='learning.html'>学习</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="international-vs-sm-encrypt.html">
+                
+                  <h1>国际加密VS国产加密</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<table>
+<thead>
+<tr>
+<th style="text-align: center"></th>
+<th style="text-align: center">对应国际算法</th>
+<th style="text-align: center">国密算法</th>
+<th style="text-align: center">应用范围及描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center">对称加密</td>
+<td style="text-align: center">AES(128),AES192,AES256,DES,3DES,</td>
+<td style="text-align: center">SM4，SM1(硬件专用)</td>
+<td style="text-align: center">128位数据加密</td>
+</tr>
+<tr>
+<td style="text-align: center">非对称加密</td>
+<td style="text-align: center">RAS，RSA4096</td>
+<td style="text-align: center">SM2</td>
+<td style="text-align: center">身份认证，数据签名，密码交换，256位椭圆曲线</td>
+</tr>
+<tr>
+<td style="text-align: center">摘要</td>
+<td style="text-align: center">SHA1，SHA-256，SHA-384,SHA-512</td>
+<td style="text-align: center">SM3</td>
+<td style="text-align: center">256位数据摘要计算，相当于SHA256</td>
+</tr>
+</tbody>
+</table>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2022/02/08 14:48 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="cfca-info.html">
                 
                   <h1>关于CFCA的一个说明</h1>
@@ -808,81 +904,6 @@ ssh2_scp_send($conn, $localfile, $filename, 0777)#上传文件
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="mac-clear-ssh-keygen.html">
-                
-                  <h1>MAC下ssh报错，清除原有ssh密钥方法</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>mac的终端下面使用ssh user@localhost输入密码不能正常登录解决.<br />
-可可能由于远程服务器更换了证书或者重装服务器了，导致了证书变更了。<br />
-解决方法：</p>
-<pre class="line-numbers"><code class="language-shell">ssh-keygen -R 192.168.1.203(你远程服务器的IP)
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/09 18:12 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="pem-to-pfx.html">
-                
-                  <h1>pem转pfx</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre class="line-numbers"><code class="language-shell">openssl req -new -key privkey.pem -out root.csr 
- 
-openssl x509 -req -days 3650 -sha1 -extensions v3_ca -signkey privkey.pem -in root.csr -out root.crt 
- 
-openssl pkcs12 -export -in root.crt -inkey privkey.pem -out  an.pfx 
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/03 17:15 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -964,6 +985,12 @@ openssl pkcs12 -export -in root.crt -inkey privkey.pem -out  an.pfx
 	      
 		      
 			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-squid.html">Ubuntu上安装Squid</a>
 			      </li>
 		     
@@ -983,12 +1010,6 @@ openssl pkcs12 -export -in root.crt -inkey privkey.pem -out  an.pfx
 		      
 			      <li class="post">
 			        <a href="centos-7-edit-auto-ip.html">CentOS 7终端模式下，要配置自动获取IP地址</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="ubuntu-2204-edit-ip-config.html">Ubuntu 22.04 修改ip地址</a>
 			      </li>
 		     
 		  

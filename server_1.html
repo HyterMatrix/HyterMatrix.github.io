@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令) - HyterMatrix
+  服务器 - HyterMatrix
   
   </title>
   
@@ -142,88 +142,78 @@
        
 
  <script type="text/javascript">
-  $(function(){
-    $('#menu_item_index').addClass('is_active');
-  });
+	$(function(){
+		$('#menu_item_index').addClass('is_active');
+	});
 </script>
 <div class="row">
-  <div class="large-8 medium-8 columns">
-      <div class="markdown-body article-wrap">
-       <div class="article">
-          
-          <h1>Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)</h1>
-     
-        <div class="read-more clearfix">
-          <span class="date">2019/11/12 01:02 上午</span>
+	<div class="large-8 medium-8 columns">
+		<div class="markdown-body home-categories">
+		
+			<div class="article">
+                <a class="clearlink" href="nodejs-install.html">
+                
+                  <h1>node.js安装</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre class="line-numbers"><code class="language-shell">brew install node@8 
+node@8 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
 
-          <span>posted in&nbsp;</span> 
-          
-              <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-           
-         
-          <span class="comments">
-            
+If you need to have node@8 first in your PATH run:
+  echo 'export PATH=&quot;/usr/local/opt/node@8/bin:$PATH&quot;' &gt;&gt; ~/.bash_profile
 
-            
-          </span>
-
-        </div>
-      </div><!-- article -->
-
-      <div class="article-content">
-      <p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。</p>
-<span id="more"></span><!-- more -->
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器</h2>
-<p>macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
-<h2><a id="%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决 时间机器备份速度太慢的问题</h2>
-<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。</p>
-<p>其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
-<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器备份加速命令</h2>
-<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
+For compilers to find node@8 you may need to set:
+  export LDFLAGS=&quot;-L/usr/local/opt/node@8/lib&quot;
+  export CPPFLAGS=&quot;-I/usr/local/opt/node@8/include&quot;
 </code></pre>
-<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
-<pre class="line-numbers"><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
+<h2><a id="nvm" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>nvm</h2>
+<pre class="line-numbers"><code class="language-plain_text">export NVM_DIR=&quot;/usr/local/Cellar/nvm/0.33.11/&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
 </code></pre>
-<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/12/27 08:16 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+              
 
 
-    
-
-      </div>
-
-      <div class="row">
-        <div class="large-6 columns">
-        <p class="text-left" style="padding:15px 0px;">
-      
-          <a href="could-not-create-temporary-directory.html" 
-          title="Previous Post: Could not create temporary directory: 权限被拒绝">&laquo; Could not create temporary directory: 权限被拒绝</a>
-      
-        </p>
-        </div>
-        <div class="large-6 columns">
-      <p class="text-right" style="padding:15px 0px;">
-      
-          <a  href="mac-mamp-install-libsodium-php.html" 
-          title="Next Post: Mac MAMP安装libsodium扩展">Mac MAMP安装libsodium扩展 &raquo;</a>
-      
-      </p>
-        </div>
-      </div>
-      <div class="comments-wrap">
-        <div class="share-comments">
-          
-
-          
-
-          
-        </div>
-      </div>
-    </div><!-- article-wrap -->
-  </div><!-- large 8 -->
-
-
-
+			<div class="row">
+			  <div class="large-6 columns">
+			  <p class="text-left" style="padding-top:25px;">
+			   <a href="server.html">&laquo; Prev Page</a>  
+			  </p>
+			  </div>
+			  <div class="large-6 columns">
+			<p class="text-right" style="padding-top:25px;">
+			
+			</p>
+			  </div>
+			</div>
+		</div>
+	</div><!-- large 8 -->
 
  <div class="large-4 medium-4 columns">
   <div class="hide-for-small">

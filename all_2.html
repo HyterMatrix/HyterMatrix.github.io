@@ -151,6 +151,81 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="mac-clear-ssh-keygen.html">
+                
+                  <h1>MAC下ssh报错，清除原有ssh密钥方法</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>mac的终端下面使用ssh user@localhost输入密码不能正常登录解决.<br />
+可可能由于远程服务器更换了证书或者重装服务器了，导致了证书变更了。<br />
+解决方法：</p>
+<pre class="line-numbers"><code class="language-shell">ssh-keygen -R 192.168.1.203(你远程服务器的IP)
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/07/09 18:12 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="pem-to-pfx.html">
+                
+                  <h1>pem转pfx</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre class="line-numbers"><code class="language-shell">openssl req -new -key privkey.pem -out root.csr 
+ 
+openssl x509 -req -days 3650 -sha1 -extensions v3_ca -signkey privkey.pem -in root.csr -out root.crt 
+ 
+openssl pkcs12 -export -in root.crt -inkey privkey.pem -out  an.pfx 
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/07/03 17:15 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="php-ping-code.html">
                 
                   <h1>PHP代码 ping 域名</h1>
@@ -824,73 +899,6 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="swift-learning-7.html">
-                
-                  <h1>Swift编程入门（7）可空类型</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p><code>可空类型（optional）</code>是Swift的独特特性，用来指定某个实例可能没有值。看到可空类型时，你会知道该实例一定：要么有值并且已经可用，要么没有值。如果一个实例没有值，就称其为nil。<br />
-任何类型都可以用可空类型来说明一个实例可能是nil。这个特性将Swift和Objective-C区分开来，后者只允许对象是nil。</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="swift-learning-7.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2018/12/15 15:39 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="swift-learning-6.html">
-                
-                  <h1>Swift编程入门（6）字符串</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>在编程过程中，文本内容是用字符串表示的。你已经见到并用过字符串。比如，&quot;Hello, playground&quot;是一个字符串。跟所有字符串一样，可以认为它是字符的有序集合。实际上，Swift字符串本身并不是集合，但是其底层内容确实以集合形式存在，而字符串类型提供了多种视角来一窥究竟。</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="swift-learning-6.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2018/12/13 19:53 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -972,6 +980,12 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 	      
 		      
 			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-squid.html">Ubuntu上安装Squid</a>
 			      </li>
 		     
@@ -991,12 +1005,6 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 		      
 			      <li class="post">
 			        <a href="centos-7-edit-auto-ip.html">CentOS 7终端模式下，要配置自动获取IP地址</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="ubuntu-2204-edit-ip-config.html">Ubuntu 22.04 修改ip地址</a>
 			      </li>
 		     
 		  
