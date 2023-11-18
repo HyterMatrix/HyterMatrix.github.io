@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-11-08T03:00:09+08:00</updated>
+  <updated>2023-11-18T23:09:35+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -48,9 +48,9 @@
 </code></pre>
 <h3><a id="%E5%AE%89%E8%A3%85docker-compose" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Docker Compose</h3>
 <p>从Docker Compose的GitHub仓库中获取最新版本的Docker Compose（请确保访问<a href="https://github.com/docker/compose">官方GitHub仓库</a>以获取最新版本号）：</p>
-<pre class="line-numbers"><code class="language-bash">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+<pre class="line-numbers"><code class="language-bash">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
 </code></pre>
-<p>请注意，上述命令中的版本号<code>v2.5.0</code>需要替换为最新的Docker Compose版本号。</p>
+<p>请注意，上述命令中的版本号<code>v2.23.0</code>需要替换为最新的Docker Compose版本号。</p>
 <p>接下来，给予可执行权限到Docker Compose的二进制文件：</p>
 <pre class="line-numbers"><code class="language-bash">sudo chmod +x /usr/local/bin/docker-compose
 </code></pre>
@@ -408,6 +408,8 @@ network:
     <id>https://hyter.me/centos-7-install-docker-and-docker-compose.html</id>
     <content type="html"><![CDATA[
 <p>在 CentOS 7 上安装 Docker 和 Docker Compose 需要一系列的步骤。以下是安装 Docker 的步骤：</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%9F%BA%E7%A1%80%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基础步骤</h2>
 <ol>
 <li><strong>更新软件包索引</strong>：</li>
 </ol>
@@ -466,6 +468,10 @@ network:
 </code></pre>
 <p>以上步骤安装的是 Docker 和 Docker Compose 的特定版本，如需其他版本请替换相应的版本号。你可以通过访问 Docker Compose 的 GitHub 仓库了解最新的版本号。</p>
 <p>请记住，由于网络原因，在中国大陆访问 GitHub 或 Docker 官方站点可能需要一些额外的步骤，比如设置代理或使用镜像源。</p>
+<h2><a id="%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>快速安装步骤</h2>
+<pre class="line-numbers"><code class="language-plain_text">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+</code></pre>
+<p>嘿嘿</p>
 
 ]]></content>
   </entry>
