@@ -151,6 +151,54 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="git-diff-file-tar.html">
+                
+                  <h1>如何使用Git把某一次commit修改过的文件打包</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>把新增加的文件使用git add添加进改动</p>
+<p>使用git commit提交改动</p>
+<p>使用<code>git log</code>查看提交的commit id</p>
+<p>使用命令</p>
+<pre class="line-numbers"><code class="language-git">git diff-tree -r --no-commit-id --name-only [commit id] | xargs tar -rf mytarfile.tar
+
+# or
+
+git diff [old commit id] [commit id]  --name-only | xargs tar -czvf update.tar.gz
+
+# 单次提交打包
+git diff HEAD HEAD^ --name-only | xargs tar -rf update.tar
+
+# 不同的分支
+git diff --name-only E history2 | xargs tar -zcvf diff.tar.gz
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/06/04 09:38 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="nodejs-install.html">
                 
                   <h1>node.js安装</h1>
@@ -278,6 +326,12 @@ For compilers to find node@8 you may need to set:
 	      
 		      
 			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
 			      </li>
 		     
@@ -297,12 +351,6 @@ For compilers to find node@8 you may need to set:
 		      
 			      <li class="post">
 			        <a href="centos7-edit-hostname.html">在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos-7-edit-auto-ip.html">CentOS 7终端模式下，要配置自动获取IP地址</a>
 			      </li>
 		     
 		  
@@ -378,7 +426,7 @@ Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来<
     </script>
 
     
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+
 <script>
 var _hmt = _hmt || [];
 (function() {

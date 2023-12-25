@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  Docker启动、关闭、停止、删除 所有容器 - HyterMatrix
+  在Ubuntu上挂载远程SMB文件夹 - HyterMatrix
   
   </title>
   
@@ -151,10 +151,10 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>Docker启动、关闭、停止、删除 所有容器</h1>
+          <h1>在Ubuntu上挂载远程SMB文件夹</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2023/02/05 02:09 上午</span>
+          <span class="date">2023/12/26 03:05 上午</span>
 
           <span>posted in&nbsp;</span> 
           
@@ -171,26 +171,84 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <pre class="line-numbers"><code class="language-bash">docker中 启动所有的容器命令
-docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
- 
- 
-docker中 关闭所有的容器命令
-docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
- 
-docker中 删除所有的容器命令
-docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
- 
-docker中 删除所有的镜像
-docker rmi $(docker images | awk '{print $3}' |tail -n +2)
- 
- 
-docker start $(docker ps -aq) # 启动所有容器
- 
-docker start $(docker ps -aq -f status=exited) # 启动所有状态为exited 的容器，和上面的命令效果一致
- 
-dockerrm$(docker ps-q --filter “status=exited”) 
+      <div class="mweb_toc"><ul>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#%E5%8D%B8%E8%BD%BD">卸载</a></li>
+</ul>
+</div>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%8C%82%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>挂载</h2>
+<p>在Ubuntu上挂载远程SMB文件夹的过程通常分为以下几个步骤：</p>
+<ol>
+<li>
+<p><strong>安装必要的软件包</strong>：<br />
+首先，确保已安装<code>cifs-utils</code>软件包。这个包提供了挂载SMB共享所需的工具。你可以使用以下命令来安装它：</p>
+<pre class="line-numbers"><code class="language-bash">sudo apt-get update
+sudo apt-get install cifs-utils
 </code></pre>
+</li>
+<li>
+<p><strong>创建挂载点</strong>：<br />
+接下来，创建一个本地目录来作为远程SMB共享的挂载点。例如：</p>
+<pre class="line-numbers"><code class="language-bash">sudo mkdir /mnt/myshare
+</code></pre>
+</li>
+<li>
+<p><strong>编辑fstab文件（可选）</strong>：<br />
+如果你希望在每次启动时自动挂载SMB共享，可以编辑<code>/etc/fstab</code>文件。在文件末尾添加一行类似以下格式的内容：</p>
+<pre class="line-numbers"><code class="language-bash">//server/share /mnt/myshare cifs credentials=/path/to/credentials,file_mode=0777,dir_mode=0777 0 0
+</code></pre>
+<p>其中，<code>server</code>是SMB服务器的地址，<code>share</code>是共享的名称，<code>/mnt/myshare</code>是你创建的本地挂载点，<code>/path/to/credentials</code>是一个包含用户名和密码的文件路径。</p>
+</li>
+<li>
+<p><strong>创建凭证文件（如果编辑了fstab）</strong>：<br />
+如果你决定编辑<code>fstab</code>文件，需要创建一个包含SMB登录凭证的文件。这个文件通常包含以下内容：</p>
+<pre class="line-numbers"><code class="language-bash">username=your_username
+password=your_password
+</code></pre>
+<p>确保这个文件的权限设置得当，以避免安全风险。</p>
+</li>
+<li>
+<p><strong>手动挂载（如果没有编辑fstab）</strong>：<br />
+如果你不希望共享在每次启动时自动挂载，可以手动挂载它。使用以下命令：</p>
+<pre class="line-numbers"><code class="language-bash">sudo mount -t cifs -o username=your_username,password=your_password //server/share /mnt/myshare
+</code></pre>
+</li>
+<li>
+<p><strong>访问和使用共享</strong>：<br />
+一旦共享被挂载，你就可以像访问本地文件系统一样访问和使用它。</p>
+</li>
+</ol>
+<h2><a id="%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>卸载</h2>
+<p>要取消挂载（卸载）一个已经挂载的SMB共享，你可以使用<code>umount</code>命令。这是一个标准的命令，用于卸载任何类型的文件系统，包括SMB共享。以下是具体步骤：</p>
+<ol>
+<li>
+<p><strong>使用umount命令</strong>：<br />
+打开终端，并输入以下命令来卸载SMB共享：</p>
+<pre class="line-numbers"><code class="language-bash">sudo umount /mnt/myshare
+</code></pre>
+<p>其中<code>/mnt/myshare</code>是你之前创建的挂载点。</p>
+</li>
+<li>
+<p><strong>确认卸载成功</strong>：<br />
+卸载完成后，你可以使用<code>df -h</code>或<code>mount</code>命令来检查共享是否已经被成功卸载。如果共享不再出现在列表中，这表示它已经被卸载。</p>
+</li>
+<li>
+<p><strong>处理卸载问题</strong>：</p>
+<ul>
+<li>如果在尝试卸载时遇到“设备正忙”的错误，这通常意味着有进程正在使用挂载点。确保没有任何进程（如文件浏览器或命令行工具）正在访问该挂载点，然后再次尝试卸载。</li>
+<li>如果仍然无法卸载，你可以使用<code>lsof</code>命令查看哪个进程正在使用挂载点：
+<pre class="line-numbers"><code class="language-bash">sudo lsof /mnt/myshare
+</code></pre>
+然后可以决定是否关闭相关进程或终止相关会话，然后再尝试卸载。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动卸载（可选）</strong>：<br />
+如果你的系统支持，你也可以使用<code>umount -a</code>命令卸载所有已挂载的文件系统。但请小心使用这个命令，因为它会尝试卸载所有挂载点，包括系统自动挂载的点。</p>
+</li>
+</ol>
+<p>在处理挂载和卸载操作时，请确保你了解命令的含义和可能的影响。错误的操作可能会导致数据丢失或系统不稳定。如果你不确定，建议咨询经验丰富的用户或管理员。</p>
 
 
     
@@ -201,16 +259,13 @@ dockerrm$(docker ps-q --filter “status=exited”)
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="centos-7-install-docker-and-docker-compose.html" 
-          title="Previous Post: CentOS 7 上安装 Docker 和 Docker Compose">&laquo; CentOS 7 上安装 Docker 和 Docker Compose</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="cn-npt-server-url.html" 
-          title="Next Post: 常见的NTP授时服务器地址">常见的NTP授时服务器地址 &raquo;</a>
+          <a  href="ubuntu-install-docker-and-docker-compose.html" 
+          title="Next Post: Ubuntu上安装Docker和Docker Compose">Ubuntu上安装Docker和Docker Compose &raquo;</a>
       
       </p>
         </div>
