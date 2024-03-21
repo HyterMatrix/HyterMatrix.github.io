@@ -4,13 +4,76 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2023-12-29T15:18:27+08:00</updated>
+  <updated>2024-03-21T16:02:17+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[SVN 打包两个版本之间差异的脚本]]></title>
+    <link href="https://hyter.me/svn-diff-pack.html"/>
+    <updated>2024-03-21T15:38:47+08:00</updated>
+    <id>https://hyter.me/svn-diff-pack.html</id>
+    <content type="html"><![CDATA[
+<p>一个SVN管理的打包两个版本之间差异的脚本</p>
+<span id="more"></span><!-- more -->
+<pre class="line-numbers"><code class="language-plain_text">#!/bin/bash
+
+# 获取脚本所在目录的路径
+SCRIPT_DIR=$(dirname &quot;$0&quot;)
+
+# SVN仓库的URL
+REPO_URL=&quot;&quot;
+
+# 起始和结束的修订版本号
+REV_START=&quot;&quot;
+REV_END=&quot;&quot;
+
+# SVN 用户名和密码（为了安全考虑，请通过环境变量或其他安全方式提供这些信息）
+SVN_USERNAME=&quot;&quot;
+SVN_PASSWORD=&quot;&quot;
+
+# 临时目录，用于存放导出的文件
+TEMP_DIR=&quot;$SCRIPT_DIR/svn_diffs_temp&quot;
+
+# 打包文件的名称，现在包括脚本所在目录的路径
+PACKAGE_NAME=&quot;$SCRIPT_DIR/svn_diffs_${REV_START}_to_${REV_END}.tar.gz&quot;
+
+# 创建临时目录
+mkdir -p $TEMP_DIR
+# 获取两个修订版本之间差异文件的列表，并循环处理每个文件
+svn diff -r ${REV_START}:${REV_END} --summarize $REPO_URL --username $SVN_USERNAME --password $SVN_PASSWORD | while read line; do
+    # 提取文件状态和路径
+    FILE_STATUS=$(echo $line | awk '{print $1}')
+    FILE_PATH=$(echo $line | awk '{print $2}')
+
+    # 检查文件状态，只处理已修改（M）或已添加（A）的文件
+    if [[ &quot;$FILE_STATUS&quot; == &quot;M&quot; || &quot;$FILE_STATUS&quot; == &quot;A&quot; ]]; then
+        # 计算文件的相对路径
+        RELATIVE_PATH=${FILE_PATH#$REPO_URL/}
+        # 创建文件的目标目录
+        mkdir -p $TEMP_DIR/$(dirname $RELATIVE_PATH)
+        # 导出文件到目标目录，保留路径结构
+        svn export ${FILE_PATH}@${REV_END} $TEMP_DIR/$RELATIVE_PATH --username $SVN_USERNAME --password $SVN_PASSWORD
+    fi
+done
+
+# 将临时目录中的文件打包
+tar -czvf $PACKAGE_NAME -C $TEMP_DIR .
+
+# 清理临时目录
+rm -rf $TEMP_DIR
+
+echo &quot;差异包已创建: $PACKAGE_NAME&quot;
+
+
+</code></pre>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Centos下管理Python多环境]]></title>
@@ -1088,36 +1151,6 @@ git pull
 </code></pre>
 <p>git强制覆盖本地命令（单条执行）：</p>
 <pre class="line-numbers"><code class="language-plain_text">git fetch --all &amp;&amp; git reset --hard origin/master &amp;&amp; git pull
-</code></pre>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何统计项目代码行数]]></title>
-    <link href="https://hyter.me/count-code-lines.html"/>
-    <updated>2022-05-09T14:36:45+08:00</updated>
-    <id>https://hyter.me/count-code-lines.html</id>
-    <content type="html"><![CDATA[
-<pre class="line-numbers"><code class="language-plain_text">find . &quot;(&quot; -name &quot;*&quot; &quot;)&quot; -print | xargs wc -l
-</code></pre>
-<p>1、打开终端，用cd命令 定位到工程所在的目录。</p>
-<p>2、调用以下命令即可把每个源代码文件行数及总数统计出来</p>
-<pre class="line-numbers"><code class="language-plain_text">（1）包括空行（会列出每个文件的代码行数）：
-
-find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs wc -l
-
-（2）不包括空行（只会出现总行数）：
-
-find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs grep -v &quot;^$&quot;|wc -l
-
-//如果有其它.后缀文件可以继续添加如-or -name &quot;*.java&quot;
-</code></pre>
-<p>3、回车</p>
-<pre class="line-numbers"><code class="language-plain_text">／*
-grep -v &quot;^$&quot;去掉空行
-注释也在代码行数统计之内
-*／
 </code></pre>
 
 ]]></content>

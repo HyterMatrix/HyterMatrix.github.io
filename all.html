@@ -151,6 +151,39 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="svn-diff-pack.html">
+                
+                  <h1>SVN 打包两个版本之间差异的脚本</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>一个SVN管理的打包两个版本之间差异的脚本</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="svn-diff-pack.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2024/03/21 15:38 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="centos-install-pyenv.html">
                 
                   <h1>Centos下管理Python多环境</h1>
@@ -861,58 +894,6 @@ git pull
                 </div>
               </div><!-- article -->
         
-			<div class="article">
-                <a class="clearlink" href="count-code-lines.html">
-                
-                  <h1>如何统计项目代码行数</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre class="line-numbers"><code class="language-plain_text">find . &quot;(&quot; -name &quot;*&quot; &quot;)&quot; -print | xargs wc -l
-</code></pre>
-<p>1、打开终端，用cd命令 定位到工程所在的目录。</p>
-<p>2、调用以下命令即可把每个源代码文件行数及总数统计出来</p>
-<pre class="line-numbers"><code class="language-plain_text">（1）包括空行（会列出每个文件的代码行数）：
-
-find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs wc -l
-
-（2）不包括空行（只会出现总行数）：
-
-find . &quot;(&quot; -name &quot;*.m&quot; -or -name &quot;*.mm&quot; -or -name &quot;*.c&quot; -or -name &quot;*.h&quot; -or -name &quot;*.xib&quot; -or -name &quot;*.pch&quot; &quot;)&quot; -print | xargs grep -v &quot;^$&quot;|wc -l
-
-//如果有其它.后缀文件可以继续添加如-or -name &quot;*.java&quot;
-</code></pre>
-<p>3、回车</p>
-<pre class="line-numbers"><code class="language-plain_text">／*
-grep -v &quot;^$&quot;去掉空行
-注释也在代码行数统计之内
-*／
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2022/05/09 14:36 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
-          				   
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
               
 
 
@@ -994,6 +975,12 @@ grep -v &quot;^$&quot;去掉空行
 	      
 		      
 			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
 			      </li>
 		     
@@ -1013,12 +1000,6 @@ grep -v &quot;^$&quot;去掉空行
 		      
 			      <li class="post">
 			        <a href="ubuntu-install-squid.html">Ubuntu上安装Squid</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos7-install-squid.html">在Centos7 上安装 Squid</a>
 			      </li>
 		     
 		  

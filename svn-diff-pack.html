@@ -6,7 +6,7 @@
     <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
     <title>
     
-  匹配中国人姓名(可以比检测少数名族的姓名带"·"那种) - HyterMatrix
+  SVN 打包两个版本之间差异的脚本 - HyterMatrix
   
   </title>
   
@@ -151,16 +151,14 @@
       <div class="markdown-body article-wrap">
        <div class="article">
           
-          <h1>匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)</h1>
+          <h1>SVN 打包两个版本之间差异的脚本</h1>
      
         <div class="read-more clearfix">
-          <span class="date">2020/06/11 10:50 上午</span>
+          <span class="date">2024/03/21 15:38 下午</span>
 
           <span>posted in&nbsp;</span> 
           
-              <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          
-              <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
+              <span class="posted-in"><a href='server.html'>服务器</a></span>
            
          
           <span class="comments">
@@ -173,27 +171,58 @@
       </div><!-- article -->
 
       <div class="article-content">
-      <p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
+      <p>一个SVN管理的打包两个版本之间差异的脚本</p>
 <span id="more"></span><!-- more -->
-<p>PHP的代码</p>
-<pre class="line-numbers"><code class="language-php">function checkChineseName($name)
-{
-    if(!$name){
-        return false;
-    }
-   //有名字长度超过20算我输
-    if(mb_strlen($name) &lt; 2 || mb_strlen($name) &gt; 20){
-        return false;
-    }
-    if(preg_match('/^[\x{4e00}-\x{9fa5}]+[·?]?[\x{4e00}-\x{9fa5}]+$/u', $name,$matchers)){
-        return true;
-    }else{
-        return false;
-    }
-}
-</code></pre>
-<p>js的正则</p>
-<pre class="line-numbers"><code class="language-js">/^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/
+<pre class="line-numbers"><code class="language-plain_text">#!/bin/bash
+
+# 获取脚本所在目录的路径
+SCRIPT_DIR=$(dirname &quot;$0&quot;)
+
+# SVN仓库的URL
+REPO_URL=&quot;&quot;
+
+# 起始和结束的修订版本号
+REV_START=&quot;&quot;
+REV_END=&quot;&quot;
+
+# SVN 用户名和密码（为了安全考虑，请通过环境变量或其他安全方式提供这些信息）
+SVN_USERNAME=&quot;&quot;
+SVN_PASSWORD=&quot;&quot;
+
+# 临时目录，用于存放导出的文件
+TEMP_DIR=&quot;$SCRIPT_DIR/svn_diffs_temp&quot;
+
+# 打包文件的名称，现在包括脚本所在目录的路径
+PACKAGE_NAME=&quot;$SCRIPT_DIR/svn_diffs_${REV_START}_to_${REV_END}.tar.gz&quot;
+
+# 创建临时目录
+mkdir -p $TEMP_DIR
+# 获取两个修订版本之间差异文件的列表，并循环处理每个文件
+svn diff -r ${REV_START}:${REV_END} --summarize $REPO_URL --username $SVN_USERNAME --password $SVN_PASSWORD | while read line; do
+    # 提取文件状态和路径
+    FILE_STATUS=$(echo $line | awk '{print $1}')
+    FILE_PATH=$(echo $line | awk '{print $2}')
+
+    # 检查文件状态，只处理已修改（M）或已添加（A）的文件
+    if [[ &quot;$FILE_STATUS&quot; == &quot;M&quot; || &quot;$FILE_STATUS&quot; == &quot;A&quot; ]]; then
+        # 计算文件的相对路径
+        RELATIVE_PATH=${FILE_PATH#$REPO_URL/}
+        # 创建文件的目标目录
+        mkdir -p $TEMP_DIR/$(dirname $RELATIVE_PATH)
+        # 导出文件到目标目录，保留路径结构
+        svn export ${FILE_PATH}@${REV_END} $TEMP_DIR/$RELATIVE_PATH --username $SVN_USERNAME --password $SVN_PASSWORD
+    fi
+done
+
+# 将临时目录中的文件打包
+tar -czvf $PACKAGE_NAME -C $TEMP_DIR .
+
+# 清理临时目录
+rm -rf $TEMP_DIR
+
+echo &quot;差异包已创建: $PACKAGE_NAME&quot;
+
+
 </code></pre>
 
 
@@ -205,16 +234,13 @@
         <div class="large-6 columns">
         <p class="text-left" style="padding:15px 0px;">
       
-          <a href="docker-run-edit-config.html" 
-          title="Previous Post: 如何修改运行中的docker容器的端口映射和挂载目录">&laquo; 如何修改运行中的docker容器的端口映射和挂载目录</a>
-      
         </p>
         </div>
         <div class="large-6 columns">
       <p class="text-right" style="padding:15px 0px;">
       
-          <a  href="git-create-empty-branch.html" 
-          title="Next Post: 在Git下创建一个空分支">在Git下创建一个空分支 &raquo;</a>
+          <a  href="centos-install-pyenv.html" 
+          title="Next Post: Centos下管理Python多环境">Centos下管理Python多环境 &raquo;</a>
       
       </p>
         </div>
