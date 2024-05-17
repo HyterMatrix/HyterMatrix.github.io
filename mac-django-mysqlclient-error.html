@@ -1,0 +1,475 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Mac上Django2安装mysqlclient失败 解决方案 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Mac上Django2安装mysqlclient失败 解决方案</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/07/18 22:28 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='django.html'>Django</a></span>
+          
+              <span class="posted-in"><a href='python.html'>Python</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>今天安装了一下午的mysqlclient一直失败，直到晚上，现在把处理的流程记录一下。</p>
+<span id="more"></span><!-- more -->
+<pre><code class="language-sh"># 安装mysql驱动，你的电脑很可能已经安装过了
+brew install mysql-connector-c
+
+# 安装mysqlclient
+pip install mysqlclient
+</code></pre>
+<p>然后万恶的报错了，你懂的。</p>
+<pre><code class="language-sh">Collecting mysqlclient
+  Using cached mysqlclient-1.4.2.tar.gz
+    Complete output from command python setup.py egg_info:
+    Traceback (most recent call last):
+      File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;
+      File &quot;/private/var/folders/rv/a_a/T/pip-build-nyaa8t95/mysqlclient/setup.py&quot;, line 17, in &lt;module&gt;
+        metadata, options = get_config()
+      File &quot;/private/var/folders/rv/a_a/T/pip-build-nyaa8t95/mysqlclient/setup_posix.py&quot;, line 54, in get_config
+        libraries = [dequote(i[2:]) for i in libs if i.startswith('-l')]
+      File &quot;/private/var/folders/rv/a_a/T/pip-build-nyaa8t95/mysqlclient/setup_posix.py&quot;, line 54, in &lt;listcomp&gt;
+        libraries = [dequote(i[2:]) for i in libs if i.startswith('-l')]
+      File &quot;/private/var/folders/rv/a_a/T/pip-build-nyaa8t95/mysqlclient/setup_posix.py&quot;, line 12, in dequote
+        if s[0] in &quot;\&quot;'&quot; and s[0] == s[-1]:
+    IndexError: string index out of range
+</code></pre>
+<p>出现这个问题的原因是mysql-connector-c中配置项有误。</p>
+<p>具体针对mac来说，你需要顺藤摸瓜找到mysql_config的真身，即/usr/local/Cellar/mysql-connector-c/6.1.11/bin/mysql_config</p>
+<pre><code class="language-sh">cd /usr/local/Cellar/mysql-connector-c/6.1.11/bin/mysql_config
+
+# 修改前先备份
+cp  mysql_config mysql_config.backup
+
+# 使用vi修改配置文件
+sudo vi mysql_config
+
+# 114 gg跳转到 114行
+
+将
+&gt; # Create options 
+&gt; libs=&quot;-L$pkglibdir&quot;
+&gt; libs=&quot;$libs -l &quot;
+
+替换为
+
+&gt; # Create options 
+&gt; libs=&quot;-L$pkglibdir&quot;
+&gt; libs=&quot;$libs -lmysqlclient -lssl -lcrypto&quot;
+
+
+
+然后保存即可。
+
+#  然后重新运行mysqlclient安装命令
+pip install mysqlclient
+</code></pre>
+<p>然后还是报错了</p>
+<pre><code class="language-sh">    ld: library not found for -lssl
+    clang: error: linker command failed with exit code 1 (use -v to see invocation)
+    error: command 'gcc' failed with exit status 1
+    ----------------------------------------
+ERROR: Command &quot;/Users/wangxiaoming/Desktop/HyterMatrix/Python/mysite/venv/bin/python -u -c 'import setuptools, tokenize;__file__='&quot;'&quot;'/private/var/folders/q0/sp2k72516td35kgjr1h7kty00000gn/T/pip-install-kce8c8yd/mysqlclient/setup.py'&quot;'&quot;';f=getattr(tokenize, '&quot;'&quot;'open'&quot;'&quot;', open)(__file__);code=f.read().replace('&quot;'&quot;'\r\n'&quot;'&quot;', '&quot;'&quot;'\n'&quot;'&quot;');f.close();exec(compile(code, __file__, '&quot;'&quot;'exec'&quot;'&quot;'))' install --record /private/var/folders/q0/sp2k72516td35kgjr1h7kty00000gn/T/pip-record-k3eo05p8/install-record.txt --single-version-externally-managed --compile --install-headers /Users/wangxiaoming/Desktop/HyterMatrix/Python/mysite/venv/include/site/python3.6/mysqlclient&quot; failed with error code 1 in /private/var/folders/q0/sp2k72516td35kgjr1h7kty00000gn/T/pip-install-kce8c8yd/mysqlclient/
+</code></pre>
+<p>似乎没有安装gcc ，安装gcc之前要看装xcode 命令行工具</p>
+<pre><code class="language-sh">xcode-select --install
+
+# 然后
+brew install gcc
+
+#  然后重新运行mysqlclient安装命令
+pip install mysqlclient
+</code></pre>
+<p>然后。。还是报错了</p>
+<pre><code class="language-sh"> ERROR: Complete output from command /Users/wangxiaoming/Desktop/HyterMatrix/Python/mysite/venv/bin/python -u -c 'import setuptools, tokenize;__file__='&quot;'&quot;'/private/var/folders/q0/sp2k72516td35kgjr1h7kty00000gn/T/pip-install-db871pdy/mysqlclient/setup.py'&quot;'&quot;';f=getattr(tokenize, '&quot;'&quot;'open'&quot;'&quot;', open)(__file__);code=f.read().replace('&quot;'&quot;'\r\n'&quot;'&quot;', '&quot;'&quot;'\n'&quot;'&quot;');f.close();exec(compile(code, __file__, '&quot;'&quot;'exec'&quot;'&quot;'))' install --record /private/var/folders/q0/sp2k72516td35kgjr1h7kty00000gn/T/pip-record-jp4c8fy1/install-record.txt --single-version-externally-managed --compile --install-headers /Users/wangxiaoming/Desktop/HyterMatrix/Python/mysite/venv/include/site/python3.6/mysqlclient:
+</code></pre>
+<p>这里是需要没有openssl的环境变量。如果是用的venv虚拟环境，需要在虚拟环境里添加</p>
+<pre><code class="language-sh">export LDFLAGS=&quot;-L/usr/local/opt/openssl/lib&quot;
+export CPPFLAGS=&quot;-I/usr/local/opt/openssl/include&quot;
+
+#  然后重新运行mysqlclient安装命令
+pip install mysqlclient
+</code></pre>
+<p>这一次终于出现了</p>
+<pre><code class="language-sh">Successfully installed mysqlclient-1.4.2.post1
+</code></pre>
+<p>泪奔了。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="beyond-compare-mac-pojie.html" 
+          title="Previous Post: Beyond Compare在Mac OS系统下永久试用">&laquo; Beyond Compare在Mac OS系统下永久试用</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="mac-pip-source.html" 
+          title="Next Post: Mac 设置阿里pip源">Mac 设置阿里pip源 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

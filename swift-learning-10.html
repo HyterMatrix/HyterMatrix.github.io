@@ -1,0 +1,443 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（10）集合 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（10）集合</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/20 21:18 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>Swift提供的第三种容器类型是集合（set）。集合是一组互不相同的实例的无序组合。这个定义将其与数组区别开来，后者是有序的，并且可以容纳重复的值。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88">创建集合</a></li>
+<li><a href="#%E8%BF%90%E7%94%A8%E9%9B%86%E5%90%88">运用集合</a>
+<ul>
+<li><a href="#%E5%90%88%E5%B9%B6">合并</a></li>
+<li><a href="#%E4%BA%A4%E9%9B%86">交集</a></li>
+<li><a href="#%E4%B8%8D%E7%9B%B8%E4%BA%A4">不相交</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2><a id="%E5%88%9B%E5%BB%BA%E9%9B%86%E5%90%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建集合</h2>
+<pre><code class="language-Swift">import Cocoa 
+var groceryBag = Set&lt;String&gt;() 
+</code></pre>
+<p>我们创建了一个Set实例，声明其持有String。</p>
+<p>我们用<code>用insert(_:)方法</code>可以往这个集合里添加一些数据</p>
+<pre><code class="language-Swift">groceryBag.insert(&quot;Apples&quot;) 
+groceryBag.insert(&quot;Oranges&quot;) 
+groceryBag.insert(&quot;Pineapple&quot;) 
+</code></pre>
+<p>遍历集合</p>
+<pre><code class="language-Swift">for food in groceryBag { 
+    print(food) 
+} 
+</code></pre>
+<p>新的创建集合</p>
+<pre><code class="language-Swift">var groceryBag = Set([&quot;Apples&quot;, &quot;Oranges&quot;, &quot;Pineapple&quot;]) 
+var groceryBag: Set = [&quot;Apples&quot;, &quot;Oranges&quot;, &quot;Pineapple&quot;] 
+
+</code></pre>
+<h2><a id="%E8%BF%90%E7%94%A8%E9%9B%86%E5%90%88" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>运用集合</h2>
+<p>Set类型提供了contains(_:)方法来查看其内部是否有某个特殊的元素</p>
+<pre><code class="language-Swift">let hasBananas = groceryBag.contains(&quot;Bananas&quot;) 
+</code></pre>
+<p>hasBananas的值为假，你的groceryBag里面没有香蕉。</p>
+<h3><a id="%E5%90%88%E5%B9%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>合并</h3>
+<pre><code class="language-Swift">let friendsGroceryBag = Set([&quot;Bananas&quot;, &quot;Cereal&quot;, &quot;Milk&quot;, &quot;Oranges&quot;]) 
+let commonGroceryBag = groceryBag.union(friendsGroceryBag) 
+</code></pre>
+<p>这段代码增加了一个新的Set常量来表示你朋友的食品袋，并且用<code>union(_:)方法</code>把两个集合合并起来。<code>union(_:)</code>是Set类型的一个方法，接受一个SequenceType参数，并返回一个新的Set实例。该实例包含了两个容器中去重后的元素。简单地说，你可以把字典和集合传给<code>union(_:)</code>并得到一个包含合并后元素的集合，不会有重复。</p>
+<h3><a id="%E4%BA%A4%E9%9B%86" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>交集</h3>
+<pre><code class="language-Swift">let roommatesGroceryBag = Set([&quot;Apples&quot;, &quot;Bananas&quot;, &quot;Cereal&quot;,&quot;Toothpaste&quot;]) 
+let itemsToReturn = commonGroceryBag.intersection(roommatesGroceryBag) 
+</code></pre>
+<p>集合提供了<code>intersection(_:)</code>方法来找出同时存在于两个容器中的元素，并用一个新的Set实例返回这些重复的元素。图11-2用韦恩图的形式说明了这种关系。你室友的食品袋和你的有几样重复，不过不是所有都重复。</p>
+<h3><a id="%E4%B8%8D%E7%9B%B8%E4%BA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>不相交</h3>
+<pre><code class="language-Swift">let yourSecondBag = Set([&quot;Berries&quot;, &quot;Yogurt&quot;]) 
+let roommatesSecondBag = Set([&quot;Grapes&quot;, &quot;Honey&quot;]) 
+let disjoint = yourSecondBag.isDisjoint(with: roommatesSecondBag) 
+</code></pre>
+<p>根据是否有集合（如yourSecondBag）的任何成员出现在作为参数提供给isDisjoint的序列（如roommatesSecondBag）中，Set的isDisjoint(with:)方法会返回真或假。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-11.html" 
+          title="Previous Post: Swift编程入门（11）函数">&laquo; Swift编程入门（11）函数</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-9.html" 
+          title="Next Post: Swift编程入门（9）字典">Swift编程入门（9）字典 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,558 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（3）数 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（3）数</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/09 17:05 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>数是计算机语言的基础，也是软件开发的重要组成部分。<br />
+数用来记录温度的高低，判断一个句子用有多少个汉字。<br />
+数分两个基本类型：整数 和 浮点数</p>
+ <span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E6%95%B4%E6%95%B0">整数</a>
+<ul>
+<li><a href="#%E6%9C%89%E7%AC%A6%E5%8F%B7">有符号</a></li>
+</ul>
+</li>
+<li><a href="#%E5%88%9B%E5%BB%BA%E6%95%B4%E6%95%B0%E5%AE%9E%E4%BE%8B">创建整数实例</a>
+<ul>
+<li><a href="#%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E5%BC%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E7%B1%BB%E5%9E%8B">显示和隐式的声明类型</a></li>
+<li><a href="#%E6%98%BE%E5%BC%8F%E5%A3%B0%E6%98%8E%E5%85%B6%E4%BB%96%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B">显式声明其他整数类型</a></li>
+<li><a href="#%E7%94%A8%E9%9D%9E%E6%B3%95%E7%9A%84%E5%80%BC%E5%88%9B%E5%BB%BA%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B">用非法的值创建整数类型</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B4%E6%95%B0%E6%93%8D%E4%BD%9C%E7%AC%A6">整数操作符</a>
+<ul>
+<li><a href="#%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95">整数除法</a></li>
+<li><a href="#%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C%E7%AC%A6">快捷操作符</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B">转换整数类型</a></li>
+<li><a href="#%E6%B5%AE%E7%82%B9%E6%95%B0">浮点数</a></li>
+</ul>
+</div>
+<h2><a id="%E6%95%B4%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>整数</h2>
+<h3><a id="%E6%9C%89%E7%AC%A6%E5%8F%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>有符号</h3>
+<p>整数是没有小数点和小数部分的数，也就是整个数。整数常常用来表示事物的数量。计算机所用的整数和你在别处用的整数有一个区别，那就是计算机的整数类型占据固定大小的内存，所以无法表示所有的整数——它们有最小值和最大值。</p>
+<pre><code class="language-Swift">import Cocoa
+
+print(&quot;The maximum Int value is \(Int.max).&quot;)
+print(&quot;The minimum Int value is \(Int.min).&quot;)
+</code></pre>
+<p>结果是</p>
+<pre><code class="language-Swift">The maximum Int value is 9223372036854775807
+The minimum Int value is -9223372036854775808
+</code></pre>
+<p>为什么会有最大值最小值？<br />
+首先，计算机中以二进制来保存整数（也就是0和1），因为macOS系统中Int是64位整数，所以它可以表示${2}^{64}$种可能的值。默认的Int类型是有符号的整数所以Int的最高位为符号位，<br />
+最大值为${2}^{0}$ + ${2}^{1}$ + ... + ${2}^{63}$<br />
+最小值为</p>
+<p>在iOS中，Int更复杂一些。苹果从iPhone 5S、iPad Air和带Retina屏的iPad mini开始引入64位设备，而更早的设备还是32位架构。32位架构中Int是32位整数，编译器会在构建程序时选择合适的Int长度。</p>
+<p>如果需要知道整数的精确长度，可以使用Swift的显式长度整数类型，比如Int32是Swift的32位有符号整型。用Int32来看看32位整数的最小和最大值，</p>
+<pre><code class="language-Swift">import Cocoa
+
+print(&quot;The maximum 32-bit Int value is \(Int32.max)&quot;)
+print(&quot;The minimum 32-bit Int value is \(Int32.min)&quot;)
+</code></pre>
+<p>结果</p>
+<pre><code class="language-Switf">The maximum 32-bit Int value is 2147483647
+The minimum 32-bit Int value is -2147483648
+</code></pre>
+<p>对于8位、16位和64位有符号整型，相应的还有Int8、Int16、Int64。需要知道整数长度时就用这些带长度的整型，比如使用某些算法（加密算法中比较常见）或者需要和其他计算机交换整数时（比如通过互联网发送数据）。这些类型不太常用，良好的Swift编程风格是在大部分情况下用Int</p>
+<p>###无符号<br />
+既然有<code>有符号整数</code>那么就也有<code>无符号整数</code><br />
+有符号整数和无符号整数的区别在于二进制层面最高位（对于8位整数来说是27）表示的2的次幂是正数还是负数。</p>
+<pre><code class="language-Swift">import Cocoa
+
+print(&quot;The maximum 32-bit Int value is \(UInt32.max)&quot;)
+print(&quot;The minimum 32-bit Int value is \(UInt32.min)&quot;)
+</code></pre>
+<p>结果</p>
+<pre><code class="language-Swift">The maximum 32-bit Int value is 4294967295
+The minimum 32-bit Int value is 0
+</code></pre>
+<p>所有无符号整型的最小值都是0，而N位的无符号整型最大值是${2^N}$ N位无符号整型的最大值是${2}^{64}$-1，等于18 446 744 073 709 551 615。<br />
+有符号整型和无符号整型的最大值和最小值之间有对应关系，UInt64的最大值是Int64的最大值和最小值绝对值之和。无论是有符号整型还是无符号整型，都有264种可能的值，但是有符号整型需要把一半可能的值留给负数用。</p>
+<h2><a id="%E5%88%9B%E5%BB%BA%E6%95%B4%E6%95%B0%E5%AE%9E%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建整数实例</h2>
+<h3><a id="%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E5%BC%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>显示和隐式的声明类型</h3>
+<pre><code class="language-Swift">let numberOfPage: Int = 10
+let numberOfChapters = 3
+</code></pre>
+<h3><a id="%E6%98%BE%E5%BC%8F%E5%A3%B0%E6%98%8E%E5%85%B6%E4%BB%96%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>显式声明其他整数类型</h3>
+<pre><code class="language-Swift">let numberOfPeople: UInt = 40
+let volumeAdjustment: Int32 = -1000
+</code></pre>
+<h3><a id="%E7%94%A8%E9%9D%9E%E6%B3%95%E7%9A%84%E5%80%BC%E5%88%9B%E5%BB%BA%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用非法的值创建整数类型</h3>
+<pre><code class="language-Swift">let firstBadValue: UInt = -1
+let secondBadValue: Int8 = 200
+</code></pre>
+<p><img src="media/15442599466631/15442646300716.jpg" alt="用非法的值创建整数类型" /></p>
+<p>编译器报告，你输入的两个值在保存到Uint和Int8类型的常量中时溢出了。“在保存到……中时溢出了”的意思是，当编译器尝试把数存入你指定的类型时，超出了该类型所允许的值的范围。Int8可以保存从-128到127的值，而200超出了这个范围，所以试图把200存入Int8导致溢出。</p>
+<h2><a id="%E6%95%B4%E6%95%B0%E6%93%8D%E4%BD%9C%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>整数操作符</h2>
+<p>Swift允许利用人们熟悉的加（+）、减（-）、乘（*）、除（/）操作符对整数做基本算数算。</p>
+<pre><code class="language-Swift">print(10 + 20)
+print(30 - 5)
+print(5 * 6)
+</code></pre>
+<p>编译器遵从数学运算的优先级（precedence）和结合性（associativity）法则，二者定了单个表达式中多个操作符的运算顺序。</p>
+<pre><code class="language-Swift">print(10 + 2 * 5) // 20，因为 2 * 5先计算
+print(30 - 5 - 5) // 20，因为30 - 5先计算
+</code></pre>
+<h3><a id="%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>整数除法</h3>
+<p>整数除法中，整数除以整数的结果还是整数，小数部分会被截断。</p>
+<pre><code class="language-Swift">print(10/3) // 3
+</code></pre>
+<p>获取余数的话可以使用取余符号<code>%</code></p>
+<pre><code class="language-Swift">print(11 % 3) // 打印2 
+print(-11 % 3) // 打印-2
+</code></pre>
+<h3><a id="%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C%E7%AC%A6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>快捷操作符</h3>
+<pre><code class="language-Swift">var x = 10
+x += 10 // 等同于: x = x + 10
+print(&quot;x has had 10 added to it and is now \(x)&quot;)
+x -= 5 // 等同于: x = x - 5
+print(&quot;x has had 5 subtracted from it and is now \(x)&quot;)
+x /= 5 // 等同于： x = x / 5
+print(&quot;\(x)&quot;)
+x *= 5 // 等同于： x = x * 5
+print(&quot;\(x)&quot;)
+x %= 5 // 等同于： x = x % 5
+print(&quot;\(x)&quot;)
+</code></pre>
+<h2><a id="%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>转换整数类型</h2>
+<p>在Swift中类型不一样的时候不能做运算</p>
+<pre><code class="language-Swift">import Cocoa
+
+let a: Int16 = 200
+let b: Int8 = 50
+let c = a + b //类型不一样,运算会出现编译错误
+</code></pre>
+<p>在其他的语言中可能语言会自己做隐式转换，但是在Swift需要手动的转换。</p>
+<pre><code class="language-Swift">import Cocoa
+
+let a: Int16 = 200
+let b: Int8 = 50
+let c = a + Int16(b) //结果 250
+</code></pre>
+<h2><a id="%E6%B5%AE%E7%82%B9%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>浮点数</h2>
+<p>为了表示有小数点的树，需要用到<em>浮点数（floating-point number）</em>。<br />
+首先，浮点数在计算机是以*尾数（mantissa）<em>和</em>指数（exponent）*的形式存储的，类似于科学技术法。其次，浮点数通常不精确：有很多数无法以浮点数的形式精确存储。计算机会存储一个近似值，非常接近你要的数。<br />
+在Swift中浮点数有两个基本类型：32位浮点数Float和64位浮点数Double。Float和Double的长度差异并不像整数那样影响其最小值和最大值，而是影响其精度。Double的精度比Float高，这意味着它能存储更精确的近似值。<br />
+在Swift中，浮点数的默认推断类型是Double，就像整数的不同类型一样，你也可以显式地<br />
+声明Float和Double。</p>
+<pre><code class="language-Swift">import Cocoa
+
+let d1 = 1.1 // 隐式Double声明
+let d2: Double = 1.1
+let f1: Float = 100.3
+</code></pre>
+<p>所有数字操作符对浮点数都适用（<strong>除了取余操作符只能用于整数</strong>）</p>
+<pre><code class="language-Swift">print(10.0 + 11.4)
+print(11.0 / 3.0)
+print(11.0 * 2.0)
+print(13.0 - 2.2)
+</code></pre>
+<p>上面我们说浮点数的精确度问题，看下面的代码</p>
+<pre><code class="language-Swift">import Cocoa
+
+let d1 = 1.1 // 隐式Double声明
+let d2: Double = 1.1
+
+if d1 == d2 {
+    print(&quot;d1 and d2 are the same!&quot;)
+}
+print(&quot;d1 + 0.1 is \(d1 + 0.1)&quot;)
+if d1 + 0.1 == 1.2 {
+    print(&quot;d1 + 0.1 is equal to 1.2&quot;)
+}
+</code></pre>
+<p>我们初始化了两个double类型。d1 和 d2 都等于1.1，从计算上看d1+0.1应该是要等于1.2的，那么实际情况是什么呢？？</p>
+<pre><code class="language-Swift">d1 and d2 are the same!
+d1 + 0.1 is 1.2000000000000002
+</code></pre>
+<p>实际<code>d1 + 0.1 is equal to 1.2</code>没有被执行，从打印的结果看d1 + 0.1并不等于1.2而是一个近似值<code>1.2000000000000002</code><br />
+具体的细节后面再来看看补一下，<br />
+所以这里需要注意不要用浮点数来表示必须精确的值。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-4.html" 
+          title="Previous Post: Swift编程入门（4）switch语句">&laquo; Swift编程入门（4）switch语句</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-2.html" 
+          title="Next Post: Swift编程入门（2）条件语句">Swift编程入门（2）条件语句 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="asset/icon.jpeg" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-install-docker-and-docker-compose.html">Ubuntu上安装Docker和Docker Compose</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>
