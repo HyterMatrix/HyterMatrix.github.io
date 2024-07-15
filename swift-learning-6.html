@@ -1,0 +1,473 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（6）字符串 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（6）字符串</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/13 19:53 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>在编程过程中，文本内容是用字符串表示的。你已经见到并用过字符串。比如，&quot;Hello, playground&quot;是一个字符串。跟所有字符串一样，可以认为它是字符的有序集合。实际上，Swift字符串本身并不是集合，但是其底层内容确实以集合形式存在，而字符串类型提供了多种视角来一窥究竟。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2">使用字符串</a></li>
+<li><a href="#unicode">Unicode</a>
+<ul>
+<li><a href="#unicode%E6%A0%87%E9%87%8F">Unicode标量</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E6%95%B0%E9%87%8F">计算字符数量</a></li>
+<li><a href="#%E7%B4%A2%E5%BC%95%E5%92%8C%E5%8C%BA%E9%97%B4">索引和区间</a></li>
+</ul>
+</div>
+<h2><a id="%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>使用字符串</h2>
+<pre><code class="language-Swift">import Cocoa 
+var str = &quot;Hello, playground&quot;
+let playground = &quot;Hello, playground&quot;
+</code></pre>
+<p>上面的代码中定义了一个变量的字符串类型<code>str</code>和常量字符串<code>playground</code>，字符串是被双引号引起来的一段文本。<br />
+常量是不可以变的，所以当你试图改变<code>playground</code>的值得时候，编译器会报错。<br />
+<img src="media/15447020294389/15447486346300.jpg" alt="" style="width:675px;" /><br />
+但是变量字符串<code>str</code>是可以改变的。<br />
+<img src="media/15447020294389/15447487567044.jpg" alt="" style="width:508px;" /></p>
+<p>组成Swift字符串的字符是Character类型。Swift的Character类型表示Unicode字符，组合起来形成String实例。</p>
+<pre><code class="language-Swift">import Cocoa
+
+var str = &quot;Hello, playground&quot;
+for c:Character in str.characters{
+    print(&quot;'\(c)'&quot;)
+}
+</code></pre>
+<p><img src="media/15447020294389/15447522527716.jpg" alt="" style="width:845px;" /></p>
+<h2><a id="unicode" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unicode</h2>
+<p>Unicode是字符编码的国际标准，目标是不用考虑平台即可无缝处理和表达字符。Unicode在计算机上表示人类语言（还有其他形式的通讯符号，比如emoji）。标准中的每个字符都被赋予了唯一的数。<br />
+Swift的String和Character类型构建于Unicode之上，并且把大部分的复杂细节都屏蔽了。不过，理解这两种类型如何使用Unicode还是很有用的。这些知识很可能会让你在将来节省不少时间、避免不少挫折。</p>
+<h3><a id="unicode%E6%A0%87%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unicode标量</h3>
+<p>从内部实现说，Swift字符串是由<code>Unicode标量（Unicode scalar）</code>组成的。Unicode标量是21位的数，表示Unicode标准中一个特定字符。比如，U+0061表示小写拉丁字母a。U+1F60E表示戴着墨镜的笑脸emoji😎。文本U+1F60E是书写Unicode字符的标准方式。1F60E部分是十六进制数</p>
+<pre><code class="language-Swift">let oneCoolDude = &quot;\u{1F60E}&quot;
+</code></pre>
+<p>结果是😎<br />
+<code>\u{}</code>语法表示Unicode标量，十六进制数放在花括号中。<br />
+在Swift中，每个字符都由一个或多个Unicode标量构成。一个Unicode标量对应某种给定语言中的一个基本字符。我们之所以说字符是由“一个或多个”Unicode标量构成的，是因为还存在组合标量（combining scalar）。比如，U+0301表示可组合的重音符号（´）的Unicode标量。这个标量将重音符号放置在它前面的标量所对应的字符上面，也就是与前面的字符组合。用这个量和小写拉丁字母a可以创建字符á，<br />
+<img src="media/15447020294389/15448535567166.jpg" alt="" style="width:290px;" /><br />
+我们可以看见字符串中所有的标量</p>
+<pre><code class="language-Swift">for scalar in playground.unicodeScalars {
+print(&quot;\(scalar.value)&quot;)
+}
+</code></pre>
+<p>输出为</p>
+<pre><code class="language-Swift">72
+101
+108
+108
+111
+44
+32
+112
+108
+97
+121
+103
+114
+111
+117
+110
+100
+</code></pre>
+<h2><a id="%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E6%95%B0%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>计算字符数量</h2>
+<p>可以使用characters的count属性来判断字符串的字符数量</p>
+<pre><code class="language-Swift">str.characters.count
+</code></pre>
+<h2><a id="%E7%B4%A2%E5%BC%95%E5%92%8C%E5%8C%BA%E9%97%B4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>索引和区间</h2>
+<p>Swift中不能直接只用下标语法来取字符串中特定的值。<br />
+比如下面这样是<strong>不可以</strong>的</p>
+<pre><code class="language-Swift">var playground = &quot;Hello, playground&quot;
+print(playground[3]) //❌ 错误，编译器会报错
+</code></pre>
+<p>Swift用名为String.CharacterView.Index的类型记录索引。首先用String类型的startIndex属性。这个属性会以 String.CharacterIndex.Index 的形式返回字符串的起始索引。然后结合起始点和index(_:offsetBy:)方法往前移动直至到达选定的位置。（方法类似于函数，第12章会详细介绍。）</p>
+<pre><code class="language-Swift">let start = playground.startIndex 
+let end = playground.index(start, offsetBy: 4) 
+let fifthCharacter = playground[end] // &quot;o&quot;
+</code></pre>
+<p><code>startIndex</code>属性获取了字符串的第一个索引，使用index(_:offsetBy:)方法从起始点向前移动到你要的位置。offsetBy参数是Int类型，方法会把它加到第一个索引上。这里传入4表示第5个字符。<br />
+调用index(_:offsetBy:)的结果是String.CharacterView.Index，然后将其赋给end常量。最后，用end作为下标访问playground字符串，得到的结果是字符o。（记住playground被设置为了&quot;Hello, playground&quot;。）</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-7.html" 
+          title="Previous Post: Swift编程入门（7）可空类型">&laquo; Swift编程入门（7）可空类型</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-5.html" 
+          title="Next Post: Swift编程入门（5）循环">Swift编程入门（5）循环 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

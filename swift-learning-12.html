@@ -1,0 +1,455 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Swift编程入门（12）闭包 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（12）闭包</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/01/09 21:00 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><code>闭包（closure）</code>是在应用中完成特定任务的互相分离的功能组。上一章学习的函数是闭包的<br />
+特殊情况，可以把函数理解为有名字的闭包。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E9%97%AD%E5%8C%85%E7%9A%84%E8%AF%AD%E6%B3%95">闭包的语法</a></li>
+<li><a href="#%E9%97%AD%E5%8C%85%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E6%B3%95">闭包表达式语法</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E5%80%BC">函数作为返回值</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0">函数作为参数</a></li>
+<li><a href="#%E9%97%AD%E5%8C%85%E8%83%BD%E6%8D%95%E8%8E%B7%E5%8F%98%E9%87%8F">闭包能捕获变量</a></li>
+<li><a href="#%E9%97%AD%E5%8C%85%E6%98%AF%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B">闭包是引用类型</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B">函数式编程</a></li>
+</ul>
+</div>
+<h2><a id="%E9%97%AD%E5%8C%85%E7%9A%84%E8%AF%AD%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>闭包的语法</h2>
+<p>想象你是一个社区组织者，负责管理若干组织。你想记录每个组织有多少名志愿者，因此创建了一个数组来完成这个任务.</p>
+<pre><code class="language-Swift">import Cocoa
+let volunteerCounts = [1,3,40,32,2,53,77,13]
+</code></pre>
+<p>你输入了每个组织提供的志愿者人数，这意味着这个数组是完全无序的。如果志愿者数组能按人数从小到大排序就好了。好消息是，Swift提供了sorted(by:)方法来指定如何排列数组。<br />
+sorted(by:)接受一个参数：一个描述如何排序的闭包。这个闭包接受两个参数，其类型必须和数组元素的类型匹配，并返回布尔值。通过比较两个参数会生成返回值，表示第一个参数是否排在第二个参数前面。如果想让参数一排在参数二前面，可以在返回的时候使用&lt;；这样会把数组按升序（ascending）排列，也就是从小到大排序。如果想让参数二排在参数一前面，可以在返回的时候使用&gt;；这样会把数组按降序（desending）排列，也就是从大到小排序<br />
+因为志愿者人数的数组中都是整数，所以sorted(by:)的函数类型应该类似于((Int, Int) -&gt; Bool) -&gt; [Int]。读出来就是“sorted(by:)是一个接受两个整数进行比较并返回布尔值表示哪个整数在前的闭包”。sorted(by:)返回一个新的整数数组，这些整数已经根据闭包定义的规则排好序了。</p>
+<pre><code class="language-Swift">import Cocoa 
+let volunteerCounts = [1,3,40,32,2,53,77,13] 
+func sortAscending(_ i: Int, _ j: Int) -&gt; Bool { 
+    return i &lt; j 
+} 
+let volunteersSorted = volunteerCounts.sorted(by: sortAscending) 
+</code></pre>
+<p>首先，我们创建了函数sortAscending(_:_:)。这个函数比较两个整数并返回一个布尔值表示整数i是否应该在整数j前面。因为sortAscending这个名字已经意味着我们是在对两个实例排序，所以可以用_省去在调用时的参数名。如果i小于j从而应该排在j前面的话，这个函数就会返回true。这个全局函数是一个命名闭包（回忆一下，所有的函数都是闭包），因此可以将其作为sorted(by:)的参数。<br />
+接着，调用sorted(by:)，把sortAscending(<em>:</em>:)作为第二个参数传递。因为sorted(by:)返回一个新数组，所以需要把结果赋给新的常量数组volunteersSorted。这个实例保存组织内排过序的志愿者人数。</p>
+<h2><a id="%E9%97%AD%E5%8C%85%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%AD%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>闭包表达式语法</h2>
+<pre><code class="language-Swift">{(parameters) -&gt; return type in 
+    // 代码
+} 
+</code></pre>
+<p>闭包表达式写在花括号（{}）里。紧跟着左花括号的圆括号里是闭包的参数。闭包的返回值类型在参数后面，和常规语法一样。关键字in用来分隔闭包的参数、返回值与闭包体内的语句。<br />
+重构上面排序的代码</p>
+<pre><code class="language-Swift">import Cocoa 
+let volunteerCounts = [1,3,40,32,2,53,77,13] 
+
+let volunteersSorted = volunteerCounts.sorted(by: { 
+(i: Int, j: Int) -&gt; Bool in 
+return i &lt; j 
+}) 
+</code></pre>
+<p>这段代码比第一个版本稍微清晰和优雅一些。我们没有提供在playground中其他地方定义的函数，而是在sorted(by:)方法的第二个参数中实现了一个内联闭包。我们在闭包的圆括号中定义了其参数及类型（Int)，也指定了返回值类型。接着，用逻辑测试（i是否比j小？）来确定闭包的返回值，从而实现闭包体。<br />
+结果跟之前一样：把排好序的数组赋给了volunteersSorted。<br />
+这次重构在正确的方向上迈进了一步，但还是有点冗长。闭包可以利用Swift的类型推断系统，因此我们可以通过去除类型信息来进一步简化闭包。</p>
+<pre><code class="language-Swift">import Cocoa 
+let volunteerCounts = [1,3,40,32,2,53,77,13] 
+let volunteersSorted = volunteerCounts.sorted(by: { i, j in i &lt; j })
+</code></pre>
+<p>这段代码改动了三处。首先，移除了两个参数和返回值的类型信息。返回值类型可以移除是因为编译器知道检查i &lt; j是否成立会返回布尔值true或false。其次，把整个闭包表达式放到了一行。<br />
+最后，移除了关键字return。不是所有的闭包语句都可以省略return关键字，这里可以是因为只有一个表达式（i &lt; j）。如果存在更多表达式，那么显式的return就是必需的。<br />
+这个闭包现在变得很紧凑，但是还可以继续优化。Swift提供了快捷参数名，可以在内联闭包表达式中引用。这些快捷参数名和显式声明的参数类似：类型和值都一样。编译器的类型推断能力让它知道闭包接受的参数个数和类型，这意味着不需要给参数命名。<br />
+举个例子，编译器知道sorted(by:)接受一个闭包。这个闭包本身又接受两个参数，它们的类型和sorted(by:)方法的数组参数中的元素类型一样。因为闭包有两个参数，我们能比较其值来判断顺序，所以可以用$0引用第一个参数的值，用$1引用第二个参数的值。</p>
+<pre><code class="language-Swift">import Cocoa 
+let volunteerCounts = [1,3,40,32,2,53,77,13] 
+let volunteersSorted = volunteerCounts.sorted(by: { $0 &lt; $1 })
+</code></pre>
+<p>这种<code>尾部闭包语法（trailing closure syntax）</code>对于闭包体很长的情况特别有用。在这里，尾部闭包只是让我们少输入了两个圆括号。</p>
+<h2><a id="%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E8%BF%94%E5%9B%9E%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数作为返回值</h2>
+<h2><a id="%E5%87%BD%E6%95%B0%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数作为参数</h2>
+<h2><a id="%E9%97%AD%E5%8C%85%E8%83%BD%E6%8D%95%E8%8E%B7%E5%8F%98%E9%87%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>闭包能捕获变量</h2>
+<h2><a id="%E9%97%AD%E5%8C%85%E6%98%AF%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>闭包是引用类型</h2>
+<h2><a id="%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数式编程</h2>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-13.html" 
+          title="Previous Post: Swift编程入门（13）枚举">&laquo; Swift编程入门（13）枚举</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="nodejs-install.html" 
+          title="Next Post: node.js安装">node.js安装 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

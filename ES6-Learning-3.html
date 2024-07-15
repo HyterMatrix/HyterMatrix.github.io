@@ -1,0 +1,442 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  ES6入门（3）字符串的扩展 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>ES6入门（3）字符串的扩展</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/02/28 09:00 上午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='se6.html'>ES6</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>在ES6中字符串新增了一些方法</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8E%9F%E5%9E%8B%E4%B8%8A%E7%9A%84%E6%89%A9%E5%B1%95%E7%9A%84%E6%96%B9%E6%B3%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>字符串原型上的扩展的方法</h2>
+<pre><code class="language-javascript">    console.log(String.prototype);
+</code></pre>
+<p>结果为<br />
+<img src="media/15513156333214/15513667042136.jpg" alt="" style="width:473px;" /></p>
+<p>在ES6中新增了几个方法includes、startWith、endsWith、endsWith、repeat(int:num)<br />
+padStart padEnd 是ES7中增加的</p>
+<pre><code class="language-javascript">    //1. includes 返回值是个bool值 true/false
+    // 用处：判断字符串中有没有指定字符
+    // 用法：includes(&quot;指定字符&quot;[,开始查找的位置])
+
+    let str = &quot;abcdefg12345&quot;;
+    console.log(str.includes('bc')); // true
+    console.log(str.includes('bc',2)); // false
+
+
+    // 2.startWith endsWith
+
+    // startWith 判断字符串是不是以指定字符串开头
+    // startWith(&quot;指定字符&quot;[,指定开始查找的位置])
+    console.log(str.startsWith('a')); // true
+    console.log(str.startsWith('a',3)); // false
+
+    // endsWith 判断字符串是不是以指定字符串结尾
+    // endsWith(&quot;指定字符&quot;[,num]) 是指从前num字符串中查看
+    console.log(str.endsWith('5')); // true
+    console.log(str.endsWith('e')); // false
+    console.log(str.endsWith('e',5)); // true
+
+
+    // 3.repeat(int:num) 将字符串重复num次 取整 不可以是负数
+    console.log(str.repeat(3));
+
+    // padStart padEnd ES7中的
+    // 按照指定字符补全字符串的指定长度
+    // padStart(长度,指定字符)
+    console.log(str.padStart(20, &quot;g&quot;));
+    console.log(str.padEnd(20, &quot;g&quot;));
+</code></pre>
+<h2><a id="%E6%A8%A1%E7%89%88%E5%AD%97%E7%AC%A6%E4%B8%B2" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>模版字符串</h2>
+<pre><code class="language-JavaScript">  // 和普通字符串一样使用 但是可以添加变量
+    let str = `哈哈`;
+    let num = 1;
+    str+=num;
+    console.log(str);
+
+
+    let  class1=&quot;box&quot;,name=&quot;哈哈哈哈&quot;;
+    // document.body.innerHTML += '&lt;h1 class=&quot;' + class1 +'&quot;&gt;' + name + '&lt;/h1&gt;'
+    document.body.innerHTML += `&lt;h1 class=&quot;${class1}&quot;&gt;${name}&lt;/h1&gt;`
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="ES6-Learning-4.html" 
+          title="Previous Post: ES6入门（4）数组的扩展">&laquo; ES6入门（4）数组的扩展</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="ES6-Learning-2.html" 
+          title="Next Post: ES6入门（2）解构赋值">ES6入门（2）解构赋值 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,476 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  ES6入门（6）对象的扩展 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>ES6入门（6）对象的扩展</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/03/04 12:09 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='se6.html'>ES6</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>ES6中对象的扩展</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AE%80%E4%BB%8B%E6%96%B9%E5%BC%8F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>对象的简介方式</h2>
+<pre><code class="language-javascript">    let  name=&quot;matrix&quot;,age=100;
+    let school={name,age};
+    let str = &quot;name&quot;;
+    let obj = {
+        fn(){},
+        // fn:function(){}
+        // 属性名都是字符串 ,属性名使用[] 里面可以写变量
+        [str]:name,
+        [&quot;my&quot;+str]:name
+    }
+</code></pre>
+<p>##Objectf方法的扩展</p>
+<pre><code class="language-javacript">    // Object() 将参数变成对象
+    console.log(Object(1)); // Number
+    console.log(Object(true)); // Boolean
+
+    // Object()
+    console.dir(Object); //
+
+    // Object.is判断 两个值是否相等
+    // === NaN跟NaN不等  -0===0 true
+    // 其他的跟 === 一致
+    console.log(NaN === NaN); // false
+    console.log(-0===0);    // true
+    console.log(Object.is(NaN, NaN)); // true
+    console.log(Object.is(-0,0)); // false
+
+    // Object.assign 合并对象
+    // Object.assign(obj1,obj2); 将obj2合并到obj1上，返回obj1
+    let obj1 = {name:&quot;matrix&quot;};
+    let obj2 = {age:10};
+    console.log(Object.assign(obj1, obj2)); // {name: &quot;matrix&quot;, age: 10}
+    console.log(obj1); // {name: &quot;matrix&quot;, age: 10}
+
+    // ES7 中提供了对象的扩展运算符...
+
+    let school = {...obj1,...obj2};
+    console.log(school); // {name: &quot;matrix&quot;, age: 10}
+
+
+    // Object.getOwnPropertyDescriptor 获取一个对象中某个属性的描述
+    console.log(Object.getOwnPropertyDescriptor(&quot;123&quot;, &quot;length&quot;));
+    // 字符串的length 不可以修改 字符串中的方法不可以改变原字符串的
+    let str1 = &quot;123&quot;;
+    str1.length = 0;
+    console.log(str1);
+
+    /**
+     * configurable: false   是否可以配置  可以删除这个属性
+         enumerable: false   是否可以枚举
+         value: 3
+         writable: false     是否可修改
+         __proto__: Object
+     */
+
+    // Object.keys();  返回值是一个数组， [所有可枚举的属性]
+    console.log(Object.keys(school)); //  [&quot;name&quot;, &quot;age&quot;]
+
+    // Object.values();返回值是一个数组， [所有可枚举的属性的值]
+    console.log(Object.values(school)); // [&quot;matrix&quot;, 10]
+
+    // Object.entries();返回值是一个数组，[每一项[键,值]]
+    console.log(Object.entries(school)); // [[&quot;name&quot;, &quot;matrix&quot;],[&quot;age&quot;, 10]]
+
+</code></pre>
+<h2><a id="%E5%AF%B9%E8%B1%A1%E7%9A%84set%E5%92%8Cget" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>对象的set和get</h2>
+<pre><code class="language-javascript">    let obj = {
+        _name:&quot;AA&quot;,
+        get name(){
+            // 只要通过obj获取name属性就会触发这个函数
+            // 这里可以通过return返回值
+            console.log(1);
+            return this._name;
+        },
+        set name(val){
+            //  只要通过obj给name属性设置值就会触发这个set函数
+            console.log(2);
+            this._name = val;
+        }
+    };
+    console.log(obj.name);
+    obj.name=&quot;matrix&quot;;
+    console.log(obj.name);
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="git-diff-file-tar.html" 
+          title="Previous Post: 如何使用Git把某一次commit修改过的文件打包">&laquo; 如何使用Git把某一次commit修改过的文件打包</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="ES6-Learning-5.html" 
+          title="Next Post: ES6入门（5）函数的扩展">ES6入门（5）函数的扩展 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

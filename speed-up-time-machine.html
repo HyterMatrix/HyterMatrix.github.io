@@ -1,0 +1,404 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="nSj13TCGgaK_VvpHUEJ9iDYee8rMDXsd-pUU-KWneLA" />
+    <title>
+    
+  Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令) - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+  <script src="asset/highlightjs/highlight.pack.js"></script>
+  <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+        
+            <li><a href="learning.html">学习</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Mac 时间机器 Time Machine 备份速度太慢的解决方法 (加速备份命令)</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2019/11/12 01:02 上午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>相信用过一段时间电脑的人，都知道经常备份的重要性了。特别最近很多人需要将 Mac 升级到最新版本的 macOS Catalina，为防意外发生，就更需要在动手前做好备份了。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器</h2>
+<p>macOS 自带的「时间机器」(Time Machine) 绝对就是 Mac 上最方便的备份工具了，一来完全免费，可以“无感”地替你默默在后台备份，而且因为它是苹果自家开发的，兼容性也最好，所以推荐大家都使用“时间机器”来备份 Mac 电脑。</p>
+<h2><a id="%E8%A7%A3%E5%86%B3%E6%97%B6%E9%97%B4%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E9%80%9F%E5%BA%A6%E5%A4%AA%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>解决 时间机器备份速度太慢的问题</h2>
+<p>然而部分同学在尝试使用时间机器备份系统资料时，却发现它的首次备份速度非常慢，跟自己的网络和机器配置似乎并不匹配，甚至有时花费超过 48 小时都无法完成，即便接了网线、关掉所有 APP 后，备份速度都没有明显提升。</p>
+<p>其实，时光机器备份太慢是由于 macOS 本身对其进行了限流的措施，对硬盘读写的频率和内存使用都做了一定的限制，主要是为了防止在备份期间影响了用户正常使用电脑工作。但如果你正在等它完成备份，再去进行系统升级或其他操作，就比较悲剧了。</p>
+<h2><a id="macos%E6%97%B6%E5%85%89%E6%9C%BA%E5%99%A8%E5%A4%87%E4%BB%BD%E5%8A%A0%E9%80%9F%E5%91%BD%E4%BB%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>macOS 时光机器备份加速命令</h2>
+<p>如果你真的打算让时光机器全力全速工作，那也是有办法的，就是通过命令行，用命令强制关闭系统对时光机器的限流，俗称“解除封印”。打开终端，输入以下命令：</p>
+<pre><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=0
+</code></pre>
+<p>这时你就会发现时光机器的备份速度变快很多很多了！！基本能达到网络和硬盘读写的应有的速度了。等它完成了首次的备份之后，你可以再执行下面的命令，恢复到原本限流的状态，以保证日后使用电脑时不被时光机器备份占去太多的资源导致变卡。</p>
+<pre><code class="language-shell">sudo sysctl debug.lowpri_throttle_enabled=1
+</code></pre>
+<p>当然了，如果你的时光机器备份是保存在 NAS 或路由器上网络存储的，都推荐连接“网线”进行首次备份，比起 WiFi 的速度很稳定性都是要高很多。另外，如果你使用 MacBook 的话，记得还要接通电源再备份才能获得最好的速度哦。</p>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="could-not-create-temporary-directory.html" 
+          title="Previous Post: Could not create temporary directory: 权限被拒绝">&laquo; Could not create temporary directory: 权限被拒绝</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="mac-mamp-install-libsodium-php.html" 
+          title="Next Post: Mac MAMP安装libsodium扩展">Mac MAMP安装libsodium扩展 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+        
+            <a href="learning.html"><strong>学习</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="ubuntu-use-smb.html">在Ubuntu上挂载远程SMB文件夹</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2019 - 2022
+Powered by <a target="_blank" href="https://github.com/HyterMatrix/HyterMatrix.github.io">Github</a>,&nbsp; 
+Theme used <a target="_blank" href="https://github.com">GitHub CSS 改造而来</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>
