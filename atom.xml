@@ -4,7 +4,7 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2024-10-21T11:52:45+08:00</updated>
+  <updated>2024-10-21T14:40:24+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
@@ -13,12 +13,11 @@
   <generator uri="http://www.mweb.im/">MWeb</generator>
   
   <entry>
-    <title type="html"><![CDATA[Ubuntu安装驱动以及CUDA]]></title>
+    <title type="html"><![CDATA[要解决“`NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver`”这个问题，你需要确保在 Ubuntu 上正确安装并配置 NVIDIA 驱动。下面是步骤：]]></title>
     <link href="https://hyter.me/ubuntu-install-drivers-and-cuda.html"/>
     <updated>2024-10-21T11:43:53+08:00</updated>
     <id>https://hyter.me/ubuntu-install-drivers-and-cuda.html</id>
     <content type="html"><![CDATA[
-<p>要解决“<code>NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver</code>”这个问题，你需要确保在 Ubuntu 上正确安装并配置 NVIDIA 驱动。下面是步骤：</p>
 <span id="more"></span><!-- more -->
 <h3><a id="1%E7%A1%AE%E8%AE%A4%E4%BD%A0%E7%9A%84-gpu%E5%9E%8B%E5%8F%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 确认你的 GPU 型号</h3>
 <p>在安装驱动之前，你需要知道你使用的 NVIDIA GPU 型号。可以通过以下命令查看：</p>
@@ -85,7 +84,25 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 <li>如果你使用的是特殊的硬件环境（例如笔记本的混合显卡），可能需要配置 <code>prime-select</code> 来切换显卡。</li>
 <li>如果问题仍然存在，尝试检查 <code>secure boot</code> 是否被启用，在一些系统上，启用了 <code>secure boot</code> 可能会导致驱动无法加载。可以在 BIOS 设置中关闭它。</li>
 </ul>
-<p>这样应该可以解决你遇到的问题。</p>
+<p>这样应该可以解决你遇到的问题。如果你遇到其他安装问题或需要更详细的步骤，请告诉我。</p>
+<h3><a id="%E9%A2%9D%E5%A4%96%E6%8F%90%E7%A4%BA%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>额外提示：</strong></h3>
+<ul>
+<li>
+<p><strong>其他标记解释</strong>：</p>
+<ul>
+<li><strong><code>distro</code></strong>：表示驱动程序来自发行版的软件源。</li>
+<li><strong><code>third-party</code></strong>：表示驱动程序来自第三方软件源。</li>
+<li><strong><code>non-free</code></strong>：表示驱动程序是非自由软件。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>xserver-xorg-video-nouveau</code></strong>：</p>
+<ul>
+<li><strong><code>builtin</code></strong>：表示这是系统内置的开源驱动程序。</li>
+<li><strong><code>free</code></strong>：表示这是自由软件。</li>
+</ul>
+</li>
+</ul>
 
 ]]></content>
   </entry>
