@@ -154,72 +154,6 @@
                       <div class="a-content-text">
                         
                         	<p>要解决“<code>NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver</code>”这个问题，你需要确保在 Ubuntu 上正确安装并配置 NVIDIA 驱动。下面是步骤：</p>
-<h3><a id="1%E7%A1%AE%E8%AE%A4%E4%BD%A0%E7%9A%84-gpu%E5%9E%8B%E5%8F%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 确认你的 GPU 型号</h3>
-<p>在安装驱动之前，你需要知道你使用的 NVIDIA GPU 型号。可以通过以下命令查看：</p>
-<pre><code class="language-bash">lspci | grep -i nvidia
-</code></pre>
-<h3><a id="2%E6%B8%85%E9%99%A4%E6%97%A7%E7%9A%84-nvidia%E9%A9%B1%E5%8A%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 清除旧的 NVIDIA 驱动</h3>
-<p>如果你之前安装了其他版本的 NVIDIA 驱动或使用其他工具安装过，请先清除它们：</p>
-<pre><code class="language-bash">sudo apt-get purge nvidia*
-sudo apt-get autoremove
-</code></pre>
-<h3><a id="3%E6%B7%BB%E5%8A%A0-nvidia%E9%A9%B1%E5%8A%A8%E7%9A%84-ppa" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 添加 NVIDIA 驱动的 PPA</h3>
-<p>为确保安装最新的驱动，可以添加 NVIDIA 官方的 PPA（个人软件包档案）：</p>
-<pre><code class="language-bash">sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt-get update
-</code></pre>
-<h3><a id="4%E5%AE%89%E8%A3%85-nvidia%E9%A9%B1%E5%8A%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 安装 NVIDIA 驱动</h3>
-<p>接下来，安装最新的 NVIDIA 驱动。你可以通过以下命令查看推荐的驱动：</p>
-<pre><code class="language-bash">ubuntu-drivers devices
-</code></pre>
-<p>会返回</p>
-<pre><code class="language-plain_text">root@ai-gpu:~$ ubuntu-drivers devices
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-udevadm hwdb is deprecated. Use systemd-hwdb instead.
-== /sys/devices/pci0000:00/0000:00:1c.4/0000:04:00.0 ==
-modalias : pci:v000010DEd00001B38sv000010DEsd000011D9bc03sc02i00
-vendor   : NVIDIA Corporation
-model    : GP102GL [Tesla P40]
-driver   : nvidia-driver-470 - distro non-free
-driver   : nvidia-driver-535 - distro non-free
-driver   : nvidia-driver-545 - third-party non-free
-driver   : nvidia-driver-535-server - distro non-free
-driver   : nvidia-driver-390 - third-party non-free
-driver   : nvidia-driver-550 - third-party non-free
-driver   : nvidia-driver-555 - third-party non-free
-driver   : nvidia-driver-470-server - distro non-free
-driver   : nvidia-driver-560 - third-party non-free recommended
-driver   : xserver-xorg-video-nouveau - distro free builtin
-</code></pre>
-<p><strong><code>recommended</code> 标记</strong>：在每个驱动程序信息行的末尾，如果该驱动程序是系统根据您的硬件配置推荐的，就会有一个 <code>recommended</code> 标记</p>
-<p>检测到的 GPU 是 <strong>Tesla P40</strong>，并列出了多个可用的 NVIDIA 驱动本，其中 <code>nvidia-driver-560</code> 被推荐为适合你系统的驱动。你可以这样安装：</p>
-<pre><code class="language-bash">sudo apt-get install nvidia-driver-560
-</code></pre>
-<p>安装完成后，重新启动系统：</p>
-<pre><code class="language-bash">sudo reboot
-</code></pre>
-<h3><a id="5%E6%A3%80%E6%9F%A5-nvidia-smi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. 检查 NVIDIA-SMI</h3>
-<p>重启后，运行以下命令检查 NVIDIA 驱动是否正常工作：</p>
-<pre><code class="language-bash">nvidia-smi
-</code></pre>
-<p>如果一切正常，你应该能够看到 GPU 的状态信息。</p>
-<h3><a id="6%E5%AE%89%E8%A3%85-cuda%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. 安装 CUDA（可选）</h3>
-<p>如果你需要使用 CUDA 进行深度学习或其他 GPU 加速任务，可以通过以下命令安装 CUDA：</p>
-<pre><code class="language-bash">sudo apt-get install nvidia-cuda-toolkit
-</code></pre>
-<h3><a id="%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他注意事项：</h3>
-<ul>
-<li>如果你使用的是特殊的硬件环境（例如笔记本的混合显卡），可能需要配置 <code>prime-select</code> 来切换显卡。</li>
-<li>如果问题仍然存在，尝试检查 <code>secure boot</code> 是否被启用，在一些系统上，启用了 <code>secure boot</code> 可能会导致驱动无法加载。可以在 BIOS 设置中关闭它。</li>
-</ul>
-<p>这样应该可以解决你遇到的问题。</p>
 
                         
                       </div>
@@ -227,7 +161,7 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
                 </a>
                 <div class="read-more clearfix">
                   <div class="more-left left">
-                  
+                   <a href="ubuntu-install-drivers-and-cuda.html">Read more</a>&nbsp;&nbsp; 
                     <span class="date">2024/10/21 11:43 上午</span>
                     <span>posted in&nbsp;</span> 
           				  
