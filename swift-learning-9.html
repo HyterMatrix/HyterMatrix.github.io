@@ -1,0 +1,769 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Swift编程入门（9）字典 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+ 
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（9）字典</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/20 21:07 下午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p>当容器中的元素顺序很重要时，<code>Array</code>类型很有用。<br />
+然而顺序不总是很重要。有时候我们只是想在容器中持有一组数据，并在需要时获取信息。这就是<code>字典（dictionary）</code>的使用场景。<br />
+Dictionary使用键值对（key-value pair）组织其内容的容器类型。字典的键映射到值。<br />
+Dictionary中的键必须是唯一的。这个要求意味着每个键都唯一地映射到对应的值。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E5%88%9B%E5%BB%BA%E5%AD%97%E5%85%B8">创建字典</a></li>
+<li><a href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%97%E5%85%B8">初始化字典</a></li>
+<li><a href="#%E8%AE%BF%E9%97%AE%E5%92%8C%E4%BF%AE%E6%94%B9%E5%AD%97%E5%85%B8">访问和修改字典</a>
+<ul>
+<li><a href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E5%85%B8%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0">获取字典的元素个数</a></li>
+<li><a href="#%E8%AF%BB%E5%8F%96%E5%80%BC">读取值</a></li>
+<li><a href="#%E4%BF%AE%E6%94%B9%E5%80%BC">修改值</a></li>
+<li><a href="#%E6%9B%B4%E6%96%B0%E5%80%BC">更新值</a></li>
+<li><a href="#%E5%A2%9E%E5%8A%A0%E5%80%BC">增加值</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E5%80%BC">删除值</a></li>
+<li><a href="#%E6%8A%8A%E4%B8%80%E4%B8%AA%E9%94%AE%E7%9A%84%E5%80%BC%E8%AE%BE%E4%B8%BAnil">把一个键的值设为nil</a></li>
+</ul>
+</li>
+<li><a href="#%E5%BE%AA%E7%8E%AF">循环</a>
+<ul>
+<li><a href="#%E9%81%8D%E5%8E%86%E5%AD%97%E5%85%B8">遍历字典</a></li>
+<li><a href="#%E5%8F%AA%E8%AE%BF%E9%97%AE%E9%94%AE">只访问键</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AD%97%E5%85%B8">不可变字典</a></li>
+<li><a href="#%E6%8A%8A%E5%AD%97%E5%85%B8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E7%BB%84">把字典转换为数组</a></li>
+</ul>
+</div>
+<h2><a id="%E5%88%9B%E5%BB%BA%E5%AD%97%E5%85%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>创建字典</h2>
+<p>创建Swift字典的通用语法如下：<code>var dict: Dictionary&lt;Key, Value&gt;</code>。这行代码创建一个Dictionary的可变实例，名叫dict。对字典的键和值接受什么类型的声明位于尖括号（&lt;&gt;）中，这里用Key和Value表示。<br />
+对于Swift中Dictionary类型的键，唯一的要求是其必须可散列（hashable）：也就是每个Key必须提供一种机制让Dictionary保证任何给定的键都是唯一的。Swift的基本类型都是可散列的，比如String、Int、Float、Double和Bool。<br />
+看获得一个Dictionary实例的不同方法.</p>
+<pre><code class="language-Swift">var dict1: Dictionary&lt;String, Double&gt; = [:] 
+var dict2 = Dictionary&lt;String, Double&gt;() 
+var dict3: [String:Double] = [:] 
+var dict4 = [String:Double]() 
+</code></pre>
+<p>这4种方法得到的是同样的结果：经过完整初始化的Dictionary类型的实例，以及其键值的类型信息。Key被设置为接受String类型的键，而Value被设置为接受Double类型的值。在这4种情况下，字典实例都是空的：没有键也没有值。<br />
+[:]和()语法有什么区别呢？本质上是一样的。两者都创建并准备好了Dictionary类型的实例。[:]使用字面量语法创建Dictionary类型的空实例，并且会使用声明中提供的类型信息束键和值。比如说，dict1指定其类型并被初始化为空字典。()语法则使用Dictionary类型的默认初始化方法，这个方法会准备一个空的字典实例。本书后面部分会详细介绍初始化方法。</p>
+<h2><a id="%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AD%97%E5%85%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>初始化字典</h2>
+<pre><code class="language-Swift">var movieRatings = [&quot;Donnie Darko&quot;: 4, &quot;Chungking Express&quot;: 5, &quot;Dark City&quot;: 4]
+</code></pre>
+<h2><a id="%E8%AE%BF%E9%97%AE%E5%92%8C%E4%BF%AE%E6%94%B9%E5%AD%97%E5%85%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>访问和修改字典</h2>
+<h3><a id="%E8%8E%B7%E5%8F%96%E5%AD%97%E5%85%B8%E7%9A%84%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>获取字典的元素个数</h3>
+<pre><code class="language-Swift">import Cocoa 
+var movieRatings = [&quot;Donnie Darko&quot;: 4, &quot;Chungking Express&quot;: 5, &quot;Dark City&quot;: 4] 
+print(&quot;I have rated \(movieRatings.count) movies.&quot;)
+</code></pre>
+<p>使用字典的<code>count</code>属性</p>
+<h3><a id="%E8%AF%BB%E5%8F%96%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>读取值</h3>
+<pre><code class="language-Swift">import Cocoa 
+var movieRatings = [&quot;Donnie Darko&quot;: 4, &quot;Chungking Express&quot;: 5, &quot;Dark City&quot;: 4] 
+print(&quot;I have rated \(movieRatings.count) movies.&quot;) 
+let darkoRating = movieRatings[&quot;Donnie Darko&quot;]
+</code></pre>
+<h3><a id="%E4%BF%AE%E6%94%B9%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改值</h3>
+<pre><code class="language-Swift">import Cocoa 
+var movieRatings = [&quot;Donnie Darko&quot;: 4, &quot;Chungking Express&quot;: 5, &quot;Dark City&quot;: 4] 
+print(&quot;I have rated \(movieRatings.count) movies.&quot;) 
+let darkoRating = movieRatings[&quot;Donnie Darko&quot;] 
+movieRatings[&quot;Dark City&quot;] = 5 
+movieRatings
+</code></pre>
+<h3><a id="%E6%9B%B4%E6%96%B0%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新值</h3>
+<p>还有一种有用的方式可以更新与字典的键相关联的值：<code>updateValue(_:forKey:)</code>方法。这<br />
+个方法接受两个参数：value: Value和forKey: Key。第一个参数value接受新的值，第二个<br />
+参数forKey指定哪个键需要改变值。<br />
+这个方法之所以有用，是因为它能保存该键之前映射的值。还有个小小的警告：<code>updateValue(_:forKey:)</code>返回可空类型。这种返回类型很方便，因为这个键可能在字典中不存在。因此，把<code>updateValue(_:forKey:)</code>的返回值赋给一个预期类型的可空实例，并用可空实例绑定来获取这个键的旧值会很有用。</p>
+<pre><code class="language-Swift">import Cocoa 
+var movieRatings = [&quot;Donnie Darko&quot;: 4, &quot;Chungking Express&quot;: 5, &quot;Dark City&quot;: 4] 
+print(&quot;I have rated \(movieRatings.count) movies.&quot;) 
+let darkoRating = movieRatings[&quot;Donnie Darko&quot;] 
+movieRatings[&quot;Dark City&quot;] = 5 
+movieRatings 
+let oldRating: Int? = movieRatings.updateValue(5, forKey: &quot;Donnie Darko&quot;) 
+if let lastRating = oldRating, let currentRating = movieRatings[&quot;Donnie Darko&quot;] { 
+print(&quot;Old rating: \(lastRating); current rating: \(currentRating)&quot;) 
+}
+</code></pre>
+<h3><a id="%E5%A2%9E%E5%8A%A0%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>增加值</h3>
+<pre><code class="language-Swift">movieRatings[&quot;The Cabinet of Dr. Caligari&quot;] = 5
+</code></pre>
+<p>这里用语法<code>movieRatings[&quot;The Cabinet of Dr. Caligari&quot;] = 5</code>给字典增加了新的键值对。赋值运算符将值（本例中是5）关联到了新键（&quot;The Cabinet of Dr. Caligari&quot;上。</p>
+<h3><a id="%E5%88%A0%E9%99%A4%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>删除值</h3>
+<pre><code class="language-Swift">movieRatings.removeValue(forKey: &quot;Dark City&quot;)
+</code></pre>
+<p><code>removeValue(forKey:)</code>方法接受一个键作为参数，将与其匹配的键值对删除。</p>
+<h3><a id="%E6%8A%8A%E4%B8%80%E4%B8%AA%E9%94%AE%E7%9A%84%E5%80%BC%E8%AE%BE%E4%B8%BAnil" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>把一个键的值设为nil</h3>
+<pre><code class="language-Swift">movieRatings[&quot;Dark City&quot;] = nil
+</code></pre>
+<p>结果在本质上和删除一样的，但是这样写不会返回被删除键的值。</p>
+<h2><a id="%E5%BE%AA%E7%8E%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>循环</h2>
+<h3><a id="%E9%81%8D%E5%8E%86%E5%AD%97%E5%85%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>遍历字典</h3>
+<pre><code class="language-Swift">for (key, value) in movieRatings { 
+    print(&quot;The movie \(key) was rated \(value).&quot;) 
+}
+</code></pre>
+<h3><a id="%E5%8F%AA%E8%AE%BF%E9%97%AE%E9%94%AE" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>只访问键</h3>
+<pre><code class="language-Swift">for movie in movieRatings.keys { 
+    print(&quot;User has rated \(movie).&quot;) 
+}
+</code></pre>
+<h2><a id="%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AD%97%E5%85%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>不可变字典</h2>
+<p>创建不可变字典和创建不可变数组差不多，用let关键字告诉Swift编译器这个Dictionary实例不可变。</p>
+<pre><code class="language-Swift">let album = [&quot;Diet Roast Beef&quot;: 268, 
+            &quot;Dubba Dubbs Stubs His Toe&quot;: 467, 
+            &quot;Smokey's Carpet Cleaning Service&quot;: 187, 
+            &quot;Track 4&quot;: 221] 
+</code></pre>
+<h2><a id="%E6%8A%8A%E5%AD%97%E5%85%B8%E8%BD%AC%E6%8D%A2%E4%B8%BA%E6%95%B0%E7%BB%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>把字典转换为数组</h2>
+<p>有时候把字典中的信息取出并放入数组会很有用。合理的做法是用字典的键创建一个Array.</p>
+<pre><code class="language-Swift">let watchedMovies = Array(movieRatings.keys)
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="swift-learning-10.html" 
+          title="Previous Post: Swift编程入门（10）集合">&laquo; Swift编程入门（10）集合</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-8.html" 
+          title="Next Post: Swift编程入门（8）数组">Swift编程入门（8）数组 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+<script>(n=>{"use strict";let s,r,e;const l=["cdn.jsdelivr.net","fastly.jsdelivr.net","gcore.jsdelivr.net","cdn.zenless.top","testingcf.jsdelivr.net"],t="//",i=l[0],o=Date.now(),a=2e3,c="jsdelivr-auto-fallback",f="/gh/PipecraftNet/jsdelivr-auto-fallback@main/empty.css?",d=e=>e&&e.includes(t+i),m=e=>e.replace(t+i,t+s),u=window.setTimeout,v=n.querySelectorAll.bind(n),b=()=>{let e,t;for(e of v('link[rel="stylesheet"]'))t=e.href,d(t)&&!t.includes(f)&&(e.href=m(t));for(e of v("script"))if(t=e.src,d(t)){const s=n.createElement("script");s.src=m(t),e.defer=!0,e.src="",e.before(s),e.remove()}for(e of v("img"))t=e.src,d(t)&&(e.src="",e.src=m(t));for(e of v("*[style]"))t=e.getAttribute("style"),d(t)&&e.setAttribute("style",m(t));for(e of v("style"))t=e.innerHTML,d(t)&&(e.innerHTML=m(t))},h=()=>{!e&&r&&s&&(console.warn(i+" is not available. Use "+s),e=!0,u(b,0),u(b,20),setInterval(b,500))},g=(()=>{try{return Object.assign({},JSON.parse(localStorage.getItem(c)||"{}"))}catch{return{}}})(),y=()=>{g.time=o,g.failed=!1,g.fastNode=null;for(const t of l)((e,t)=>{let s;const r=n.createElement("link"),l=e=>{s&&(clearTimeout(s),s=0,e||(r.href="data:text/css;base64,"),r.remove(),t(e))};s=u(l,a),r.addEventListener("error",()=>l(!1)),r.addEventListener("load",()=>l(!0)),r.rel="stylesheet",r.text="text/css",r.href=e+f+o,n.head.insertAdjacentElement("afterbegin",r)})("https://"+t,e=>{e||t!==i||(r=!0,g.failed=!0),e&&!s&&(s=t),e&&!g.fastNode&&(g.fastNode=t),h()});u(()=>{r&&!s&&(s=l[1],h()),localStorage.setItem(c,JSON.stringify(g))},a+100)};if(g.time&&o-g.time<36e5&&g.failed&&g.fastNode)r=!0,s=g.fastNode,h(),u(y,1e3);else if(n.head)y();else{const j=new MutationObserver(()=>{n.head&&(j.disconnect(),y())});j.observe(n,{childList:!0,subtree:!0})}})(document);</script>
+<style>.mweb-charts{background:#fff;}
+body{ box-sizing: border-box;
+    margin: 0 auto;}
+@media print{
+    pre, code, pre code {
+     overflow: visible !important;
+     white-space: pre-wrap !important;       /* css-3 */
+     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+     white-space: -pre-wrap !important;      /* Opera 4-6 */
+     white-space: -o-pre-wrap !important;    /* Opera 7 */
+     word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+    }
+    html,body{margin:0;padding:4px;}
+}
+
+
+
+div.code-toolbar {
+  position: relative;
+}
+
+div.code-toolbar > .toolbar {
+  position: absolute;
+  z-index: 10;
+  top: .3em;
+  right: .2em;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+/* Separate line b/c rules are thrown out if selector is invalid.
+   IE11 and old Edge versions don't support :focus-within. */
+div.code-toolbar:focus-within > .toolbar {
+  opacity: 1;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item {
+  display: inline-block;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a {
+  cursor: pointer;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  color: inherit;
+  font-size: .8em;
+  padding: 4px .5em;
+  background: #f5f2f0;
+  background: rgba(224, 224, 224, 0.4);
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+  border-radius: .5em;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a:hover,
+div.code-toolbar > .toolbar > .toolbar-item > a:focus,
+div.code-toolbar > .toolbar > .toolbar-item > button:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:focus,
+div.code-toolbar > .toolbar > .toolbar-item > span:hover,
+div.code-toolbar > .toolbar > .toolbar-item > span:focus {
+  color: inherit;
+  text-decoration: none;
+}
+</style><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script><script>!function(){if("undefined"!=typeof Prism&&"undefined"!=typeof document){var e=[],t={},n=function(){};Prism.plugins.toolbar={};var a=Prism.plugins.toolbar.registerButton=function(n,a){var r;r="function"==typeof a?a:function(e){var t;return"function"==typeof a.onClick?((t=document.createElement("button")).type="button",t.addEventListener("click",(function(){a.onClick.call(this,e)}))):"string"==typeof a.url?(t=document.createElement("a")).href=a.url:t=document.createElement("span"),a.className&&t.classList.add(a.className),t.textContent=a.text,t},n in t?console.warn('There is a button with the key "'+n+'" registered already.'):e.push(t[n]=r)},r=Prism.plugins.toolbar.hook=function(a){var r=a.element.parentNode;var l=a.element.classList;if(l.contains('language-mermaid') || l.contains('language-echarts') || l.contains('language-plantuml')){return;} if(r&&/pre/i.test(r.nodeName)&&!r.parentNode.classList.contains("code-toolbar")){var o=document.createElement("div");o.classList.add("code-toolbar"),r.parentNode.insertBefore(o,r),o.appendChild(r);var i=document.createElement("div");i.classList.add("toolbar");var l=e,d=function(e){for(;e;){var t=e.getAttribute("data-toolbar-order");if(null!=t)return(t=t.trim()).length?t.split(/\s*,\s*/g):[];e=e.parentElement}}(a.element);d&&(l=d.map((function(e){return t[e]||n}))),l.forEach((function(e){var t=e(a);if(t){var n=document.createElement("div");n.classList.add("toolbar-item"),n.appendChild(t),i.appendChild(n)}})),o.appendChild(i)}};a("label",(function(e){var t=e.element.parentNode;if(t&&/pre/i.test(t.nodeName)&&t.hasAttribute("data-label")){var n,a,r=t.getAttribute("data-label");try{a=document.querySelector("template#"+r)}catch(e){}return a?n=a.content:(t.hasAttribute("data-url")?(n=document.createElement("a")).href=t.getAttribute("data-url"):n=document.createElement("span"),n.textContent=r),n}})),Prism.hooks.add("complete",r)}}();</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.css"><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script><style>div.code-toolbar > .toolbar > .toolbar-item > a, div.code-toolbar > .toolbar > .toolbar-item > button, div.code-toolbar > .toolbar > .toolbar-item > span {padding: 4px .5em; background: #f5f2f0; background: rgba(224, 224, 224, 0.4);}</style><script>window.MathJax = {     tex: { tags: 'ams', displayMath: [ ['\\[', '\\]'] ] } ,     startup: {     pageReady() {       return MathJax.startup.defaultPageReady().then(function () {          window.mweb_mathjax_ready_val = 'yes';          if(window.mweb_mathjax_ready !== undefined){ mweb_mathjax_ready(); }       });     }   }};document.addEventListener('DOMContentLoaded', function(event) {    if (typeof Prism != 'undefined') {         Prism.highlightAll();     }});window.mweb_mathjax_ready_val = '';function theMWebMathJaxRenderIsReady(key){ return window.mweb_mathjax_ready_val; }</script><script>window.MathJax = { tex: { tags: 'ams', displayMath: [ ['\\[', '\\]'] ] } }; </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+
+<style type="text/css">
+figure{margin: 0;padding: 0;}
+figcaption{text-align:center;}
+
+/* PrismJS 1.14.0
+ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: black;
+    background: none;
+    text-shadow: 0 1px white;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+    text-shadow: none;
+    background:#b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+
+@media print {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        text-shadow: none;
+    }
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #F7F7F7;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: .1em;
+    border-radius: .3em;
+    white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: slategray;
+}
+
+.token.punctuation {
+    color: #999;
+}
+
+.namespace {
+    opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #9a6e3a;
+    background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #07a;
+}
+
+.token.function,
+.token.class-name {
+    color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #e90;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+</style>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[HyterMatrix]]></title>
+  <link href="https://hyter.me/atom.xml" rel="self"/>
+  <link href="https://hyter.me/"/>
+  <updated>2024-10-21T11:46:11+08:00</updated>
+  <id>https://hyter.me/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu安装驱动以及CUDA]]></title>
+    <link href="https://hyter.me/ubuntu-install-drivers-and-cuda.html"/>
+    <updated>2024-10-21T11:43:53+08:00</updated>
+    <id>https://hyter.me/ubuntu-install-drivers-and-cuda.html</id>
+    <content type="html"><![CDATA[
+<p>要解决“<code>NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver</code>”这个问题，你需要确保在 Ubuntu 上正确安装并配置 NVIDIA 驱动。下面是步骤：</p>
+<h3><a id="1%E7%A1%AE%E8%AE%A4%E4%BD%A0%E7%9A%84-gpu%E5%9E%8B%E5%8F%B7" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 确认你的 GPU 型号</h3>
+<p>在安装驱动之前，你需要知道你使用的 NVIDIA GPU 型号。可以通过以下命令查看：</p>
+<pre><code class="language-bash">lspci | grep -i nvidia
+</code></pre>
+<h3><a id="2%E6%B8%85%E9%99%A4%E6%97%A7%E7%9A%84-nvidia%E9%A9%B1%E5%8A%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 清除旧的 NVIDIA 驱动</h3>
+<p>如果你之前安装了其他版本的 NVIDIA 驱动或使用其他工具安装过，请先清除它们：</p>
+<pre><code class="language-bash">sudo apt-get purge nvidia*
+sudo apt-get autoremove
+</code></pre>
+<h3><a id="3%E6%B7%BB%E5%8A%A0-nvidia%E9%A9%B1%E5%8A%A8%E7%9A%84-ppa" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 添加 NVIDIA 驱动的 PPA</h3>
+<p>为确保安装最新的驱动，可以添加 NVIDIA 官方的 PPA（个人软件包档案）：</p>
+<pre><code class="language-bash">sudo add-apt-repository ppa:graphics-drivers/ppa
+sudo apt-get update
+</code></pre>
+<h3><a id="4%E5%AE%89%E8%A3%85-nvidia%E9%A9%B1%E5%8A%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 安装 NVIDIA 驱动</h3>
+<p>接下来，安装最新的 NVIDIA 驱动。你可以通过以下命令查看推荐的驱动：</p>
+<pre><code class="language-bash">ubuntu-drivers devices
+</code></pre>
+<p>会返回</p>
+<pre><code class="language-plain_text">root@ai-gpu:~$ ubuntu-drivers devices
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+udevadm hwdb is deprecated. Use systemd-hwdb instead.
+== /sys/devices/pci0000:00/0000:00:1c.4/0000:04:00.0 ==
+modalias : pci:v000010DEd00001B38sv000010DEsd000011D9bc03sc02i00
+vendor   : NVIDIA Corporation
+model    : GP102GL [Tesla P40]
+driver   : nvidia-driver-470 - distro non-free
+driver   : nvidia-driver-535 - distro non-free
+driver   : nvidia-driver-545 - third-party non-free
+driver   : nvidia-driver-535-server - distro non-free
+driver   : nvidia-driver-390 - third-party non-free
+driver   : nvidia-driver-550 - third-party non-free
+driver   : nvidia-driver-555 - third-party non-free
+driver   : nvidia-driver-470-server - distro non-free
+driver   : nvidia-driver-560 - third-party non-free recommended
+driver   : xserver-xorg-video-nouveau - distro free builtin
+</code></pre>
+<p><strong><code>recommended</code> 标记</strong>：在每个驱动程序信息行的末尾，如果该驱动程序是系统根据您的硬件配置推荐的，就会有一个 <code>recommended</code> 标记</p>
+<p>检测到的 GPU 是 <strong>Tesla P40</strong>，并列出了多个可用的 NVIDIA 驱动本，其中 <code>nvidia-driver-560</code> 被推荐为适合你系统的驱动。你可以这样安装：</p>
+<pre><code class="language-bash">sudo apt-get install nvidia-driver-560
+</code></pre>
+<p>安装完成后，重新启动系统：</p>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+<h3><a id="5%E6%A3%80%E6%9F%A5-nvidia-smi" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. 检查 NVIDIA-SMI</h3>
+<p>重启后，运行以下命令检查 NVIDIA 驱动是否正常工作：</p>
+<pre><code class="language-bash">nvidia-smi
+</code></pre>
+<p>如果一切正常，你应该能够看到 GPU 的状态信息。</p>
+<h3><a id="6%E5%AE%89%E8%A3%85-cuda%EF%BC%88%E5%8F%AF%E9%80%89%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. 安装 CUDA（可选）</h3>
+<p>如果你需要使用 CUDA 进行深度学习或其他 GPU 加速任务，可以通过以下命令安装 CUDA：</p>
+<pre><code class="language-bash">sudo apt-get install nvidia-cuda-toolkit
+</code></pre>
+<h3><a id="%E5%85%B6%E4%BB%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>其他注意事项：</h3>
+<ul>
+<li>如果你使用的是特殊的硬件环境（例如笔记本的混合显卡），可能需要配置 <code>prime-select</code> 来切换显卡。</li>
+<li>如果问题仍然存在，尝试检查 <code>secure boot</code> 是否被启用，在一些系统上，启用了 <code>secure boot</code> 可能会导致驱动无法加载。可以在 BIOS 设置中关闭它。</li>
+</ul>
+<p>这样应该可以解决你遇到的问题。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MAMP安装后无法开启的问题]]></title>
+    <link href="https://hyter.me/mamp-not-run.html"/>
+    <updated>2024-07-15T14:48:36+08:00</updated>
+    <id>https://hyter.me/mamp-not-run.html</id>
+    <content type="html"><![CDATA[
+<p>安装完后可以使用。不过下午更新了下电脑就又无法启动了。</p>
+<p>这是因为mac更新系统后将原有的mamp启动项给删除了，导致mamp软件无法正常打开。</p>
+<p>可以使用命令行解决</p>
+<pre><code class="language-sh">sudo launchctl load -w /Library/LaunchDaemons/de.appsolute.mampprohelper.plist
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Gitlab 创建钩子文件]]></title>
+    <link href="https://hyter.me/gitlab-create-pre-receive.html"/>
+    <updated>2024-05-05T19:14:05+08:00</updated>
+    <id>https://hyter.me/gitlab-create-pre-receive.html</id>
+    <content type="html"><![CDATA[
+<p>gitlab社区版本不能在直接后台设置git的一些提交限制，比如限制邮箱的校验等，所以就只能单独仓库设置钩子文件，并批量的放置在所有的仓库下。</p>
+<p>按理由，基于钩子文件可以做很多限制。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%9F%A5%E7%9C%8B%E9%A1%B9%E7%9B%AE%E5%BA%93%E8%B7%AF%E5%BE%84" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>查看项目库路径</h2>
+<p>使用控制台获取项目被加密的项目库路径</p>
+<pre><code class="language-plain_text">gitlab-rails console
+project = Project.find_by_full_path('techcenter/saas/commonapi')
+puts project.disk_path
+</code></pre>
+<h2><a id="%E8%AE%BE%E7%BD%AE%E9%92%A9%E5%AD%90" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置钩子</h2>
+<h3><a id="1%E5%88%9B%E5%BB%BA%E6%96%87%E4%BB%B6-pre-receive%E9%92%A9%E5%AD%90%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 创建文件<code>pre-receive</code> 钩子文件</h3>
+<pre><code class="language-shell">#!/bin/bash
+RED='\033[0;31m' # 定义红色
+NC='\033[0m' # 无色（用于重置颜色）
+
+while read oldrev newrev refname; do
+  # 检查是否是删除分支的操作
+  if [ &quot;$newrev&quot; = &quot;0000000000000000000000000000000000000000&quot; ]; then
+    # 允许删除分支操作
+    echo &quot;分支删除操作被允许&quot;
+    continue
+  fi
+
+  author_email=$(git log -1 --pretty=format:&quot;%ae&quot; $newrev)
+  if [[ ! $author_email =~ ^[a-zA-Z0-9._%+-]+@example\.cn$ ]]; then
+    echo -e &quot;\n\n${RED}提交被拒绝，因为提交邮箱不符合规定。请使用公司邮箱${NC}&quot;
+    echo -e &quot;${RED}git config --global user.name  '你的名字'${NC}&quot;
+    echo -e &quot;${RED}git config --global user.email '公司邮箱'${NC}\n\n&quot;
+    exit 1
+  fi
+done
+</code></pre>
+<h3><a id="2%E8%B5%8B%E4%BA%88%E6%9D%83%E9%99%90-x" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 赋予权限<code>+x</code></h3>
+<pre><code class="language-plain_text">chmod +x pre-receive
+# 可能得话 还需要分配用户组
+chown -R git:git custom_hooks
+</code></pre>
+<h3><a id="3%E8%AE%BE%E7%BD%AE%E6%89%B9%E9%87%8F%E7%BB%99%E9%A1%B9%E7%9B%AE%E8%AE%BE%E7%BD%AE%E9%92%A9%E5%AD%90%E7%9A%84%E8%84%9A%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3.设置批量给项目设置钩子的脚本</h3>
+<pre><code class="language-shell">#!/bin/bash
+
+# 钩子脚本的通用位置
+global_hook_path=&quot;/opt/gitlab-global-hooks/pre-receive&quot;
+
+# GitLab仓库的根目录
+repo_root=&quot;/data/gitdata/repositories/@hashed&quot; # 此目录按实际目录
+
+# 遍历所有.git仓库目录
+find &quot;$repo_root&quot; -type d -name &quot;*.git&quot; | while read repo; do
+    # 定义custom_hooks目录路径
+    custom_hooks_dir=&quot;$repo/custom_hooks&quot;
+
+    # 定义将要创建的软连接的目标路径
+    hook_symlink_path=&quot;$custom_hooks_dir/pre-receive&quot;
+
+    # 检查custom_hooks目录是否存在，不存在则创建
+    [ ! -d &quot;$custom_hooks_dir&quot; ] &amp;&amp; mkdir -p &quot;$custom_hooks_dir&quot; &amp;&amp; chown git:git &quot;$custom_hooks_dir&quot;
+
+    # 检查钩子软连接（或文件）是否已经存在
+    if [ ! -e &quot;$hook_symlink_path&quot; ]; then
+        # 创建软连接
+        ln -s &quot;$global_hook_path&quot; &quot;$hook_symlink_path&quot;
+        echo &quot;Created symlink for $hook_symlink_path&quot;
+    else
+        echo &quot;Hook already exists for $repo, skipping...&quot;
+    fi
+done
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SVN 打包两个版本之间差异的脚本]]></title>
+    <link href="https://hyter.me/svn-diff-pack.html"/>
+    <updated>2024-03-21T15:38:47+08:00</updated>
+    <id>https://hyter.me/svn-diff-pack.html</id>
+    <content type="html"><![CDATA[
+<p>一个SVN管理的打包两个版本之间差异的脚本</p>
+<span id="more"></span><!-- more -->
+<pre><code class="language-plain_text">#!/bin/bash
+
+# 获取脚本所在目录的路径
+SCRIPT_DIR=$(dirname &quot;$0&quot;)
+
+# SVN仓库的URL
+REPO_URL=&quot;&quot;
+
+# 起始和结束的修订版本号
+REV_START=&quot;&quot;
+REV_END=&quot;&quot;
+
+# SVN 用户名和密码（为了安全考虑，请通过环境变量或其他安全方式提供这些信息）
+SVN_USERNAME=&quot;&quot;
+SVN_PASSWORD=&quot;&quot;
+
+# 临时目录，用于存放导出的文件
+TEMP_DIR=&quot;$SCRIPT_DIR/svn_diffs_temp&quot;
+
+# 打包文件的名称，现在包括脚本所在目录的路径
+PACKAGE_NAME=&quot;$SCRIPT_DIR/svn_diffs_${REV_START}_to_${REV_END}.tar.gz&quot;
+
+# 创建临时目录
+mkdir -p $TEMP_DIR
+# 获取两个修订版本之间差异文件的列表，并循环处理每个文件
+svn diff -r ${REV_START}:${REV_END} --summarize $REPO_URL --username $SVN_USERNAME --password $SVN_PASSWORD | while read line; do
+    # 提取文件状态和路径
+    FILE_STATUS=$(echo $line | awk '{print $1}')
+    FILE_PATH=$(echo $line | awk '{print $2}')
+
+    # 检查文件状态，只处理已修改（M）或已添加（A）的文件
+    if [[ &quot;$FILE_STATUS&quot; == &quot;M&quot; || &quot;$FILE_STATUS&quot; == &quot;A&quot; ]]; then
+        # 计算文件的相对路径
+        RELATIVE_PATH=${FILE_PATH#$REPO_URL/}
+        # 创建文件的目标目录
+        mkdir -p $TEMP_DIR/$(dirname $RELATIVE_PATH)
+        # 导出文件到目标目录，保留路径结构
+        svn export ${FILE_PATH}@${REV_END} $TEMP_DIR/$RELATIVE_PATH --username $SVN_USERNAME --password $SVN_PASSWORD
+    fi
+done
+
+# 将临时目录中的文件打包
+tar -czvf $PACKAGE_NAME -C $TEMP_DIR .
+
+# 清理临时目录
+rm -rf $TEMP_DIR
+
+echo &quot;差异包已创建: $PACKAGE_NAME&quot;
+
+
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Centos下管理Python多环境]]></title>
+    <link href="https://hyter.me/centos-install-pyenv.html"/>
+    <updated>2023-12-29T15:11:22+08:00</updated>
+    <id>https://hyter.me/centos-install-pyenv.html</id>
+    <content type="html"><![CDATA[
+<p>在 CentOS 系统上管理多个 Python 版本，通常有几种方法可以选择：</p>
+<span id="more"></span><!-- more -->
+<h3><a id="1%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. 使用系统包管理器</h3>
+<p>CentOS 的包管理器（如 <code>yum</code> 或 <code>dnf</code>）可能提供了不同版本的 Python。这些版本可以安装在不同的路径中，例如 <code>/usr/bin/python3.6</code>、<code>/usr/bin/python3.7</code> 等。要安装特定版本的 Python，您可以使用类似以下的命令：</p>
+<pre><code class="language-bash">sudo yum install python36
+</code></pre>
+<p>这样安装的 Python 版本可以通过指定完整路径来使用。</p>
+<h3><a id="2%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. 编译安装</h3>
+<p>您可以从源代码编译安装不同版本的 Python。这使您可以安装最新版本的 Python，甚至可以在配置编译选项时进行自定义。编译安装通常涉及以下步骤：</p>
+<ul>
+<li>下载 Python 源代码。</li>
+<li>解压并进入源代码目录。</li>
+<li>配置安装选项（指定安装路径等）。</li>
+<li>编译并安装。</li>
+</ul>
+<p>例如：</p>
+<pre><code class="language-bash">wget https://www.python.org/ftp/python/3.8.0/Python-3.8.0.tar.xz
+tar xvf Python-3.8.0.tar.xz
+cd Python-3.8.0
+./configure --prefix=/usr/local/python3.8
+make
+sudo make install
+</code></pre>
+<h3><a id="3%E4%BD%BF%E7%94%A8-pyenv" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. 使用 Pyenv</h3>
+<p><a href="https://github.com/pyenv/pyenv">Pyenv</a> 是一个流行的工具，用于在同一系统上管理多个 Python 版本。它允许您轻松切换全局 Python 版本，为每个项目设置本地版本，并支持安装多个版本的 Python。要安装 Pyenv，您可以使用以下命令：</p>
+<pre><code class="language-bash">curl https://pyenv.run | bash
+</code></pre>
+<p>安装后，您可以使用 Pyenv 安装特定版本的 Python：</p>
+<pre><code class="language-bash">pyenv install 3.8.0
+</code></pre>
+<p>并设置全局或本地（项目级）的 Python 版本：</p>
+<pre><code class="language-bash">pyenv global 3.8.0  # 全局
+pyenv local 3.8.0   # 本地
+</code></pre>
+<h3><a id="4%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. 使用虚拟环境</h3>
+<p>无论选择哪种方式安装 Python，强烈建议使用虚拟环境（如 <code>venv</code> 或 <code>virtualenv</code>）来隔离不同项目的 Python 环境。虚拟环境允许您为每个项目安装不同的库，而不会相互影响。</p>
+<p>例如，使用 <code>venv</code> 创建虚拟环境：</p>
+<pre><code class="language-bash">python3.8 -m venv myenv
+source myenv/bin/activate
+</code></pre>
+<h3><a id="%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>注意事项</h3>
+<ul>
+<li>管理多个 Python 版本可能会变得复杂，特别是在涉及系统路径和库依赖时。请确保了解您的环境配置。</li>
+<li>在编译安装 Python 之前，确保已经安装了所有必要的依赖项，如 <code>gcc</code>、<code>openssl-devel</code>、<code>bzip2-devel</code>、<code>libffi-devel</code> 等。</li>
+<li>使用 Pyenv 和虚拟环境可以显著简化多版本 Python 的管理。</li>
+</ul>
+<h4><a id="%E3%80%90%E9%87%8D%E7%82%B9%E6%B3%A8%E6%84%8F%E3%80%91%E5%B0%86pyenv%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%82%A8%E7%9A%84-shell%E5%8A%A0%E8%BD%BD%E8%B7%AF%E5%BE%84%E4%B8%AD%E3%80%82" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>【重点注意】 将 <code>pyenv</code> 添加到您的 shell 加载路径中。</h4>
+<p>为了确保 <code>pyenv</code> 能够正确工作，您需要在您的 shell 配置文件中添加几行代码，以设置环境变量和初始化 <code>pyenv</code>。</p>
+<p>您需要编辑您的 <code>~/.bash_profile</code>（用于登录 shell）和 <code>~/.bashrc</code>（用于交互式 shell）文件。如果您使用的是其他类型的 shell（如 <code>zsh</code>），则应该编辑相应的配置文件（如 <code>~/.zshrc</code>）。</p>
+<ol>
+<li>
+<p>打开 <code>~/.bash_profile</code> 或 <code>~/.profile</code> 文件（如果 <code>~/.bash_profile</code> 不存在）：</p>
+<pre><code class="language-bash">nano ~/.bash_profile
+</code></pre>
+<p>如果您使用的是 <code>zsh</code>，则打开 <code>~/.zshrc</code>：</p>
+<pre><code class="language-bash">nano ~/.zshrc
+</code></pre>
+</li>
+<li>
+<p>在文件的末尾添加以下行：</p>
+<pre><code class="language-bash">export PYENV_ROOT=&quot;$HOME/.pyenv&quot;
+[[ -d $PYENV_ROOT/bin ]] &amp;&amp; export PATH=&quot;$PYENV_ROOT/bin:$PATH&quot;
+eval &quot;$(pyenv init -)&quot;
+</code></pre>
+</li>
+<li>
+<p>如果您还安装了 <code>pyenv-virtualenv</code>，也需要在 <code>~/.bashrc</code> 中添加以下行：</p>
+<pre><code class="language-bash">eval &quot;$(pyenv virtualenv-init -)&quot;
+</code></pre>
+<p>对于 <code>zsh</code> 用户，也将这些行添加到 <code>~/.zshrc</code>。</p>
+</li>
+<li>
+<p>保存并关闭文件。</p>
+</li>
+<li>
+<p>重启您的 shell，或者在当前 shell 中加载新配置：</p>
+<pre><code class="language-bash">source ~/.bash_profile
+</code></pre>
+<p>或对于 <code>zsh</code> 用户：</p>
+<pre><code class="language-bash">source ~/.zshrc
+</code></pre>
+</li>
+</ol>
+<p>完成这些步骤后，<code>pyenv</code> 应该能够正确加载，您可以使用它来管理 Python 版本。如果您在执行这些步骤后仍然遇到问题，请确保您遵循了所有指示，并检查是否有任何拼写或路径错误。</p>
+<h4><a id="%E3%80%90%E9%87%8D%E7%82%B9%E6%B3%A8%E6%84%8F%E3%80%91%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>【重点注意】 安装依赖环境</h4>
+<pre><code class="language-bash">sudo yum groupinstall &quot;Development Tools&quot;
+sudo yum install openssl-devel bzip2-devel libffi-devel zlib-devel
+sudo yum install ncurses-devel readline-devel sqlite-devel xz-devel
+
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Ubuntu上挂载远程SMB文件夹]]></title>
+    <link href="https://hyter.me/ubuntu-use-smb.html"/>
+    <updated>2023-12-26T03:05:39+08:00</updated>
+    <id>https://hyter.me/ubuntu-use-smb.html</id>
+    <content type="html"><![CDATA[
+<div class="mweb_toc"><ul>
+<li><a href="#%E6%8C%82%E8%BD%BD">挂载</a></li>
+<li><a href="#%E5%8D%B8%E8%BD%BD">卸载</a></li>
+</ul>
+</div>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%8C%82%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>挂载</h2>
+<p>在Ubuntu上挂载远程SMB文件夹的过程通常分为以下几个步骤：</p>
+<ol>
+<li>
+<p><strong>安装必要的软件包</strong>：<br />
+首先，确保已安装<code>cifs-utils</code>软件包。这个包提供了挂载SMB共享所需的工具。你可以使用以下命令来安装它：</p>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install cifs-utils
+</code></pre>
+</li>
+<li>
+<p><strong>创建挂载点</strong>：<br />
+接下来，创建一个本地目录来作为远程SMB共享的挂载点。例如：</p>
+<pre><code class="language-bash">sudo mkdir /mnt/myshare
+</code></pre>
+</li>
+<li>
+<p><strong>编辑fstab文件（可选）</strong>：<br />
+如果你希望在每次启动时自动挂载SMB共享，可以编辑<code>/etc/fstab</code>文件。在文件末尾添加一行类似以下格式的内容：</p>
+<pre><code class="language-bash">//server/share /mnt/myshare cifs credentials=/path/to/credentials,file_mode=0777,dir_mode=0777 0 0
+</code></pre>
+<p>其中，<code>server</code>是SMB服务器的地址，<code>share</code>是共享的名称，<code>/mnt/myshare</code>是你创建的本地挂载点，<code>/path/to/credentials</code>是一个包含用户名和密码的文件路径。</p>
+</li>
+<li>
+<p><strong>创建凭证文件（如果编辑了fstab）</strong>：<br />
+如果你决定编辑<code>fstab</code>文件，需要创建一个包含SMB登录凭证的文件。这个文件通常包含以下内容：</p>
+<pre><code class="language-bash">username=your_username
+password=your_password
+</code></pre>
+<p>确保这个文件的权限设置得当，以避免安全风险。</p>
+</li>
+<li>
+<p><strong>手动挂载（如果没有编辑fstab）</strong>：<br />
+如果你不希望共享在每次启动时自动挂载，可以手动挂载它。使用以下命令：</p>
+<pre><code class="language-bash">sudo mount -t cifs -o username=your_username,password=your_password //server/share /mnt/myshare
+</code></pre>
+</li>
+<li>
+<p><strong>访问和使用共享</strong>：<br />
+一旦共享被挂载，你就可以像访问本地文件系统一样访问和使用它。</p>
+</li>
+</ol>
+<h2><a id="%E5%8D%B8%E8%BD%BD" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>卸载</h2>
+<p>要取消挂载（卸载）一个已经挂载的SMB共享，你可以使用<code>umount</code>命令。这是一个标准的命令，用于卸载任何类型的文件系统，包括SMB共享。以下是具体步骤：</p>
+<ol>
+<li>
+<p><strong>使用umount命令</strong>：<br />
+打开终端，并输入以下命令来卸载SMB共享：</p>
+<pre><code class="language-bash">sudo umount /mnt/myshare
+</code></pre>
+<p>其中<code>/mnt/myshare</code>是你之前创建的挂载点。</p>
+</li>
+<li>
+<p><strong>确认卸载成功</strong>：<br />
+卸载完成后，你可以使用<code>df -h</code>或<code>mount</code>命令来检查共享是否已经被成功卸载。如果共享不再出现在列表中，这表示它已经被卸载。</p>
+</li>
+<li>
+<p><strong>处理卸载问题</strong>：</p>
+<ul>
+<li>如果在尝试卸载时遇到“设备正忙”的错误，这通常意味着有进程正在使用挂载点。确保没有任何进程（如文件浏览器或命令行工具）正在访问该挂载点，然后再次尝试卸载。</li>
+<li>如果仍然无法卸载，你可以使用<code>lsof</code>命令查看哪个进程正在使用挂载点：
+<pre><code class="language-bash">sudo lsof /mnt/myshare
+</code></pre>
+然后可以决定是否关闭相关进程或终止相关会话，然后再尝试卸载。</li>
+</ul>
+</li>
+<li>
+<p><strong>自动卸载（可选）</strong>：<br />
+如果你的系统支持，你也可以使用<code>umount -a</code>命令卸载所有已挂载的文件系统。但请小心使用这个命令，因为它会尝试卸载所有挂载点，包括系统自动挂载的点。</p>
+</li>
+</ol>
+<p>在处理挂载和卸载操作时，请确保你了解命令的含义和可能的影响。错误的操作可能会导致数据丢失或系统不稳定。如果你不确定，建议咨询经验丰富的用户或管理员。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu上安装Docker和Docker Compose]]></title>
+    <link href="https://hyter.me/ubuntu-install-docker-and-docker-compose.html"/>
+    <updated>2023-11-07T20:14:30+08:00</updated>
+    <id>https://hyter.me/ubuntu-install-docker-and-docker-compose.html</id>
+    <content type="html"><![CDATA[
+<p>要在Ubuntu上安装Docker和Docker Compose，你可以按照以下步骤操作：</p>
+<span id="more"></span><!-- more -->
+<h3><a id="%E5%AE%89%E8%A3%85docker" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Docker</h3>
+<p>首先，更新现有的包列表：</p>
+<pre><code class="language-bash">sudo apt update
+</code></pre>
+<p>接着，安装一些允许<code>apt</code>通过HTTPS使用仓库的包：</p>
+<pre><code class="language-bash">sudo apt install apt-transport-https ca-certificates curl software-properties-common
+</code></pre>
+<p>然后，添加Docker的官方GPG密钥：</p>
+<pre><code class="language-bash">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</code></pre>
+<p>添加Docker仓库到APT源：</p>
+<pre><code class="language-bash">sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
+</code></pre>
+<p>再次更新包数据库：</p>
+<pre><code class="language-bash">sudo apt update
+</code></pre>
+<p>最后，安装Docker CE（社区版）：</p>
+<pre><code class="language-bash">sudo apt install docker-ce
+</code></pre>
+<p>将你的用户加入到docker组中，以便可以不使用<code>sudo</code>来运行docker命令：</p>
+<pre><code class="language-bash">sudo usermod -aG docker ${USER}
+</code></pre>
+<p>为了使这个改变生效，你可能需要注销并重新登录，或者重启你的系统。</p>
+<p>为了测试Docker是否正确安装，可以运行：</p>
+<pre><code class="language-bash">docker --version
+</code></pre>
+<h3><a id="%E5%AE%89%E8%A3%85docker-compose" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Docker Compose</h3>
+<p>从Docker Compose的GitHub仓库中获取最新版本的Docker Compose（请确保访问<a href="https://github.com/docker/compose">官方GitHub仓库</a>以获取最新版本号）：</p>
+<pre><code class="language-bash">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<p>请注意，上述命令中的版本号<code>v2.23.0</code>需要替换为最新的Docker Compose版本号。</p>
+<p>接下来，给予可执行权限到Docker Compose的二进制文件：</p>
+<pre><code class="language-bash">sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<p>检查Docker Compose是否正确安装：</p>
+<pre><code class="language-bash">docker-compose --version
+</code></pre>
+<p>这样你就完成了Docker和Docker Compose的安装过程。</p>
+<p>请记得在执行这些步骤之前，先确认你使用的Ubuntu版本支持当前的Docker版本，以及你是否有足够的权限来执行上述命令。如果你是作为普通用户执行的，可能需要在每个命令前面加上<code>sudo</code>。如果你刚刚将用户添加到docker组，你需要注销并重新登录或重启，这样组改变才能生效。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu上安装Squid]]></title>
+    <link href="https://hyter.me/ubuntu-install-squid.html"/>
+    <updated>2023-11-07T19:45:22+08:00</updated>
+    <id>https://hyter.me/ubuntu-install-squid.html</id>
+    <content type="html"><![CDATA[
+<p>Ubuntu上安装Squid代理服务器是一个直截了当的过程。以下是通过命令行安装和配置Squid的基本步骤：</p>
+<span id="more"></span><!-- more -->
+<h3><a id="%E5%AE%89%E8%A3%85squid" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装Squid</h3>
+<ol>
+<li>
+<p>首先打开终端。</p>
+</li>
+<li>
+<p>更新你的系统包列表以确保你安装最新版本的软件：</p>
+<pre><code class="language-sh">sudo apt update
+</code></pre>
+</li>
+<li>
+<p>安装Squid包：</p>
+<pre><code class="language-sh">sudo apt install squid
+</code></pre>
+</li>
+</ol>
+<h3><a id="%E9%85%8D%E7%BD%AEsquid" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置Squid</h3>
+<p>安装Squid后，其配置文件默认位于<code>/etc/squid/squid.conf</code>。为了编辑配置文件，你可以使用任何文本编辑器，如nano或vim。</p>
+<ol>
+<li>
+<p>打开Squid配置文件进行编辑：</p>
+<pre><code class="language-sh">sudo nano /etc/squid/squid.conf
+</code></pre>
+</li>
+<li>
+<p>你可能想要配置一些基本的设置，如允许访问你的Squid服务器的客户端：</p>
+<pre><code class="language-sh"># 定位到 http_access 部分
+# 允许你的本地网络，例如：
+acl localnet src 192.168.0.0/24
+http_access allow localnet
+
+# 允许本地主机
+http_access allow localhost
+</code></pre>
+<p>将<code>192.168.0.0/24</code>替换为实际的本地网络IP范围。</p>
+</li>
+<li>
+<p>保存并关闭文件。在nano中，你可以通过按<code>CTRL + X</code>，然后按<code>Y</code>，最后按<code>Enter</code>来做到这一点。</p>
+</li>
+</ol>
+<h3><a id="%E5%90%AF%E5%8A%A8%E5%92%8C%E6%B5%8B%E8%AF%95squid" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>启动和测试Squid</h3>
+<ol>
+<li>
+<p>重新加载Squid配置并启动服务：</p>
+<pre><code class="language-sh">sudo systemctl restart squid
+</code></pre>
+</li>
+<li>
+<p>检查Squid服务的状态以确认它正在运行：</p>
+<pre><code class="language-sh">sudo systemctl status squid
+</code></pre>
+</li>
+<li>
+<p>你还可以检查Squid是否正在正确监听默认的3128端口：</p>
+<pre><code class="language-sh">sudo netstat -lnp | grep squid
+</code></pre>
+</li>
+<li>
+<p>作为一个简单的测试，你可以尝试使用curl通过Squid代理服务器访问一个网页：</p>
+<pre><code class="language-sh">curl -x http://localhost:3128 http://example.com
+</code></pre>
+</li>
+</ol>
+<h3><a id="%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置防火墙</h3>
+<p>如果你的Ubuntu服务器正在运行ufw防火墙，你需要允许Squid的端口通过：</p>
+<pre><code class="language-sh">sudo ufw allow 3128/tcp
+sudo ufw reload
+</code></pre>
+<p>这样客户端就可以连接到Squid代理服务器了。</p>
+<h3><a id="%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置客户端</h3>
+<p>你需要在客户端的网络设置中指定代理服务器。这涉及到设置代理的主机为Ubuntu服务器的IP地址，端口为Squid监听的端口（默认是3128）。</p>
+<p>完成以上步骤后，你的Squid代理服务器应该已经在Ubuntu上成功安装和配置。记得查看官方的Squid文档来了解更多高级配置选项，例如用户认证、详细的访问控制规则等。</p>
+<h3><a id="%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一些问题</h3>
+<h4><a id="%E5%8F%AA%E7%9B%91%E5%90%AC%E4%BA%86ipv6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>只监听了ipv6</h4>
+<pre><code class="language-bash">root@iZuf6g1yg3mbl0l2t20ehqZ:~# sudo netstat -lnp | grep squid
+tcp6       0      0 :::3128                 :::*                    LISTEN      2329759/(squid-1)   
+udp        0      0 0.0.0.0:55058           0.0.0.0:*                           2329759/(squid-1)   
+udp6       0      0 :::35062                :::*                                2329759/(squid-1)   
+</code></pre>
+<p>根据您提供的输出，Squid确实只在TCP6（IPv6）上监听，对应的端口是3128。如果您希望Squid同时监听IPv4，您需要更改Squid的配置。</p>
+<p>这里有一些步骤可以确保Squid同时监听IPv4和IPv6：</p>
+<ol>
+<li>
+<p>打开Squid配置文件，您可以使用如下命令：</p>
+<pre><code class="language-sh">sudo nano /etc/squid/squid.conf
+</code></pre>
+</li>
+<li>
+<p>查找所有包含<code>http_port</code>的行。如果您找到类似于下面的行：</p>
+<pre><code class="language-plain_text">http_port [::]:3128
+</code></pre>
+<p>它表示Squid被配置为仅在IPv6地址上监听。要更改它以便也在IPv4上监听，您可以将其更改为：</p>
+<pre><code class="language-plain_text">http_port 3128
+</code></pre>
+<p>这将允许Squid在所有可用的IPv4和IPv6接口上监听端口3128。</p>
+</li>
+<li>
+<p>保存并关闭配置文件。如果您在使用nano，您可以通过<code>CTRL + X</code>，然后按<code>Y</code>并按回车来保存更改。</p>
+</li>
+<li>
+<p>重启Squid以应用配置更改：</p>
+<pre><code class="language-sh">sudo systemctl restart squid
+</code></pre>
+</li>
+<li>
+<p>再次检查Squid的监听状态：</p>
+<pre><code class="language-sh">sudo netstat -plnt | grep squid
+</code></pre>
+<p>或者使用<code>ss</code>：</p>
+<pre><code class="language-sh">sudo ss -plnt | grep squid
+</code></pre>
+</li>
+</ol>
+<p>如果按照上述步骤操作后Squid仍然只监听在IPv6，那么可能是操作系统配置的行为，您可能需要检查系统级别的网络配置。</p>
+<p>有时，某些Linux系统上的网络栈配置可能会默认优先使用IPv6。如果您想让Squid忽略IPv6并且只在IPv4上监听，您可能需要使用以下配置：</p>
+<pre><code class="language-conf">http_port 0.0.0.0:3128
+</code></pre>
+<p>但通常情况下，只需使用<code>http_port 3128</code>即可让Squid同时监听IPv4和IPv6。</p>
+<p>再次重申，修改配置文件后，请确保重启Squid服务来使更改生效。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在Centos7 上安装 Squid]]></title>
+    <link href="https://hyter.me/centos7-install-squid.html"/>
+    <updated>2023-11-06T21:08:31+08:00</updated>
+    <id>https://hyter.me/centos7-install-squid.html</id>
+    <content type="html"><![CDATA[
+<p>要在云服务器上设置HTTP和HTTPS代理服务，你可以使用如<code>Squid</code>这样的代理服务器软件。Squid 是一个高性能的代理缓存服务器，支持HTTP、HTTPS、FTP等协议。以下是基于CentOS 7的环境配置Squid代理服务器的基本步骤：</p>
+<span id="more"></span><!-- more -->
+<h3><a id="%E5%AE%89%E8%A3%85squid" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>安装 Squid</h3>
+<ol>
+<li>首先，使用yum安装Squid：
+<pre><code class="language-bash">sudo yum install squid
+</code></pre>
+</li>
+</ol>
+<h3><a id="%E9%85%8D%E7%BD%AEsquid" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置 Squid</h3>
+<ol start="2">
+<li>
+<p>安装完成后，编辑Squid的配置文件<code>/etc/squid/squid.conf</code>：</p>
+<pre><code class="language-bash">sudo vi /etc/squid/squid.conf
+</code></pre>
+</li>
+<li>
+<p>在配置文件中，设置HTTP和HTTPS代理的相关选项。你可能想要修改的配置包括：</p>
+<ul>
+<li><code>http_port</code>: 设置代理服务器的监听端口。</li>
+<li><code>https_port</code>: 如果你想让Squid也代理HTTPS，则需要配置此选项。</li>
+<li><code>acl</code>: 设置访问控制列表，定义哪些客户端可以使用代理。</li>
+<li><code>http_access</code>: 定义哪些acl可以被允许或拒绝。</li>
+</ul>
+<p>以下是一个简单的配置示例：</p>
+<pre><code class="language-plain_text">http_port 3128
+acl allowed_ips src 192.168.1.0/24  # 只允许特定IP地址范围的访问
+http_access allow allowed_ips
+http_access deny all
+</code></pre>
+<p>如果你想开放代理给所有人使用，你可以这样设置：</p>
+<pre><code class="language-plain_text">http_port 3128
+http_access allow all
+</code></pre>
+<p><strong>注意</strong>：将代理服务器开放给所有用户可能会带来安全风险。请确保你知道自己在做什么，特别是不要忽视访问控制的设置。</p>
+</li>
+</ol>
+<h3><a id="%E5%90%AF%E5%8A%A8squid%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>启动 Squid 服务</h3>
+<ol start="4">
+<li>
+<p>配置完成后，启动Squid服务：</p>
+<pre><code class="language-bash">sudo systemctl start squid
+</code></pre>
+</li>
+<li>
+<p>并设置为开机自启：</p>
+<pre><code class="language-bash">sudo systemctl enable squid
+</code></pre>
+</li>
+</ol>
+<h3><a id="%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置防火墙</h3>
+<ol start="6">
+<li>如果你的服务器上运行着防火墙，你需要打开Squid的端口（默认是3128）：
+<pre><code class="language-bash">sudo firewall-cmd --permanent --add-port=3128/tcp
+sudo firewall-cmd --reload
+</code></pre>
+</li>
+</ol>
+<h3><a id="%E9%AA%8C%E8%AF%81%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>验证代理服务</h3>
+<ol start="7">
+<li>
+<p>一切配置完成后，你可以通过以下命令检查Squid服务状态：</p>
+<pre><code class="language-bash">sudo systemctl status squid
+</code></pre>
+</li>
+<li>
+<p>在客户端，设置代理服务器地址为你的云服务器IP和上面配置的端口（比如<code>3128</code>），并尝试通过代理上网。</p>
+</li>
+</ol>
+<p>确保在配置代理服务时考虑到安全性，仅允许可信的客户端连接，并监控你的代理服务器以防止滥用。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。]]></title>
+    <link href="https://hyter.me/centos7-edit-hostname.html"/>
+    <updated>2023-11-06T14:10:26+08:00</updated>
+    <id>https://hyter.me/centos7-edit-hostname.html</id>
+    <content type="html"><![CDATA[
+<p>在 CentOS 7 中，您可以通过几种方法来更改主机名（hostname）。</p>
+<span id="more"></span><!-- more -->
+<ol>
+<li>
+<p><strong>使用 <code>hostnamectl</code> 命令</strong>（推荐的方法）:</p>
+<pre><code class="language-sh">sudo hostnamectl set-hostname new-hostname
+</code></pre>
+<p>将 <code>new-hostname</code> 替换为您希望设置的新主机名。这种方法的好处是它会同时更改静态主机名、漂移主机名和暂态主机名。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hostname</code> 文件</strong>:</p>
+<p>通过编辑包含主机名的文件来手动更改主机名：</p>
+<pre><code class="language-sh">sudo vi /etc/hostname
+</code></pre>
+<p>然后将里面的内容替换为您的新主机名，保存并退出编辑器。</p>
+</li>
+<li>
+<p><strong>编辑 <code>/etc/hosts</code> 文件</strong>:</p>
+<p>除了更改主机名，您还应该更新 <code>/etc/hosts</code> 文件，以反映新的主机名：</p>
+<pre><code class="language-sh">sudo vi /etc/hosts
+</code></pre>
+<p>找到引用旧主机名的行，并将其替换为新主机名。</p>
+</li>
+<li>
+<p><strong>使用 <code>nmtui</code> 命令</strong>:</p>
+<p><code>nmtui</code> 是一个文本用户界面的网络管理工具，它也可以用来设置主机名。</p>
+<pre><code class="language-sh">sudo nmtui
+</code></pre>
+<p>在界面中选择 &quot;Set system hostname&quot;，然后输入新的主机名，并选择 &quot;OK&quot;。</p>
+</li>
+</ol>
+<p>无论您使用哪种方法，都需要重启您的系统，以确保所有的服务都能够识别新的主机名。您可以使用以下命令来重启：</p>
+<pre><code class="language-sh">sudo reboot
+</code></pre>
+<p>或者，如果您不想重启，您可以尝试重新启动网络服务，以便立即应用新的主机名：</p>
+<pre><code class="language-sh">sudo systemctl restart network
+</code></pre>
+<p>更改主机名后，您可以使用 <code>hostnamectl</code> 命令确认新的主机名是否已正确设置：</p>
+<pre><code class="language-sh">hostnamectl
+</code></pre>
+<p>或者简单地使用 <code>hostname</code> 命令也可以：</p>
+<pre><code class="language-sh">hostname
+</code></pre>
+<p>这将显示当前的系统主机名。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7终端模式下，要配置自动获取IP地址]]></title>
+    <link href="https://hyter.me/centos-7-edit-auto-ip.html"/>
+    <updated>2023-11-01T14:42:04+08:00</updated>
+    <id>https://hyter.me/centos-7-edit-auto-ip.html</id>
+    <content type="html"><![CDATA[
+<p>在CentOS 7终端模式下，要配置自动获取IP地址，请按照以下步骤操作：</p>
+<ol>
+<li>使用命令<code>nmcli d</code>列出网络设备。</li>
+<li>记下你想配置为DHCP的网络设备名称。</li>
+<li>使用命令<code>vi /etc/sysconfig/network-scripts/ifcfg-[网络设备名]</code>打开相应的配置文件。</li>
+<li>修改文件中的<code>BOOTPROTO</code>行为<code>dhcp</code>，并将<code>ONBOOT</code>行改为<code>yes</code>。</li>
+<li>保存文件并退出文本编辑器。</li>
+<li>最后，使用命令<code>systemctl restart network</code>重启网络服务。</li>
+</ol>
+<p>关闭IPv6的步骤如下：</p>
+<ul>
+<li>通过修改内核参数：使用命令<code>sysctl -w net.ipv6.conf.all.disable_ipv6=1</code>来禁用所有网络接口上的IPv6。</li>
+<li>或者编辑GRUB配置文件：在<code>/etc/default/grub</code>文件中添加<code>ipv6.disable=1</code>参数到<code>GRUB_CMDLINE_LINUX</code>中，然后重新生成GRUB配置文件。</li>
+<li>另外一种方法是编辑<code>/etc/sysctl.conf</code>文件，添加禁用IPv6的参数。</li>
+</ul>
+<p>务必记得在做任何变更后，重启相关服务以使配置生效。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ubuntu 22.04 修改ip地址]]></title>
+    <link href="https://hyter.me/ubuntu-2204-edit-ip-config.html"/>
+    <updated>2023-06-21T18:01:53+08:00</updated>
+    <id>https://hyter.me/ubuntu-2204-edit-ip-config.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E4%BB%80%E4%B9%88%E6%98%AFnetplan" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>什么是Netplan</h2>
+<p>从Ubuntu 17.10开始，Canonical引入了一个名为Netplan的新工具，用于网络设置管理。 这里是从命令行在Ubuntu系统上配置静态IP的步骤。Netplan是用于在Linux系统上轻松配置网络的实用程序。 您只需为所需的网络接口以及每个接口应配置的功能创建一个YAML描述。 Netplan将根据此描述为您选择的渲染器工具生成所有必要的配置。</p>
+<h2><a id="%E6%9B%B4%E6%96%B0ip%E5%9C%B0%E5%9D%80%E7%9A%84%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>更新IP地址的步骤</h2>
+<p>Netplan配置文件位于/etc/netplan/下。使用以下命令打开对应目录：</p>
+<pre><code class="language-bash">cd /etc/netplan/
+</code></pre>
+<span id="more"></span><!-- more -->
+<p>编辑Netplan 配置文件</p>
+<pre><code class="language-bash">sudo vi 00-installer-config.yaml
+</code></pre>
+<p>默认情况下，Ubuntu 22.04使用YAML格式编写Netplan配置文件，例如<code>00-installer-config.yaml</code>。</p>
+<p>配置样例</p>
+<pre><code class="language-bash"># This is the network config written by 'subiquity'
+network:
+  ethernets:
+    ens160:
+      addresses:
+      - 10.168.2.101/16
+      nameservers:
+        addresses:
+        - 10.168.1.1
+        - 223.5.5.5
+        search: []
+      routes:
+      - to: default
+        via: 10.168.1.1
+  version: 2             
+</code></pre>
+<p>如果您找不到 00-installer-config.yaml 文件，可以尝试查看 /etc/netplan/ 目录中是否存在其他 YAML 格式的 Netplan 配置文件。在某些情况下，系统管理员可能会使用不同的命名方案或将所有配置存储在单个文件中。</p>
+<p>您还可以通过运行以下命令来检查当前的 Netplan 配置：</p>
+<pre><code class="language-bash">sudo netplan try
+</code></pre>
+<p>此命令将临时应用新的配置并验证其语法和正确性。如果有任何错误或问题，它将显示错误消息并恢复先前的配置。</p>
+<p>应用更改。使用以下命令应用更改：</p>
+<pre><code class="language-bash">sudo netplan apply
+</code></pre>
+<p>文本借鉴/转载至<a href="https://blog.csdn.net/inthat/article/details/106738225">CSDN博主「西京刀客」</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 上安装 Docker 和 Docker Compose]]></title>
+    <link href="https://hyter.me/centos-7-install-docker-and-docker-compose.html"/>
+    <updated>2023-05-09T20:32:40+08:00</updated>
+    <id>https://hyter.me/centos-7-install-docker-and-docker-compose.html</id>
+    <content type="html"><![CDATA[
+<p>在 CentOS 7 上安装 Docker 和 Docker Compose 需要一系列的步骤。以下是安装 Docker 的步骤：</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%9F%BA%E7%A1%80%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>基础步骤</h2>
+<ol>
+<li><strong>更新软件包索引</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo yum update -y
+</code></pre>
+<ol start="2">
+<li><strong>安装依赖包</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+</code></pre>
+<ol start="3">
+<li><strong>设置 Docker 仓库</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre>
+<ol start="4">
+<li><strong>安装 Docker CE</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo yum install -y docker-ce docker-ce-cli containerd.io
+</code></pre>
+<ol start="5">
+<li><strong>启动 Docker 服务</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo systemctl start docker
+</code></pre>
+<ol start="6">
+<li><strong>设置 Docker 开机自启</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo systemctl enable docker
+</code></pre>
+<ol start="7">
+<li><strong>检查 Docker 版本</strong>（可选）：</li>
+</ol>
+<pre><code class="language-sh">docker --version
+</code></pre>
+<p>安装 Docker Compose 通常需要下载其二进制文件并将其放在系统的可执行路径下，如下所示：</p>
+<ol>
+<li><strong>下载 Docker Compose</strong>（首先需要确定需要的版本号，可以在 Docker Compose 的 GitHub 发布页面找到）：</li>
+</ol>
+<pre><code class="language-sh">sudo curl -L &quot;https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+</code></pre>
+<ol start="2">
+<li><strong>给予可执行权限</strong>：</li>
+</ol>
+<pre><code class="language-sh">sudo chmod +x /usr/local/bin/docker-compose
+</code></pre>
+<ol start="3">
+<li><strong>创建软链接</strong>（可选，如果 <code>/usr/bin</code> 不在您的 PATH 中）：</li>
+</ol>
+<pre><code class="language-sh">sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+</code></pre>
+<ol start="4">
+<li><strong>检查 Docker Compose 版本</strong>：</li>
+</ol>
+<pre><code class="language-sh">docker-compose --version
+</code></pre>
+<p>以上步骤安装的是 Docker 和 Docker Compose 的特定版本，如需其他版本请替换相应的版本号。你可以通过访问 Docker Compose 的 GitHub 仓库了解最新的版本号。</p>
+<p>请记住，由于网络原因，在中国大陆访问 GitHub 或 Docker 官方站点可能需要一些额外的步骤，比如设置代理或使用镜像源。</p>
+<h2><a id="%E5%BF%AB%E9%80%9F%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>快速安装步骤</h2>
+<pre><code class="language-plain_text">curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+</code></pre>
+<p>嘿嘿</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Docker启动、关闭、停止、删除 所有容器]]></title>
+    <link href="https://hyter.me/16755341758894.html"/>
+    <updated>2023-02-05T02:09:35+08:00</updated>
+    <id>https://hyter.me/16755341758894.html</id>
+    <content type="html"><![CDATA[
+<pre><code class="language-bash">docker中 启动所有的容器命令
+docker start $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+ 
+docker中 关闭所有的容器命令
+docker stop $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的容器命令
+docker rm $(docker ps -a | awk '{ print $1}' | tail -n +2)
+ 
+docker中 删除所有的镜像
+docker rmi $(docker images | awk '{print $3}' |tail -n +2)
+ 
+ 
+docker start $(docker ps -aq) # 启动所有容器
+ 
+docker start $(docker ps -aq -f status=exited) # 启动所有状态为exited 的容器，和上面的命令效果一致
+ 
+dockerrm$(docker ps-q --filter “status=exited”) 
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[常见的NTP授时服务器地址]]></title>
+    <link href="https://hyter.me/cn-npt-server-url.html"/>
+    <updated>2023-01-30T02:23:17+08:00</updated>
+    <id>https://hyter.me/cn-npt-server-url.html</id>
+    <content type="html"><![CDATA[
+<p>一些常见的国内NTP授时服务器地址</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E4%B8%80%E3%80%81%E4%B8%AD%E5%9B%BD%E7%A7%91%E5%AD%A6%E9%99%A2%E5%9B%BD%E5%AE%B6%E6%8E%88%E6%97%B6%E4%B8%AD%E5%BF%83ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、中国科学院国家授时中心NTP授时服务器</h2>
+<pre><code class="language-bash">ntp.ntsc.ac.cn
+</code></pre>
+<p>具体使用方法可以参见中国科学院《关于“网络授时域名”全面试运行测试的公告》<br />
+<a href="http://www.cas.cn/tz/201809/t20180921_4664344.shtml">http://www.cas.cn/tz/201809/t20180921_4664344.shtml</a></p>
+<h2><a id="%E4%BA%8C%E3%80%81%E8%85%BE%E8%AE%AF%E4%BA%91ntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-03%E6%9B%B4%E6%96%B0%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、腾讯云NTP授时服务器地址（2022.03更新）</h2>
+<p>对于非腾讯云设备，可以使用腾讯云提供的公网 NTP 服务器（即：外网 NTP 服务器）</p>
+<pre><code class="language-bash">ntp.tencent.com
+ntp1.tencent.com
+ntp2.tencent.com
+ntp3.tencent.com
+ntp4.tencent.com
+ntp5.tencent.com
+</code></pre>
+<h2><a id="%E4%B8%89%E3%80%81%E9%98%BF%E9%87%8Cntp%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%9C%B0%E5%9D%80%EF%BC%882022-07%E6%9B%B4%E6%96%B0%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>三、阿里NTP授时服务器地址（2022.07更新）</h2>
+<p>阿里云 提供的 NTP 服务器：</p>
+<pre><code class="language-bash">ntp.aliyun.com
+ntp1.aliyun.com
+ntp2.aliyun.com
+ntp3.aliyun.com
+ntp4.aliyun.com
+ntp5.aliyun.com
+ntp6.aliyun.com
+ntp7.aliyun.com
+</code></pre>
+<h2><a id="%E5%9B%9B%E3%80%81%E6%95%99%E8%82%B2%E7%BD%91%E5%86%85%E7%9A%84%E6%8E%88%E6%97%B6%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>四、教育网内的授时服务器</h2>
+<pre><code class="language-bash">time.edu.cn
+s2c.time.edu.cn
+s2f.time.edu.cn
+s2k.time.edu.cn
+</code></pre>
+<p>各大学提供的NTP不建议大家使用了，直接用教育网官方的吧。</p>
+<p>参考文献：<br />
+1、《关于“网络授时域名”全面试运行测试的公告》<br />
+<a href="http://www.cas.cn/tz/201809/t20180921_4664344.shtml">http://www.cas.cn/tz/201809/t20180921_4664344.shtml</a><br />
+2、腾讯云《NTP服务概述》<br />
+<a href="https://cloud.tencent.com/document/product/213/30392">https://cloud.tencent.com/document/product/213/30392</a><br />
+3、阿里云官方镜像站<br />
+<a href="https://developer.aliyun.com/mirror/">https://developer.aliyun.com/mirror/</a><br />
+4、阿里云NTP服务器<br />
+<a href="https://help.aliyun.com/document_detail/92704.html">https://help.aliyun.com/document_detail/92704.html</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 配置NTP服务端和客户端]]></title>
+    <link href="https://hyter.me/centos-7-set-ntp-server-client.html"/>
+    <updated>2023-01-30T02:21:42+08:00</updated>
+    <id>https://hyter.me/centos-7-set-ntp-server-client.html</id>
+    <content type="html"><![CDATA[
+<p>在使用集群安装 OceanBase，需要保证集群内各机器的时间同步。<br />
+OceanBase 集群中的服务器时间必须保持一致，否则会导致 OceanBase 集群无法启动，运行时也会出现故障。物理机与时钟服务器的误差在 50ms 以下可认为时钟是同步状态，OceanBase 集群最大容忍误差不能超过 100ms。当超过 100ms 时，会出现无主情况。恢复时钟同步后。重启 OceanBase 集群, 可以恢复正常。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E7%8E%AF%E5%A2%83" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>环境</h2>
+<p>系统：CentOS 7<br />
+服务器：10.168.2.100<br />
+客户端：10.168.2.101</p>
+<p>NTP公网地址：<a href="/cn-npt-server-url.html">常见的NTP授时服务器地址</a></p>
+<h2><a id="%E4%B8%80%E3%80%81%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一、配置服务器</h2>
+<p>1、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre><code class="language-bash">yum install ntp* -y
+</code></pre>
+<p>2、配置ntpd服务</p>
+<pre><code class="language-bash">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>配置文件中一般有restrict default语句，注释掉第二种或选择第一种</p>
+<pre><code class="language-bash">restrict default nomodify notrap noquery    #  默认允许所有可连接客户端ntpdate到本机  
+</code></pre>
+<pre><code class="language-bash">restrict default ignore         #  默认所有客户端禁止ntpdate到本机
+</code></pre>
+<p>配置与上级互联网服务端连续性同步时间，prefer表示优先，如无可不设置</p>
+<pre><code class="language-bash">server 上级ntp服务器IP或者域名 [prefer] 
+</code></pre>
+<p>如果之前设置了restrict default ignore的情况下，可以设置哪些客户可以ntpdate到本机</p>
+<pre><code class="language-bash">restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
+</code></pre>
+<p>其余为可选设置，以默认值即可</p>
+<p>3、开启ntpd服务</p>
+<pre><code class="language-bash">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+</code></pre>
+<p>4、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre><code class="language-bash">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>5、关闭chronyd服务<br />
+因为centos7默认使用chronyd来进行时间同步服务，所以使用ntp服务需要关闭chronyd服务</p>
+<pre><code class="language-bash">service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<h2><a id="%E4%BA%8C%E3%80%81%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AF" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>二、配置客户端</h2>
+<p>1、先确保到NTP服务器网络可达</p>
+<pre><code class="language-bash">ping 10.168.2.100
+</code></pre>
+<p>2、先安装NTP服务器（服务器是最小安装，不带ntp）</p>
+<pre><code class="language-bash">yum install ntp* -y
+</code></pre>
+<p>3、使用ntpdate同步一次时间，查看是否有正确回显<br />
+ntpd进程进行同步时，只能同步较小的时间差，为防止时间差别太大，提前使用ntpdate进行一次时间同步</p>
+<pre><code class="language-bash">ntpdate 10.168.2.100
+</code></pre>
+<p>4、设置ntpd服务</p>
+<pre><code class="language-bash">cp /etc/ntp.conf /etc/ntp.conf.bak    #做好备份
+vi /etc/ntp.conf
+</code></pre>
+<p>方法同上，但注意将设置的上级ntp server端需要设置为</p>
+<pre><code class="language-bash">server 10.168.2.100 prefer
+</code></pre>
+<p>设置开启服务后自动同步上级ntp server时间</p>
+<pre><code class="language-bash">vi /etc/ntp/step-tickers
+</code></pre>
+<pre><code class="language-bash">加入10.168.2.100
+</code></pre>
+<p>5、开启ntpd服务和关闭chronyd服务</p>
+<pre><code class="language-bash">service ntpd start
+chkconfig ntpd on   #设置为默认启动，关掉使用off
+service chronyd stop
+chkconfig chronyd off   #设置为默认启动，关掉使用off
+</code></pre>
+<p>6、在防火墙开放对应端口<br />
+服务器和客户端均需开放123/udp端口</p>
+<pre><code class="language-bash">firewall-cmd --zone=public --add-port=123/udp --permanent
+firewall-cmd --reload
+</code></pre>
+<p>7、检查状态  每2秒刷新一次</p>
+<pre><code class="language-bash">watch ntpq -p
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 更新内核版本]]></title>
+    <link href="https://hyter.me/centos7-update-kernel.html"/>
+    <updated>2023-01-28T17:32:19+08:00</updated>
+    <id>https://hyter.me/centos7-update-kernel.html</id>
+    <content type="html"><![CDATA[
+<p>新安装的CentOS系统内核版本为3.10，系统是需要提高内核版本的，从而提高安全性，稳定性，并增加更多的功能</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E5%85%B3%E4%BA%8E%E5%86%85%E6%A0%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于内核</h2>
+<p>Linux 内核分两种：官方内核（通常是内核开发人员用）和各大 Linux 发行版内核（一般用户常用）。</p>
+<h2><a id="%E5%85%B3%E4%BA%8Elinux%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>关于Linux内核版本号：</h2>
+<p>例如：</p>
+<pre><code class="language-plain_text">[root@centos7 ~]# uname -r
+3.10.0-1127.19.1.el7.x86_64
+</code></pre>
+<p>查询得到的版本号为：3.10.0-1127.19.1.el7.x86_64</p>
+<p>第一个组数字：3, 主版本号</p>
+<p>第二个组数字：10, 次版本号，当前为稳定版本，一般这个数字为偶数表示稳定，奇数表示在开发版本，通常这样的不做生产使用。</p>
+<p>第三个组数字：0, 修订版本号</p>
+<p>第四个组数字：1127.19.1，表示发型版本的补丁版本</p>
+<p>el7：则表示我正在使用的内核是 RedHat / CentOS 系列发行版专用内核 ，centos7</p>
+<p>x86_64：采用的是适用64位的CPU的操作系统。</p>
+<h2><a id="%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC%E7%9A%84%E5%88%86%E7%B1%BB%EF%BC%9A" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>内核版本的分类：</h2>
+<p>查看内核的种类在 官网：<a href="https://www.kernel.org/">The Linux Kernel Archives</a></p>
+<p><code>Prepatch</code>：Prepatch 或 “RC” 内核是主要的内核预发行版本，主要针对内核开发人员和 Linux 爱好者。必须从源代码进行编译，并且通常包含必须在可以放入稳定版本之前进行测试的新功能。Prepatch 内核由 Linus Torvalds 维护和发布。</p>
+<p><code>Mainline</code>：Mainline 主线树由 Linus Torvalds 维护。这个版本的内核会引入所有新功能。新的 Mainline 内核每 2-3 个月发布一次。</p>
+<p><code>Stable</code>：每个主线内核被发布后，即被认为是“stable”。任何对 stable 内核的 BUG 修复都会从 Mainline 主线树中回溯并由指定的 stable 内核维护人员使用。 在下一个主线内核可用之前，通常只有几个 BUG 修复内核版本 - 除非它被指定为“longterm maintenance kernel（长期维护内核）”。stable 内核更新按需发布，通常每月 2-3 次。</p>
+<p><code>Longterm</code>：通常会提供几个“longterm maintenance”内核版本，用于修复旧版内核的 BUG。这些内核只会修复重大 BUG，并且不会频繁发布版本。</p>
+<h2><a id="%E5%86%85%E6%A0%B8%E5%8D%87%E7%BA%A7%EF%BC%88yum%E6%96%B9%E6%B3%95%E5%AE%89%E8%A3%85%E5%8D%87%E7%BA%A7%EF%BC%89" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>内核升级（yum方法安装升级）</h2>
+<h3><a id="%E6%A3%80%E6%9F%A5%E5%B7%B2%E5%AE%89%E8%A3%85%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>检查已安装的内核版本</h3>
+<pre><code class="language-bash">[root@centos7 ~]# uname -r
+3.10.0-1160.83.1.el7.x86_64
+</code></pre>
+<h3><a id="%E5%9C%A8centos-7%E4%B8%AD%E5%8D%87%E7%BA%A7%E5%86%85%E6%A0%B8" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>在 CentOS 7 中升级内核</h3>
+<p>CentOS 允许使用 ELRepo，这是一个第三方仓库，可以将内核升级到最新版本。</p>
+<p>在 CentOS 7 上启用 ELRepo 仓库，运行如下命令：</p>
+<pre><code class="language-bash">#导入该源的秘钥
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+#启用该源仓库
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+#查看有哪些内核版本可供安装
+yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+</code></pre>
+<p>输出如下：</p>
+<pre><code class="language-bash">[root@centos7 ~]# yum --disablerepo=&quot;*&quot; --enablerepo=&quot;elrepo-kernel&quot; list available
+已加载插件：fastestmirror, langpacks
+Loading mirror speeds from cached hostfile
+ * elrepo-kernel: mirrors.tuna.tsinghua.edu.cn
+可安装的软件包
+elrepo-release.noarch               7.0-6.el7.elrepo        elrepo-kernel
+kernel-lt.x86_64                    5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-devel.x86_64              5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-doc.noarch                5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-headers.x86_64            5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools.x86_64              5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools-libs.x86_64         5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-lt-tools-libs-devel.x86_64   5.4.230-1.el7.elrepo    elrepo-kernel
+kernel-ml.x86_64                    6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-devel.x86_64              6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-doc.noarch                6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-headers.x86_64            6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools.x86_64              6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools-libs.x86_64         6.1.8-1.el7.elrepo      elrepo-kernel
+kernel-ml-tools-libs-devel.x86_64   6.1.8-1.el7.elrepo      elrepo-kernel
+perf.x86_64                         5.4.230-1.el7.elrepo    elrepo-kernel
+python-perf.x86_64                  5.4.230-1.el7.elrepo    elrepo-kernel
+</code></pre>
+<p>开始安装</p>
+<pre><code class="language-bash">#安装的是主线版本，该版本比较激进，慎重选择。
+yum --enablerepo=elrepo-kernel install kernel-ml -y
+#安装的长期稳定版本，稳定可靠
+yum --enablerepo=elrepo-kernel install kernel-lt -y 
+</code></pre>
+<p>两个yum命令选择一个安装。</p>
+<h3><a id="%E8%AE%BE%E7%BD%AEgrub%E9%BB%98%E8%AE%A4%E7%9A%84%E5%86%85%E6%A0%B8%E7%89%88%E6%9C%AC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置 GRUB 默认的内核版本</h3>
+<p>为了让新安装的内核成为默认启动选项，你需要如下修改 GRUB 配置：</p>
+<p>打开并编辑 <code>/etc/default/grub</code> 并设置 <code>GRUB_DEFAULT=0</code>。意思是 GRUB 初始化页面的第一个内核将作为默认内核。</p>
+<pre><code class="language-bash">[root@centos7 ~] vi /etc/default/grub
+</code></pre>
+<pre><code class="language-bash">GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR=&quot;$(sed 's, release .*$,,g' /etc/system-release)&quot;
+GRUB_DEFAULT=saved  #这里的saved改为0即可，重启后，默认就是你上次所选的版本了。
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT=&quot;console&quot;
+GRUB_CMDLINE_LINUX=&quot;rhgb quiet&quot;
+GRUB_DISABLE_RECOVERY=&quot;true&quot;
+</code></pre>
+<p>执行命令：</p>
+<pre><code class="language-bash">[root@centos7 ~] grub2-mkconfig -o /boot/grub2/grub.cfg
+</code></pre>
+<p>重启系统</p>
+<pre><code class="language-bash">[root@centos7 ~] reboot
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 修改home目录中文文件夹为英文]]></title>
+    <link href="https://hyter.me/centos7-directory-changed-to-english.html"/>
+    <updated>2023-01-28T17:04:20+08:00</updated>
+    <id>https://hyter.me/centos7-directory-changed-to-english.html</id>
+    <content type="html"><![CDATA[
+<p>安装Linxu系统的时候，选择的中文语言，在<code>home</code>目录下就会存在中文的<code>桌面</code>,<code>公共</code>,<code>文档</code>,<code>下载</code>等目录。<br />
+<img src="media/16748966603599/16748968572838.jpg" alt="" /><br />
+想要将这些目录修改为英文，防止以免对后续中文目录对执行程序造成不必要的BUG。</p>
+<span id="more"></span><!-- more -->
+<h2><a id="%E6%93%8D%E4%BD%9C" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>操作</h2>
+<p>操作环境：<code>Centos7</code></p>
+<ol>
+<li>右击桌面打开终端命令行<br />
+<img src="media/16748966603599/16748971522266.jpg" alt="" /></li>
+<li>先把系统语言改为英文，在终端中输入命令</li>
+</ol>
+<pre><code class="language-bash">export LANG=en_US
+</code></pre>
+<ol start="3">
+<li>然后输入</li>
+</ol>
+<pre><code class="language-bash">xdg-user-dirs-gtk-update
+</code></pre>
+<ol start="4">
+<li>跳出对话框询问是否将目录更新为英文路径，选择更新名称（<code>Update Names</code>）<br />
+<img src="media/16748966603599/16748973995347.jpg" alt="" /></li>
+<li>再将系统语言改为中文，在终端中输入命令:</li>
+</ol>
+<pre><code class="language-bash">export LANG=zh_CN
+</code></pre>
+<ol start="6">
+<li>重启系统，下次进入系统,系统会提示是否更新目录为中文.选择<code>不要再次询问我</code>,并选择<code>保留旧的名称</code>.<br />
+<img src="media/16748966603599/16748976551478.jpg" alt="" /></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS 7 跳过首次登陆创建普通用户步骤]]></title>
+    <link href="https://hyter.me/Centos7-skips-the-first-login-to-create-normal-user-step.html"/>
+    <updated>2023-01-24T03:37:19+08:00</updated>
+    <id>https://hyter.me/Centos7-skips-the-first-login-to-create-normal-user-step.html</id>
+    <content type="html"><![CDATA[
+<p>安装完成Centos7之后总会提示新增普通用户，如何跳过：</p>
+<p>首先<code>ctrl+alt+f2</code>进入命令行界面</p>
+<pre><code class="language-bash">yum remove gnome-initial-setup.x86_64
+
+init 3
+
+init 5
+</code></pre>
+<p>执行完成后</p>
+<p>再<code>ctrl+alt+f1</code>进入图形化界面就会跳过此步骤</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Mac上Beyond Compare “这个授权密钥已被吊销”解决方案]]></title>
+    <link href="https://hyter.me/beyond-compare-pojie.html"/>
+    <updated>2022-12-28T15:42:26+08:00</updated>
+    <id>https://hyter.me/beyond-compare-pojie.html</id>
+    <content type="html"><![CDATA[
+<p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
+<p>mac下进入应用文件夹</p>
+<pre><code class="language-plain_text">~/Library/Application Support/Beyond Compare
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
+<p>替换TCheckForUpdatesState标签</p>
+<pre><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
+    &lt;Build Value=&quot;24545&quot;/&gt;
+&lt;/TCheckForUpdatesState&gt;
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
+<p>替换BCSessions标签</p>
+<pre><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
+&lt;/BCSessions&gt;
+</code></pre>
+<span id="more"></span><!-- more -->
+<p>参考：<a href="https://www.jianshu.com/p/c69639f15231">有效解决Beyond Compare “这个授权密钥已被吊销”的办法</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

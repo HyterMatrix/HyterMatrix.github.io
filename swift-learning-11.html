@@ -1,0 +1,846 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  Swift编程入门（11）函数 - HyterMatrix
+  
+  </title>
+  
+  
+  <link href="atom.xml" rel="alternate" title="HyterMatrix" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+ 
+<script type="text/javascript">
+  function before_search(){
+    var searchVal = 'site:hyter.me ' + document.getElementById('search_input').value;
+    document.getElementById('search_q').value = searchVal;
+    return true;
+  }
+</script>
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+
+  <section class="top-bar-section">
+  <div class="row">
+      <div style="position: relative;width:100%;"><div style="position: absolute; width:100%;">
+        <ul id="main-menu" class="left">
+        
+        <li id=""><a target="_self" href="index.html">首页</a></li>
+        
+        <li id=""><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li id=""><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li id=""><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li id=""><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li id=""><a target="_self" href="server.html">服务器</a></li>
+        
+        <li id=""><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li id=""><a target="_self" href="learning.html">学习</a></li>
+        
+        <li id=""><a target="_self" href="archives.html">归档</a></li>
+        
+        <li id=""><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li id=""><a target="_self" href="book.html">书籍</a></li>
+        
+        <li id=""><a target="_self" href="about.html">关于</a></li>
+        
+        </ul>
+
+        <ul class="right" id="search-wrap">
+          <li>
+<form target="_blank" onsubmit="return before_search();" action="https://google.com/search" method="get">
+    <input type="hidden" id="search_q" name="q" value="" />
+    <input tabindex="1" type="search" id="search_input"  placeholder="Search"/>
+</form>
+</li>
+          </ul>
+      </div></div>
+  </div>
+  </section>
+
+</nav>
+
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; HyterMatrix</span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+        
+        <li><a target="_self" href="index.html">首页</a></li>
+        
+        <li><a target="_self" href="fore-end.html">前端技术</a></li>
+        
+        <li><a target="_self" href="black-end.html">后端技术</a></li>
+        
+        <li><a target="_self" href="net.html">网络相关</a></li>
+        
+        <li><a target="_self" href="algorithm.html">算法学习</a></li>
+        
+        <li><a target="_self" href="server.html">服务器</a></li>
+        
+        <li><a target="_self" href="other.html">碎碎嘴</a></li>
+        
+        <li><a target="_self" href="learning.html">学习</a></li>
+        
+        <li><a target="_self" href="archives.html">归档</a></li>
+        
+        <li><a target="_self" href="https://hyter.me/learning-docs/">文档</a></li>
+        
+        <li><a target="_self" href="book.html">书籍</a></li>
+        
+        <li><a target="_self" href="about.html">关于</a></li>
+        
+
+    <li><label>Categories</label></li>
+
+        
+            <li><a href="other.html">碎碎嘴</a></li>
+        
+            <li><a href="black-end.html">后端技术</a></li>
+        
+            <li><a href="fore-end.html">前端技术</a></li>
+        
+            <li><a href="net.html">网络相关</a></li>
+        
+            <li><a href="server.html">服务器</a></li>
+         
+
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+
+        <section id="main-content" role="main" class="scroll-container">
+        
+       
+
+ <script type="text/javascript">
+  $(function(){
+    $('#menu_item_index').addClass('is_active');
+  });
+</script>
+<div class="row">
+  <div class="large-8 medium-8 columns">
+      <div class="markdown-body article-wrap">
+       <div class="article">
+          
+          <h1>Swift编程入门（11）函数</h1>
+     
+        <div class="read-more clearfix">
+          <span class="date">2018/12/26 09:08 上午</span>
+
+          <span>posted in&nbsp;</span> 
+          
+              <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+           
+         
+          <span class="comments">
+            
+
+            
+          </span>
+
+        </div>
+      </div><!-- article -->
+
+      <div class="article-content">
+      <p><code>函数（function）</code>是一组有名字的代码，用来完成某个特定的任务。函数的名字描述了其执行的任务。前面已经用过一些函数，比如Swift提供的<code>print()</code>，以及我们所写代码创建的其他函数。<br />
+函数会执行代码。有些函数会定义参数，用来传递数据以帮助函数完成工作。有些函数在完成工作后会返回一些信息。可以把函数理解为一部小机器，打开后，它就开始运转并完成自己的工作。如果它的工作方式需要数据的话，就要给它传入数据，然后它会返回一块新数据作为工作成果。</p>
+<span id="more"></span><!-- more -->
+<div class="mweb_toc"><ul>
+<li><a href="#%E4%B8%80%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%87%BD%E6%95%B0">一个基本函数</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0">函数参数</a>
+<ul>
+<li><a href="#%E5%8F%82%E6%95%B0%E7%9A%84%E5%90%8D%E5%AD%97">参数的名字</a></li>
+<li><a href="#%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0">变长参数</a></li>
+<li><a href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%80%BC">默认参数值</a></li>
+<li><a href="#in-out%E5%8F%82%E6%95%B0">in-out 参数</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BB%8E%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E">从函数返回</a></li>
+<li><a href="#%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F">嵌套函数和作用域</a></li>
+<li><a href="#%E5%A4%9A%E4%B8%AA%E8%BF%94%E5%9B%9E%E5%80%BC">多个返回值</a></li>
+<li><a href="#%E5%8F%AF%E7%A9%BA%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B">可空返回值类型</a></li>
+<li><a href="#%E6%8F%90%E5%89%8D%E9%80%80%E5%87%BA%E5%87%BD%E6%95%B0">提前退出函数</a></li>
+<li><a href="#%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B">函数类型</a></li>
+</ul>
+</div>
+<h2><a id="%E4%B8%80%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>一个基本函数</h2>
+<p>定义一个函数</p>
+<pre><code class="language-Swift">import Cocoa 
+func printGreeting() {
+    print(&quot;Hello, playground.&quot;)
+}
+printGreeting()
+</code></pre>
+<p>这段代码用<code>func</code>关键字后跟函数名字<code>printGreeting()</code>来定义一个函数。圆括号是空的，因为这个函数不接受任何参数。（稍后会详细介绍参数。）<br />
+左花括号（{）代表函数实现的开始。你可以在这里写代码，描述函数如何工作。调用函数时，花括号中的代码会执行。printGreeting()函数非常简单，只有一行代码，利用print()来打印Hello, playground.到控制台。<br />
+最后调用函数，让它执行内部的代码。</p>
+<h2><a id="%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数参数</h2>
+<p>函数有参数（parameter）之后就能做更多的事情了。利用参数可以向函数输入数据。我们之所以把函数的这部分称为“参数”，是因为它们可以根据调用者给函数传递的数据来改变自己的值。函数利用传递给自己的参数来执行任务或产生结果。</p>
+<pre><code class="language-Swift">import Cocoa
+func printGreeting() {
+    print(&quot;Hello, playground.&quot;)
+}
+printGreeting()
+func printPersonalGreeting(name: String) {
+    print(&quot;Hello \(name), welcome to your playground.&quot;)
+}
+printPersonalGreeting(name: &quot;Matt&quot;)
+</code></pre>
+<p><code>printPersonalGreeting(name:)</code>接受一个参数，如函数名后面的圆括号中所示。<code>实参（argument）</code>是调用者传递给函数<code>形参（parameter）</code>的值。本例的函数有一个String类型的形参name。在紧随着name的:后面指定其类型，跟指定变量和常量的类型一样。</p>
+<p>定义一个除法函数</p>
+<pre><code class="language-Swift">func divisionDescriptionFor(numerator: Double, denominator: Double) {
+    print(&quot;\(numerator) divided by \(denominator) equals \(numerator / denominator)&quot;)
+}
+divisionDescriptionFor(numerator: 9.0, denominator: 3.0)
+</code></pre>
+<h3><a id="%E5%8F%82%E6%95%B0%E7%9A%84%E5%90%8D%E5%AD%97" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>参数的名字</h3>
+<p>函数的参数有名字。比如，函数<code>divisionDescriptionFor(numerator:denominator:)</code>有两个参数，参数名分别是<code>numerator</code>和<code>denominator</code>。在用<code>divisionDescriptionFor(numerator: denominator:)</code>时，我们同时用到了两个参数的名字。这是因为在默认情况下调用函数时会用到所有的参数名。<br />
+有时候让函数体外可见的参数名不同于内部也是有用的。也就是说调用函数的时候用一个参数名字，在函数体内用另一个名字。这种参数被称为<code>外部参数</code>。<br />
+外部参数能让函数可读性更高——如果名字起得合适的话。眼下在调用<code>printPersonalGreeting(name:)</code>时可见的参数名还算能提供有用的信息，但是可读性并不强。通常应该让代码读起来跟我们平常说话一样。</p>
+<pre><code class="language-Swift">func printPersonalGreeting(to name: String) {
+    print(&quot;Hello \(name), welcome to your playground.&quot;)
+}
+printPersonalGreeting(to: &quot;Matt&quot;)
+</code></pre>
+<p>现在<code>printPersonalGreeting(to:)</code>有了一个外部参数to:。这个参数能让函数读起来更像日常说话：“Print personal greeting to Matt.”在函数内，还是得使用name。这样实际上很好，在函数内部，name的含义很清楚。如果在printPersonalGreeting的内部出现print(&quot;Hello \ (to), welcome to your playground.&quot;)的话反而会让人困惑。</p>
+<h3><a id="%E5%8F%98%E9%95%BF%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>变长参数</h3>
+<p><code>变长（variadic）</code>参数接受零个或更多输入值作为实参。函数只能有一个变长参数，而且一般应该是参数列表中的最后一个。参数值在函数内部以数组的形式可用。<br />
+要声明变长参数，用参数类型后面的三个点表示，如names: String...。在本例中，name在函数体内可用，类型是[String]。</p>
+<pre><code class="language-Swift">func printPersonalGreetings(to names: String...) {
+    for name in names {
+        print(&quot;Hello \(name), welcome to the playground.&quot;)
+    }
+} 
+printPersonalGreetings(to: &quot;Alex&quot;,&quot;Chris&quot;,&quot;Drew&quot;,&quot;Pat&quot;)
+</code></pre>
+<h3><a id="%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>默认参数值</h3>
+<p>Swift的参数可以接受默认值。默认值应该放在函数参数列表的末尾。如果形参有默认值，那么在调用函数时可以省略实参。（你可能已经猜到了，函数在这种情况下会使用参数的默认值。）</p>
+<pre><code class="language-Swift">func divisionDescriptionFor(numerator: Double, denominator: Double, withPunctuation punctuation: String = &quot;.&quot;) {
+    print(&quot;\(numerator) divided by \(denominator) equals \(numerator/denominator) \(punctuation) &quot;)
+}
+divisionDescriptionFor(numerator: 9.0, denominator: 3.0)
+divisionDescriptionFor(numerator: 9.0, denominator: 3.0,withPunctuation: &quot;!&quot;)
+</code></pre>
+<p>现在函数接受三个参数：divisionDescriptionFor(numerator:denominator:withPunctuation:)。注意新增代码：punctuation: String = &quot;.&quot;。我们为标点增加了一个新参数，加上其期望的类型，并且用= &quot;.&quot;语法给了它一个默认值。这意味着这个函数创建的字符串默认会以句号结尾。</p>
+<h3><a id="in-out%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>in-out 参数</h3>
+<p>出于某种原因，函数有时候需要修改实参的值。<code>in-out参数（in-out parameter）</code>能让函数影响函数体以外的变量。有两个注意事项：首先，in-out参数不能有默认值；其次，变长参数不能标记为inout。假设有一个函数接受一个错误信息作为实参，并根据某些条件在后面添加信息。</p>
+<pre><code class="language-Swift">var error = &quot;The request failed:&quot;
+func appendErrorCode(_ code: Int, toErrorString errorString: inout String) {
+    if code == 400 {
+        errorString += &quot; bad request.&quot;
+    }
+}
+appendErrorCode(400, toErrorString: &amp;error)
+error
+</code></pre>
+<p>函数appendErrorCode(_:toErrorString:)有两个参数。第一个是函数要比较的错误码，类型为Int。注意，我们给这个参数的外部名是_。它在Swift中有特殊含义：在参数名前用_会使得函数被调用时省去外部名。由于这个参数名是跟在函数名后面的，在调用的时候没有理由用到这个名字。第二个是命名为toErrorString的inout参数（在名字前用inout关键字标记），类型为String。toErrorString是外部名，用来调用函数；而errorString是内部名，在函数内部使用。<br />
+inout加在String前面表示这个函数期望一个特殊的String：它需要一个inout的String。调用这个函数时，传递给inout参数的变量需要在前面加上&amp;。这表示函数会修改这个变量。在这里，errorString被改为The request failed: bad request，可以在运行结果侧边栏看到。</p>
+<h2><a id="%E4%BB%8E%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>从函数返回</h2>
+<p>函数结束执行后可以返回一些信息。这些信息称为函数的返回值（return）。常见的情况是写下一个函数来完成一些工作，然后返回一些数据。让divisionDescriptionFor(numerator: denominator:withPunctuation:)函数返回一个String类型的实例。</p>
+<pre><code class="language-Swift">func divisionDescriptionFor(numerator: Double, denominator: Double, withPunctuation punctuation: String = &quot;.&quot;) -&gt; String {return &quot;\(numerator) divided by \(denominator) equals \(numerator / denominator)\(punctuation)&quot; }
+print(divisionDescriptionFor(numerator: 9.0, denominator: 3.0, withPunctuation: &quot;!&quot;))
+</code></pre>
+<p>新函数的功能和之前差不多，只有一个变化：新实现有返回值。返回值用-&gt; String语法表示，表明函数会返回指定类型的实例。因为要输出字符串到控制台，所以这个函数返回String。返回字符串的细节在函数体内。<br />
+因为divisionDescriptionFor(numerator:denominator:withPunctuation:)返回String，并且print()的参数类型为String，所以可以在print()的调用中再调用除法函数，把字符串输出到控制台。</p>
+<h2><a id="%E5%B5%8C%E5%A5%97%E5%87%BD%E6%95%B0%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>嵌套函数和作用域</h2>
+<p>Swift的函数定义可以嵌套。嵌套函数在另一个函数定义的内部声明并实现。嵌套函数在包围它的函数以外不可用。当你需要一个函数只在另一个函数内部做一些事情时，这个特性很有用。</p>
+<pre><code class="language-Swift">func areaOfTriangleWith(base: Double, height: Double) -&gt; Double {
+    let numerator = base * height
+    func divide() -&gt; Double {
+        return numerator / 2
+    }
+    return divide()
+}
+areaOfTriangleWith(base: 3.0, height: 5.0)
+</code></pre>
+<p>函数areaOfTriangleWith(base:height:)接受两个参数作为底和高，类型是Double。它还会返回一个Double。在函数内部实现中，我们声明并实现了另一个函数，名为divide()。这个函数没有参数，返回一个Double。函数areaOfTriangleWith(base:height:)调divide()函数并返回结果。<br />
+divide()函数还用到了areaOfTriangleWith(base:height:)中定义的常量numerator。这样为什么能行？<br />
+这个常量是在divide()的闭合作用域中定义的。函数中花括号（{}）内部的一切都称为被函数的作用域包围。在本例中，常量numerator和函数divide()都被areaOfTriangle(withBase: andHeight:)的作用域包围。<br />
+函数的作用域描述了实例或函数的可见性，这是某种范围。任何定义在函数作用域内部的东西都对函数可见，除此以外的一切都超出了函数的可见范围。numerator对函数divide()可见是因为两者共享同一个闭合作用域。<br />
+另一方面，因为divide()函数定义在areaOfTriangleWith(base:height:)函数作用域内部，所以在外面是不可见的。如果试图在包围的函数外部调用divide()函数，编译器会报错。可以试一下看看这个错误。<br />
+divide()是个很简单的函数。事实上，areaOfTriangleWith(base:height:)不需要它就可以得到同样的结果：return (base * height) / 2。这里要关注的焦点是作用域的原理。</p>
+<h2><a id="%E5%A4%9A%E4%B8%AA%E8%BF%94%E5%9B%9E%E5%80%BC" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>多个返回值</h2>
+<p>函数可以返回不止一个值。Swift用元组数据类型来做到这一点，第5章已经介绍过了。回忆一下，元组是相关值的有序列表。</p>
+<pre><code class="language-Swift">func sortedEvenOddNumbers(_ numbers: [Int]) -&gt; (evens: [Int], odds: [Int]) {
+    var evens = [Int]()
+    var odds = [Int]()
+    for number in numbers {
+        if number % 2 == 0 {
+            evens.append(number)
+        } else {
+            odds.append(number)
+        }
+    }
+    return (evens, odds)
+}
+</code></pre>
+<p>首先声明一个叫作<code>sortedEvenOddNumbers(_:)</code>的函数。这个函数接受一个整数数组作为唯一的参数，并返回一个命名元组（named tuple）。元组的组成部分是有名字的，可以从这一点看出这是一个命名元组：evens是整数数组，odds也是整数数组。<br />
+接着，在函数的内部实现中初始化evens和odds数组，准备存放相应的整数。然后遍历函数参数numbers里的整数数组，每循环一次，就用%运算符检查number的奇偶性。如果结果是偶数，就添加到evens数组；如果不是偶数，就添加到odds数组。<br />
+我们来调用一下这个函数</p>
+<pre><code class="language-Swift">let aBunchOfNumbers = [10,1,4,3,57,43,84,27,156,111]
+let theSortedNumbers = sortedEvenOddNumbers(aBunchOfNumbers)
+print(&quot;The even numbers are: \(theSortedNumbers.evens); the odd numbers are: \(theSortedNumbers.odds)&quot;)
+</code></pre>
+<p>首先创建一个Array类型的实例存放一组整数。接着把数组传递给sortedEvenOddNumbers(_:)函数，并将返回值赋给常量theSortedNumbers。因为返回值指定为(evens: [Int], odds: [Int])，所以编译器推断新创建的常量就是这个类型。最后把结果打印到控制台。</p>
+<h2><a id="%E5%8F%AF%E7%A9%BA%E8%BF%94%E5%9B%9E%E5%80%BC%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>可空返回值类型</h2>
+<p>有时候，我们想让函数返回可空实例。如果一个函数在某些情况下返回nil，在其他情况下返回一个值的话，Swift提供了可空返回值以供使用。</p>
+<pre><code class="language-Swift">func grabMiddleName(fromFullName name: (String, String?, String)) -&gt; String? {
+    return name.1
+}
+let middleName = grabMiddleName(fromFullName: (&quot;Matt&quot;,nil,&quot;Mathias&quot;))
+if let theName = middleName {
+    print(theName)
+}
+</code></pre>
+<p>这段代码创建了一个名为<code>grabMiddleName(fromFullName:)</code>的函数。这个函数跟之前的有所不同，它接受一个参数：元组类型(String, String?, String)。元组的三个String实例分别是名字、中间名和姓，而中间名为可空类型。<br />
+<code>grabMiddleName(fromFullName:) </code>函数的这个参数叫 <code>name</code> ，有个外部参数名叫<code>fromFullName</code>。在函数内部实现中可以用要返回名字的索引访问这个参数。元组是零索引的，因此用1来访问实参里的中间名。因为中间名可以是nil，所以函数的返回值可空。<br />
+然后调用grabMiddleName(fromFullName:)并传递名字、中间名和姓（可以随意改名字）。因为元组的中间名部分声明为String?，所以可以传递nil。元组的名字和姓部分都不能传<code>nil</code>。<br />
+控制台没有打印东西。因为中间名是nil，可空实例绑定中的布尔值不为真，所以<code>print()</code>不会执行。</p>
+<h2><a id="%E6%8F%90%E5%89%8D%E9%80%80%E5%87%BA%E5%87%BD%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>提前退出函数</h2>
+<p><code>guard语句</code>。跟<code>if/else</code>语句一样，guard语句会根据某个表达式返回的布尔值结果来执行代码；但不同之处是，如果某些条件没有满足，可以用guard语句来提前退出函数，这也是其名称的由来。可以把guard语句想象成一种防止代码在某种不当条件下运行的方式。</p>
+<pre><code class="language-Swift">func greetByMiddleName(fromFullName name: (first: String,middle: String?,last: String)) {
+    guard let middleName = name.middle else {
+        print(&quot;Hey there!&quot;)
+        return
+    }
+    print(&quot;Hey \(middleName)&quot;)
+}
+greetByMiddleName(fromFullName: (&quot;Matt&quot;,&quot;Danger&quot;,&quot;Mathias&quot;))
+</code></pre>
+<p><code>greetByMiddleName(fromFullName:)</code>类似于<code>grabMiddleName(fromFullName:)</code>，都接受一样的参数；但不同的是前者没有返回值。另一个区别是元组name中的元素有名字，跟人名的各个部分一致。如你所见，这些元素名字在函数内部可用。<br />
+guard let middleName = name.middle这行代码把middle的值绑定到middleName常量上。如果可空实例没有值，那么guard语句中的代码会执行。这样会在控制台打印一句省略了中间名的问候语：Hey there!。之后，用return从函数显式返回，这表示guard语句所要求的条件没有满足，函数需要提前返回。<br />
+可以把gurad语句想象成防止以下尴尬情况发生：我们在不知道某人中间名的情况下只能含糊应付过去。不过如果元组带着中间名传递给函数，那么其值会绑定到middleName上，并且在guard语句后可用。这意味着middleName在包围着gurad语句的父作用域中可见。<br />
+不过，在调用greetByMiddleName(fromFullName:)函数时，会给元组name一个中间名并传递给函数。这意味着控制台会打印“Hey Danger!”。如果中间名是nil，那么控制台会打印&quot;Hey there!&quot;。</p>
+<h2><a id="%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>函数类型</h2>
+<p><code>函数类型（function type）</code>由函数参数和返回值组成。以sortedEvenOddNumbers(_:)函数为例，它接受整数数组作为参数，返回有两个整数数组的元组。于是sortedEvenOddNumbers(_:)的类型可以表示为：([Int]) -&gt; ([Int], [Int])。<br />
+函数参数在左边的圆括号中列出，返回值类型跟在-&gt;后面。可以这么读这个函数类型：“一个接受整数数组作为参数并返回带有两个整数数组的元组的函数。”作为比较，既没有参数也没有返回值的函数类型是：() -&gt; ()。<br />
+函数类型很有用，我们可以把函数类型实例赋给变量。在下一章中，当你看到函数可以作为参数和其他函数的返回值时，会意识到这个特性尤其有用。就目前而言，只要知道如何把函数类型实例赋给常量就可以了。<br />
+<code>let evenOddFunction: ([Int]) -&gt; ([Int], [Int]) = sortedEvenOddNumbers</code><br />
+这行代码创建了一个evenOddFunction常量，其值是sortedEvenOddNumbers(_:)函数。很酷，是吧？现在可以传递常量了，就跟普通常量一样；甚至可以用这个常量来调用函数。举个例子，evenOddFunction(numbers: [1,2,3])会把作为参数传递的数组中的数字放进有两个数组的元组中——一个数组放奇数，另一个放偶数。</p>
+<pre><code class="language-Swift">func sortedEvenOddNumbers(_ numbers: [Int]) -&gt; (evens: [Int], odds: [Int]) {
+    var evens = [Int]()
+    var odds = [Int]()
+    for number in numbers {
+        if number % 2 == 0 {
+            evens.append(number)
+        } else {
+            odds.append(number)
+        }
+    }
+    return (evens, odds)
+}
+
+let evenOddFunction: ([Int]) -&gt; ([Int], [Int]) = sortedEvenOddNumbers
+evenOddFunction([1,2,3])
+</code></pre>
+
+
+    
+
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+        <p class="text-left" style="padding:15px 0px;">
+      
+          <a href="nodejs-install.html" 
+          title="Previous Post: node.js安装">&laquo; node.js安装</a>
+      
+        </p>
+        </div>
+        <div class="large-6 columns">
+      <p class="text-right" style="padding:15px 0px;">
+      
+          <a  href="swift-learning-10.html" 
+          title="Next Post: Swift编程入门（10）集合">Swift编程入门（10）集合 &raquo;</a>
+      
+      </p>
+        </div>
+      </div>
+      <div class="comments-wrap">
+        <div class="share-comments">
+          
+
+          
+
+          
+        </div>
+      </div>
+    </div><!-- article-wrap -->
+  </div><!-- large 8 -->
+
+
+
+
+ <div class="large-4 medium-4 columns">
+  <div class="hide-for-small">
+    <div id="sidebar" class="sidebar">
+          <div id="site-info" class="site-info">
+            
+                <div class="site-a-logo"><img src="https://github.com/HyterMatrix.png" /></div>
+            
+                <h1>HyterMatrix</h1>
+                <div class="site-des">千里之行，始于足下。</div>
+                <div class="social">
+
+
+
+
+
+
+
+<a target="_blank" class="weibo" href="https://weibo.com/xiaolanzhuxiong" title="weibo">Weibo</a>
+
+<a target="_blank" class="github" target="_blank" href="https://github.com/HyterMatrix" title="GitHub">GitHub</a>
+<a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
+  <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
+                
+              	 </div>
+          	</div>
+
+             
+
+              <div id="site-categories" class="side-item ">
+                <div class="side-header">
+                  <h2>Categories</h2>
+                </div>
+                <div class="side-content">
+
+      	<p class="cat-list">
+        
+            <a href="other.html"><strong>碎碎嘴</strong></a>
+        
+            <a href="black-end.html"><strong>后端技术</strong></a>
+        
+            <a href="fore-end.html"><strong>前端技术</strong></a>
+        
+            <a href="net.html"><strong>网络相关</strong></a>
+        
+            <a href="server.html"><strong>服务器</strong></a>
+         
+        </p>
+
+
+                </div>
+              </div>
+
+              <div id="site-categories" class="side-item">
+                <div class="side-header">
+                  <h2>Recent Posts</h2>
+                </div>
+                <div class="side-content">
+                <ul class="posts-list">
+	      
+		      
+			      <li class="post">
+			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="mamp-not-run.html">MAMP安装后无法开启的问题</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="gitlab-create-pre-receive.html">Gitlab 创建钩子文件</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
+			      </li>
+		     
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		  
+		      
+		   
+		  		</ul>
+                </div>
+              </div>
+        </div><!-- sidebar -->
+      </div><!-- hide for small -->
+</div><!-- large 4 -->
+
+</div><!-- row -->
+
+ <div class="page-bottom clearfix">
+  <div class="row">
+   <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+
+<script>(n=>{"use strict";let s,r,e;const l=["cdn.jsdelivr.net","fastly.jsdelivr.net","gcore.jsdelivr.net","cdn.zenless.top","testingcf.jsdelivr.net"],t="//",i=l[0],o=Date.now(),a=2e3,c="jsdelivr-auto-fallback",f="/gh/PipecraftNet/jsdelivr-auto-fallback@main/empty.css?",d=e=>e&&e.includes(t+i),m=e=>e.replace(t+i,t+s),u=window.setTimeout,v=n.querySelectorAll.bind(n),b=()=>{let e,t;for(e of v('link[rel="stylesheet"]'))t=e.href,d(t)&&!t.includes(f)&&(e.href=m(t));for(e of v("script"))if(t=e.src,d(t)){const s=n.createElement("script");s.src=m(t),e.defer=!0,e.src="",e.before(s),e.remove()}for(e of v("img"))t=e.src,d(t)&&(e.src="",e.src=m(t));for(e of v("*[style]"))t=e.getAttribute("style"),d(t)&&e.setAttribute("style",m(t));for(e of v("style"))t=e.innerHTML,d(t)&&(e.innerHTML=m(t))},h=()=>{!e&&r&&s&&(console.warn(i+" is not available. Use "+s),e=!0,u(b,0),u(b,20),setInterval(b,500))},g=(()=>{try{return Object.assign({},JSON.parse(localStorage.getItem(c)||"{}"))}catch{return{}}})(),y=()=>{g.time=o,g.failed=!1,g.fastNode=null;for(const t of l)((e,t)=>{let s;const r=n.createElement("link"),l=e=>{s&&(clearTimeout(s),s=0,e||(r.href="data:text/css;base64,"),r.remove(),t(e))};s=u(l,a),r.addEventListener("error",()=>l(!1)),r.addEventListener("load",()=>l(!0)),r.rel="stylesheet",r.text="text/css",r.href=e+f+o,n.head.insertAdjacentElement("afterbegin",r)})("https://"+t,e=>{e||t!==i||(r=!0,g.failed=!0),e&&!s&&(s=t),e&&!g.fastNode&&(g.fastNode=t),h()});u(()=>{r&&!s&&(s=l[1],h()),localStorage.setItem(c,JSON.stringify(g))},a+100)};if(g.time&&o-g.time<36e5&&g.failed&&g.fastNode)r=!0,s=g.fastNode,h(),u(y,1e3);else if(n.head)y();else{const j=new MutationObserver(()=>{n.head&&(j.disconnect(),y())});j.observe(n,{childList:!0,subtree:!0})}})(document);</script>
+<style>.mweb-charts{background:#fff;}
+body{ box-sizing: border-box;
+    margin: 0 auto;}
+@media print{
+    pre, code, pre code {
+     overflow: visible !important;
+     white-space: pre-wrap !important;       /* css-3 */
+     white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+     white-space: -pre-wrap !important;      /* Opera 4-6 */
+     white-space: -o-pre-wrap !important;    /* Opera 7 */
+     word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+    }
+    html,body{margin:0;padding:4px;}
+}
+
+
+
+div.code-toolbar {
+  position: relative;
+}
+
+div.code-toolbar > .toolbar {
+  position: absolute;
+  z-index: 10;
+  top: .3em;
+  right: .2em;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+div.code-toolbar:hover > .toolbar {
+  opacity: 1;
+}
+
+/* Separate line b/c rules are thrown out if selector is invalid.
+   IE11 and old Edge versions don't support :focus-within. */
+div.code-toolbar:focus-within > .toolbar {
+  opacity: 1;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item {
+  display: inline-block;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a {
+  cursor: pointer;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; /* for button */
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a,
+div.code-toolbar > .toolbar > .toolbar-item > button,
+div.code-toolbar > .toolbar > .toolbar-item > span {
+  color: inherit;
+  font-size: .8em;
+  padding: 4px .5em;
+  background: #f5f2f0;
+  background: rgba(224, 224, 224, 0.4);
+  box-shadow: 0 2px 0 0 rgba(0,0,0,0.2);
+  border-radius: .5em;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > a:hover,
+div.code-toolbar > .toolbar > .toolbar-item > a:focus,
+div.code-toolbar > .toolbar > .toolbar-item > button:hover,
+div.code-toolbar > .toolbar > .toolbar-item > button:focus,
+div.code-toolbar > .toolbar > .toolbar-item > span:hover,
+div.code-toolbar > .toolbar > .toolbar-item > span:focus {
+  color: inherit;
+  text-decoration: none;
+}
+</style><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script><script>!function(){if("undefined"!=typeof Prism&&"undefined"!=typeof document){var e=[],t={},n=function(){};Prism.plugins.toolbar={};var a=Prism.plugins.toolbar.registerButton=function(n,a){var r;r="function"==typeof a?a:function(e){var t;return"function"==typeof a.onClick?((t=document.createElement("button")).type="button",t.addEventListener("click",(function(){a.onClick.call(this,e)}))):"string"==typeof a.url?(t=document.createElement("a")).href=a.url:t=document.createElement("span"),a.className&&t.classList.add(a.className),t.textContent=a.text,t},n in t?console.warn('There is a button with the key "'+n+'" registered already.'):e.push(t[n]=r)},r=Prism.plugins.toolbar.hook=function(a){var r=a.element.parentNode;var l=a.element.classList;if(l.contains('language-mermaid') || l.contains('language-echarts') || l.contains('language-plantuml')){return;} if(r&&/pre/i.test(r.nodeName)&&!r.parentNode.classList.contains("code-toolbar")){var o=document.createElement("div");o.classList.add("code-toolbar"),r.parentNode.insertBefore(o,r),o.appendChild(r);var i=document.createElement("div");i.classList.add("toolbar");var l=e,d=function(e){for(;e;){var t=e.getAttribute("data-toolbar-order");if(null!=t)return(t=t.trim()).length?t.split(/\s*,\s*/g):[];e=e.parentElement}}(a.element);d&&(l=d.map((function(e){return t[e]||n}))),l.forEach((function(e){var t=e(a);if(t){var n=document.createElement("div");n.classList.add("toolbar-item"),n.appendChild(t),i.appendChild(n)}})),o.appendChild(i)}};a("label",(function(e){var t=e.element.parentNode;if(t&&/pre/i.test(t.nodeName)&&t.hasAttribute("data-label")){var n,a,r=t.getAttribute("data-label");try{a=document.querySelector("template#"+r)}catch(e){}return a?n=a.content:(t.hasAttribute("data-url")?(n=document.createElement("a")).href=t.getAttribute("data-url"):n=document.createElement("span"),n.textContent=r),n}})),Prism.hooks.add("complete",r)}}();</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/toolbar/prism-toolbar.min.css"><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script><style>div.code-toolbar > .toolbar > .toolbar-item > a, div.code-toolbar > .toolbar > .toolbar-item > button, div.code-toolbar > .toolbar > .toolbar-item > span {padding: 4px .5em; background: #f5f2f0; background: rgba(224, 224, 224, 0.4);}</style><script>window.MathJax = {     tex: { tags: 'ams', displayMath: [ ['\\[', '\\]'] ] } ,     startup: {     pageReady() {       return MathJax.startup.defaultPageReady().then(function () {          window.mweb_mathjax_ready_val = 'yes';          if(window.mweb_mathjax_ready !== undefined){ mweb_mathjax_ready(); }       });     }   }};document.addEventListener('DOMContentLoaded', function(event) {    if (typeof Prism != 'undefined') {         Prism.highlightAll();     }});window.mweb_mathjax_ready_val = '';function theMWebMathJaxRenderIsReady(key){ return window.mweb_mathjax_ready_val; }</script><script>window.MathJax = { tex: { tags: 'ams', displayMath: [ ['\\[', '\\]'] ] } }; </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+
+<style type="text/css">
+figure{margin: 0;padding: 0;}
+figcaption{text-align:center;}
+
+/* PrismJS 1.14.0
+ http://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript */
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+    color: black;
+    background: none;
+    text-shadow: 0 1px white;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+    text-shadow: none;
+    background:#b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+
+@media print {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        text-shadow: none;
+    }
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #F7F7F7;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+    padding: .1em;
+    border-radius: .3em;
+    white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: slategray;
+}
+
+.token.punctuation {
+    color: #999;
+}
+
+.namespace {
+    opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #9a6e3a;
+    background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #07a;
+}
+
+.token.function,
+.token.class-name {
+    color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #e90;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+</style>
+
+  
+    
+
+    <script src="asset/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+      function fixSidebarHeight(){
+        var w1 = $('.markdown-body').height();
+          var w2 = $('#sidebar').height();
+          if (w1 > w2) { $('#sidebar').height(w1); };
+      }
+      $(function(){
+        fixSidebarHeight();
+      })
+      $(window).load(function(){
+          fixSidebarHeight();
+      });
+     
+    </script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1fcc4221ac75cc00d8cac6405903ebf4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  </body>
+</html>
