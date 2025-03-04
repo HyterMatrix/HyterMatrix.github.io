@@ -146,6 +146,55 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
+                <a class="clearlink" href="beyond-compare-pojie.html">
+                
+                  <h1>Mac上Beyond Compare “这个授权密钥已被吊销”解决方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
+<p>mac下进入应用文件夹</p>
+<pre><code class="language-plain_text">~/Library/Application Support/Beyond Compare
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
+<p>替换TCheckForUpdatesState标签</p>
+<pre><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
+    &lt;Build Value=&quot;24545&quot;/&gt;
+&lt;/TCheckForUpdatesState&gt;
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
+<p>替换BCSessions标签</p>
+<pre><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
+&lt;/BCSessions&gt;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="beyond-compare-pojie.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2022/12/28 15:42 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
                 <a class="clearlink" href="Internet-proxy-to-lan.html">
                 
                   <h1>如何将家庭内网服务映射到公网网络访问</h1>
@@ -367,45 +416,6 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
               </div><!-- article -->
         
 			<div class="article">
-                <a class="clearlink" href="php-read-pfx.html">
-                
-                  <h1>PHP下读取pfx中的私钥证书</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre><code class="language-php">    $filePath = 'at2.pfx';
-    pkcs12 = file_get_contents($filePath);
-    openssl_pkcs12_read($pkcs12, $certs, 'pfx证书的密码');
-    $certs; // 中存放就是私钥和证书
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2022/02/15 21:49 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
                 <a class="clearlink" href="international-vs-sm-encrypt.html">
                 
                   <h1>国际加密VS国产加密</h1>
@@ -560,43 +570,6 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
                     <span>posted in&nbsp;</span> 
           				  
           					    <span class="posted-in"><a href='server.html'>服务器</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="re-chinese-name.html">
-                
-                  <h1>匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="re-chinese-name.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/06/11 10:50 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
           				   
                     
 
@@ -946,6 +919,49 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
                 </div>
               </div><!-- article -->
         
+			<div class="article">
+                <a class="clearlink" href="mac-pip-source.html">
+                
+                  <h1>Mac 设置阿里pip源</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-shell">mkdir ~/.pip
+
+tee ~/.pip/pip.conf &lt;&lt;-'EOF'
+[global]
+index-url=http://mirrors.aliyun.com/pypi/simple/
+[install]
+trusted-host=mirrors.aliyun.com
+EOF
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2019/07/17 08:19 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
               
 
 
@@ -1025,6 +1041,12 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
 	      
 		      
 			      <li class="post">
+			        <a href="dpm-api-doc.html">DMP接口文档</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
 			      </li>
 		     
@@ -1044,12 +1066,6 @@ nvm use [version] [arch] ：使用指定版本node，可选参数arch可指定32
 		      
 			      <li class="post">
 			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
 			      </li>
 		     
 		  

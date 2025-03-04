@@ -255,43 +255,6 @@
               </div><!-- article -->
         
 			<div class="article">
-                <a class="clearlink" href="re-chinese-name.html">
-                
-                  <h1>匹配中国人姓名(可以比检测少数名族的姓名带"·"那种)</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>最近系统需要校验少数名族姓名（就是少数名族带·的）</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="re-chinese-name.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2020/06/11 10:50 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
                 <a class="clearlink" href="python-mac-uninstall.html">
                 
                   <h1>MAC 如何卸载 Python</h1>
@@ -391,152 +354,6 @@
           					    <span class="posted-in"><a href='python.html'>Python</a></span>
           				  
           					    <span class="posted-in"><a href='django.html'>Django</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-iconv-qa.html">
-                
-                  <h1>调用iconv和mb_convert_encoding会显示乱码或空白</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>比如“珺”字在单纯的调用iconv 和mb_convert_encoding会显示乱码或空白，解决办法：</p>
-<pre><code class="language-php">$name = iconv(&quot;utf-8&quot;,&quot;gbk//IGNORE&quot;,$str);
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:11 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-sftp.html">
-                
-                  <h1>PHP关于SSH和SFTP相关方法</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>php支持ssh和sftp推送，原生不支持，需要装pecl的ssh2扩展。</p>
-<ol>
-<li>扩展安装：</li>
-<li>SSH使用：</li>
-</ol>
-<pre><code class="language-php">extension_loaded('ssh2') #检查是否安装ssh2扩展模块
-$conn = ssh2_connect(IP, PORT) #连接远程服务器，看是否网络通，返回连接资源
-ssh2_auth_password($conn, $username, $password) #通过账号密码认证登陆远程远程服务
-$ssh2_sft = ssh2_sftp($conn);# 获取sftp连接资源
-ssh2_sftp_mkdir($ssh2_sftp, $path, 0777, true)#创建远程目录
-ssh2_scp_send($conn, $localfile, $filename, 0777)#上传文件
-</code></pre>
-<p>在一些特殊情况下，比如在内网，外网主机被映射为内网一个内网ip时，ssh2_scp_send可能推送不出文件，并且还会一直发送，长时间不会返回上传状态，这个时候需要用使用sftp方式推送</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:08 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-ping-code.html">
-                
-                  <h1>PHP代码 ping 域名</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>在PHP代码中做ping</p>
-<pre><code class="language-php">// ping 域名
-function pingAddress($address,$proxy=false) {
-    $status = -1;
-        if (strcasecmp(PHP_OS, 'WINNT') === 0) {
-            // Windows 服务器下
-            $pingresult = exec(&quot;ping -n 1 {$address}&quot;, $outcome, $status);
-        } elseif (strcasecmp(PHP_OS, 'Linux') === 0) {
-            // Linux 服务器下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }elseif (strcasecmp(PHP_OS, 'Darwin') === 0){
-            // MacOS 下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }
-        if (0 == $status) {
-            $status = true;
-        } else {
-            $status = false;
-        }
-    return $status;
-}
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/06/19 15:58 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
           				   
                     
 
@@ -929,6 +746,149 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
                 </div>
               </div><!-- article -->
         
+			<div class="article">
+                <a class="clearlink" href="swift-learning-5.html">
+                
+                  <h1>Swift编程入门（5）循环</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>循环对于重复性的任务比较有用。它能重复执行一段代码，可以是重复指定的次数，也可以<br />
+是在满足指定条件的情况下重复运行。使用循环可以避免出现冗长、重复的代码。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-5.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/11 23:20 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-4.html">
+                
+                  <h1>Swift编程入门（4）switch语句</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>之前见识了一种条件语句：if/else。在学习过程中曾提到，if/else对于不止一个条件的场景来说不太够用。本章就要来看看switch语句了。与if/else不同，switch非常适于处理多重条件。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-4.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/09 20:36 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-3.html">
+                
+                  <h1>Swift编程入门（3）数</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>数是计算机语言的基础，也是软件开发的重要组成部分。<br />
+数用来记录温度的高低，判断一个句子用有多少个汉字。<br />
+数分两个基本类型：整数 和 浮点数</p>
+ 
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-3.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/09 17:05 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-2.html">
+                
+                  <h1>Swift编程入门（2）条件语句</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>当一个应用能根据某些变量的值作出决策时，这里就需要用到条件语句，常见的条件语句有<code>if/else</code>、嵌套的<code>if/else</code>、三目运算符等</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-2.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/07 13:13 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
               
 
 
@@ -1008,6 +968,12 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 	      
 		      
 			      <li class="post">
+			        <a href="dpm-api-doc.html">DMP接口文档</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
 			      </li>
 		     
@@ -1027,12 +993,6 @@ Swift有一组容器类型，首先介绍的是数组（array）。<br />
 		      
 			      <li class="post">
 			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
 			      </li>
 		     
 		  

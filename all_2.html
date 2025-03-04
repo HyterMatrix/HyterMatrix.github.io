@@ -146,49 +146,6 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
-                <a class="clearlink" href="mac-pip-source.html">
-                
-                  <h1>Mac 设置阿里pip源</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<pre><code class="language-shell">mkdir ~/.pip
-
-tee ~/.pip/pip.conf &lt;&lt;-'EOF'
-[global]
-index-url=http://mirrors.aliyun.com/pypi/simple/
-[install]
-trusted-host=mirrors.aliyun.com
-EOF
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/17 08:19 上午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
                 <a class="clearlink" href="html-jianjiao.html">
                 
                   <h1>自定义小尖角</h1>
@@ -220,94 +177,6 @@ EOF
           					    <span class="posted-in"><a href='fore-end.html'>前端技术</a></span>
           				  
           					    <span class="posted-in"><a href='css.html'>CSS</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-iconv-qa.html">
-                
-                  <h1>调用iconv和mb_convert_encoding会显示乱码或空白</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>比如“珺”字在单纯的调用iconv 和mb_convert_encoding会显示乱码或空白，解决办法：</p>
-<pre><code class="language-php">$name = iconv(&quot;utf-8&quot;,&quot;gbk//IGNORE&quot;,$str);
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:11 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-sftp.html">
-                
-                  <h1>PHP关于SSH和SFTP相关方法</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>php支持ssh和sftp推送，原生不支持，需要装pecl的ssh2扩展。</p>
-<ol>
-<li>扩展安装：</li>
-<li>SSH使用：</li>
-</ol>
-<pre><code class="language-php">extension_loaded('ssh2') #检查是否安装ssh2扩展模块
-$conn = ssh2_connect(IP, PORT) #连接远程服务器，看是否网络通，返回连接资源
-ssh2_auth_password($conn, $username, $password) #通过账号密码认证登陆远程远程服务
-$ssh2_sft = ssh2_sftp($conn);# 获取sftp连接资源
-ssh2_sftp_mkdir($ssh2_sftp, $path, 0777, true)#创建远程目录
-ssh2_scp_send($conn, $localfile, $filename, 0777)#上传文件
-</code></pre>
-<p>在一些特殊情况下，比如在内网，外网主机被映射为内网一个内网ip时，ssh2_scp_send可能推送不出文件，并且还会一直发送，长时间不会返回上传状态，这个时候需要用使用sftp方式推送</p>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/07/16 15:08 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
           				   
                     
 
@@ -427,64 +296,6 @@ openssl pkcs12 -export -in root.crt -inkey privkey.pem -out  an.pfx
                     <span>posted in&nbsp;</span> 
           				  
           					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
-                <a class="clearlink" href="php-ping-code.html">
-                
-                  <h1>PHP代码 ping 域名</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	<p>在PHP代码中做ping</p>
-<pre><code class="language-php">// ping 域名
-function pingAddress($address,$proxy=false) {
-    $status = -1;
-        if (strcasecmp(PHP_OS, 'WINNT') === 0) {
-            // Windows 服务器下
-            $pingresult = exec(&quot;ping -n 1 {$address}&quot;, $outcome, $status);
-        } elseif (strcasecmp(PHP_OS, 'Linux') === 0) {
-            // Linux 服务器下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }elseif (strcasecmp(PHP_OS, 'Darwin') === 0){
-            // MacOS 下
-            $pingresult = exec(&quot;ping -c 1 {$address}&quot;, $outcome, $status);
-        }
-        if (0 == $status) {
-            $status = true;
-        } else {
-            $status = false;
-        }
-    return $status;
-}
-</code></pre>
-
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                  
-                    <span class="date">2019/06/19 15:58 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='PHP.html'>PHP</a></span>
-          				  
-          					    <span class="posted-in"><a href='PHP%E4%BB%A3%E7%A0%81%E6%AE%B5.html'>PHP代码段</a></span>
           				   
                     
 
@@ -972,6 +783,164 @@ conda config --set show_channel_urls yes
                 </div>
               </div><!-- article -->
         
+			<div class="article">
+                <a class="clearlink" href="nodejs-install.html">
+                
+                  <h1>node.js安装</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<pre><code class="language-shell">brew install node@8 
+node@8 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have node@8 first in your PATH run:
+  echo 'export PATH=&quot;/usr/local/opt/node@8/bin:$PATH&quot;' &gt;&gt; ~/.bash_profile
+
+For compilers to find node@8 you may need to set:
+  export LDFLAGS=&quot;-L/usr/local/opt/node@8/lib&quot;
+  export CPPFLAGS=&quot;-I/usr/local/opt/node@8/include&quot;
+</code></pre>
+<h2><a id="nvm" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>nvm</h2>
+<pre><code class="language-plain_text">export NVM_DIR=&quot;/usr/local/Cellar/nvm/0.33.11/&quot;
+[ -s &quot;$NVM_DIR/nvm.sh&quot; ] &amp;&amp; \. &quot;$NVM_DIR/nvm.sh&quot;  # This loads nvm
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                  
+                    <span class="date">2018/12/27 08:16 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='server.html'>服务器</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-11.html">
+                
+                  <h1>Swift编程入门（11）函数</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p><code>函数（function）</code>是一组有名字的代码，用来完成某个特定的任务。函数的名字描述了其执行的任务。前面已经用过一些函数，比如Swift提供的<code>print()</code>，以及我们所写代码创建的其他函数。<br />
+函数会执行代码。有些函数会定义参数，用来传递数据以帮助函数完成工作。有些函数在完成工作后会返回一些信息。可以把函数理解为一部小机器，打开后，它就开始运转并完成自己的工作。如果它的工作方式需要数据的话，就要给它传入数据，然后它会返回一块新数据作为工作成果。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-11.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/26 09:08 上午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-10.html">
+                
+                  <h1>Swift编程入门（10）集合</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>Swift提供的第三种容器类型是集合（set）。集合是一组互不相同的实例的无序组合。这个定义将其与数组区别开来，后者是有序的，并且可以容纳重复的值。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-10.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/20 21:18 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
+			<div class="article">
+                <a class="clearlink" href="swift-learning-9.html">
+                
+                  <h1>Swift编程入门（9）字典</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>当容器中的元素顺序很重要时，<code>Array</code>类型很有用。<br />
+然而顺序不总是很重要。有时候我们只是想在容器中持有一组数据，并在需要时获取信息。这就是<code>字典（dictionary）</code>的使用场景。<br />
+Dictionary使用键值对（key-value pair）组织其内容的容器类型。字典的键映射到值。<br />
+Dictionary中的键必须是唯一的。这个要求意味着每个键都唯一地映射到对应的值。</p>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="swift-learning-9.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2018/12/20 21:07 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='swift-learning.html'>Swift入门</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
               
 
 
@@ -1051,6 +1020,12 @@ conda config --set show_channel_urls yes
 	      
 		      
 			      <li class="post">
+			        <a href="dpm-api-doc.html">DMP接口文档</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
 			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
 			      </li>
 		     
@@ -1070,12 +1045,6 @@ conda config --set show_channel_urls yes
 		      
 			      <li class="post">
 			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
-			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
 			      </li>
 		     
 		  

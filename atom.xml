@@ -4,13 +4,208 @@
   <title><![CDATA[HyterMatrix]]></title>
   <link href="https://hyter.me/atom.xml" rel="self"/>
   <link href="https://hyter.me/"/>
-  <updated>2024-10-21T14:42:11+08:00</updated>
+  <updated>2025-03-04T22:07:55+08:00</updated>
   <id>https://hyter.me/</id>
   <author>
     <name><![CDATA[]]></name>
     
   </author>
   <generator uri="http://www.mweb.im/">MWeb</generator>
+  
+  <entry>
+    <title type="html"><![CDATA[DMP接口文档]]></title>
+    <link href="https://hyter.me/dpm-api-doc.html"/>
+    <updated>2025-03-03T20:45:36+08:00</updated>
+    <id>https://hyter.me/dpm-api-doc.html</id>
+    <content type="html"><![CDATA[
+<h2><a id="%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口地址</h2>
+<p><strong>请求地址</strong>：联系管理员</p>
+<h2><a id="%E5%85%AC%E5%85%B1%E5%93%8D%E5%BA%94%E5%8F%82%E6%95%B0" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>公共响应参数</h2>
+<p><strong>成功时返回</strong></p>
+<pre><code class="language-json">{
+	&quot;code&quot;: 0,
+	&quot;message&quot;: &quot;请求成功&quot;,
+	&quot;data&quot;: {},
+	&quot;timestamp&quot;: 1740474992
+}
+</code></pre>
+<p><strong>失败返回</strong></p>
+<pre><code class="language-plain_text">{
+	&quot;code&quot;: 1,
+	&quot;message&quot;: &quot;操作失败&quot;,
+}
+</code></pre>
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>响应码，0：成功</td>
+</tr>
+<tr>
+<td>message</td>
+<td>返回码的文本描述内容</td>
+</tr>
+<tr>
+<td>data</td>
+<td>成功时返回的数据对象</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>时间戳</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>接口</h2>
+<h4><a id="%E7%A4%BA%E4%BE%8B" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>示例</h4>
+<p><strong>请求方式：</strong> POST<br />
+<strong>请求地址：</strong> /api/xxxx</p>
+<p><strong>请求包体</strong></p>
+<pre><code class="language-json">
+</code></pre>
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回结果</strong></p>
+<pre><code class="language-json">
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="%E7%99%BB%E5%BD%95%E6%8E%A5%E5%8F%A3" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>登录接口</h3>
+<h4><a id="%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>用户登录</h4>
+<h4><a id="%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>授权登录</h4>
+<p>使用第三方OAuth登录</p>
+<h5><a id="%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95%E8%8E%B7%E5%8F%96url" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>授权登录获取URL</h5>
+<p><strong>请求方式：</strong> <code>GET</code><br />
+<strong>请求地址：</strong> <code>/api/auth/oauth/login/{$platform}</code></p>
+<p><strong>请求包体</strong></p>
+<pre><code class="language-json">
+</code></pre>
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform</td>
+<td>是</td>
+<td>需要做授权的服务名称：<br />wecom:企业微信</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回结果</strong></p>
+<pre><code class="language-json">{
+	&quot;code&quot;: 0,
+	&quot;message&quot;: &quot;请求成功&quot;,
+	&quot;data&quot;: {
+		&quot;redirect_url&quot;: &quot;https:\/\/open.weixin.qq.com\/connect\/oauth2\/authorize?appid=ww3df6f92ad566dfab&amp;redirect_uri=http%3A%2F%2Fdpm.v3.local.tlinx.cn%2Fapi%2Fuser%2Flogin%2Foauthgetuserinfo&amp;response_type=code&amp;scope=snsapi_privateinfo&amp;state=STATE&amp;agentid=1000023#wechat_redirect&quot;
+	},
+	&quot;timestamp&quot;: 1740474992
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>redirect_url</td>
+<td>企业微信授权跳转的URL</td>
+</tr>
+</tbody>
+</table>
+<h5><a id="%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95code%E6%8D%A2%E5%8F%96%E7%99%BB%E5%BD%95%E5%87%AD%E8%AF%81" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>授权登录code换取登录凭证</h5>
+<p><strong>请求方式：</strong> <code>POST</code><br />
+<strong>请求地址：</strong> <code>/api/auth/oauth/oauth_callback/$platform</code></p>
+<p><strong>请求包体</strong></p>
+<pre><code class="language-json">{
+	&quot;code&quot;: &quot;CODE&quot;
+}
+</code></pre>
+<p><strong>参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>是</td>
+<td>授权后重定向时获取到的授权code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>返回结果</strong></p>
+<pre><code class="language-json">{
+	&quot;code&quot;: 0,
+	&quot;message&quot;: &quot;获取Token成功&quot;,
+	&quot;data&quot;: {
+		&quot;token&quot;: &quot;d41a60887f833e2606cfcde00ca0ecf1&quot;
+	},
+	&quot;timestamp&quot;: 1740476151
+}
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>获取接口调用授权的token</td>
+</tr>
+</tbody>
+</table>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ubuntu安装驱动以及CUDA]]></title>
@@ -1239,33 +1434,6 @@ init 5
 </code></pre>
 <p>执行完成后</p>
 <p>再<code>ctrl+alt+f1</code>进入图形化界面就会跳过此步骤</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mac上Beyond Compare “这个授权密钥已被吊销”解决方案]]></title>
-    <link href="https://hyter.me/beyond-compare-pojie.html"/>
-    <updated>2022-12-28T15:42:26+08:00</updated>
-    <id>https://hyter.me/beyond-compare-pojie.html</id>
-    <content type="html"><![CDATA[
-<p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
-<p>mac下进入应用文件夹</p>
-<pre><code class="language-plain_text">~/Library/Application Support/Beyond Compare
-</code></pre>
-<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
-<p>替换TCheckForUpdatesState标签</p>
-<pre><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
-    &lt;Build Value=&quot;24545&quot;/&gt;
-&lt;/TCheckForUpdatesState&gt;
-</code></pre>
-<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
-<p>替换BCSessions标签</p>
-<pre><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
-&lt;/BCSessions&gt;
-</code></pre>
-<span id="more"></span><!-- more -->
-<p>参考：<a href="https://www.jianshu.com/p/c69639f15231">有效解决Beyond Compare “这个授权密钥已被吊销”的办法</a></p>
 
 ]]></content>
   </entry>
