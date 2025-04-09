@@ -146,40 +146,6 @@
 		<div class="markdown-body home-categories">
 		
 			<div class="article">
-                <a class="clearlink" href="dpm-api-doc.html">
-                
-                  <h1>DMP接口文档</h1>
-                  <div class="a-content">
-                      
-                      <div class="a-content-text">
-                        
-                        	
-                        
-                      </div>
-                  </div>
-                </a>
-                <div class="read-more clearfix">
-                  <div class="more-left left">
-                   <a href="dpm-api-doc.html">Read more</a>&nbsp;&nbsp; 
-                    <span class="date">2025/03/03 20:45 下午</span>
-                    <span>posted in&nbsp;</span> 
-          				  
-          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
-          				   
-                    
-
-                  </div>
-                  <div class="more-right right">
-                  <span class="comments">
-                      
-
-                       
-                  </span>
-                  </div>
-                </div>
-              </div><!-- article -->
-        
-			<div class="article">
                 <a class="clearlink" href="ubuntu-install-drivers-and-cuda.html">
                 
                   <h1>Ubuntu安装驱动以及CUDA</h1>
@@ -904,6 +870,55 @@ init 5
                 </div>
               </div><!-- article -->
         
+			<div class="article">
+                <a class="clearlink" href="beyond-compare-pojie.html">
+                
+                  <h1>Mac上Beyond Compare “这个授权密钥已被吊销”解决方案</h1>
+                  <div class="a-content">
+                      
+                      <div class="a-content-text">
+                        
+                        	<p>针对Mac上破解后Beyond Compare“这个授权密钥已被吊销”问题的解决方案</p>
+<p>mac下进入应用文件夹</p>
+<pre><code class="language-plain_text">~/Library/Application Support/Beyond Compare
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcstate-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCState.xml文件</h2>
+<p>替换TCheckForUpdatesState标签</p>
+<pre><code class="language-plain_text">&lt;TCheckForUpdatesState&gt;
+    &lt;Build Value=&quot;24545&quot;/&gt;
+&lt;/TCheckForUpdatesState&gt;
+</code></pre>
+<h2><a id="%E4%BF%AE%E6%94%B9bcsessions-xml%E6%96%87%E4%BB%B6" class="anchor" aria-hidden="true"><span class="octicon octicon-link"></span></a>修改BCSessions.xml文件</h2>
+<p>替换BCSessions标签</p>
+<pre><code class="language-plain_text">&lt;BCSessions Version=&quot;1&quot; MinVersion=&quot;1&quot;&gt;
+&lt;/BCSessions&gt;
+</code></pre>
+
+                        
+                      </div>
+                  </div>
+                </a>
+                <div class="read-more clearfix">
+                  <div class="more-left left">
+                   <a href="beyond-compare-pojie.html">Read more</a>&nbsp;&nbsp; 
+                    <span class="date">2022/12/28 15:42 下午</span>
+                    <span>posted in&nbsp;</span> 
+          				  
+          					    <span class="posted-in"><a href='other.html'>碎碎嘴</a></span>
+          				   
+                    
+
+                  </div>
+                  <div class="more-right right">
+                  <span class="comments">
+                      
+
+                       
+                  </span>
+                  </div>
+                </div>
+              </div><!-- article -->
+        
               
 
 
@@ -983,12 +998,6 @@ init 5
 	      
 		      
 			      <li class="post">
-			        <a href="dpm-api-doc.html">DMP接口文档</a>
-			      </li>
-		     
-		  
-		      
-			      <li class="post">
 			        <a href="ubuntu-install-drivers-and-cuda.html">Ubuntu安装驱动以及CUDA</a>
 			      </li>
 		     
@@ -1008,6 +1017,12 @@ init 5
 		      
 			      <li class="post">
 			        <a href="svn-diff-pack.html">SVN 打包两个版本之间差异的脚本</a>
+			      </li>
+		     
+		  
+		      
+			      <li class="post">
+			        <a href="centos-install-pyenv.html">Centos下管理Python多环境</a>
 			      </li>
 		     
 		  
