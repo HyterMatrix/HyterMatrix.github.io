@@ -337,12 +337,21 @@ for i in 1...100{
 <a target="_blank" class="email" href="mailto:admin@hyter.me" title="Email">Email</a>
   <a target="_blank" class="rss" href="atom.xml" title="RSS">RSS</a>
                 
-              	 </div>
-          	</div>
+              </div>
+            </div>
+
+              <div id="post-toc-panel" class="side-item post-toc-panel">
+                <div class="side-header">
+                  <h2>目录</h2>
+                </div>
+                <div class="side-content">
+                  <ol id="post-toc" class="post-toc"></ol>
+                </div>
+              </div>
 
              
 
-              <div id="site-categories" class="side-item ">
+              <div id="site-categories" class="side-item site-categories-panel">
                 <div class="side-header">
                   <h2>Categories</h2>
                 </div>
@@ -366,7 +375,7 @@ for i in 1...100{
                 </div>
               </div>
 
-              <div id="site-categories" class="side-item">
+              <div id="site-categories" class="side-item recent-posts-panel">
                 <div class="side-header">
                   <h2>Recent Posts</h2>
                 </div>
@@ -441,7 +450,6 @@ for i in 1...100{
 </div><!-- large 4 -->
 
 </div><!-- row -->
-
  <div class="page-bottom clearfix">
   <div class="row">
   <p class="copyright">Copyright &copy; 2026 &middot; Powered by <a target="_blank" href="https://hyter.me/">HyterMatrix</a></p>
@@ -1028,12 +1036,92 @@ button.copy-to-clipboard-button:hover,
         copyCodeText($(this));
       });
 
+      function buildPostToc(){
+        var $content = $('.article-content');
+        var $toc = $('#post-toc');
+        if (!$content.length || !$toc.length) {
+          return;
+        }
+
+        var $headings = $content.find('h2, h3, h4').filter(function(){
+          return $.trim($(this).text()).length > 0;
+        });
+
+        if (!$headings.length) {
+          $('#post-toc-panel').hide();
+          return;
+        }
+
+        var usedIds = {};
+        $headings.each(function(index){
+          var $heading = $(this);
+          var text = $.trim($heading.text());
+          var id = $heading.attr('id');
+          if (!id) {
+            id = 'section-' + (index + 1);
+          }
+          var baseId = id;
+          var suffix = 2;
+          while (usedIds[id] || document.getElementById(id)) {
+            if ($heading.attr('id') === id && !usedIds[id]) {
+              break;
+            }
+            id = baseId + '-' + suffix;
+            suffix += 1;
+          }
+          usedIds[id] = true;
+          $heading.attr('id', id);
+
+          var level = this.tagName.toLowerCase().replace('h', '');
+          $('<li></li>')
+            .addClass('toc-level-' + level)
+            .append($('<a></a>').attr('href', '#' + id).text(text))
+            .appendTo($toc);
+        });
+
+        $('body').addClass('has-post-toc');
+        $('#post-toc-panel').show();
+
+        $toc.on('click', 'a', function(e){
+          var target = document.getElementById(this.getAttribute('href').slice(1));
+          if (!target) {
+            return;
+          }
+          e.preventDefault();
+          $('html, body').animate({ scrollTop: $(target).offset().top - 82 }, 220);
+        });
+
+        var $links = $toc.find('a');
+        function syncActiveToc(){
+          var currentId = '';
+          var fromTop = $(window).scrollTop() + 112;
+          $headings.each(function(){
+            if ($(this).offset().top <= fromTop) {
+              currentId = this.id;
+            }
+          });
+          $links.removeClass('is-active');
+          if (currentId) {
+            $links.filter(function(){
+              return this.getAttribute('href') === '#' + currentId;
+            }).addClass('is-active');
+          }
+        }
+
+        syncActiveToc();
+        $(window).on('scroll', syncActiveToc);
+      }
+
       function fixSidebarHeight(){
+        if ($('body').hasClass('has-post-toc')) {
+          return;
+        }
         var w1 = $('.markdown-body').height();
           var w2 = $('#sidebar').height();
           if (w1 > w2) { $('#sidebar').height(w1); };
       }
       $(function(){
+        buildPostToc();
         fixSidebarHeight();
       })
       $(window).load(function(){
