@@ -1281,8 +1281,9 @@ body.antialiased:before {
 .sidebar {
   position: relative;
   overflow: hidden;
+  height: auto !important;
   margin-top: 34px;
-  padding: 0 24px 38px;
+  padding: 0 24px 26px;
   color: var(--matrix-text);
   background:
     linear-gradient(90deg, rgba(111, 232, 201, 0.045) 1px, transparent 1px),
@@ -1291,6 +1292,10 @@ body.antialiased:before {
   border: 1px solid var(--matrix-line);
   border-radius: var(--matrix-radius);
   box-shadow: var(--matrix-shadow);
+}
+
+.sidebar .side-item:last-child {
+  padding-bottom: 4px;
 }
 
 #site-info .site-a-logo {

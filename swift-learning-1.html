@@ -1055,12 +1055,7 @@ button.copy-to-clipboard-button:hover,
       }
 
       function fixSidebarHeight(){
-        if ($('body').hasClass('has-post-toc')) {
-          return;
-        }
-        var w1 = $('.markdown-body').height();
-          var w2 = $('#sidebar').height();
-          if (w1 > w2) { $('#sidebar').height(w1); };
+        $('#sidebar').css('height', 'auto');
       }
       $(function(){
         buildPostToc();
