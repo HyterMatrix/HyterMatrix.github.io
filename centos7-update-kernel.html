@@ -799,6 +799,115 @@ pre[class*="language-"] > code[class*="language-"] {
             text-align: right;
         }
 
+/* Tech Matrix Prism refinement */
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #d8eee8;
+    text-shadow: none;
+}
+
+pre[class*="language-"] {
+    background:
+      linear-gradient(180deg, rgba(7, 22, 19, 0.98), rgba(5, 16, 14, 0.98)),
+      linear-gradient(90deg, rgba(111, 232, 201, 0.06) 1px, transparent 1px);
+    border: 1px solid rgba(111, 232, 201, 0.18);
+    border-radius: 8px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+:not(pre) > code[class*="language-"] {
+    color: #c9fff0;
+    background: rgba(111, 232, 201, 0.095);
+    border: 1px solid rgba(111, 232, 201, 0.18);
+    box-shadow: none;
+}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection,
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+    color: #03110d;
+    background: rgba(111, 232, 201, 0.78);
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #6f8780;
+}
+
+.token.punctuation {
+    color: #9bb0aa;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+    color: #ff9d99;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+    color: #78e6b6;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #e4bd73;
+    background: transparent;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #8db4ff;
+}
+
+.token.function,
+.token.class-name {
+    color: #d2a3ff;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #ffd38a;
+}
+
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid rgba(111, 232, 201, 0.16);
+}
+
+.line-numbers-rows > span:before {
+    color: rgba(220, 233, 229, 0.38);
+}
+
+button.copy-to-clipboard-button,
+.copy-to-clipboard-button {
+    color: rgba(220, 233, 229, 0.58);
+}
+
+button.copy-to-clipboard-button:hover,
+.copy-to-clipboard-button:hover {
+    color: #6fe8c9;
+}
+
 </style>
 
   
